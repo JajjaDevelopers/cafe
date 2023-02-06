@@ -1,0 +1,687 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family:Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color:#6F4E37;
+    margin: 0%;
+    padding: 0%;
+}
+html{
+    margin: 0px;
+    padding: 0%;
+}
+h1{
+    color:rgb(99, 163, 99);
+    text-align: center;
+
+}
+#topDiv{
+   
+    background-color: rgb(97, 153, 97);
+    width: 100%;
+    margin: 1px;
+    padding: 10px 0px 0px 10px;
+    height: 35px;
+}
+
+.topListItem{
+    margin-top: 2px;
+    padding: 10px;
+    height: 25px;
+    vertical-align: middle;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: solid;
+}
+.topListItem:hover{
+    margin: 10px 0px 0px 0px;
+    padding: 5px 10px 10px 10px;
+    height: 25px;
+    background-color: whitesmoke;
+    color: rgba(121, 51, 7, 0.781);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+    #roastAndGroundLink{
+        margin: 10px 0px 0px 0px;
+        padding: 5px 10px 10px 10px;
+        height: 25px;
+        background-color: whitesmoke;
+        color: rgba(121, 51, 7, 0.781);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+
+.mainDivRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.column{
+    float: left;
+    padding: 10px;
+}
+.column.leftMenuDiv {
+    background-color: rgba(146, 112, 91, 0.781);
+    width: 20%;
+    height: 50%;
+    margin: 2px 0px 0px 1px;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+.column.mainContentDiv{
+    width: 60%;
+    height: 00px;
+    padding: 0px;
+    margin: 5px;
+}
+.formHeading{
+    text-align: center;
+    color: green;
+    grid-row: 1;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    text-align: center;
+    font-size: medium;
+}
+#departmentMenuTitle{
+    margin: 10px 0px 0px 0px;
+    color: rgb(40, 109, 66);
+
+}
+.departmentMenuOptionDiv{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    color: black;
+    text-decoration:none;
+}
+    .leftMenuLink{
+        text-decoration: solid;
+        color: white;
+    }
+.departmentMenuOptionDiv:hover{
+    background-color: brown;
+    color: white;
+    padding-left: 15px;
+    border-radius: 5px;
+}
+form{
+    font-size: small;
+    background-color: whitesmoke;
+    border: 1px solid rgb(194, 162, 162);
+    border-radius: 5px;
+}
+#grnFormDiv{
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    display:grid;
+    gap: 5px;
+    padding: 0px;
+    margin: 0px;
+}
+#grnForm{
+    display:grid;
+    gap: 5px;
+    border-style: groove;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-size: x-small;
+    padding: 5px;
+}
+
+.formLabel{
+    grid-column: 1;
+    vertical-align: middle;
+}
+.formInput{
+    grid-column: 2;
+    padding-left: 0px;
+    margin-left: 0px;
+    
+}
+
+#section1Div{
+    display: grid;
+    gap: 5px;
+    grid-row: 2;
+    grid-column: 3;
+}
+    #grnDateDiv{
+        grid-row: 1;
+        grid-column: 1;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    #grnTimeDiv{
+        display: grid;
+        grid-row: 2;
+        grid-column: 1;
+    }
+        
+        #grnTimeInLabel{
+            grid-column: 1;
+        }
+        #grnTimeOutLabel{
+            grid-row: 1;
+            grid-column: 2;
+        }
+        #grnTimeIn{
+            grid-row: 2;
+            grid-column: 1;
+            width: 68px;
+        }
+        #grnTimeOut{
+            grid-row: 2;
+            grid-column: 2;
+            width: 68px;
+        }
+        
+#section2Div{
+    display: grid;
+    gap: 5px;
+    grid-row: 3;
+    grid-column: 1;
+}
+    #customerName{
+        width: 180px;
+    }
+    #grnAddress{
+        width: 180px;
+    }
+#section3Div{
+    display: grid;
+    gap: 5px;
+    grid-row: 3;
+    grid-column: 2;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+    #grnCoffeeTypeDiv{
+        grid-row: 1;
+        grid-column: 1;
+    }
+    #grnCoffeeType{
+        width: 100px;
+    }
+    #grnCoffeeGradeDiv{
+        grid-row: 1;
+        grid-column: 2;
+    }
+    #grnCoffeeGrade{
+        width: 130px;
+    }
+    #grnQuantityDiv{
+        grid-row: 2;
+        grid-column: 1;
+        width: 150px;
+    }
+        #grnQuantity{
+            width: 80px;
+            padding-right: 0px;
+            margin-right: 0px;
+        }
+        
+    #grnBagsDiv{
+        margin-right: 0px;
+        grid-row: 2;
+        grid-column: 2;
+    }
+        #grnBags{
+            width: 125px;
+        }
+        #grnMc{
+            width: 50px;
+        }
+        
+    #grnTruckDiv{
+        grid-row: 3;
+        grid-column: 1;
+    }
+        #grnTruckNo{
+            width: 80px;
+        }
+
+#section4Div{
+    display: grid;
+    gap: 5px;
+    grid-row: 4;
+    grid-column: 1;
+    padding-top: 20px;
+    
+}
+    #grnTruckDiv{
+        grid-row: 1;
+        grid-column: 1;
+    }
+    #grnContactDiv{
+        grid-row: 2;
+        grid-column: 1;
+    }
+    #grnDriverDiv{
+        grid-row: 1;
+        grid-column: 2;
+    }
+#section5Div{
+    margin-top: 25px;
+    display: grid;
+    gap: 5px;
+    grid-row: 5;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+
+#section6Div{
+    display: grid;
+    padding-top: 20;
+    grid-row: 4;
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column: 2;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+    #qualityRemarks{
+        grid-row: 2;
+        grid-column: 1;
+    }
+    
+#buttonsDiv{
+    grid-row: 7;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin: auto;
+    margin-top: 20px;
+}
+    .controlButtons{
+        padding: 3px;
+        margin: 0px 2px;
+        background-color: rgb(194, 162, 162);
+        border-radius: 2px;
+        border-width: 1px;
+        color: #0f0f0f;
+    }
+    .controlButtons:hover{
+       
+        background-color: rgb(40, 109, 66);
+        color: white;
+    }
+
+
+.footer{
+    background-color: rgb(97, 153, 97);
+    margin: 1px 1px 1px 1px;
+    padding: 2px 0px;
+    height: 32px;
+   
+}
+
+.dnInput{
+    display: inline;
+}
+.formSectionDiv{
+    display: grid;
+    padding: 5px;
+}
+.innerDiv{
+    padding: 2px;
+    margin-left: 75%;
+}
+
+
+#deliveryNoteHeading{
+    
+    text-align: center;
+    grid-row: 1;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+#deliveryNoteForm{
+    padding: 5px;
+}
+#deliveryNoteDiv1{
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    grid-row: 2;
+    grid-column: 4;
+    margin-right: 0%;
+    margin-left: 0%;
+}
+#deliveryNoteNumberDiv{
+    padding-bottom: 20px;
+}
+#deliveryNoteNumber{
+    width: 50px;
+    border-width: 0px;
+    color: red;
+    background-color: inherit;
+    ;
+}
+#deliveryNoteDiv2{
+    display: grid;
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 5px;
+    grid-row: 2;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-right: 0%;
+    margin-left: 0%;
+}
+#deliveryNoteCustomer{
+    width: 200px;
+}
+#deliveryNoteDiv3{
+    padding: 0px;
+    grid-row: 3;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    height: 100px;
+    background-color: white;
+    border-width: 1px;
+}
+table, th, td{
+    border: 1px solid #626566cc;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+th, td{
+    padding: 2px
+} 
+th{
+    padding: 0px;
+    text-align: center;
+}
+td{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+}
+
+.itmNoInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 95%;
+   
+    
+}
+.itmCodeInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 95%;
+   
+}
+.itmNameInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 100%;
+    
+}
+.itmQtyInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 95%;
+    text-align: right;
+  
+}
+
+.itmBagsInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 95%;
+ 
+}
+
+.itmPercentInput{
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+#deliveryNoteDiv4{
+    padding : 0px;
+    margin: 0px;
+    grid-row: 4;
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    
+}
+#tableSummary{
+    margin: 0px 0px 0px 143px;
+    
+}
+#approvalSectionDiv{
+    display: none;
+    padding-top: 20px;
+
+}
+.approvalDiv{
+    text-align: center;
+}
+#preparedDiv{
+    grid-row: 1;
+    grid-column: 1;
+}
+#verifiedDiv{
+    grid-row: 1;
+    grid-column: 2;
+}
+#approvedDiv{
+    grid-row: 1;
+    grid-column: 3;
+    height: auto;
+}
+.approvalLabel{
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 2px;
+}
+.approveInput{
+    display: block;
+    margin-top: 10px;
+}
+#confirmationDiv{
+    display: grid;
+    padding: 30px 0px 0px 0px;
+    margin: auto;
+    width: 200px;
+}
+#confirmButton{
+    grid-row: 1;
+    grid-column: 1;
+    padding: 4px 5px;
+}
+
+#cancelButton{
+    grid-row: 1;
+    grid-column: 2;
+    padding: 0px 5px;
+    
+    
+}
+.regularForm{
+    font-size: small;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: whitesmoke;
+    width: 800px;
+    height: 600px;
+
+}
+#topSummuryDiv{
+    margin: 10px 5px 5px 60%;
+}
+#activityNumberLabel{
+    padding: 10px 0px 5px 5px ;
+    
+}
+#activityDateLabel{
+    padding: 10px 0px 5px 75% ;
+}
+#activityDate{
+    border: 1px solid black;
+    border-radius: 2px; 
+    text-align: center;
+    margin: 10px 0px;
+}
+#activityNumber{
+    border: 0px;
+    color: red;
+    width: 100px;
+    text-align: center;
+}
+
+.longInputField{
+    margin: 5px ;
+    border: 1px solid brown;
+    border-radius: 5px;
+    background-color: white;
+    padding: 1px 5px;
+    width: 250px;
+
+}
+/* #roastingActivitiesTable{
+    margin: 20px 0px;
+    height: 150px;
+    background-color: inherit;
+} */
+.tableInput{
+    margin: 0px;
+    text-align: right;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+
+.emptyCell{
+    border-width: 0px;
+}
+.remarks{
+    width: 100%;
+    border: none;
+}
+#activityPrepareDiv{
+    display: grid;
+    margin: auto;
+    padding-top: 20px;
+    width: 200px
+}
+#activityConfirmButton{
+    grid-row: 1;
+    grid-column: 1;
+    padding: 4px 5px;
+}
+#activityCancelButton{
+    grid-row: 1;
+    grid-column: 2;
+    padding: 0px 5px;
+}
+/* html{
+	box-sizing: border-box;
+  }
+     *{
+	box-sizing: inherit;
+  }
+  body{
+    margin:0px;
+    padding:0px;
+   
+  } */
+  .container{
+    margin-top: 20px;
+    margin-bottom:20px;
+    font-weight:bold;
+  
+  }
+  /* input.textinput {
+  height: 2em;
+  border: 1px solid rgba(0, 0, 0, .3);
+  padding-left: 6px;
+  font-family: inherit;
+  font-size: .875em;
+} */
+  input::placeholder{
+    text-align: center;
+     }
+  form {
+    /* max-width: 40em; */
+    border: 1px solid #666;
+    border-radius: 10px;
+    background-color: #f2f5d5;
+  }
+
+  .shortInput{
+    width: 100px;
+    margin-top: 10px;
+    border: 1px solid brown;
+    border-radius: 5px;
+    background-color: white;
+    padding: 1px 5px;
+  }
+  .dottedInput{
+    width: 300px;
+    margin-top: 0px;
+    border-style: dotted;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border: 0px 0px 1px 0px;
+    background-color: white;
+    padding: 1px 5px;
+  }
+  #batchReportForm{
+    height: auto;
+    width: 700px;
+  }
+  .batchItemLabel{
+    width: 200px;
+  }
+  .batchItemBags{
+    width: 50px;
+  }
+  .batchItemKgs{
+    width: 80px;
+  }
+  .batchItemPercent{
+    width: 50px;
+  }
+#salesReportNotes{
+    resize: vertical;
+    margin:5px;
+    max-height: 50px;
+    min-height: 30px;
+    padding: 5px 10px;
+}
+
+.dropdown{
+    width: 15px;
+}
+

@@ -1,0 +1,39 @@
+
+  #settingslist{
+    background-color:green;
+  }
+  #settingslist li a,#searchbtn{
+    color:#EAC117;
+  }
+  #settingslist li a:hover{
+    color:white;
+    background-color: brown;
+  }
+  #searchbtn:hover{
+    color:green;
+  }
+  #searchbtn:focus{
+    color:blue;
+  }
+  #searchform{
+    border:none;
+  }
+ 
+  #openbtn,#closebtn,#current_time,#username{
+    background-color: green;
+    color:#EAC117;
+  }
+  #openbtn:hover,#closebtn:hover,#current_time:hover,#username:hover{
+    background-color:#765341;
+    color:white;
+  }
+
+  #main{
+    transition:margin-left 2sec;
+  }
+/* .material-icons-sharp{
+  color:white;
+} */
+span{
+  color:white;
+}

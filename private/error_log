@@ -1,0 +1,14 @@
+[18-Sep-2022 17:50:41 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /home/jajjcrmv/public_html/private/valuationHandler.php:8
+Stack trace:
+#0 /home/jajjcrmv/public_html/private/valuationHandler.php(8): mysqli->__construct()
+#1 {main}
+  thrown in /home/jajjcrmv/public_html/private/valuationHandler.php on line 8
+[25-Sep-2022 13:47:12 America/New_York] PHP Warning:  Undefined array key "servername" in /home/jajjcrmv/public_html/private/valuationHandler.php on line 4
+[25-Sep-2022 13:47:12 America/New_York] PHP Warning:  Undefined array key "username" in /home/jajjcrmv/public_html/private/valuationHandler.php on line 5
+[25-Sep-2022 13:47:12 America/New_York] PHP Warning:  Undefined array key "password" in /home/jajjcrmv/public_html/private/valuationHandler.php on line 6
+[25-Sep-2022 13:47:12 America/New_York] PHP Warning:  Undefined array key "dbname" in /home/jajjcrmv/public_html/private/valuationHandler.php on line 7
+[25-Sep-2022 13:47:12 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in /home/jajjcrmv/public_html/private/valuationHandler.php:8
+Stack trace:
+#0 /home/jajjcrmv/public_html/private/valuationHandler.php(8): mysqli->__construct()
+#1 {main}
+  thrown in /home/jajjcrmv/public_html/private/valuationHandler.php on line 8

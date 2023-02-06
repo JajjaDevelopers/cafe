@@ -1,0 +1,60 @@
+[06-Feb-2023 13:45:29 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:45:35 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:45:38 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:00 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:28 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:30 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:32 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:33 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'trans_date WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:46:57 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24
+[06-Feb-2023 13:47:00 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE (customer_id=? AND grade_id=? AND (trans_date BETWEEN ? AND ?))' at line 3 in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php:24
+Stack trace:
+#0 /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php(24): mysqli->prepare()
+#1 /home/jajjcrmv/nucafegrading.com/home/ajax/stockTransactions.php(1): include('/home/jajjcrmv/...')
+#2 {main}
+  thrown in /home/jajjcrmv/nucafegrading.com/home/private/stockTransactions.php on line 24

@@ -1,0 +1,97 @@
+
+  body{
+    background-color:#4a2c2a;
+    margin:0;
+    padding:0;
+  }
+
+  table thead tr th{
+    color:white;
+    text-align: center;
+    font-size:16px;
+  }
+  
+
+  table#tableReceived thead tr,table#tableQReceived thead tr{
+    background-color:rgba(0,0,255,0.4);
+  }
+
+  table#tableMovedOut thead tr,table#tableQMovedOut thead tr{
+    background-color:#008631;
+  }
+
+  table#monthlyVariance thead tr,table#quarterlyVariance thead tr{
+    background-color:rgba(255,0,0.9);
+  }
+
+  table#tableReceived tbody tr,table#tableQReceived tbody tr{
+    background-color:rgba(173,216,230);
+  }
+
+  table#tableMovedOut tbody tr,table#tableQMovedOut tbody tr{
+    background-color:#83f28f;
+  }
+
+  table#monthlyVariance tbody tr,table#quarterlyVariance tbody tr{
+    background-color:#faa19b;
+  }
+
+  table thead tr th{
+    /* font-family: Tahoma,Verdana, Geneva, sans-serif; */
+    font-weight: bold;
+  }
+
+  table#currentMonth thead,table#currentMonth tbody{
+    background-color: #83f28f;
+  }
+  table#currentMonth thead tr th{
+    color:black;
+    font-size: medium;
+  }
+  table#currentMonth tbody tr td{
+    color:white;
+    font-weight:bolder;
+    font-size: 16px;
+  }
+
+  table#hulled thead tr th,
+  table#graded thead tr th,
+  table#colorSorted thead tr th,
+  table#dried thead tr th{
+    color:white;
+    font-style:italic;
+    text-align: center;
+    font-size: medium;
+  }
+
+  table#hulled tbody tr td,
+  table#graded tbody tr td,
+  table#colorSorted tbody tr td,
+  table#dried tbody tr td{
+    font-weight:bolder;
+    font-size: 16px;
+    color:white;
+  }
+  table#hulled{
+    background-color:#0f52ba;
+  }
+  table#graded{
+    background-color:#008631;
+  }
+  table#colorSorted{
+    background-color:#b73229;
+  }
+  table#dried{
+    background-color:#e69b00;
+  }
+  .col{
+    padding:0px;
+  }
+
+  .table{
+    padding:0px;
+  }
+
+  /* table tbody tr td:hover{
+    background-color: #794028;
+  } */

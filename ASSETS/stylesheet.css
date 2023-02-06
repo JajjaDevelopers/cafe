@@ -1,0 +1,58 @@
+html{
+  box-sizing: border-box;
+}
+*,*:before,*:after {
+  box-sizing:inherit;
+}
+body{
+  margin:0;
+  padding:0;
+  /* position:relative;
+  height:100vh;
+  padding-bottom:345px; */
+  /* background-color: #24292F; */
+  /* background-color: #4DC7A0; */
+  /* background-color:white; */
+  background-color: #6F4E37;
+  font-family: Verdana,Tahoma, Geneva,sans-serif;
+}
+
+
+#logo{
+  height:86px;
+  width: 110px;
+  
+}
+
+ li a{
+	border:3px solid;
+	text-align:center;
+	margin:0px 10px 0px 10px;
+	font-weight:bold;
+	line-height:50px;
+	border-radius:50px;
+	transition-property:all;
+	transition-duration:0.4s;
+	transition-timing-function:linear;
+  background-color: darkslateblue;
+	}	
+  li a:hover{
+    background-color:#00FF7F;
+    color:#4b388a;
+  }
+  li a:active{
+    background-color:#00FFFF;
+  }
+
+  /*styles for login form */
+  #divlogin ,#divsignup{
+    border:2px solid gray;
+    width:525px;
+    background-color:white;
+ 
+  }
+  #loginbtn{
+    margin:5px auto;
+  }
+
+  
