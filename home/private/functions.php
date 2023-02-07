@@ -299,7 +299,7 @@ function activitySheetItems($itemNo){
       <input type="text" value="" id="itm<?=$itemNo?>Name" readonly name="itm<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 360px">
       <select id="itm<?=$itemNo?>Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect"
       onchange="selectItemx(this.id, )">
-        <?php CoffeeGrades(); ?>
+        <?php getRoastedItems(); ?>
       </select>
     </td>
     <td ><input type="number" value="0" id="itm<?=$itemNo?>Qty" name="itm<?=$itemNo?>Qty" class="tableInput" style="height: 100%;" ></td>
@@ -313,7 +313,7 @@ function activityServices($itemNo){
   <tr>
     <td>
       <input type="text" value="" id="svc<?=$itemNo?>Code" readonly name="svc<?=$itemNo?>Code" class="itmNameInput" style="grid-column: 1; display:none">
-      <input type="text" value="" id="svc<?=$itemNo?>Name" readonly name="svc<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 360px">
+      <input type="text" value="" id="svc<?=$itemNo?>Name" readonly name="svc<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 300px">
       <select id="svc<?=$itemNo?>Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itmNameInput"
       onchange="selectService(this.id)">
         <?php getServices(); ?>
@@ -340,9 +340,24 @@ function getServices(){
         echo "<option value='".$grade_id."--".$grade_name."'>$grade_name</option>";
     }
     $svcSql->close();
-}
-}
+  }
+} 
 
+
+//roastery items
+function getRoastedItems(){
+  include "connlogin.php"; 
+  $query = "SELECT grade_id, grade_name FROM grades WHERE (inventory_type='ITEM' AND grade_type='ROASTED')";
+  if ($svcSql = $conn->prepare($query)) {
+    $svcSql->execute();
+    $svcSql->bind_result($grade_id, $grade_name);
+    echo '<option></option>';
+    while ($svcSql->fetch()) {
+        echo "<option value='".$grade_id."--".$grade_name."'>$grade_name</option>";
+    }
+    $svcSql->close();
+  }
+}
 
 // Batch Report customer list
 function selectBatchReportCustomer(){

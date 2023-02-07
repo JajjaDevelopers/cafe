@@ -1,14 +1,8 @@
 <?php
-// $server="localhost";
-// $db="factory";
-// $user="root";
-// $pwd="root";
-// $charset="utf8mb4";
-
 $server="localhost";
-$db="jajjcrmv_factory";
-$user="jajjcrmv_isaac";
-$pwd="GO-sS?6~4A*k";
+$db="factory";
+$user="root";
+$pwd="root";
 $charset="utf8mb4";
 
 $options=[
