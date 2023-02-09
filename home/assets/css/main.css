@@ -8,6 +8,9 @@ body{
     background-color:#6F4E37;
     margin: 0%;
     padding: 0%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 html{
     margin: 0px;
@@ -322,7 +325,7 @@ form{
     background-color: rgb(97, 153, 97);
     margin: 1px 1px 1px 1px;
     padding: 2px 0px;
-    height: 32px;
+    height: 60px;
    
 }
 

@@ -1,5 +1,6 @@
 import graph1 from "./module1.js";
 import graph2 from "./module2.js";
+import graded from "./module3.js";
 const btnOpen=document.getElementById("openbtn");
 const btnClose=document.getElementById("closebtn");
 const elSideBar=document.getElementById("sidebar");
@@ -14,6 +15,7 @@ btnClose.addEventListener("click",()=>{
   btnClose.style.display="none";
   graph1();
   graph2();
+  graded();
 })
 
 btnOpen.addEventListener("click",()=>{
@@ -25,5 +27,6 @@ btnOpen.addEventListener("click",()=>{
   btnClose.style.display="Block";
   graph1();
   graph2();
+  graded();
 })
 

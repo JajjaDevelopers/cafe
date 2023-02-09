@@ -89,7 +89,7 @@ try {
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('devjajja@jajjadev.tech', 'Mailer');
+    $mail->setFrom('devjajja@jajjadev.tech', 'Nucafe');
     $mail->addAddress($userEmail);     //Add a recipient
     $mail->addAddress($userEmail);               //Name is optional
     // $mail->addReplyTo('d', 'Information');

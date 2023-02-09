@@ -38,7 +38,8 @@ include "../private/verAndApprFunctions.php";
   <link rel="stylesheet" href="../assets/css/newstyles.css">
   <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
 </head>
-<body>
+
+<body style="min-height:100vh; display:flex; flex-direction:column;">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
