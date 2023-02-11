@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $prepared_by = $_SESSION["userName"]; ?>
+<?php $prepared_by = $_SESSION["fullName"]; ?>
 <?php
 include "../private/functions.php";
 include ("../private/connlogin.php");

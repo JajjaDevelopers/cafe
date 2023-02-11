@@ -209,8 +209,24 @@ include "../private/verAndApprFunctions.php";
                 <li><a class="dropdown-item" href="../forms/activtySheet">Services</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="../inventory/release">Release Request</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="material-icons-sharp">
+                coffee_maker
+                </span>
+                <span>Quality</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><h6 class="dropdown-header">Quality Activities</h6></li>
+                <li><a class="dropdown-item" href="../quality/preoffloadingSample">Pre Offloading Sample</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="../quality/qualityAssessment.php">General Sample</a></li>
                 <!-- <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="../testing/testing.php">Testing</a></li>  -->
+                <li><a class="dropdown-item" href="../inventory/release">Release Request</a></li>  -->
               </ul>
             </div>
           </li>

@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $prepared_by = $_SESSION["userName"]; ?>
+<?php $prepared_by = $_SESSION["fullName"]; ?>
 <?php include ("database.php"); ?>
 <?php
 $hulling_no = documentNumber("hulling", "hulling_no");

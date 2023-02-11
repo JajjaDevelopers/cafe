@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $username = $_SESSION["userName"]; ?>
+<?php $username = $_SESSION["fullName"]; ?>
 <?php include ("connlogin.php"); ?>
 <?php include ("functions.php"); ?>
 <?php

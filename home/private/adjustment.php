@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $prepBy = $_SESSION["userName"]; ?>
+<?php $prepBy = $_SESSION["fullName"]; ?>
 <?php 
 include ("connlogin.php");
 include ("functions.php");
