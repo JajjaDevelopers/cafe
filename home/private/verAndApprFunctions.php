@@ -49,12 +49,11 @@ function getAllPendingApprovals(){
 //Getting verification list
 function grnVerificationList(){
     include "connlogin.php"; 
-    $sql = "SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, purpose, FullName 
+    $sql = "SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, purpose, prepared_by 
             FROM grn
             JOIN customer USING (customer_id)
             JOIN grades USING (grade_id)
-            JOIN members WHERE members.UserName=grn.prepared_by AND
-            (verified_by='0')";
+            WHERE (verified_by='0')";
     $getList = $conn->prepare($sql);
     $getList->execute();
     $getList->bind_result($grn_no, $grn_date, $customer_name, $grade_name, $grn_qty, $purpose, $FullName);
@@ -86,12 +85,11 @@ function grnVerificationList(){
 //Getting verification list
 function grnApprovalList(){
     include "connlogin.php"; 
-    $sql = "SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, purpose, FullName 
+    $sql = "SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, purpose, verified_by 
             FROM grn
             JOIN customer USING (customer_id)
             JOIN grades USING (grade_id)
-            JOIN members WHERE members.UserName=grn.prepared_by AND
-            (verified_by!='0') AND (approved_by='0')";
+            WHERE (verified_by!='0') AND (approved_by='0')";
     $getList = $conn->prepare($sql);
     $getList->execute();
     $getList->bind_result($grn_no, $grn_date, $customer_name, $grade_name, $grn_qty, $purpose, $FullName);

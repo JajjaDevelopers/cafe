@@ -131,18 +131,5 @@ require("../forms/customerSelector.php"); ?>
     <label for="customer" class="form-label">Quality Remarks:</label>
     <input class="form-control" id="remarks" name="remarks" value="<?=$quality_remarks?>" placeholder="quality remarks" rows="3">
 </div>
-<div id="usersDiv" class="container">
-  <div class="row">
-    <div class="col-md-4">
-        <?= "Prepared By: ".$prepBy?><br>
-        <?= "Verified By: ".$verpBy?><br>
-        <?= "Approved By: ".$apprpBy?>
-    </div>
-    <div class="col-md-8">
-        <?= "Date: ".$prep_time ?><br>
-        <?= "Date: ".$ver_time ?><br>
-        <?= "Date: ".$appr_time ?>
-    </div>
-  </div>
-</div>
+<?php include "users.php" ?>
 <script src="../assets/js/itemsFilter.js"></script>

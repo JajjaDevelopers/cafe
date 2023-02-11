@@ -24,7 +24,6 @@
             <select id="category" name="category" class="shortInput" style="width: 150px;"
                 onchange="itemFilterOptions('gradeId',this.value, 'grades')">
                 <option value="all">All</option>
-                
             </select><br>
         </div>
         <div class="col-sm-4">
@@ -42,8 +41,8 @@
             <input type="number" id="sampBags" name="sampBags" value="<?=$sampBags?>" class="shortInput" style="width: 100px;" min="1">
         </div>
         <div class="col-sm-4">
-            <label for="sampMC">Weight (Kg)</label><br>
-            <input type="number" id="sampMC" name="sampMC" value="<?=$sampMC?>" class="shortInput" style="width: 100px;" min="10" step="0.01">
+            <label for="sampKg">Picked Weight (Kg)</label><br>
+            <input type="number" id="sampKg" name="sampKg" value="<?=$sampMC?>" class="shortInput" style="width: 100px;" min="10" step="0.01">
         </div>
         <div class="col-sm-4">
             <label for="sampMC">Moisture (%)</label><br>
@@ -55,18 +54,5 @@
     <label for="customer" class="form-label">Quality Remarks:</label>
     <input class="form-control" id="remarks" name="remarks" value="<?=$quality_remarks?>" placeholder="quality remarks" rows="3">
 </div>
-<div id="usersDiv" class="container">
-  <div class="row">
-    <div class="col-md-4">
-        <?= "Prepared By: ".$prepBy?><br>
-        <?= "Verified By: ".$verpBy?><br>
-        <?= "Approved By: ".$apprpBy?>
-    </div>
-    <div class="col-md-8">
-        <?= "Date: ".$prep_time ?><br>
-        <?= "Date: ".$ver_time ?><br>
-        <?= "Date: ".$appr_time ?>
-    </div>
-  </div>
-</div>
+<?php include "users.php" ?>
 <script src="../assets/js/itemsFilter.js"></script>

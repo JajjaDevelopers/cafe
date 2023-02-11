@@ -4,14 +4,10 @@ include("../private/database.php");
 include("../forms/header.php");
 $sampNo = nextDocNumber("quality", "assess_no", "POS");
 ?>
-
-<form class="regularForm">
+<form class="regularForm" method="post" action="../connection/preOffloadingSample.php">
 <?php include "../templates/preoffloadingSample.php" ?>
-
-
 <?php submitButton("Submit", "submit", "btnSubmit") ?>
 </form>
-
 <?php include_once ("../forms/footer.php")?>
 
 <script>
