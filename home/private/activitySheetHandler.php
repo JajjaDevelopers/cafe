@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $preparedBy = $_SESSION["userName"]; ?>
+<?php $preparedBy = $_SESSION["fullName"]; ?>
 <?php include ("database.php"); ?>
 <?php
 //create item ids

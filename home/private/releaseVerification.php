@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $verifiedBy = $_SESSION["userName"]; ?>
+<?php $verifiedBy = $_SESSION["fullName"]; ?>
 <?php include ("database.php"); ?>
 <?php include ("verAndApprFunctions.php"); ?>
 <?php

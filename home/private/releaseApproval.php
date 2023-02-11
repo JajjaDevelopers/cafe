@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php $approvedBy = $_SESSION["userName"]; ?>
+<?php $approvedBy = $_SESSION["fullName"]; ?>
 <?php include ("database.php"); ?>
 <?php include ("verAndApprFunctions.php"); ?>
 <?php

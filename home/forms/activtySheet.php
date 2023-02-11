@@ -12,7 +12,7 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
         <label for="rostingNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Activity No:</label>
         <input type="text" class="shortInput" id="rostingNo" name="rostingNo" value="<?= $activityNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
         <label for="rostingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
-        <input type="date" class="shortInput" id="rostingDate" name="rostingDate" value="" style="grid-column: 2; grid-row: 2">
+        <input type="date" class="shortInput" id="rostingDate" name="rostingDate" value="<?= $today?>" style="grid-column: 2; grid-row: 2">
     </div>
     <?php include("../forms/customerSelector.php") ?>
     
@@ -33,10 +33,10 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
             </div>
         </div>
         <h5>Activities</h5>
-        <table class="table table-striped table-hover table-condensed table-bordered">
+        <table>
             <thead>
                 <tr>
-                    <th style="width: 350px;">Activity Name</th>
+                    <th style="width: 330px;">Activity Name</th>
                     <th style="width: 100px;">Quantity</th>
                     <th style="width: 100px;">Rate</th>
                     <th style="width: 150px;">Amount</th>
@@ -61,10 +61,10 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
 
     <div  id="inventoryTable" style="display: none;">
         <h5>Output Items</h5>
-        <table class="w-75 table table-striped table-hover table-condensed table-bordered">
+        <table>
             <thead>
                 <tr>
-                    <th style="width: 400px;">Item Name</th>
+                    <th style="width: 390px;">Item Name</th>
                     <th style="width: 100px;">Output Qty</th>
                     
                 </tr>
@@ -91,13 +91,15 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
     </table>
     <div style="display: grid;">
         <div id="previousButton" style="grid-column: 1; grid-row: 1; display: none">
-            <input type="button" value="Back" class="btn  btn-primary my-3 btn-lg text-white" name="btnsubmit">
+            <!-- <input type="button" value="Back" class="btn  btn-primary my-3 btn-md text-white" name="btnsubmit"> -->
+            <?php submitButton("Back", "button", "btnsubmit") ?>
         </div>
         <div id="nextButton" style="grid-column: 2; grid-row: 1;">
-            <input type="button" value="Next" class="btn  btn-primary my-3 btn-lg text-white" name="btnsubmit">
+            <!-- <input type="button" value="Next" class="btn  btn-primary my-3 btn-md text-white" name="btnsubmit"> -->
+            <?php submitButton("Next", "button", "btnsubmit") ?>
         </div>
         <div id="submitButton" style="grid-column: 2; grid-row: 1; display: none">
-            <?php include "../forms/submitButton.php" ?>
+            <?php submitButton("Submit", "submit", "btnsubmit") ?>
         </div>
     </div>
     

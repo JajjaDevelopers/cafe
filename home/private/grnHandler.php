@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$username = $_SESSION["userName"];
+$username = $_SESSION["fullName"];
 ?>
 <?php include("../private/database.php"); ?>
 
