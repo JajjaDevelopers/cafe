@@ -51,13 +51,22 @@
             </div>
         </div>
     </form>
-    <div class="container text-center">
-        <form action="../phpspreadsheet/export.php" method="post" style="display:none; background-color:inherit;border:none;" id="export">
+    <div class="container text-center d-flex flex-column align-items-end">
+        <div>
+        <form action="../phpspreadsheet/export.php" method="post" style="display:none; background-color:inherit;border:none;" id="excel">
             <div class="form-group text-end">
             <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
             </div>
         </form>
+        </div>
+        <div class=" mt-3 me-5">
+        <a href="http://localhost/testprojects/cafe/home/pdfgen/stockbal.php" target="_blank" class="" id="pdf" style="display:none;"><span class="material-icons-sharp" style="color:green;">
+        print
+        </span></a>
+        </div>
+      
     </div>
+
     <div id="stockBalanceReturns" class="container">
 
     </div>
@@ -83,7 +92,9 @@
       xhttp.open("GET", "../ajax/stockBalance.php?type="+coffType+"&category="+typCategory+"&grade="+
                 coffGrade+"&date="+atDate+"&client="+forCLient);
       xhttp.send();
-      document.getElementById("export").style.display="block";
+      document.getElementById("excel").style.display="block";
+      document.getElementById("pdf").style.display="block";
+  
     }
 
 </script>

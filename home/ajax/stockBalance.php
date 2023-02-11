@@ -87,6 +87,7 @@ $balSql->execute();
 $balSql->bind_result($grade_id, $grade_name, $qty_in, $qty_out, $balance);
 ?>
 Stock Balances for <?= $clientName ?> as at <?= $date ?>
+
 <table class="table table-striped table-hover table-condensed table-bordered">
     <thead>
         <tr style="background-color: green; color:white">
@@ -116,7 +117,10 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
     }
     $data = json_encode($expResults);
     $_SESSION["data"]=$data;
+        
     ?>
     </tbody>
 </table>
+
+
 
