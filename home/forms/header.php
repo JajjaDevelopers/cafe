@@ -225,7 +225,7 @@ include "../private/verAndApprFunctions.php";
               <li><h6 class="dropdown-header">Quality Activities</h6></li>
                 <li><a class="dropdown-item" href="../quality/preoffloadingSample">Pre Offloading Sample</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="../quality/qualityAssessment">General Sample</a></li>
+                <li><a class="dropdown-item" href="../quality/assessmentGrns">General Sample</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Quality Assessment</a></li>
               </ul>

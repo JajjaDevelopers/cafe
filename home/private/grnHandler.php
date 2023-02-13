@@ -2,7 +2,10 @@
 session_start();
 $username = $_SESSION["fullName"];
 ?>
-<?php include("../private/database.php"); ?>
+<?php 
+include("connlogin.php"); 
+include "functions.php";
+?>
 
 <?php
 $grnNo = documentNumber("grn", "grn_no");
@@ -19,6 +22,7 @@ $deliveryPerson = sanitize_table($_POST["deliveryPerson"]);
 $truckNumber = sanitize_table($_POST["truckNumber"]);
 $driverName = sanitize_table($_POST["driverName"]) ;
 $remarks = sanitize_table($_POST["remarks"]);
+$preOffSample = intval($_POST["preOffSample"]) ;
 
 
 $grnStmt = "INSERT INTO grn (grn_no, grn_date, grn_time_in, customer_id, grade_id, grn_mc, no_of_bags, grn_qty, 
@@ -37,6 +41,13 @@ $ref = "GRN";
 $itemNo = 1;
 $grnDetails -> bind_param("sisisds", $ref, $grnNo, $customerId, $itemNo, $coffeeGrade, $gradeweight, $grnDate);
 $grnDetails -> execute();
+$grnDetails->close();
+
+//update quality assessment
+$qltySql = $conn->prepare("UPDATE pre_quality SET grn_no=? WHERE assess_no=?");
+$qltySql->bind_param("ii", $grnNo, $preOffSample);
+$qltySql->execute();
+$qltySql->close();
 
 if(isset($_POST["btnsubmit"]))
 {

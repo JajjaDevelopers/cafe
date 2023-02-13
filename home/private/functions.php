@@ -669,6 +669,31 @@ function pendingDispatch(){
   $sql->close();
 }
 
+//get general sample list
+function generalSampleList(){
+  include "connlogin.php";
+  $sql = $conn->prepare("SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, grn_mc, pre_quality.remarks FROM grn 
+                        JOIN grades USING (grade_id) JOIN pre_quality USING(grn_no) JOIN customer 
+                        WHERE grn.customer_id=customer.customer_id AND pre_quality.grn_no <> 0");
+  $sql->execute();
+  $sql->bind_result($grnNo, $date, $client, $grade, $qty, $mc, $remarks);
+ 
+  while ($sql->fetch()){
+    ?>
+    <tr>
+      <td><a href="../quality/qualityAssessment?grnNo=<?=$grnNo?>"> <?=$grnNo?></a></td>
+      <td><?=$date?></td>
+      <td><?=$client?></td>
+      <td><?=$grade?></td>
+      <td><?=$qty?></td>
+      <td><?=$mc?></td>
+      <td><?=$remarks?></td>
+    </tr>
+
+    <?php
+  }
+}
+
 
 
 
