@@ -2,7 +2,7 @@
 <?php
 include("../private/database.php");
 include("../forms/header.php");
-$sampNo = nextDocNumber("quality", "assess_no", "POS");
+$sampNo = nextDocNumber("pre_quality", "assess_no", "POS");
 ?>
 <form class="regularForm" method="post" action="../connection/preOffloadingSample.php">
 <?php include "../templates/preoffloadingSample.php" ?>

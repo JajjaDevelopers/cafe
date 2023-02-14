@@ -12,7 +12,7 @@ $grnNo = $_GET['grnNo'];
 
 include "../connection/qualityAssessVariables.php";
 ?>
-<form class="regularForm" method="pos" action="" style="height:fit-content">
+<form class="regularForm" method="post" action="../connection/qualityAssessment.php" style="height:fit-content">
 <?php include "../templates/qualityAssessment.php" ?>
 <?php submitButton("Submit", "submit", "btnSubmit") ?>
 </form>

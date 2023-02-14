@@ -11,7 +11,7 @@ $sql->fetch();
 $sql->close();
 
 
-//table data
+//table data (check lists in js to match php arrays)
 $cat1List = array("Full Blacks", "Full Sour", "Pods", "Fungus", "Extraneous Matter", "Severe Insect Damage");
 $cat1InputIds = array("fullBlaks", "fullSour", "pods", "fungus", "extraMat", "insDamage");
 
@@ -27,6 +27,6 @@ $soundBeansRobusta = array("Screen 1800", "Screen 1700", "Screen 1500", "Screen 
 $robustaInputIds = array("sc18", "sc17", "sc15", "sc12", "sc1199");
 
 $summList = array("Kibooko-Parchment", "Green", "Parchment Out turn", "", "", "Total Defects", "", "OUT TURN");
-$summListIds = array("kibParch", "green", "kibParchOut", "", "", "ttDefects", "", "outTurn");
+$summListIds = array("kibParch", "green", "kibPercOut", "", "", "ttDefects", "", "outTurn");
 
 ?>
