@@ -6,6 +6,14 @@
   $newPass=$_POST["newPassword"];
   $confPass=$_POST["newPasswordConf"];
   //generating errors
+  if(strlen($newPass)<8){
+    header("location:../forms/settings.php?error=short");
+    exit();
+  }
+   if(passLength($newPass)!==false){
+    header("location:../forms/settings.php?error=short");
+    exit();
+   }
   if(empty($newPass) || empty($confPass) )
   {
     header("location:../forms/settings.php?error=empty");

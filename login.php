@@ -7,7 +7,7 @@ require_once "header.php";
   $error="";
   if(isset($_GET["error"]))
   {
-    // if$_SESSION["success"]=$_GET["message"];
+  
     echo("<p>You have signed up successful. You can now login!</p>");
   }
 

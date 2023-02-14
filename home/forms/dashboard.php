@@ -10,7 +10,18 @@
   <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
 </head>
 <body>
-<section id="dashboard" class="container-fluid" style="border:2px solid blue;background-color:#39e75f;">
+<section id="subscription">
+<div class="d-flex mb-2">
+      <div class="col-sm-3 card rounded-0 shadow-sm ">
+          <div class="card-body text-center fw-bold">
+              <h5>Subscription</h5>
+                <span class="barge barge-success bg-success text-white rounded rounded-pill px-1">Active</span>
+                  Expires <p class="text-dark h1" >12,Dec 2023</p>
+          </div>
+      </div>
+</div>
+</section>
+<section id="dashboard" class="container-fluid">
 <div class="row">
   <div class="col-6">
   <div class="row">

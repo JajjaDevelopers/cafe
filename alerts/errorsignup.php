@@ -26,6 +26,9 @@
       {
         echo "Your email is invalid";
       }
+      if ($_SESSION["error"] === "lessthaneight") {
+        echo "The password must be atleast eight characters in length";
+      }
     }
   // echo"God is good";
   ?>

@@ -5,7 +5,7 @@ if(isset($_GET["message"]))
 
   if($_SESSION["message"]==="wrongdetails")
   {
-    echo "You do not exist in the database. Please sign up!";
+    echo "You are not authorised to use this system!";
   }
 
   if($_SESSION["message"]==="incorrectpassword")

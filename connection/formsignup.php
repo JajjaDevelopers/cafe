@@ -34,6 +34,11 @@ if(isset($_POST["submit"]))//checking whether user has submited info
     header("location:../signup.php?error=passwordsdontmatch");
     exit();
   }
+  //check length
+  // if(passLength($password)!==false){
+  //   header("location:../signup.php?error=lessthaneight");
+  //   exit();
+  // }
  //invalid phone number
  if(validMobile($tel)!==false)
  {
