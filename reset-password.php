@@ -8,13 +8,17 @@ require_once "header.php";
     if (isset($_GET["reset"]))
     {
       if($_GET["reset"]=="success")
-      {
-        echo "<p>Check your email to reset password!</p>";
+      {?>
+        <script>
+          document.getElementById("resetpwd").style.display="none";
+        </script>
+        <?php
+        echo "<p>Check your email inbox or spam to reset password!</p>"; 
       }
     }
     ?>
   </div>
-  <div class="card my-4">
+  <div class="card my-4" id="resetpwd">
     <div class="card-header">
       <h3 class="text-center text-primary" >Password Reset</h3>
     </div>

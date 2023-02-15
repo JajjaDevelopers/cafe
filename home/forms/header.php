@@ -54,10 +54,10 @@ include "../private/verAndApprFunctions.php";
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" id="searchform" action="#">
+      <!-- <form class="search-form d-flex align-items-center" method="POST" id="searchform" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" id="searchbtn" title="Search"><span class="material-icons-sharp">search</span></button>
-      </form>
+      </form> -->
     </div><!-- End Search Bar -->
 
     <!--Current Time-->
@@ -385,6 +385,7 @@ include "../private/verAndApprFunctions.php";
           </li>
       </aside><!-- End Sidebar-->
   <main id="main" class="main">
+
 <?php
 }else{
   include "redirect.php";

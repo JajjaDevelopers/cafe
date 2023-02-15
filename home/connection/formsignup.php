@@ -3,7 +3,6 @@ include_once("../private/database.php");//database connection details
 
 if(isset($_POST["submit"]))//checking whether user has submited info
 { 
-  session_start();
   //gathering user information
   $fullname=$_POST["fullname"];
   $username=$_POST["username"];
@@ -13,14 +12,6 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   $passwordRepeat=$_POST["confpwd"];
   $dateupload=date("Y-m-d H:i:s");
   $access=$_POST["access"];
-
-  //session variables
-  $_SESSION["fname"]=$fullname;
-  $_SESSION["fusername"]=$username;
-  $_SESSION["email"]=$email;
-  $_SESSION["tel"]=$tel;
- 
-
 
   //error handling
   $error="";
@@ -41,6 +32,11 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   if(pwdMatch($password,$passwordRepeat)!==false)
   {
     header("location:../forms/signup.php?error=passwordsdontmatch");
+    exit();
+  }
+  //check length
+  if(strlen($password)<8){
+    header("location:../forms/signup.php?error=lessthaneight");
     exit();
   }
  //invalid phone number

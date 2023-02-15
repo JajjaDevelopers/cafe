@@ -60,9 +60,10 @@
             </form>
         </div>
         <div class=" mt-3 me-5">
-            <a href="http://localhost/cafe/home/pdfgen/stockbal.php" target="_blank" class="" id="pdf" style="display:none;">
+            <a href="http://localhost/testprojects/cafe/home/pdfgen/stockbal.php" target="_blank" class="" id="pdf" style="display:none;">
                 <span class="material-icons-sharp" style="color:green;">
                 <!-- http://localhost/testprojects/cafe/home/pdfgen/stockbal.php -->
+                <!-- http://localhost/cafe/home/pdfgen/stockbal.php -->
                 print
                 </span>
             </a>

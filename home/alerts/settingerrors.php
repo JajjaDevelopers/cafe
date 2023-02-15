@@ -22,6 +22,9 @@ if(isset($_GET["error"]))
   }elseif($_GET["error"]=="changenamesuccess")
   {
     echo "Username successfully updated";
+  }elseif($_GET["error"]=="short")
+  {
+    echo "Password must be atleast eight character in length!";
   }
 }
 ?>

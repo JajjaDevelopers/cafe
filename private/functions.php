@@ -60,6 +60,16 @@ function pwdMatch($password,$passwordRepeat){
   return $result;
  }
 
+ //function that checks for the length of password
+ function passLength($password){
+  if(!strlen($password)>=8){
+    $result = true;
+  }else{
+    $result = false;
+  }
+  return $result;
+ }
+
  //function that checks whether username or email already exists
  function validUsernameEmail($username,$email)
  {
@@ -179,31 +189,8 @@ function  loginUser($username,$password)
     exit();
   
     } 
-    // if($userExists["UserName"])
-    // {
 
-    //else if($userExists["EmailAddress"])
-    // {
-    //   include "connlogin.php";
-    //   $query="SELECT * FROM members WHERE EmailAddress=?";
-    //   $stmt=$pdo->prepare($query);
 
-    //   $stmt->bindParam(1,$username,PDO::PARAM_STR);
-    //   $stmt->execute();
-    //   $row=$stmt->fetch(PDO::FETCH_ASSOC);
-    //   $privilege2=$row["Access"];//getting access privilege
-    //   $full_name2=$row["FullName"];
-
-    //   //session_variables
-    //   $_SESSION["Access2"]=$privilege2;
-    //   $_SESSION["fullName2"]=$full_name2;
-    //   // $_SESSION["userName"]=$userExists["UserName"];
-    //   $_SESSION["userEmail"]=$userExists["EmailAddress"];
-    //   header("location:../home/forms/index.php");
-    //   exit();
-    // }
-  
-  // }
 }
 
 

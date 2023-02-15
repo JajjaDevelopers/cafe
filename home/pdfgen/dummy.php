@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,6 +10,10 @@
 </head>
 <body>
   <div class="container mt-5">
+    <div class="d-flex flex-column align-items-center">
+      <img src="logo2.jpg" width="100px"/>
+      <h2 class="text-center">Stock Balance</h2>
+    </div>
   <table class="table table-striped table-hover table-condensed table-bordered">
     <thead>
         <tr style="background-color: green; color:white">
@@ -21,17 +25,17 @@
         </tr>
     </thead>
     <tbody>
-      <?php for($i=1;$i<count($ids);$i++){?>
+      <?php //for($i=1;$i<count($ids);$i++){?>
     <tr>
-      <td><?=$ids[$i]?></td>
-      <td><?=$items[$i]?></td>
-      <td style="text-align: right;"><?=$qtyIn[$i]?></td>
-      <td style="text-align: right;"><?=$qtyOut[$i]?></td>
-      <td style="text-align: right;"><?=$balance[$i]?></td>
+      <td><?//=$ids[$i]?></td>
+      <td><?//=$items[$i]?></td>
+      <td style="text-align: right;"><?//=$qtyIn[$i]?></td>
+      <td style="text-align: right;"><?//=$qtyOut[$i]?></td>
+      <td style="text-align: right;"><?//=$balance[$i]?></td>
     </tr>
     </tbody>
-    <?php }?>
+    <?php //}?>
   </table>
   </div>
 </body>
-</html>
+</html> -->

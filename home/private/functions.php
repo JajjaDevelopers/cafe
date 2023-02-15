@@ -63,6 +63,7 @@ function pwdMatch($password,$passwordRepeat){
   return $result;
  }
 
+
  //function that checks whether username or email already exists
  function validUsernameEmail($username,$email)
  {
