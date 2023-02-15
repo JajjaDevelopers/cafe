@@ -4,6 +4,7 @@
 $prfNo = nextDocNumber("petty_cash", "sn", "PRF"); 
 $requestor = $_SESSION["fullName"];
 ?>
+<link rel="stylesheet" href="../assets/css/main.css">
 <form id="pettyCash" name="pettyCash" class="regularForm" style="height:auto;" method="POST" action="../connection/pettycash.php">
     <h3 class="formHeading">Payment Acknowledgement</h3>
     <div style="margin-left: 80%;">
@@ -20,19 +21,6 @@ $requestor = $_SESSION["fullName"];
     <input type="text" id="requestedBy" class="dottedInput" value="<?= $requestor ?>" style="text-align: left;"><br>
     <label for="requestedBy" style="margin-right: 20px;">Date:</label>
     <input type="text" id="requestedBy" class="dottedInput" value="<?= date("d-M-Y") ?>" style="text-align: left;"><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include "submitButton.php" ?>
 </form>
