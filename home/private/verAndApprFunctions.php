@@ -230,5 +230,26 @@ function releaseApprList(){
     }
 }
 
-
+//valuation verification list
+function valuationVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
+                            FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
+                            WHERE verified_by='0' GROUP BY valuation_no");
+    $sql->execute();
+    $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../verification/valuation?valNo=<?= intval($valNo) ?>"><?= $valNo ?></a></td>
+            <td><?= $valDate ?></td>
+            <td><?= $valClient ?></td>
+            <td style="text-align: right"><?= intval($valGross) ?></td>
+            <td style="text-align: right"><?= intval($valCosts) ?></td>
+            <td style="text-align: right"><?= intval($valGross-$valNo) ?></td>
+        </tr>
+        <?php
+    }
+}
 ?>

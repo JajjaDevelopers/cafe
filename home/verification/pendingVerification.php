@@ -17,11 +17,15 @@ include_once ('../forms/header.php');
             <tbody>
                 <tr>
                     <td><a href="../verification/grnVerifyList">Goods Received Notes (GRN)</a></td>
-                    <td style="text-align: right;"><a href="../verification/grnVerifyList"><?= $grnVerNum ?></a></td>
+                    <td style="text-align: center;"><?= $grnVerNum ?></a></td>
                 </tr>
                 <tr>
                     <td><a href="../verification/releaseList">Releases</a></td>
-                    <td style="text-align: right;"><a href="../verification/releaseList"><?= $releasVerNum ?></a></td>
+                    <td style="text-align: center;"><?= $releasVerNum ?></a></td>
+                </tr>
+                <tr>
+                    <td><a href="../verification/valuationList.php">Valuation</a></td>
+                    <td style="text-align: center;"><?= $releasVerNum ?></a></td>
                 </tr>
                 
                 
