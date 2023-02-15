@@ -8,7 +8,7 @@
 
 <form class="regularForm" method="POST" action="../connection/releaseApproval.php" style="height:fit-content; width:800px">
 <input id="releaseNo" name="releaseNo" value="<?=$releaseNo?>" style="display:none" readonly>
-<?php require "../forms/releaseTemplate.php" ?>
+<?php require "../templates/releaseTemplate.php" ?>
 
     <?php submitButton("Approve", "submit", "confirm"); ?>
 </form>
@@ -22,6 +22,10 @@
     var noDispList = ["salesReportBuyer", "dispNoLabel", "dispNo"];
     for (var x=0; x<noDispList.length; x++){
         document.getElementById(noDispList[x]).style.display = "none";
+    }
+    var noEditList = ["initiator", "remarks", "destination", "relDate"];
+    for (var x=0; x<noEditList.length; x++){
+        document.getElementById(noEditList[x]).setAttribute("readonly", "readonly");
     }
     for (var x=1; x<=10; x++){
         document.getElementById('item'+x+'Select').style.display = "none";

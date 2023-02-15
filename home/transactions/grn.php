@@ -1,6 +1,6 @@
 <?php $pageTitle = "GRN";?>
 <?php include "../forms/header.php" ?>
-<?php include "../private/database.php"?>
+<?php include "../connection/databaseConn.php"?>
 <?php include "../connection/verifyGrn.php";?>
 <?php
 $grnNo = formatDocNo(intval($grn_no), "GRN-");

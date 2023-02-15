@@ -695,7 +695,17 @@ function generalSampleList(){
   }
 }
 
+//getting full name
+function getFullName($nameCol, $table, $idCol, $id){
+  include "connlogin.php";
+  $sql = $conn->prepare("SELECT $nameCol FROM $table WHERE $idCol=? ");
+  $sql->bind_param("s", $id);
+  $sql->execute();
+  $sql->bind_result($name);
+  $sql->fetch();
+  return $name;
 
+}
 
 
 

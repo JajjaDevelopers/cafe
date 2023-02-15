@@ -314,7 +314,7 @@ include "../private/verAndApprFunctions.php";
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="../transactions/grnList">Goods Received</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="../reports/stockTransactions">Batch Reports</a></li>
+                <li><a class="dropdown-item" href="../transactions/releaseList.php">Release &#38; Dispatch</a></li>
               </ul>
             </div>
             <div class="dropdown">
