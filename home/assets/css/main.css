@@ -577,11 +577,20 @@ td{
 } */
 /* .tableInput{
     margin: 0px;
+    text-align: left;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.tblNum{
+    margin: 0px;
     text-align: right;
     border: none;
     width: 100%;
     height: 100%;
-    background-color: inherit;
+    background-color: white;
 }
 
 .emptyCell{
@@ -634,12 +643,7 @@ td{
   /* input::placeholder{
     text-align: center;
      }
-  form {
-    /* max-width: 40em; */
-    border: 1px solid #666;
-    border-radius: 10px;
-    background-color: #f2f5d5;
-  } */
+
 
   /* .shortInput{
     width: 100px;
