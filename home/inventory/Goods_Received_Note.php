@@ -35,4 +35,23 @@ $grnNo = nextDocNumber('grn', 'grn_no', 'GRN');
       xhttp.open("GET", "../ajax/grnAjax.php?q="+str);
       xhttp.send();
     }   
+
+    //get pre-offloading sample
+    function getPreOffSampleNo(){
+      document.getElementById("preOffSample").innerHTML = "";
+      var custId = document.getElementById("customerId").value;
+      var purpSelect = document.getElementById("purpose").value;
+      if (custId == " ") {
+          return;
+      } 
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+          document.getElementById("preOffSample").innerHTML = this.responseText;
+      }
+      if (purpSelect == 'Processing' || purpSelect == 'Sale'){
+        xhttp.open("GET", "../ajax/preOffloadSamp.php?q="+custId);
+        xhttp.send();
+      }
+      
+    }
   </script>

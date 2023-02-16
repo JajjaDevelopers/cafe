@@ -60,7 +60,8 @@ require("../forms/customerSelector.php"); ?>
             <input class="longInputField" id="purposeName" value="<?=$purpose?>" 
             style="margin-left: 0px; width:200px">
             <select class="longInputField" id="purpose" placeholder="purpose" name="purpose" 
-            style="margin-top: 10px; width:200px; margin-left:0px">
+            style="margin-top: 10px; width:200px; margin-left:0px" onchange="getPreOffSampleNo()">
+                <option></option>
                 <option value="Processing">Processing</option>
                 <option value="Roasting">Roastery Services</option>
                 <option value="Storage">Storage</option>
@@ -70,7 +71,9 @@ require("../forms/customerSelector.php"); ?>
         <div class="col-md-3">
             <label for="weight" >Weight:</label><br>
             <input type="number" id="weight"  class="shortInput" placeholder="kgs" 
-            name="gradeweight"  value="<?=$grn_qty?>">
+            name="gradeweight"  value="<?=$grn_qty?>"><br><br>
+            <label for="weight" >Pre-Offloading Sample:</label><br>
+            <select id="preOffSample" name="preOffSample" class="shortInput" ></select>
         </div>
     </div>
     

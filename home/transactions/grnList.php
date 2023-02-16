@@ -1,8 +1,7 @@
-
 <?php $pageTitle = "Previous GRNs";?>
 <?php require "../forms/header.php" ?>
 <?php require "../connection/databaseConn.php" ?>
-<form class="regularForm" style="width: 1000px;">
+<form class="regularForm" style="width: 1000px; height:fit-content">
     <h3 class="formHeading">Previous GRNs</h3>
     <div class="container" style="border: 1px solid green; border-radius:10px">
         <div class="row">
@@ -27,13 +26,6 @@
     <div id="results" style="margin-top: 40px;">
 
     </div>
-
-
-
-
-
-
-
 
 </form>
 <?php include "../forms/footer.php" ?>

@@ -272,7 +272,7 @@ function valuationItemRow($itemNo){
 echo '<tr>
     <td>
         <div id="item'.$itemNo.'Field" style="display: grid;" class="itemName">';
-            echo '<input type="text" value="" id="highGrade'.$itemNo.'Code" readonly name="highGrade'.$itemNo.'Code" class="itmNameInput" style="grid-column: 1; display:none">';
+            echo '<input type="text" value="" id="highGrade'.$itemNo.'Code" readonly name="highGrade'.$itemNo.'Code" class="itmNameInput" style="grid-column: 1; display:none;">';
             echo '<input type="text" value="" id="highGrade'.$itemNo.'Name" readonly name="highGrade'.$itemNo.'Name" class="itmNameInput" style="grid-column: 2; width: 250px">';
             echo '<select id="highGrade'.$itemNo.'Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="valuationItemCodeAndName(this.id)">';
                 CoffeeGrades();
@@ -280,13 +280,13 @@ echo '<tr>
         </div>
         
     </td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Yield" readonly name="highGrade'.$itemNo.'Yield" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Qty" name="highGrade'.$itemNo.'Qty" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUs" name="highGrade'.$itemNo.'PriceUs" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceCts" name="highGrade'.$itemNo.'PriceCts" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUgx" name="highGrade'.$itemNo.'PriceUgx" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUs" readonly name="highGrade'.$itemNo.'AmountUs" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUgx" readonly name="highGrade'.$itemNo.'AmountUgx" class="tableInput"></td>
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Yield" readonly name="highGrade'.$itemNo.'Yield" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Qty" name="highGrade'.$itemNo.'Qty" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUs" name="highGrade'.$itemNo.'PriceUs" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceCts" name="highGrade'.$itemNo.'PriceCts" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUgx" name="highGrade'.$itemNo.'PriceUgx" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUs" readonly name="highGrade'.$itemNo.'AmountUs" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUgx" readonly name="highGrade'.$itemNo.'AmountUgx" class="tblNum"></td>
     </tr>';
 }
 
@@ -670,7 +670,42 @@ function pendingDispatch(){
   $sql->close();
 }
 
+//get general sample list
+function generalSampleList(){
+  include "connlogin.php";
+  $sql = $conn->prepare("SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, grn_mc, pre_quality.remarks FROM grn 
+                        JOIN grades USING (grade_id) JOIN pre_quality USING(grn_no) JOIN customer 
+                        WHERE grn.customer_id=customer.customer_id AND pre_quality.grn_no <> 0");
+  $sql->execute();
+  $sql->bind_result($grnNo, $date, $client, $grade, $qty, $mc, $remarks);
+ 
+  while ($sql->fetch()){
+    ?>
+    <tr>
+      <td><a href="../quality/qualityAssessment?grnNo=<?=$grnNo?>"> <?=$grnNo?></a></td>
+      <td><?=$date?></td>
+      <td><?=$client?></td>
+      <td><?=$grade?></td>
+      <td><?=$qty?></td>
+      <td><?=$mc?></td>
+      <td><?=$remarks?></td>
+    </tr>
 
+    <?php
+  }
+}
+
+//getting full name
+function getFullName($nameCol, $table, $idCol, $id){
+  include "connlogin.php";
+  $sql = $conn->prepare("SELECT $nameCol FROM $table WHERE $idCol=? ");
+  $sql->bind_param("s", $id);
+  $sql->execute();
+  $sql->bind_result($name);
+  $sql->fetch();
+  return $name;
+
+}
 
 
 

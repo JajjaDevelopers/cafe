@@ -42,11 +42,18 @@
         </div>
         <div class="col-sm-4">
             <label for="sampKg">Picked Weight (Kg)</label><br>
-            <input type="number" id="sampKg" name="sampKg" value="<?=$sampMC?>" class="shortInput" style="width: 100px;" min="10" step="0.01">
+            <input type="number" id="sampKg" name="sampKg" value="<?=$sampMC?>" class="shortInput" style="width: 100px;" step="0.01">
         </div>
         <div class="col-sm-4">
             <label for="sampMC">Moisture (%)</label><br>
             <input type="number" id="sampMC" name="sampMC" value="<?=$sampMC?>" class="shortInput" style="width: 100px;" min="10" step="0.01">
+        </div>
+    </div><br><br>
+    <div class="row">
+        <div class="col-sm-12">
+            <label style="margin-right: 20px;">Deceision:</label>
+            <label style="color:green"><input type="radio" name="decision" value="Accepted" required>Accept</label>
+            <label style="color:red"><input type="radio" name="decision" value="Rejected" style="margin-left: 50px;" required>Reject</label>
         </div>
     </div>
 </div>
