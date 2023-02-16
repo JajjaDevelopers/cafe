@@ -272,7 +272,7 @@ function valuationItemRow($itemNo){
 echo '<tr>
     <td>
         <div id="item'.$itemNo.'Field" style="display: grid;" class="itemName">';
-            echo '<input type="text" value="" id="highGrade'.$itemNo.'Code" readonly name="highGrade'.$itemNo.'Code" class="itmNameInput" style="grid-column: 1; display:none">';
+            echo '<input type="text" value="" id="highGrade'.$itemNo.'Code" readonly name="highGrade'.$itemNo.'Code" class="itmNameInput" style="grid-column: 1; display:none;">';
             echo '<input type="text" value="" id="highGrade'.$itemNo.'Name" readonly name="highGrade'.$itemNo.'Name" class="itmNameInput" style="grid-column: 2; width: 250px">';
             echo '<select id="highGrade'.$itemNo.'Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="valuationItemCodeAndName(this.id)">';
                 CoffeeGrades();
@@ -280,13 +280,13 @@ echo '<tr>
         </div>
         
     </td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Yield" readonly name="highGrade'.$itemNo.'Yield" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Qty" name="highGrade'.$itemNo.'Qty" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUs" name="highGrade'.$itemNo.'PriceUs" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceCts" name="highGrade'.$itemNo.'PriceCts" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUgx" name="highGrade'.$itemNo.'PriceUgx" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUs" readonly name="highGrade'.$itemNo.'AmountUs" class="tableInput"></td>';
-    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUgx" readonly name="highGrade'.$itemNo.'AmountUgx" class="tableInput"></td>
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Yield" readonly name="highGrade'.$itemNo.'Yield" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'Qty" name="highGrade'.$itemNo.'Qty" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUs" name="highGrade'.$itemNo.'PriceUs" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceCts" name="highGrade'.$itemNo.'PriceCts" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'PriceUgx" name="highGrade'.$itemNo.'PriceUgx" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUs" readonly name="highGrade'.$itemNo.'AmountUs" class="tblNum"></td>';
+    echo '<td><input type="number" value="" id="highGrade'.$itemNo.'AmountUgx" readonly name="highGrade'.$itemNo.'AmountUgx" class="tblNum"></td>
     </tr>';
 }
 

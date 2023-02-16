@@ -31,7 +31,7 @@
             <td>Kibooko Delivered (Kg)</td>
             <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" class="tableInput"></td>
             <td colspan="3">FAQ Delivered (Kg)</td>
-            <td colspan="2"><input type="number" value="12000" id="FAQQty" name="FAQQty" class="tableInput"></td>
+            <td colspan="2"><input type="number" value="<?=$inputQty?>" id="FAQQty" name="FAQQty" class="tableInput"></td>
         </tr>
         <tr>
             <td>Exchange Rate</td>
@@ -66,8 +66,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tableInput"></td>
-            <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tableInput"></td>
+            <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tableInput" style="text-align: right;"></td>
         </tr>
         <tr>
             <th>Less Costs</th>
@@ -83,20 +83,20 @@
             <td colspan="6"><input type="text" value="Costs:" id="costsDetails" name="costsDetails" class="tableInput" 
             style="text-align: left;" placeholder="Enter description of costs..."></td>
             
-            <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tableInput"></td>
-            <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tableInput"></td>
+            <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tableInput" style="text-align: right;"></td>
         </tr>
         <tr>
             <th colspan="6">Sub-total Costs</th>
             
-            <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tableInput"></td>
-            <td><input type="number" value="<?= $valCosts ?>" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tableInput"></td>
+            <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="<?= $valCosts ?>" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tableInput" style="text-align: right;"></td>
         </tr>
         <tr>
             <th colspan="6">Total Value after Costs</th>
             
-            <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tableInput"></td>
-            <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tableInput"></td>
+            <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tableInput" style="text-align: right;"></td>
         </tr>
     </table>
 </div>
