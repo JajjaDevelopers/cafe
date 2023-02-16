@@ -1,10 +1,10 @@
-*{
+/* *{
     margin: 0px;
     padding: 0px;
     font-family:Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-}
-body{
+} */
+/* body{
     background-color:#6F4E37;
     margin: 0%;
     padding: 0%;
@@ -20,8 +20,8 @@ h1{
     color:rgb(99, 163, 99);
     text-align: center;
 
-}
-#topDiv{
+} */
+/* #topDiv{
    
     background-color: rgb(97, 153, 97);
     width: 100%;
@@ -39,8 +39,8 @@ h1{
     font-size: 15px;
     text-align: center;
     text-decoration: solid;
-}
-.topListItem:hover{
+} */
+/* .topListItem:hover{
     margin: 10px 0px 0px 0px;
     padding: 5px 10px 10px 10px;
     height: 25px;
@@ -83,8 +83,8 @@ h1{
     height: 00px;
     padding: 0px;
     margin: 5px;
-}
-.formHeading{
+} */
+/* .formHeading{
     text-align: center;
     color: green;
     grid-row: 1;
@@ -115,8 +115,8 @@ h1{
     color: white;
     padding-left: 15px;
     border-radius: 5px;
-}
-form{
+} */
+/* form{
     font-size: small;
     background-color: whitesmoke;
     border: 1px solid rgb(194, 162, 162);
@@ -186,9 +186,9 @@ form{
             grid-row: 2;
             grid-column: 2;
             width: 68px;
-        }
+        } */
         
-#section2Div{
+/* #section2Div{
     display: grid;
     gap: 5px;
     grid-row: 3;
@@ -318,18 +318,18 @@ form{
        
         background-color: rgb(40, 109, 66);
         color: white;
-    }
+    } */
 
 
-.footer{
+/* .footer{
     background-color: rgb(97, 153, 97);
     margin: 1px 1px 1px 1px;
     padding: 2px 0px;
     height: 60px;
    
-}
+} */
 
-.dnInput{
+/* .dnInput{
     display: inline;
 }
 .formSectionDiv{
@@ -349,8 +349,8 @@ form{
     grid-column: 1;
     grid-column-start: 1;
     grid-column-end: 5;
-}
-#deliveryNoteForm{
+} */
+/* #deliveryNoteForm{
     padding: 5px;
 }
 #deliveryNoteDiv1{
@@ -371,8 +371,8 @@ form{
     color: red;
     background-color: inherit;
     ;
-}
-#deliveryNoteDiv2{
+} */
+/* #deliveryNoteDiv2{
     display: grid;
     padding-top: 40px;
     padding-right: 0px;
@@ -413,9 +413,9 @@ td{
     margin: 0px;
     padding: 0px;
     background-color: inherit;
-}
+} */
 
-.itmNoInput{
+/* .itmNoInput{
     margin: 0px;
     padding: 0px;
     background-color: inherit;
@@ -569,13 +569,13 @@ td{
     padding: 1px 5px;
     width: 250px;
 
-}
+} */
 /* #roastingActivitiesTable{
     margin: 20px 0px;
     height: 150px;
     background-color: inherit;
 } */
-.tableInput{
+/* .tableInput{
     margin: 0px;
     text-align: left;
     border: none;
@@ -615,7 +615,7 @@ td{
     grid-row: 1;
     grid-column: 2;
     padding: 0px 5px;
-}
+} */
 /* html{
 	box-sizing: border-box;
   }
@@ -627,12 +627,12 @@ td{
     padding:0px;
    
   } */
-  .container{
+  /* .container{
     margin-top: 20px;
     margin-bottom:20px;
     font-weight:bold;
   
-  }
+  } */
   /* input.textinput {
   height: 2em;
   border: 1px solid rgba(0, 0, 0, .3);
@@ -640,25 +640,20 @@ td{
   font-family: inherit;
   font-size: .875em;
 } */
-  input::placeholder{
+  /* input::placeholder{
     text-align: center;
      }
-  form {
-    /* max-width: 40em; */
-    border: 1px solid #666;
-    border-radius: 10px;
-    background-color: #f2f5d5;
-  }
 
-  .shortInput{
+
+  /* .shortInput{
     width: 100px;
     margin-top: 10px;
     border: 1px solid brown;
     border-radius: 5px;
     background-color: white;
     padding: 1px 5px;
-  }
-  .dottedInput{
+  } */
+  /* .dottedInput{
     width: 300px;
     margin-top: 0px;
     border-style: dotted;
@@ -668,8 +663,8 @@ td{
     border: 0px 0px 1px 0px;
     background-color: white;
     padding: 1px 5px;
-  }
-  #batchReportForm{
+  } */
+  /* #batchReportForm{
     height: auto;
     width: 700px;
   }
@@ -684,14 +679,14 @@ td{
   }
   .batchItemPercent{
     width: 50px;
-  }
-#salesReportNotes{
+  } */
+/* #salesReportNotes{
     resize: vertical;
     margin:5px;
     max-height: 50px;
     min-height: 30px;
     padding: 5px 10px;
-}
+} */
 
 .dropdown{
     width: 15px;
