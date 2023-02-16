@@ -25,7 +25,7 @@ include_once ('../forms/header.php');
                 </tr>
                 <tr>
                     <td><a href="../verification/valuationList.php">Valuation</a></td>
-                    <td style="text-align: center;"><?= $releasVerNum ?></a></td>
+                    <td style="text-align: center;"><?= $valuationVerNum ?></a></td>
                 </tr>
                 
                 

@@ -10,6 +10,7 @@
             <label for="batchNo" style="text-align: right; margin-top:5px">Batch No:</label>
         </div>
         <div class="col-md-6">
+            <input name="valNum" value="<?=$valNo?>" readonly style="display: none;">
             <input type="text" id="valuationNumber" name="valuationNumber" class="shortInput" readonly value="<?=$valuationNumber?>"
             style="width: 100px; text-align: center;">
             <input type="date" id="valuationDate" name="valuationDate" value="<?=$valDate?>" class="shortInput" style="width: 100px; text-align: center;"><br>
