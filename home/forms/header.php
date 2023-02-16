@@ -19,11 +19,6 @@ include "../private/verAndApprFunctions.php";
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title><?= $pageTitle?></title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -37,9 +32,10 @@ include "../private/verAndApprFunctions.php";
   <link href="../assets/dashboard/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/simple-datatables/style.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="../assets/dashboard/css/style.css" rel="stylesheet">
+  <!--plotly-->
+  <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.0
@@ -49,12 +45,47 @@ include "../private/verAndApprFunctions.php";
   ======================================================== -->
 </head>
 <style>
-  #sidebar-nav{
-    background-color:green;
-  }
-  li a.nav-link.collapsed{
-    background-color:green;
-  }
+ aside ul.sidebar-nav li.nav-item a.nav-link{
+  background-color:green;
+ }
+ aside ul.sidebar-nav li.nav-item a.nav-link i{
+  color:white;
+  font-size:22px;
+ }
+ aside ul.sidebar-nav li.nav-item a.nav-link span{
+  color:white;
+ }
+ aside ul.sidebar-nav li.nav-item a.nav-link span:hover{
+  color:blue;
+  font-weight:600;
+  opacity:80%;
+ }
+ aside ul.sidebar-nav li.nav-item ul li a i{
+  color:white;
+  background-color: white;
+ }
+ aside ul.sidebar-nav li.nav-item ul li a span:hover{
+  color:white;
+ }
+
+ /* nav ul li.nav-item.dropdown ul{
+  background-color:green;
+ }
+ nav ul li.nav-item.dropdown ul li a span{
+  color:white;
+ }
+ nav ul li.nav-item.dropdown ul li a span:hover{
+  color:blue;
+  font-weight:600;
+  opacity:80%;
+ }
+ nav ul li.nav-item.dropdown ul li a i{
+  color:white;
+  font-size:22px;
+ }
+ nav ul li.nav-item.dropdown ul li:hover{
+  background-color:green;
+ } */
 
 </style>
 
@@ -92,64 +123,21 @@ include "../private/verAndApprFunctions.php";
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-danger badge-number"> <?php getAllPendingVerifications($totalPendVer); ?></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
+            <li class="dropdown-item">
+              <span class="text-success"><?php getAllPendingVerifications($totalPendVer);?> Pending Verifications</span>
+              <a href="../verification/pendingVerification"><span class="badge rounded-pill bg-primary p-2 ms-2">View all pending verifications</span></a>
             </li>
 
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
+            <li class="dropdown-item">
+              <span class="text-success"><?php getAllPendingApprovals($totalPendAppr); ?> Pending Approvals</span>
+              <a href="../approval/pendingApproval"><span class="badge rounded-pill bg-primary p-2 ms-2">View all pending approvals</span></a>
             </li>
 
             <li>
@@ -163,72 +151,7 @@ include "../private/verAndApprFunctions.php";
 
         </li><!-- End Notification Nav -->
 
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
+       
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -245,18 +168,18 @@ include "../private/verAndApprFunctions.php";
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <!-- <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="../forms/settings">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -265,12 +188,12 @@ include "../private/verAndApprFunctions.php";
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <!-- <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -296,13 +219,13 @@ include "../private/verAndApprFunctions.php";
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link " href="../forms/index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" id="collapsed"data-bs-target="#verify-nav" data-bs-toggle="collapse" href="#" >
+        <a class="nav-link collapsed" id="collapsed" data-bs-target="#verify-nav" data-bs-toggle="collapse" href="#" >
           <i class="bi bi-pen-fill"></i><span>Verification &#38; Approval</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="verify-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

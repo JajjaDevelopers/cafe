@@ -1,10 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Received and Dispatched Graph</title>
+  <link href="../assets/css/bootsrap/css/bootstrap.css" rel="stylesheet">
+  <link href="../assets/css/dasnboard.css" rel="stylesheet">
+  <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
+</head>
+<body>
+<section id="subscription">
+<div class="d-flex mb-2">
+      <div class="col-sm-3 card rounded-0 shadow-sm ">
+          <div class="card-body text-center fw-bold">
+              <h5>Subscription</h5>
+                <span class="barge barge-success bg-success text-white rounded rounded-pill px-1">Active</span>
+                  Expires <p class="text-dark h1" >12,Dec 2023</p>
+          </div>
+      </div>
+</div>
+</section>
+<section id="dashboard" class="container-fluid">
 <div class="row">
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Monthly Movement</h5>
-      <div class="row">
+  <div class="col-6">
+  <div class="row">
     <div class="col">
     <table class="table table-bordered table-hover" id="tableReceived">
         <thead>
@@ -66,27 +86,21 @@
     </div>
 
   </div><!--End of row-->
+    
+    <div class="row">
+    <div class="col overflow-hidden" id="coffeeInAndOut" style="padding:2px; border:2px solid green;">
+    </div>
+    </div>
 
+  </div><!--end of first column-->
+    
+  <!--second column-->
+  <div class="col-6">
+  <div class="row">
+    <div class="col overflow-hidden" id="dailyCoffeeProcessing" style="padding:2px; border:2px solid gray;">
     </div>
   </div>
-</div>
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Weigh Bridge Coffee In and Out</h5>
-      <div  id="coffeeInAndOut" >
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Quarterly Movement</h5>
-      <div class="row">
+  <div class="row">
     <div class="col">
       <table class="table table-bordered table-hover" id="currentMonth">
         <thead>
@@ -161,26 +175,12 @@
       </table>
     </div>
   </div><!--End row-->
-    </div>
   </div>
-</div>
+</div><!--End of First Row-->
 
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Daily Processing</h5>
-      <div id="dailyCoffeeProcessing">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Monthly Processing</h5>
-      <div class="row">
+<div class="row">
+ <div class="col-6">
+    <div class="row">
       <div class="col">
       <table class="table table-bordered table-hover" id="tableQReceived">
           <thead>
@@ -240,23 +240,24 @@
       </table>
     </div>
     </div>
+    <div class="row">
+      <h1>Waiting For Data</h1>
     </div>
-  </div>
-</div>
+  </div><!---End of First Row-->
 
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Quarterly Graded</h5>
-      <div id="quarterlyReceived">
-
+  <div class="col-6">
+    <div class="row">
+      <div class="col" id="quarterlyReceived">
       </div>
     </div>
   </div>
-</div>
-<!--Script files-->
+</div><!--End Of Second Row-->
+</section>
+<script src="../assets/css/bootsrap/js/bootstrap.min.js"></script>
 <script src="../assets/js/tabledata.js"></script>
 <script src="../assets/js/graph1.js" type="module"></script>
 <script src="../assets/js/quartGraded.js" type="module"></script>
 <script src="../assets/js/graph2.js" type="module"></script>
 <script src="../assets/js/currMonthPro.js"></script>
+</body>
+</html>
