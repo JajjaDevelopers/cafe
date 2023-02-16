@@ -33,6 +33,7 @@ include "../private/verAndApprFunctions.php";
   <link href="../assets/dashboard/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/simple-datatables/style.css" rel="stylesheet">
   <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/main.css">
   <link href="../assets/dashboard/css/style.css" rel="stylesheet">
   <!--plotly-->
   <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
@@ -94,7 +95,7 @@ include "../private/verAndApprFunctions.php";
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.php" class="logo d-flex align-items-center">
+      <a href="../forms/index.php" class="logo d-flex align-items-center">
         <img src="../assets/img/logo2.jpg" alt="">
         <span class="d-none d-lg-block">NGL</span>
       </a>
@@ -460,8 +461,8 @@ include "../private/verAndApprFunctions.php";
             </a>
           </li>
           <li>
-            <a href="../reports/stockTransactions">
-              <i class="bi bi-circle"></i><span>Batch Reports</span>
+            <a href="../transactions/releaseList">
+              <i class="bi bi-circle"></i><span>Dispatch</span>
             </a>
           </li>
         </ul>

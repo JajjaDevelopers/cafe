@@ -25,9 +25,18 @@ function countPendApprovals($table, $column){
 $grnApprNum = countPendApprovals("grn", "approved_by");
 $releaseApprNum = countPendApprovals("release_request", "appr_by");
 
+$allPendVerList = array($grnVerNum, $releasVerNum);
+$totalPendVer = 0;
+$totalPendAppr = 0;
+$allPendVerList = array($grnApprNum, $releaseApprNum);
+for ($x=0;$x<count($allPendVerList);$x++){
+    $totalPendVer += $allPendVerList[$x];
+}
+for ($x=0;$x<count($allPendVerList);$x++){
+    $totalPendAppr += $allPendVerList[$x];
+}
 
-$totalPendVer= $grnVerNum+$releasVerNum+0; //to be added to other forms
-$totalPendAppr= $grnApprNum+$releaseApprNum+0; //to be added to other forms
+$totalNotifications = $totalPendVer + $totalPendAppr; //to appear on the notification on the dashboard
 function getAllPendingVerifications(){
     global $totalPendVer;
     if ($totalPendVer > 0){

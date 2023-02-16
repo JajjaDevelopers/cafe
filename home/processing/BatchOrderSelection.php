@@ -42,7 +42,7 @@ include ("../ajax/batchReportReturnsAjax.php");
 
         </div>
     </div>
-    <?php insertNextButton(); ?>
+    <?php submitButton("Next", "button", "btnSubmit") ?>
     </form>
 <?php include_once ("../forms/footer.php")?>
     <script>
