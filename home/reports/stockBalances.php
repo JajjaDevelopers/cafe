@@ -53,7 +53,7 @@
     </form>
     <div class="container text-center d-flex flex-column align-items-end">
         <div>
-            <form action="../phpspreadsheet/export.php" method="post" style="display:none; background-color:inherit;border:none;" id="excel">
+            <form action="../phpspreadsheet/stockExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="excel">
                 <div class="form-group text-end">
                 <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
                 </div>
@@ -61,11 +61,8 @@
         </div>
         <div class=" mt-3 me-5">
             <a href="http://localhost/testprojects/cafe/home/pdfgen/stockbal.php" target="_blank" class="" id="pdf" style="display:none;">
-                <span class="material-icons-sharp" style="color:green;">
-                <!-- http://localhost/testprojects/cafe/home/pdfgen/stockbal.php -->
-                <!-- http://localhost/cafe/home/pdfgen/stockbal.php -->
-                print
-                </span>
+                <i class="bi bi-printer-fill" style="color:green;">
+                </i>
             </a>
         </div>
       

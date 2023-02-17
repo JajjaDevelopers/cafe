@@ -125,21 +125,21 @@ date_default_timezone_set("Africa/Kampala");
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-danger badge-number"> <?php getAllPendingVerifications($totalPendVer); ?></span>
+            <span class="badge bg-danger badge-number"> <?php allNotifications($totalNotifications) ?></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-item">
-              <span class="text-success"><?php getAllPendingVerifications($totalPendVer);?> Pending Verifications</span>
-              <a href="../verification/pendingVerification"><span class="badge rounded-pill bg-primary p-2 ms-2">View all pending verifications</span></a>
+              <span class="text-danger"><?php getAllPendingVerifications();?></span>&nbsp;&nbsp;<span>Pending Verifications</span>
+              <a href="../verification/pendingVerification"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
 
             <li>
               <hr class="dropdown-divider">
             </li>
             <li class="dropdown-item">
-              <span class="text-success"><?php getAllPendingApprovals($totalPendAppr); ?> Pending Approvals</span>
-              <a href="../approval/pendingApproval"><span class="badge rounded-pill bg-primary p-2 ms-2">View all pending approvals</span></a>
+              <span class="text-danger"><?php getAllPendingApprovals(); ?></span>&nbsp;&nbsp;<span>Pending Approvals</span>
+              <a href="../approval/pendingApproval"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
 
             <li>
@@ -233,12 +233,12 @@ date_default_timezone_set("Africa/Kampala");
         <ul id="verify-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="../verification/pendingVerification">
-              <i class="bi bi-circle"></i><span>Verification<?php getAllPendingVerifications($totalPendVer); ?></span>
+              <i class="bi bi-circle"></i><span>Verification</span>&nbsp;<span class="badge bg-danger badge-number"><?php getAllPendingVerifications(); ?></span>
             </a>
           </li>
           <li>
             <a href="../approval/pendingApproval">
-              <i class="bi bi-circle"></i><span>Approval<?php getAllPendingApprovals($totalPendAppr); ?></span>
+              <i class="bi bi-circle"></i><span>Approval</span>&nbsp;<span class="badge bg-danger badge-number"><?php getAllPendingApprovals();?></span>
             </a>
           </li>
         </ul>

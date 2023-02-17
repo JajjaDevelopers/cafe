@@ -1,29 +1,30 @@
 <?php
 session_start();
-
 require "vendor/autoload.php";
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // use PhpOffice\PhpSpreadsheet\Writer\Xls;
 // use PhpOffice\PhpSpreadsheet\Writer\Csv;
+// echo $_SESSION["stockBalanceData"];
+// exit();
+if(isset($_SESSION["stockBalanceData"])){
 
-if(isset($_POST["export"])){
-  $data = json_decode($_SESSION["data"]);
+  $dataStockBal = json_decode($_SESSION["stockBalanceData"]);
   $ids = array();
   $items = array();
   $qtyIn = array();
   $qtyOut = array();
   $balance= array();
 
-  for ($i = 0; $i<count($data);$i++){
-    for($j=0;$j<count($data[$i]);$j++){
+  for ($i = 0; $i<count($dataStockBal);$i++){
+    for($j=0;$j<count($dataStockBal[$i]);$j++){
     }
-    array_push($ids, $data[$i][0]);
-    array_push($items, $data[$i][1]);
-    array_push($qtyIn, $data[$i][2]);
-    array_push($qtyOut, $data[$i][3]);
-    array_push($balance, $data[$i][4]);
+    array_push($ids, $dataStockBal[$i][0]);
+    array_push($items,$dataStockBal[$i][1]);
+    array_push($qtyIn,$dataStockBal[$i][2]);
+    array_push($qtyOut,$dataStockBal[$i][3]);
+    array_push($balance,$dataStockBal[$i][4]);
 
   }
 
@@ -64,7 +65,7 @@ if(isset($_POST["export"])){
     header("Content-Disposition: attachment; filename=\"$fileName\"");	
     $writer = new Xlsx($spreadsheet);
     $writer->save("php://output");
-    $writer->save($fileName);
+    // $writer->save($fileName);
 
 }
 ?>

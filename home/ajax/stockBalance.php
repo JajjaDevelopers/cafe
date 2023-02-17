@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include "../private/database.php";
 $type = $_GET["type"];
 $category = $_GET["category"];
@@ -100,7 +100,6 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
     </thead>
     <tbody>
         <?php
-        //   session_start();
         while ($balSql->fetch()){
             $row = array();
             ?>
@@ -115,13 +114,10 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
         array_push($row, $grade_id, $grade_name, $qty_in, $qty_out, $balance);
         array_push($expResults, $row);
     }
-    $data1 = json_encode($expResults);
-    $_SESSION["data"]=$data1;
-    
-        
+        $stockBalanceData = json_encode($expResults);
+        $_SESSION["stockBalanceData"] = $stockBalanceData; 
     ?>
     </tbody>
 </table>
-
 
 

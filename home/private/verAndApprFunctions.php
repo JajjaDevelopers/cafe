@@ -40,23 +40,22 @@ for ($x=0;$x<count($allPendVerList);$x++){
 for ($x=0;$x<count($allPendApprList);$x++){
     $totalPendAppr += $allPendApprList[$x];
 }
-
+//dashboard notification
 $totalNotifications = $totalPendVer + $totalPendAppr; //to appear on the notification on the dashboard
+function allNotifications($totalNotifications){
+    echo $totalNotifications;
+}// total number of notifications
 function getAllPendingVerifications(){
     global $totalPendVer;
     if ($totalPendVer > 0){
-        ?>
-        <span class="badge"><?=$totalPendVer?></span>
-        <?php
+        echo $totalPendVer;
     }
 }
 
 function getAllPendingApprovals(){
     global $totalPendAppr;
     if ($totalPendAppr > 0){
-        ?>
-        <span class="badge"><?=$totalPendAppr?></span>
-        <?php
+        echo $totalPendAppr;
     }
 }
 
