@@ -42,10 +42,10 @@ if ($client=='all'){
     </thead>
     <tbody>
         <?php
-        $valList = array(["Sales No", "Date", "Client Name", "Category", "Currency", "Sales Value"]);
+        $salesList = array(["Sales No", "Date", "Client Name", "Category", "Currency", "Sales Value"]);
         while ($row = $result->fetch_assoc()){
-            $valRow = [$row["sales_report_no"], $row["sales_report_date"], $row["customer_name"], $row["sale_category"], $row["foreign_currency"], $row["sales_report_value"]];
-            array_push($valList, $valRow);
+            $salesRow = [$row["sales_report_no"], $row["sales_report_date"], $row["customer_name"], $row["sale_category"], $row["foreign_currency"], $row["sales_report_value"]];
+            array_push($salesList, $salesRow);
             ?>
             <tr>
                 <td><a href="../transactions/salesReport?valNo=<?= $row["sales_report_no"] ?>"><?= $row["sales_report_no"] ?></a></td>
@@ -58,8 +58,8 @@ if ($client=='all'){
             </tr>
             <?php
         }
-        $valuationListResult = json_encode($valList);
-        echo $valuationListResult;
+        $salesListResult = json_encode($salesList);
+        echo $salesListResult;
         ?>
     </tbody>
 
