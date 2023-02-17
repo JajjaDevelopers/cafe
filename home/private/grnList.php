@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../private/functions.php");
 include ("../private/connlogin.php");
 ?>
@@ -52,7 +53,11 @@ $result = $sql->get_result();
            <?php
         }
         $grnListResult = json_encode($grnList);
-        echo $grnListResult;
+        // echo $grnListResult;
         ?>
     </tbody>
 </table>
+<?php
+$_SESSION["goodsreceivedData"] = $grnListResult;
+echo $_SESSION["goodsreceivedData"];
+?>

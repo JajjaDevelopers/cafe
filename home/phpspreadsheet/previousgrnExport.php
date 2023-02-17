@@ -8,25 +8,36 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // use PhpOffice\PhpSpreadsheet\Writer\Csv;
 // echo $_SESSION["stockBalanceData"];
 // exit();
-if(isset($_SESSION["stockBalanceData"])){
+if(isset($_SESSION["goodsreceivedData"])){
 
-  $dataStockBal = json_decode($_SESSION["stockBalanceData"]);
-  $ids = array();
-  $items = array();
-  $qtyIn = array();
-  $qtyOut = array();
-  $balance= array();
+  $previousgrnData= json_decode($_SESSION["goodsreceivedData"]);
+  $numbgrn = array();
+  $dategrn = array();
+  $clientgrn = array();
+  $purposegrn = array();
+  $moisturegrn= array();
+  $weightgrn= array();
 
-  for ($i = 0; $i<count($dataStockBal);$i++){
-    for($j=0;$j<count($dataStockBal[$i]);$j++){
+  var_dump($previousgrnData);
+  exit();
+  for ($i = 0; $i<count($previousgrnData);$i++){
+    for($j=0;$j<count($previousgrnData[$i]);$j++){
     }
-    array_push($ids, $dataStockBal[$i][0]);
-    array_push($items,$dataStockBal[$i][1]);
-    array_push($qtyIn,$dataStockBal[$i][2]);
-    array_push($qtyOut,$dataStockBal[$i][3]);
-    array_push($balance,$dataStockBal[$i][4]);
-
+    array_push($numbgrn, $previousgrnData[$i][0]);
+    array_push($dategrn,$previousgrnData[$i][1]);
+    array_push($clientgrn,$previousgrnData[$i][2]);
+    array_push($purposegrn,$previousgrnData[$i][3]);
+    array_push($moisturegrn,$previousgrnData[$i][4]);
+    array_push($weightgrn,$previousgrnData[$i][5]);
   }
+
+  var_dump($numbgrn);
+  var_dump($dategrn);
+  var_dump($clientgrn);
+  var_dump($purposegrn);
+  var_dump($moisturegrn);
+  var_dump($weightgrn);
+  exit();
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
