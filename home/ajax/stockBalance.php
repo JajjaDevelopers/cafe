@@ -101,7 +101,7 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
     <tbody>
         <?php
         while ($balSql->fetch()){
-            $row = array();
+            $row = [];
             ?>
         <tr>
             <td><?= $grade_id ?></td>
@@ -115,6 +115,7 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
         array_push($expResults, $row);
     }
         $stockBalanceData = json_encode($expResults);
+        // var_dump($expResults);
         $_SESSION["stockBalanceData"] = $stockBalanceData; 
     ?>
     </tbody>

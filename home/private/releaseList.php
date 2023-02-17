@@ -42,14 +42,14 @@ if ($client=='all'){
     </thead>
     <tbody>
         <?php
-        $releaseList = array("Release No", "Request Date", "Client Name", "Weight (Kg)", "Destination", "Status");
+        $releaseList = array(["Release No", "Request Date", "Client Name", "Weight (Kg)", "Destination", "Status"]);
         while ($row = $result->fetch_assoc()){
             if ($row["status"]==1){
                 $status = "Pending Dispatch";
             }else{
                 $status = "Dispatched";
             }
-            $releaseRow = array($row["release_no"], $row["request_date"], $row["customer_name"], $row["total_qty"], $row["destination"], $status);
+            $releaseRow = [$row["release_no"], $row["request_date"], $row["customer_name"], $row["total_qty"], $row["destination"], $status];
             array_push($releaseList, $releaseRow);
             ?>
             <tr>

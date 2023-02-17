@@ -42,10 +42,10 @@ if ($client=='all'){
     </thead>
     <tbody>
         <?php
-        $valList = array("Valuation No", "Date", "Client Name", "Gross Value (Ugx)", "Costs (Ugx)", "Net Value (Ugx)");
+        $valList = array(["Valuation No", "Date", "Client Name", "Gross Value (Ugx)", "Costs (Ugx)", "Net Value (Ugx)"]);
         while ($row = $result->fetch_assoc()){
             $netValue = $row["gross_value"]-$row["costs"];
-            $valRow = array($row["valuation_no"], $row["valuation_date"], $row["customer_name"], $row["gross_value"], $row["costs"], $netValue);
+            $valRow = [$row["valuation_no"], $row["valuation_date"], $row["customer_name"], $row["gross_value"], $row["costs"], $netValue];
             array_push($valList, $valRow);
             ?>
             <tr>
