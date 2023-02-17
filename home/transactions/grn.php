@@ -9,7 +9,12 @@ $grnNo = formatDocNo(intval($grn_no), "GRN-");
 
   <?php include "../forms/grnTemplate.php" ?>
 </form>
-
+<div class=" mt-3 me-5 d-flex flex-column align-items-end">
+    <a href="http://localhost/testprojects/cafe/home/pdfgen/retrievedgrninfo.php" target="_blank" class="" id="pdf" style="display:block;">
+        <i class="bi bi-download" style="color:green; font-size:30px">
+        </i>
+    </a>
+</div>
 <?php include "../forms/footer.php" ?>
 <script>
     document.getElementById("salesReportBuyer").style.display = "none";

@@ -18,8 +18,6 @@ if(isset($_SESSION["goodsreceivedData"])){
   $moisturegrn= array();
   $weightgrn= array();
 
-  var_dump($previousgrnData);
-  exit();
   for ($i = 0; $i<count($previousgrnData);$i++){
     for($j=0;$j<count($previousgrnData[$i]);$j++){
     }
@@ -31,46 +29,53 @@ if(isset($_SESSION["goodsreceivedData"])){
     array_push($weightgrn,$previousgrnData[$i][5]);
   }
 
-  var_dump($numbgrn);
-  var_dump($dategrn);
-  var_dump($clientgrn);
-  var_dump($purposegrn);
-  var_dump($moisturegrn);
-  var_dump($weightgrn);
-  exit();
+  // var_dump($numbgrn);
+  // var_dump($dategrn);
+  // var_dump($clientgrn);
+  // var_dump($purposegrn);
+  // var_dump($moisturegrn);
+  // var_dump($weightgrn);
+  // var_dump($previousgrnData);
+  // exit();
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
   //populating data into the columns
   $rowCounter = 1;
-  foreach($ids as $id){
-    $sheet->setCellValue('A'.$rowCounter,$id);
+  foreach($numbgrn as $grn){
+    $sheet->setCellValue('A'.$rowCounter,$grn);
     $rowCounter++;
   }
 
   $rowCounter2 = 1;
-  foreach($items as $item){
-    $sheet->setCellValue('B'.$rowCounter2,$item);
+  foreach($dategrn as $date){
+    $sheet->setCellValue('B'.$rowCounter2,$date);
     $rowCounter2++;
   }
 
   $rowCounter3=1;
-  foreach($qtyIn as $in){
-    $sheet->setCellValue('C'.$rowCounter3,$in);
+  foreach($clientgrn as $client){
+    $sheet->setCellValue('C'.$rowCounter3,$client);
     $rowCounter3++;
   }
   $rowCounter4 = 1;
-  foreach($qtyOut as $out){
-    $sheet->setCellValue('D'.$rowCounter4,$out);
+  foreach($purposegrn as $purp){
+    $sheet->setCellValue('D'.$rowCounter4,$purp);
     $rowCounter4++;
   }
   $rowCounter5 = 1;
-  foreach($balance as $bal){
-    $sheet->setCellValue('E'.$rowCounter5,$bal);
+  foreach($moisturegrn as $moisture){
+    $sheet->setCellValue('E'.$rowCounter5,$moisture);
     $rowCounter5++;
   }
+  $rowCounter6 = 1;
+  foreach($weightgrn as $weight){
+    $sheet->setCellValue('F'.$rowCounter6,$weight);
+    $rowCounter6++;
+  }
 
-    $fileName = "Stock Balance".".xlsx";//name of exported excel
+
+    $fileName = "Previous GRNs".".xlsx";//name of exported excel
     header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header("Content-Disposition: attachment; filename=\"$fileName\"");	
     $writer = new Xlsx($spreadsheet);

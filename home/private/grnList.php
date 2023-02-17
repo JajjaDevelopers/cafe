@@ -54,12 +54,12 @@ $result = $sql->get_result();
         }
         $grnListResult = json_encode($grnList);
         // echo $grnListResult;
-        echo $grnListResult;
+        // echo $grnListResult;
         // var_dump($grnList);
         ?>
     </tbody>
 </table>
 <?php
 $_SESSION["goodsreceivedData"] = $grnListResult;
-echo $_SESSION["goodsreceivedData"];
+// echo $_SESSION["goodsreceivedData"];
 ?>
