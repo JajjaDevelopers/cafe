@@ -115,9 +115,7 @@ Stock Balances for <?= $clientName ?> as at <?= $date ?>
         array_push($expResults, $row);
     }
         $stockBalanceData = json_encode($expResults);
-        $_SESSION["stockBalanceData"] = $stockBalanceData;
-        
-       
+        $_SESSION["stockBalanceData"] = $stockBalanceData; 
     ?>
     </tbody>
 </table>
