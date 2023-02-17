@@ -10,6 +10,7 @@
 <?php
 session_start();
 include "../private/verAndApprFunctions.php";
+date_default_timezone_set("Africa/Kampala");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -463,6 +464,11 @@ include "../private/verAndApprFunctions.php";
           <li>
             <a href="../transactions/releaseList">
               <i class="bi bi-circle"></i><span>Dispatch</span>
+            </a>
+          </li>
+          <li>
+            <a href="../transactions/valuationList.php">
+              <i class="bi bi-circle"></i><span>Valuation</span>
             </a>
           </li>
         </ul>

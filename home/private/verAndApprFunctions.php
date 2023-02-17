@@ -9,6 +9,9 @@ function countPendVerifications($table, $column){
 }
 $grnVerNum = countPendVerifications("grn", "verified_by");
 $releasVerNum = countPendVerifications("release_request", "verified_by");
+$valuationVerNum = countPendVerifications("valuation_report_summary", "verified_by");
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum);
+
 
 //Counting pending approvals
 function countPendApprovals($table, $column){
@@ -24,16 +27,18 @@ function countPendApprovals($table, $column){
 
 $grnApprNum = countPendApprovals("grn", "approved_by");
 $releaseApprNum = countPendApprovals("release_request", "appr_by");
+$valuationApprNum = countPendApprovals("valuation_report_summary", "approved_by");
+$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum);
 
-$allPendVerList = array($grnVerNum, $releasVerNum);
+
 $totalPendVer = 0;
 $totalPendAppr = 0;
-$allPendVerList = array($grnApprNum, $releaseApprNum);
+
 for ($x=0;$x<count($allPendVerList);$x++){
     $totalPendVer += $allPendVerList[$x];
 }
-for ($x=0;$x<count($allPendVerList);$x++){
-    $totalPendAppr += $allPendVerList[$x];
+for ($x=0;$x<count($allPendApprList);$x++){
+    $totalPendAppr += $allPendApprList[$x];
 }
 
 $totalNotifications = $totalPendVer + $totalPendAppr; //to appear on the notification on the dashboard
@@ -252,6 +257,30 @@ function valuationVerList(){
         ?>
         <tr>
             <td style="text-align: center"><a href="../verification/valuation?valNo=<?= intval($valNo) ?>"><?= $valNo ?></a></td>
+            <td><?= $valDate ?></td>
+            <td><?= $valClient ?></td>
+            <td style="text-align: right"><?= intval($valGross) ?></td>
+            <td style="text-align: right"><?= intval($valCosts) ?></td>
+            <td style="text-align: right"><?= intval($valGross-$valNo) ?></td>
+        </tr>
+        <?php
+    }
+}
+
+//valuation approval list
+//valuation verification list
+function valuationApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
+                            FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
+                            WHERE verified_by<>'0' AND approved_by='0' GROUP BY valuation_no");
+    $sql->execute();
+    $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../approval/valuation?valNo=<?= intval($valNo) ?>"><?= $valNo ?></a></td>
             <td><?= $valDate ?></td>
             <td><?= $valClient ?></td>
             <td style="text-align: right"><?= intval($valGross) ?></td>
