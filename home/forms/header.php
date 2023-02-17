@@ -467,8 +467,13 @@ date_default_timezone_set("Africa/Kampala");
             </a>
           </li>
           <li>
-            <a href="../transactions/valuationList.php">
+            <a href="../transactions/valuationList">
               <i class="bi bi-circle"></i><span>Valuation</span>
+            </a>
+          </li>
+          <li>
+            <a href="../transactions/salesReportList">
+              <i class="bi bi-circle"></i><span>Sales Report</span>
             </a>
           </li>
         </ul>

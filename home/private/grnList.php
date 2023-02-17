@@ -37,9 +37,9 @@ $result = $sql->get_result();
     </thead>
     <tbody>
         <?php
-        $grnList = array("GRN No", "Date", "Client Name", "Purpose", "Moisture (%)", "Weight (Kg)");
+        $grnList = array(["GRN No", "Date", "Client Name", "Purpose", "Moisture (%)", "Weight (Kg)"]);
         while ($row = $result->fetch_assoc()){
-            $grnRow = array($row["grn_no"], $row["grn_date"], $row["customer_name"], $row["purpose"], $row["grn_mc"], $row["grn_qty"]);
+            $grnRow = [$row["grn_no"], $row["grn_date"], $row["customer_name"], $row["purpose"], $row["grn_mc"], $row["grn_qty"]];
             array_push($grnList, $grnRow);
            ?>
            <tr>
@@ -54,6 +54,8 @@ $result = $sql->get_result();
         }
         $grnListResult = json_encode($grnList);
         // echo $grnListResult;
+        echo $grnListResult;
+        // var_dump($grnList);
         ?>
     </tbody>
 </table>
