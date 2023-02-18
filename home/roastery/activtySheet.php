@@ -1,5 +1,5 @@
 <?php $pageTitle="Activity Sheet"; ?>
-<?php include_once('header.php'); ?>
+<?php include_once('../forms/header.php'); ?>
 <?php
 include ("../connection/databaseConn.php");
 $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "RST");
@@ -105,7 +105,7 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
     
    
 </form>
-<?php include_once('footer.php'); ?>
+<?php include_once('../forms/footer.php'); ?>
 <script>
     //create item ids
     var itmCodeList = [];

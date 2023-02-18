@@ -17,15 +17,19 @@ include_once ('../forms/header.php');
             <tbody>
                 <tr>
                     <td><a href="../approval/grnApprovalList">Goods Received Notes (GRN)</a></td>
-                    <td style="text-align: right"><a href="../approval/grnApprovalList"><?= $grnApprNum ?></a></td>
+                    <td style="text-align: center"><?= $grnApprNum ?></td>
                 </tr>
                 <tr>
                     <td><a href="../approval/releaseList">Release Requests</a></td>
-                    <td style="text-align: right"><a href="../approval/releaseList"><?= $releaseApprNum ?></a></td>
+                    <td style="text-align: center"><?= $releaseApprNum ?></td>
                 </tr>
                 <tr>
                     <td><a href="../approval/valuationList">Valuation</a></td>
-                    <td style="text-align: right"><a href="../approval/valuationList"><?= $valuationApprNum ?></a></td>
+                    <td style="text-align: center"><?= $valuationApprNum ?></td>
+                </tr>
+                <tr>
+                    <td><a href="../approval/salesReportList">Sales Report</a></td>
+                    <td style="text-align: center"><?= $salesReportApprNum ?></td>
                 </tr>
             </tbody>
         </table>

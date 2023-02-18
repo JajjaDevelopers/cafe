@@ -1,0 +1,1 @@
+<?php include "../inventory/Goods_Received_Note.php" ?>
