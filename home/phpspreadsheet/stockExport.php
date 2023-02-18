@@ -28,7 +28,6 @@ if(isset($_SESSION["stockBalanceData"])){
 
   }
 
-
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
   //populating data into the columns
