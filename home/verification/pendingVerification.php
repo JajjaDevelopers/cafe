@@ -31,8 +31,10 @@ include_once ('../forms/header.php');
                     <td><a href="../verification/salesReportList">Sales Report</a></td>
                     <td style="text-align: center;"><?= $salesReportVerNum ?></a></td>
                 </tr>
-                
-                
+                <tr>
+                    <td><a href="../verification/hullingList">Hulling</a></td>
+                    <td style="text-align: center;"><?= $hullingVerNum ?></a></td>
+                </tr>
             </tbody>
         </table>
     </div>

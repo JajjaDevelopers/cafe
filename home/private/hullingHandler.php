@@ -15,8 +15,8 @@ $notes = $_POST["notes"];
 
 //Capturing summary
 $hullingSummary = $conn->prepare("INSERT INTO hulling (hulling_no, hulling_date, customer_id, input_grade_id, 
-                                input_qty, mc_in, output_grade_id, output_qty, mc_out, notes, prepared_by)
-                                VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                input_qty, mc_in, output_grade_id, output_qty, mc_out, notes, prepared_by, prep_date)
+                                VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 $hullingSummary->bind_param("isssddsddss", $hulling_no, $hulling_date, $customer_id, $input_grade_id, $input_qty,
                             $mc_in, $output_grade_id, $output_qty, $mc_out, $notes, $prepared_by);
 $hullingSummary->execute();
