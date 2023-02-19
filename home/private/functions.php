@@ -449,13 +449,13 @@ function gradePicker($itemId, $gradeOption){
 
   //document notes
   function documentNotes($width){
+    global $comment;
     ?>
-    <div style="margin-top: 10px; max-height: 50px; width: <?= $width?>">
-            <label for="notes">Notes:</label><br>
-            <textarea id="notes" name="notes" class="remarks" rows="3" maxlength="100"
-            style="resize: vertical; max-height: 50px; min-height: 30px; padding: 5px 10px;"></textarea>
-        </div>
-        <?php
+    <div style="margin-top: 10px; max-height: 50px;">
+        <label for="notes">Notes:</label><br>
+        <input id="notes" name="notes" class="shortInput" value="<?=$comment?>" maxlength="100" style="width: <?= $width?>;">
+    </div><br>
+    <?php
   }
 
 
