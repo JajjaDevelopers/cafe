@@ -9,10 +9,5 @@ $verifySql = $conn->prepare("UPDATE grn SET approved_by=?, appr_time=NOW() WHERE
 $verifySql->bind_param("ss", $approvedBy, $no);
 $verifySql->execute();
 
-
-
-
-
-
 header("location: ../approval/grnApprovalList");
 ?>
