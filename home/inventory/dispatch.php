@@ -4,7 +4,7 @@
 
 <form class="regularForm" method="POST" action="../connection/dispatch.php" style="height:fit-content; width:800px">
     <input id="releaseNo" name="releaseNo" style="display: none;" value="<?= $releaseNo ?>" readonly>
-    <?php require "../forms/releaseTemplate.php" ?>
+    <?php require "../templates/releaseTemplate.php" ?>
     <div class="container">
         <div class="row">
             <div class="col-md-2">

@@ -246,7 +246,7 @@ date_default_timezone_set("Africa/Kampala");
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-house"></i><span>Processing</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-house"></i><span>Production</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -316,17 +316,30 @@ date_default_timezone_set("Africa/Kampala");
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../inventory/Goods_Received_Note">
+            <a href="#">
+              <!-- <a href="../roastery/grn"> -->
               <i class="bi bi-circle"></i><span>Receive Goods</span>
             </a>
           </li>
           <li>
-            <a href="../forms/activtySheet">
-              <i class="bi bi-circle"></i><span>Services</span>
+            <a href="#">
+            <!-- <a href="../roastery/activtySheet"> -->
+              <i class="bi bi-circle"></i><span>Roastery Services</span>
             </a>
           </li>
           <li>
-            <a href="../forms/activtySheet">
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Roasted Coffee Sales</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Manufacture</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <!-- <a href="../roastery/releaseRequest"> -->
               <i class="bi bi-circle"></i><span>Release Request</span>
             </a>
           </li>
@@ -474,6 +487,11 @@ date_default_timezone_set("Africa/Kampala");
           <li>
             <a href="../transactions/salesReportList">
               <i class="bi bi-circle"></i><span>Sales Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="../transactions/hullingList">
+              <i class="bi bi-circle"></i><span>Hulling</span>
             </a>
           </li>
         </ul>

@@ -48,7 +48,7 @@ if ($client=='all'){
             array_push($salesList, $salesRow);
             ?>
             <tr>
-                <td><a href="../transactions/salesReport?valNo=<?= $row["sales_report_no"] ?>"><?= $row["sales_report_no"] ?></a></td>
+                <td><a href="../transactions/salesReport?salNo=<?= $row["sales_report_no"] ?>"><?= $row["sales_report_no"] ?></a></td>
                 <td><?= $row["sales_report_date"] ?></td>
                 <td><?= $row["customer_name"] ?></td>
                 <td style="text-align:left"><?= $row["sale_category"] ?></td>

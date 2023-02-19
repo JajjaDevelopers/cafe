@@ -10,7 +10,8 @@ function countPendVerifications($table, $column){
 $grnVerNum = countPendVerifications("grn", "verified_by");
 $releasVerNum = countPendVerifications("release_request", "verified_by");
 $valuationVerNum = countPendVerifications("valuation_report_summary", "verified_by");
-$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum);
+$salesReportVerNum = countPendVerifications("sales_reports_summary", "verified_by");
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum);
 
 
 //Counting pending approvals
@@ -28,7 +29,8 @@ function countPendApprovals($table, $column){
 $grnApprNum = countPendApprovals("grn", "approved_by");
 $releaseApprNum = countPendApprovals("release_request", "appr_by");
 $valuationApprNum = countPendApprovals("valuation_report_summary", "approved_by");
-$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum);
+$salesReportApprNum = countPendApprovals("sales_reports_summary", "approved_by");
+$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum);
 
 
 $totalPendVer = 0;
@@ -289,4 +291,50 @@ function valuationApprList(){
         <?php
     }
 }
+
+//sales report
+function salesReportVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT sales_report_no, customer_name, sales_report_date, sale_category, sales_report_value, foreign_currency
+                            FROM sales_reports_summary JOIN customer USING (customer_id)
+                            WHERE verified_by='0'");
+    $sql->execute();
+    $sql->bind_result($salNo, $salClient, $salDate, $salCat, $salValue, $currency);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../verification/salesReport?salNo=<?= intval($salNo) ?>"><?= $salNo ?></a></td>
+            <td><?= $salDate ?></td>
+            <td><?= $salClient ?></td>
+            <td style="text-align: right"><?= $salCat ?></td>
+            <td style="text-align: right"><?= $currency ?></td>
+            <td style="text-align: right"><?= intval($salValue) ?></td>
+        </tr>
+        <?php
+    }
+}
+
+function salesReportApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT sales_report_no, customer_name, sales_report_date, sale_category, sales_report_value, foreign_currency
+                            FROM sales_reports_summary JOIN customer USING (customer_id)
+                            WHERE verified_by<>'0' AND approved_by='0'");
+    $sql->execute();
+    $sql->bind_result($salNo, $salClient, $salDate, $salCat, $salValue, $currency);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../approval/salesReport?salNo=<?= intval($salNo) ?>"><?= $salNo ?></a></td>
+            <td><?= $salDate ?></td>
+            <td><?= $salClient ?></td>
+            <td style="text-align: right"><?= $salCat ?></td>
+            <td style="text-align: right"><?= $currency ?></td>
+            <td style="text-align: right"><?= intval($salValue) ?></td>
+        </tr>
+        <?php
+    }
+}
+
 ?>
