@@ -24,12 +24,16 @@ include_once ('../forms/header.php');
                     <td style="text-align: center"><?= $releaseApprNum ?></td>
                 </tr>
                 <tr>
-                    <td><a href="../approval/valuationList">Valuation</a></td>
+                    <td><a href="../approval/valuationList">Valuation Reports</a></td>
                     <td style="text-align: center"><?= $valuationApprNum ?></td>
                 </tr>
                 <tr>
                     <td><a href="../approval/salesReportList">Sales Report</a></td>
                     <td style="text-align: center"><?= $salesReportApprNum ?></td>
+                </tr>
+                <tr>
+                    <td><a href="../approval/hullingList">Hulling Reports</a></td>
+                    <td style="text-align: center"><?= $hullingApprNum ?></td>
                 </tr>
             </tbody>
         </table>
