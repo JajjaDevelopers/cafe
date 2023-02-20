@@ -1,7 +1,7 @@
 <?php
 function countPendVerifications($table, $column){
     include "connlogin.php";
-    $coutnSql = $conn->query("SELECT count($column) as num FROM $table WHERE $column='0'");
+    $coutnSql = $conn->query("SELECT count($column) as num FROM $table WHERE $column='None'");
     $result = mysqli_fetch_array($coutnSql);
     $number = $result['num'];
     // $conn->rollback();
@@ -11,13 +11,15 @@ $grnVerNum = countPendVerifications("grn", "verified_by");
 $releasVerNum = countPendVerifications("release_request", "verified_by");
 $valuationVerNum = countPendVerifications("valuation_report_summary", "verified_by");
 $salesReportVerNum = countPendVerifications("sales_reports_summary", "verified_by");
-$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum);
+$hullingVerNum = countPendVerifications("hulling", "verified_by");
+
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum);
 
 
 //Counting pending approvals
 function countPendApprovals($table, $column){
     include "connlogin.php";
-    $coutnSql = $conn->query("SELECT count($column) as num FROM $table WHERE  ($column='0' AND verified_by <>'0')");
+    $coutnSql = $conn->query("SELECT count($column) as num FROM $table WHERE  ($column='None' AND verified_by <>'None')");
     $result = mysqli_fetch_array($coutnSql);
     $number = $result['num'];
     // $conn->rollback();
@@ -68,7 +70,7 @@ function grnVerificationList(){
             FROM grn
             JOIN customer USING (customer_id)
             JOIN grades USING (grade_id)
-            WHERE (verified_by='0')";
+            WHERE (verified_by='None')";
     $getList = $conn->prepare($sql);
     $getList->execute();
     $getList->bind_result($grn_no, $grn_date, $customer_name, $grade_name, $grn_qty, $purpose, $FullName);
@@ -104,7 +106,7 @@ function grnApprovalList(){
             FROM grn
             JOIN customer USING (customer_id)
             JOIN grades USING (grade_id)
-            WHERE (verified_by!='0') AND (approved_by='0')";
+            WHERE (verified_by!='None') AND (approved_by='None')";
     $getList = $conn->prepare($sql);
     $getList->execute();
     $getList->bind_result($grn_no, $grn_date, $customer_name, $grade_name, $grn_qty, $purpose, $FullName);
@@ -205,7 +207,7 @@ function approveActivity($table, $keyColName, $keyVariable, $approveUser){
 function releaseVerList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT release_no, request_date, customer_name, total_qty, destination, initiated_by FROM release_request
-                            JOIN customer USING (customer_id) WHERE verified_by='0' ");
+                            JOIN customer USING (customer_id) WHERE verified_by='None' ");
     $sql->execute();
     $sql->bind_result($relNo, $reqDate, $client, $qty, $destn, $initiator);
     
@@ -227,7 +229,7 @@ function releaseVerList(){
 function releaseApprList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT release_no, request_date, customer_name, total_qty, destination, initiated_by FROM release_request
-                            JOIN customer USING (customer_id) WHERE verified_by<>'0' AND appr_by='0'");
+                            JOIN customer USING (customer_id) WHERE verified_by<>'None' AND appr_by='None'");
     $sql->execute();
     $sql->bind_result($relNo, $reqDate, $client, $qty, $destn, $initiator);
     
@@ -250,7 +252,7 @@ function valuationVerList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
                             FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-                            WHERE verified_by='0' GROUP BY valuation_no");
+                            WHERE verified_by='None' GROUP BY valuation_no");
     $sql->execute();
     $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
     
@@ -274,7 +276,7 @@ function valuationApprList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
                             FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-                            WHERE verified_by<>'0' AND approved_by='0' GROUP BY valuation_no");
+                            WHERE verified_by<>'None' AND approved_by='None' GROUP BY valuation_no");
     $sql->execute();
     $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
     
@@ -297,7 +299,7 @@ function salesReportVerList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT sales_report_no, customer_name, sales_report_date, sale_category, sales_report_value, foreign_currency
                             FROM sales_reports_summary JOIN customer USING (customer_id)
-                            WHERE verified_by='0'");
+                            WHERE verified_by='None'");
     $sql->execute();
     $sql->bind_result($salNo, $salClient, $salDate, $salCat, $salValue, $currency);
     
@@ -319,7 +321,7 @@ function salesReportApprList(){
     include "connlogin.php";
     $sql = $conn->prepare("SELECT sales_report_no, customer_name, sales_report_date, sale_category, sales_report_value, foreign_currency
                             FROM sales_reports_summary JOIN customer USING (customer_id)
-                            WHERE verified_by<>'0' AND approved_by='0'");
+                            WHERE verified_by<>'None' AND approved_by='None'");
     $sql->execute();
     $sql->bind_result($salNo, $salClient, $salDate, $salCat, $salValue, $currency);
     
@@ -332,6 +334,32 @@ function salesReportApprList(){
             <td style="text-align: right"><?= $salCat ?></td>
             <td style="text-align: right"><?= $currency ?></td>
             <td style="text-align: right"><?= intval($salValue) ?></td>
+        </tr>
+        <?php
+    }
+}
+
+//hulling reports
+function hullingVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT hulling_no, hulling_date, customer_name, input_qty, output_qty,
+                            (SELECT grade_name FROM grades WHERE hulling.input_grade_id=grades.grade_id) AS input_grade,
+                            (SELECT grade_name FROM grades WHERE hulling.output_grade_id=grades.grade_id) AS output_grade
+                            FROM hulling JOIN customer USING (customer_id)
+                            WHERE verified_by='None'");
+    $sql->execute();
+    $sql->bind_result($hulNo, $hulDate, $hulClient,  $inQty, $outQty, $inGrd, $outGrd);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../verification/hulling?hullNo=<?= intval($hulNo) ?>"><?= $hulNo ?></a></td>
+            <td><?= $hulDate ?></td>
+            <td><?= $hulClient ?></td>
+            <td style="text-align: left"><?= $inGrd ?></td>
+            <td style="text-align: right"><?= $inQty ?></td>
+            <td style="text-align: left"><?= $outGrd ?></td>
+            <td style="text-align: right"><?= $outQty ?></td>
         </tr>
         <?php
     }
