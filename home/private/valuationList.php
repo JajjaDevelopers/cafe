@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../private/functions.php");
 include ("../private/connlogin.php");
 ?>
@@ -60,7 +61,9 @@ if ($client=='all'){
             <?php
         }
         $valuationListResult = json_encode($valList);
-        echo $valuationListResult;
+        // echo $valuationListResult;
+        $_SESSION["valuationData"] = $valuationListResult;
+        // echo $_SESSION["valuationData"];
         ?>
     </tbody>
 
