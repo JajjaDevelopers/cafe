@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../private/functions.php");
 include ("../private/connlogin.php");
 ?>
@@ -64,7 +65,9 @@ if ($client=='all'){
             <?php
         }
         $releaseListResult = json_encode($releaseList);
-        echo $releaseListResult;
+        // echo $releaseListResult;
+        $_SESSION["releaseData"] = $releaseListResult;
+        // var_dump($_SESSION["releaseData"]);
         ?>
     </tbody>
 

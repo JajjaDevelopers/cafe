@@ -22,12 +22,25 @@
         </div>
         <?php submitButton("Submit", "button", "confirm") ?>
     </div>
-    
-    <div id="results" style="margin-top: 40px;">
-
-    </div>
-
 </form>
+<div class="container text-center d-flex flex-column align-items-end">
+        <div>
+            <form action="../phpspreadsheet/dispatchExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="dispatchexcel">
+                <div class="form-group text-end">
+                <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
+                </div>
+            </form>
+        </div>
+        <div class=" mt-3 me-5">
+            <a href="http://localhost/testprojects/cafe/home/pdfgen/dispatch.php" target="_blank"  id="dispatchpdf" style="display:none;">
+                <i class="bi bi-download" style="color:green; font-size:30px">
+                </i>
+            </a>
+        </div>  
+</div>
+<div id="results" style="margin-top: 40px;">
+
+</div>
 <?php include "../forms/footer.php" ?>
 <script>
     document.getElementById("verifyBtn").addEventListener("click", getGrnList);
@@ -43,5 +56,7 @@
       }
       xhttp.open("GET", "../ajax/releaseList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
+      document.getElementById("dispatchpdf").style.display="block";
+      document.getElementById("dispatchexcel").style.display="block";
     }
 </script>
