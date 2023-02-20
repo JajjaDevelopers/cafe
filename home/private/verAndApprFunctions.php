@@ -32,7 +32,8 @@ $grnApprNum = countPendApprovals("grn", "approved_by");
 $releaseApprNum = countPendApprovals("release_request", "appr_by");
 $valuationApprNum = countPendApprovals("valuation_report_summary", "approved_by");
 $salesReportApprNum = countPendApprovals("sales_reports_summary", "approved_by");
-$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum);
+$hullingApprNum = countPendApprovals("hulling", "approved_by");
+$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum);
 
 
 $totalPendVer = 0;
@@ -365,4 +366,28 @@ function hullingVerList(){
     }
 }
 
+function hullingApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT hulling_no, hulling_date, customer_name, input_qty, output_qty,
+                            (SELECT grade_name FROM grades WHERE hulling.input_grade_id=grades.grade_id) AS input_grade,
+                            (SELECT grade_name FROM grades WHERE hulling.output_grade_id=grades.grade_id) AS output_grade
+                            FROM hulling JOIN customer USING (customer_id)
+                            WHERE verified_by<>'None' AND approved_by='None'");
+    $sql->execute();
+    $sql->bind_result($hulNo, $hulDate, $hulClient,  $inQty, $outQty, $inGrd, $outGrd);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td style="text-align: center"><a href="../approval/hulling?hullNo=<?= intval($hulNo) ?>"><?= $hulNo ?></a></td>
+            <td><?= $hulDate ?></td>
+            <td><?= $hulClient ?></td>
+            <td style="text-align: left"><?= $inGrd ?></td>
+            <td style="text-align: right"><?= $inQty ?></td>
+            <td style="text-align: left"><?= $outGrd ?></td>
+            <td style="text-align: right"><?= $outQty ?></td>
+        </tr>
+        <?php
+    }
+}
 ?>
