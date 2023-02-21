@@ -56,7 +56,7 @@
       }
       xhttp.open("GET", "../ajax/releaseList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
-      document.getElementById("dispatchpdf").style.display="block";
+    //   document.getElementById("dispatchpdf").style.display="block";
       document.getElementById("dispatchexcel").style.display="block";
     }
 </script>

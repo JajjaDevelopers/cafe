@@ -60,16 +60,6 @@ function pwdMatch($password,$passwordRepeat){
   return $result;
  }
 
- //function that checks for the length of password
- function passLength($password){
-  if(!strlen($password)>=8){
-    $result = true;
-  }else{
-    $result = false;
-  }
-  return $result;
- }
-
  //function that checks whether username or email already exists
  function validUsernameEmail($username,$email)
  {

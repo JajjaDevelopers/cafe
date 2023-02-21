@@ -1,6 +1,6 @@
 <?php $pageTitle="Settings"; ?>
 <?php include "header.php";?>
-<div class="container" style="background-color:green; width:500px; border:1px solid green; border-radius:15px;">
+<div class="container">
   <div class="row">
     <div class="col" id="cardcontent">
       <div class="card mt-4">
@@ -24,7 +24,7 @@
           include "../alerts/settingerrors.php";
         ?>
       </div>
-      <div class="col" id="displayform" class="justify-content-center text-success">
+      <div class="col" id="displayform" class="justify-content-center">
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
   var elLink1=divEl.getElementsByTagName("li")[0].getElementsByTagName("a")[0];
   var elLink2=divEl.getElementsByTagName("li")[1].getElementsByTagName("a")[0];
   const elCard=document.getElementById("cardcontent");
-  console.log(elCard);
+  // console.log(elCard);
   // console.log(elLink2);
   // var userName=document.getElementById("usernamechange");
   // var passwordForm=document.getElementById("passwordform");

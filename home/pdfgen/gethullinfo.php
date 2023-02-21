@@ -1,27 +1,25 @@
 
-<?php 
-include "./valuationVariables.php";
-include ("../connection/databaseConn.php");
+<?php include "./hullVariables.php";
+ include ("../connection/databaseConn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Valuation Information</title>
+  <title>Hull Information</title>
   <link href="../assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="../assets/css/main.css">
   <link href="../assets/dashboard/css/style.css" rel="stylesheet">
-
 </head>
 <body>
-<form class="regularForm" method="post" action="../connection/valuationVerification.php" style="height:fit-content; width:900px">
-    <?php include "../templates/valuation.php" ?>
+<form class="regularForm" style="height:fit-content; width:800px">
+    <?php include "../templates/hulling.php" ?>
 </form>
-<?php include "../assets/js/valuationVer.php" ?>
+<?php include("../assets/js/hullingVer.php") ?>
 <script>
   document.getElementById("print").addEventListener("click",()=>{
   // alert("Hi God");

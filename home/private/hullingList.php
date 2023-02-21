@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../private/functions.php");
 include ("../private/connlogin.php");
 ?>
@@ -60,8 +61,9 @@ $sql->bind_result($hullNo, $hullDate, $hullClt, $inGrd, $inQty, $outGrd, $outQty
            <?php
         }
         $hullListResult = json_encode($hullList);
-        echo $hullListResult;
-        // var_dump($grnList);
+        // echo $hullListResult;
+        $_SESSION["hullData"] = $hullListResult;
+        // echo $_SESSION["hullData"];
         ?>
     </tbody>
 </table>

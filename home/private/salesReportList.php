@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../private/functions.php");
 include ("../private/connlogin.php");
 ?>
@@ -59,7 +60,9 @@ if ($client=='all'){
             <?php
         }
         $salesListResult = json_encode($salesList);
-        echo $salesListResult;
+        // echo $salesListResult;
+        $_SESSION["salesData"] = $salesListResult;
+        // echo $_SESSION["salesData"];
         ?>
     </tbody>
 
