@@ -35,10 +35,10 @@ if(isset($_POST["submit"]))//checking whether user has submited info
     exit();
   }
   //check length
-  // if(passLength($password)!==false){
-  //   header("location:../signup.php?error=lessthaneight");
-  //   exit();
-  // }
+  if(strlen($password)<8){
+    header("location:../signup.php?error=lessthaneight");
+    exit();
+  }
  //invalid phone number
  if(validMobile($tel)!==false)
  {

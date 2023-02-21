@@ -32,10 +32,10 @@
             </form>
         </div>
         <div class=" mt-3 me-5">
-            <a href="http://localhost/testprojects/cafe/home/pdfgen/dispatch.php" target="_blank"  id="dispatchpdf" style="display:none;">
+            <!-- <a href="http://localhost/testprojects/cafe/home/pdfgen/dispatch.php" target="_blank"  id="dispatchpdf" style="display:none;">
                 <i class="bi bi-download" style="color:green; font-size:30px">
                 </i>
-            </a>
+            </a> -->
         </div>  
 </div>
 <div id="results" style="margin-top: 40px;">
@@ -56,7 +56,7 @@
       }
       xhttp.open("GET", "../ajax/releaseList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
-      document.getElementById("dispatchpdf").style.display="block";
+    //   document.getElementById("dispatchpdf").style.display="block";
       document.getElementById("dispatchexcel").style.display="block";
     }
 </script>

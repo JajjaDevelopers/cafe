@@ -1,8 +1,8 @@
 <?php
-include "connlogin.php";
-include "functions.php";
-$valNo = intval($_GET['valNo']);
-$valuationNumber = formatDocNo($valNo, "VAL-");
+include "../private/connlogin.php";
+include "../private/functions.php";
+$valNo = intval($_SESSION["valNo"]);
+$valuationNumber =  "VAL-".$_SESSION["valNo"];
 
 //summary
 $summSql = $conn->prepare("SELECT valuation_date, batch_report_no, customer_id, input_qty, exchange_rate, costs, prepared_by, prep_date,
