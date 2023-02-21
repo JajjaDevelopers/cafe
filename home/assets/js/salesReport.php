@@ -41,4 +41,5 @@
         document.getElementById('item'+x+'UsdPx').setAttribute("readonly", "readonly");
         document.getElementById('item'+x+'UgxPx').setAttribute("readonly", "readonly");
     }
+    document.getElementById("print").style.display="none";
 </script>

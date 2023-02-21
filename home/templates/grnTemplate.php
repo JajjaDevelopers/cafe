@@ -1,4 +1,7 @@
 <legend class="formHeading">Goods Received Note</legend>
+<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
 <?php
     
     include "../alerts/message.php";
@@ -17,25 +20,22 @@
 require("../forms/customerSelector.php"); ?>
 <br>
     
-<div class="container">
+<div class="container" style="margin: 0px; padding:0px">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
             <label>Coffee Details</label>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2">
-            <label for="type">Coffee Type:</label><br>
+            <label for="type">Type:</label><br>
             <input class="shortInput" value="<?=$coffee_type?>" id="typeName">
             <select id="type" name="coffeetype" class="shortInput"
                 onchange="itemFilterOptions('category',this.value, 'typeCat')">
                 <option value="all">All</option>
                 <option value="Arabica">Arabica</option>
                 <option value="Robusta">Robusta</option>
-            </select><br>
-            <label for="bags" class="form-label" style="margin-top: 20px;">Bags:</label><br>
-            <input type="number" class="shortInput" id="bags" placeholder="bags" name="bags"  
-            value="<?=$no_of_bags?>" style="margin-top: 0px; width: 60px">
+            </select>
         </div>
         <div class="col-sm-3">
             <label for="category">Type Category:</label><br>
@@ -44,23 +44,40 @@ require("../forms/customerSelector.php"); ?>
                 onchange="itemFilterOptions('gradeId',this.value, 'grades')">
                 <option value="all">All</option>
                 
-            </select><br>
-            <label for="mc" style="margin-top: 20px;">Average Moisture:</label><br>
-            <input type="number" class="shortInput" id="mc" placeholder="%" name="mc"  value="<?=$grn_mc?>" 
-            style="margin-top: 10px; width: 70px" step="0.01"><br>
+            </select>
         </div>
         <div class="col-sm-4">
             <label for="gradeId">Grade:</label><br>
-            <input id="gradeName" value="<?=$grade_name?>" class="shortInput" style="width: 250px;">
-            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 250px;">
+            <input id="gradeName" value="<?=$grade_name?>" class="shortInput" style="width: 150px;">
+            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 150px;">
                 <option value="all">All</option>
-                
-            </select><br>
-            <label for="purpose" style="margin-top: 20px;">Purpose:</label><br>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <label for="weight" >Weight:</label><br>
+            <input type="number" id="weight"  class="shortInput" placeholder="kgs" 
+            name="gradeweight"  value="<?=$grn_qty?>">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="bags" class="form-label">Bags:</label><br>
+            <input type="number" class="shortInput" id="bags" placeholder="bags" name="bags"  
+            value="<?=$no_of_bags?>" style="margin-top: 0px; ">
+        </div>
+        <div class="col-sm-3">
+            
+            <label for="mc" >Av. Moisture:</label><br>
+            <input type="number" class="shortInput" id="mc" placeholder="%" name="mc"  value="<?=$grn_mc?>" 
+            style="margin-top: 10px; width: 70px" step="0.01">
+        </div>
+        <div class="col-sm-4">
+            
+            <label for="purpose" ">Purpose:</label><br>
             <input class="longInputField" id="purposeName" value="<?=$purpose?>" 
-            style="margin-left: 0px; width:200px">
+            style="margin-left: 0px; width:150px">
             <select class="longInputField" id="purpose" placeholder="purpose" name="purpose" 
-            style="margin-top: 10px; width:200px; margin-left:0px" onchange="getPreOffSampleNo()">
+            style="margin-top: 10px; width:150px; margin-left:0px" onchange="getPreOffSampleNo()">
                 <option></option>
                 <option value="Processing">Processing</option>
                 <option value="Roasting">Roastery Services</option>
@@ -69,18 +86,16 @@ require("../forms/customerSelector.php"); ?>
             </select>
         </div>
         <div class="col-sm-3">
-            <label for="weight" >Weight:</label><br>
-            <input type="number" id="weight"  class="shortInput" placeholder="kgs" 
-            name="gradeweight"  value="<?=$grn_qty?>"><br><br>
-            <label for="weight" >Pre-Offloading Sample:</label><br>
+            
+            <label for="weight" >Pre-Off Sample:</label><br>
             <select id="preOffSample" name="preOffSample" class="shortInput" ></select>
         </div>
     </div>
     
-</div>
-<div class="container">
+</div><br>
+<div class="container" style="margin: 0px;">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
             <label>Delivery Details</label>
         </div>
     </div>
@@ -134,5 +149,5 @@ require("../forms/customerSelector.php"); ?>
     <label for="customer" class="form-label">Quality Remarks:</label>
     <input class="form-control" id="remarks" name="remarks" value="<?=$quality_remarks?>" placeholder="quality remarks" rows="3">
 </div>
-<?php include "users.php" ?>
+<?php include "../forms/users.php" ?>
 <script src="../assets/js/itemsFilter.js"></script>

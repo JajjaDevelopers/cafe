@@ -26,4 +26,5 @@
     }
     $outSql->close();
     ?>
+    document.getElementById("print").style.display="none";
 </script>

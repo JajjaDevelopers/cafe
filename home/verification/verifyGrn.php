@@ -5,9 +5,9 @@
 <?php
 $grnNo = formatDocNo(intval($grn_no), "GRN-");
 ?>
-<form class="regularForm" action="../connection/grnVerifyFinal.php" method="POST" style="height: fit-content; width:1000px">
+<form class="regularForm" action="../connection/grnVerifyFinal.php" method="POST" style="height: fit-content; width:790px">
 
-  <?php include "../forms/grnTemplate.php" ?>
+  <?php include "../templates/grnTemplate.php" ?>
   <?php submitButton("Verify", "Submit", "confirm");?>
 </form>
 

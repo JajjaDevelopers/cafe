@@ -17,32 +17,32 @@
     
     <?php itemsTable(10, "Delivery Items"); ?>
     
-    <div class="container" style="padding-top: 20px;">
+    <div class="container" style="padding: 20px 0px 0px 0px; margin:0px">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="destination">Destination</label><br>
                 <input style="width: 200px;" type="text" id="destination" class="shortInput" name="destination" value="<?=$destn?>">
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <label for="initiator">Initiated By:</label><br>
-                <input style="width: 300px;" type="text" id="initiator" class="shortInput" name="initiator" value="<?=$initiator?>" placeholder="Initiated by">
+                <input style="width: 200px;" type="text" id="initiator" class="shortInput" name="initiator" value="<?=$initiator?>" placeholder="Initiated by">
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <label for="remarks">Remarks</label><br>
                 <input style="width: 550px; " type="text" id="remarks" class="shortInput" name="remarks" value="<?=$comt?>">
             </div>
         </div>
     </div>
-    <div id="usersDiv" class="container">
+    <div id="usersDiv" class="container" style="margin: 10px 0px;">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
             <?= "Prepared By: ".$prepBy?><br>
             <?= "Verified By: ".$verBy?><br>
             <?= "Approved By: ".$apprBy?>
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <?= "Date: ".$prep_time ?><br>
             <?= "Date: ".$ver_time ?><br>
             <?= "Date: ".$appr_time ?>

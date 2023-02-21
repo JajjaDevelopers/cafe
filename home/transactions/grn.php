@@ -6,9 +6,9 @@
 $grnNo = formatDocNo(intval($grn_no), "GRN-");
 $_SESSION["grn"] = $grn_no;
 ?>
-<form class="regularForm" style="height: fit-content; width:1000px">
+<form class="regularForm" style="height: fit-content; width:790px">
 
-  <?php include "../forms/grnTemplate.php" ?>
+  <?php include "../templates/grnTemplate.php" ?>
 </form>
 <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
 <a href="../transactions/grnList" class="btn btn-link" style="color:green">Back</a>

@@ -62,4 +62,5 @@ var faqKg = Number(document.getElementById("FAQQty").value);
     ?>
     document.getElementById("grandTotaltUgx").setAttribute("value", ttUgxAmt);
     document.getElementById("totalValueUgx").setAttribute("value", ttUgxAmt-<?=$valCosts?>);
+    document.getElementById("print").style.display="none";
 </script>

@@ -4,8 +4,8 @@
 <?php include "../connection/verifyGrn.php";
 $grnNo = formatDocNo($grn_no, "GRN-");
 ?>
-<form class="regularForm" action="../connection/grnApprovalFinal.php" method="POST" style="height: fit-content; width:1000px">
-    <?php include "../forms/grnTemplate.php" ?>
+<form class="regularForm" action="../connection/grnApprovalFinal.php" method="POST" style="height: fit-content; width:790px">
+    <?php include "../templates/grnTemplate.php" ?>
 
     <?php 
     submitButton("Approve", "submit", "confirm");

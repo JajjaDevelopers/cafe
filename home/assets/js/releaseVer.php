@@ -1,26 +1,3 @@
-<?php $pageTitle="Verify Release"; ?>
-<?php include("../forms/header.php");?>
-<?php include "../connection/releaseVariables.php" ?>
-<?php include ("../connection/databaseConn.php");
-
-if(isset($_GET['relNo'])){
-    $rel=$_GET['relNo'];
-    $_SESSION["relNo"] = $rel;
-}
-?>
-
-<form class="regularForm" style="height:fit-content; width:790px">
-<input id="releaseNo" name="releaseNo" value="<?=$releaseNo?>" style="display:none" readonly>
-<?php require "../templates/releaseTemplate.php" ?>
-</form>
-<div class=" mt-3 me-5 d-flex flex-row justify-content-between">
-<a href="../transactions/releaseList" class="btn btn-link" style="color:green">Back</a>
-    <a href="../pdfgen/dispatchinfo.php" target="_blank" class="" id="pdf" style="display:block;">
-        <i class="bi bi-download" style="color:green; font-size:30px">
-        </i>
-    </a>
-</div>
-<?php include "../forms/footer.php" ?>
 <script>
     document.getElementById("customerId").setAttribute("value", "<?=$custId?>");
     document.getElementById("customerName").setAttribute("value", "<?=$custName?>");
@@ -55,9 +32,11 @@ if(isset($_GET['relNo'])){
             $x += 1;
         }
     ?>
-    document.getElementById("totalQty").setAttribute("value", "<?=$qtySum?>");
-    document.getElementById("print").style.display="none";
-    
-
-
+    document.getElementById("totalQty").setAttribute("value", "<?=$qtySum?>"); 
+    document.getElementById("print").addEventListener("click",()=>{
+      // alert("Hi God");
+      document.getElementById("print").style.display="none";
+      window.print();
+      document.getElementById("print").style.display="block";
+    })   
 </script>
