@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+
   <style>
      #changenamebtn:hover{
     background-color:green;
@@ -24,21 +16,24 @@
           border:none;
           background-color: white;
           font-size:medium;
-          color:green;
+          color:black;
       }
   </style>
 <div class=" container text-center">
     <form action="../connection/changeusername.php" method="POST" id="changenameform">
-      <div class="form-floating">
+      <!-- <h5 class="text-center">Change Username</h5> -->
+      <div class="row">
+      <div class="form-floating col-md-6">
         <input type="text" name="newName" class="form-control">
-        <label for="username">Enter New Username</label>
+        <label for="username" class="text-center">Enter New Username</label>
       </div>
-      <div class="form-floating mt-3">
+      <div class="form-floating col-md-6">
         <input type="password" name="pass" class="form-control">
-        <label for="username">Enter your password to change name</label>
+        <label for="username" class="text-center">Enter your password to change name</label>
       </div>
-      <input type="submit" id="changenamebtn" name="changeName" class="btn btn-primary my-3 btn-lg text-center" value="Change Username">
+      </div>
+      <div class="form-group">
+      <input type="submit" id="changenamebtn" name="changeName" class="btn btn-primary my-3  text-center" value="Change Username">
+      </div>
     </form>
   </div>
-</body>
-</html>

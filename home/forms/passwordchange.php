@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-</head>
+</head> -->
 <style>
      #changepwdbtn:hover{
            background-color:green;
@@ -23,22 +23,26 @@
           border:none;
           background-color: white;
           font-size:medium;
-          color:green;
+          color:black;
       }
   </style>
-<body>
+<!-- <body> -->
   <div class="container text-center">
     <form action="../connection/changepassword.php" method="POST" id="changepwdform">
-      <div class="form-floating">
+      <div class="row">
+      <div class="form-floating col-md-6">
         <input type="password" name="newPassword" class="form-control">
-        <label for="newpassword">Enter New Password</label>
+        <label for="newpassword" class="text-center">Enter New Password</label>
       </div>
-      <div class="form-floating mt-3">
+      <div class="form-floating col-md-6 ">
         <input type="password" name="newPasswordConf" class="form-control">
-        <label for="newpassword">Confirm New Password</label>
+        <label for="newpassword" class="text-center">Confirm New Password</label>
       </div>
-      <input type="submit" id="changepwdbtn" name="changebtn" class="btn btn-primary my-3 btn-lg" value="Change Password">
+      </div>
+      <div class="form-group">
+      <input type="submit" id="changepwdbtn" name="changebtn" class="btn btn-primary my-3 " value="Change Password">
+      </div>
     </form>
   </div>
-</body>
-</html>
+<!-- </body>
+</html> -->

@@ -20,6 +20,9 @@ if(isset($_GET['relNo'])){
         </i>
     </a>
 </div>
+<script>
+  document.getElementById("print").style.display="none";
+</script>
 <?php include "../forms/footer.php" ?>
 <script>
     document.getElementById("customerId").setAttribute("value", "<?=$custId?>");

@@ -2,6 +2,10 @@
 <?php
     include "../alerts/message.php";
 ?>
+<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
+</div>
 <div class="container">
     <div class="row" style="margin-left: 65%;">
         <div class="col-md-6" style="display:grid; margin-top:15px">

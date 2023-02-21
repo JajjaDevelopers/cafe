@@ -2,6 +2,10 @@
 <?php
 include "../alerts/message.php";
 ?>
+<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
+</div>
 <div style="display: grid; width:fit-content; margin-left: 70%; margin-bottom:20px">
     <input name="hullNo" value="<?= $hullNo?>" readonly style="display:none">
     <label for="hullingNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Hulling No:</label>
@@ -50,5 +54,6 @@ include "../alerts/message.php";
 </div>
 <?php documentNotes("700px") ?>
 <?php include("../forms/users.php") ?>
+
 
 

@@ -2,6 +2,10 @@
     <?php
         //include "../alerts/message.php";
     ?>
+<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
+</div>
 <div style="margin-left: 70%;">
     <input name="salNo" value="<?=$salNo?>" readonly style="display: none;">
     <label for="salesReportNumber" id="salesReportNumberLabel" class="salesReportLabel" >Sales No.:</label>
@@ -90,7 +94,6 @@
     <div style="max-height: 50px;">
         <label for="salesReportNotes">Comment:</label><br>
         <input id="salesReportNotes" name="salesReportNotes" value="<?=$salNotes?>" class="shortInput" max="100" style="width: 700px;">
-    </div>
-    
+    </div> 
 </div>
 

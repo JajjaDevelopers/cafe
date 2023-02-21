@@ -6,6 +6,10 @@
       {
         echo "Passwords don't match";
       }
+      if($_SESSION["error"]==="lessthaneight")
+      {
+        echo "The password is too short, must have a minimum of 8 characters";
+      }
       if($_SESSION["error"]==="invalidname")
       {
         echo "User name is invalid, only letters and numbers are allowed";
