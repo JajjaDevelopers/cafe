@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("../private/database.php");//database connection details
 
 if(isset($_POST["submit"]))//checking whether user has submited info
@@ -12,6 +13,18 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   $passwordRepeat=$_POST["confpwd"];
   $dateupload=date("Y-m-d H:i:s");
   $access=$_POST["access"];
+  
+  //sessionvariables
+  $_SESSION["name"] = $fullname;
+  $_SESSION["username"] = $username;
+  $_SESSION["email2"] = $email;
+  $_SESSION["tel2"] = $tel;
+
+  // function sessionData($field){
+  //   if(isset($_SESSION[$field])){
+  //     echo $_SESSION[$field];
+  //   }
+  // }
 
   //error handling
   $error="";

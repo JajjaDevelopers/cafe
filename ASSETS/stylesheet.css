@@ -45,7 +45,7 @@ body{
   }
 
   /*styles for login form */
-  #divlogin ,#divsignup{
+  #divlogin{
     border:2px solid gray;
     width:525px;
     background-color:white;
