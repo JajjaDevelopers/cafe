@@ -12,8 +12,8 @@ $sql = $conn->prepare("SELECT hulling_date, customer_id, customer_name, contact_
                         FROM hulling JOIN customer USING (customer_id) WHERE hulling_no=?");
 $sql->bind_param("i", $hullNo);
 $sql->execute();
-$sql->bind_result($hulDate, $cltId, $cltNme, $contact, $tel, $mcIn, $mcOut, $grdIn, $qtyIn, $grdOut, $qtyOut, $comment, $prepared_by, 
-                    $prep_time, $verified_by, $ver_time, $approved_by, $appr_time);
+$sql->bind_result($hulDate, $cltId, $cltName, $cltContact, $cltTel, $mcIn, $mcOut, $grdIn, $qtyIn, $grdOut, $qtyOut, $comment, $prepared_by, 
+$prep_time, $verified_by, $ver_time, $approved_by, $appr_time);
 $sql->fetch();
 $sql->close();
 

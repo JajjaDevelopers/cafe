@@ -18,11 +18,15 @@ include ("../connection/databaseConn.php");
 
 </head>
 <body>
-<form class="regularForm" method="post" action="../connection/valuationVerification.php" style="height:fit-content; width:900px">
+<form class="regularForm" method="post" action="../connection/valuationVerification.php" 
+style="height:fit-content; width:fit-content; padding:5px">
     <?php include "../templates/valuation.php" ?>
 </form>
-<?php include "../assets/js/valuationVer.php" ?>
+<?php
+include "../assets/js/valuationVer.php"
+?>
 <script>
+  document.getElementById("print").style.display="block";
   document.getElementById("print").addEventListener("click",()=>{
   // alert("Hi God");
   document.getElementById("print").style.display="none";

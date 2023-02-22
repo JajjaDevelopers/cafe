@@ -11,8 +11,8 @@ $summSql = $conn->prepare("SELECT valuation_date, batch_report_no, customer_id, 
                             WHERE valuation_no=?");
 $summSql->bind_param("i", $valNo);
 $summSql->execute();
-$summSql->bind_result($valDate, $batcNo, $clientId, $inputQty, $fxRate, $valCosts, $prepared_by, $prep_time, $verified_by, $ver_time, 
-                    $approved_by, $appr_time, $clientName, $contact, $tel);
+$summSql->bind_result($valDate, $batcNo, $cltId, $inputQty, $fxRate, $valCosts, $prepared_by, $prep_time, $verified_by, $ver_time, 
+                    $approved_by, $appr_time, $cltName, $cltContact, $cltTel);
 $summSql->fetch();
 $summSql->close();
 

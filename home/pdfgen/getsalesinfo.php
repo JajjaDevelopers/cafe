@@ -15,7 +15,7 @@
   <link href="../assets/dashboard/css/style.css" rel="stylesheet">
 </head>
 <body>
-<form class="regularForm" style="height: fit-content;">
+<form class="regularForm" style="height: fit-content; width:fit-content">
     <?php include "../templates/salesReport.php" ?>
     <?php include "../forms/users.php" ?>
 </form>

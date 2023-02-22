@@ -10,8 +10,8 @@ $summSql = $conn->prepare("SELECT customer_id, customer_name, sales_report_date,
                         FROM sales_reports_summary JOIN customer USING (customer_id) WHERE sales_report_no=?");
 $summSql->bind_param("i", $salNo);
 $summSql->execute();
-$summSql->bind_result($cltId, $cltNme, $salDate, $salCat, $salVal, $currency, $salFx, $prepared_by, $verified_by, $approved_by, 
-                        $salNotes, $contact, $tel, $prep_time, $ver_time, $appr_time);
+$summSql->bind_result($cltId, $cltName, $salDate, $salCat, $salVal, $currency, $salFx, $prepared_by, $verified_by, $approved_by, 
+                        $salNotes, $cltContact, $cltTel, $prep_time, $ver_time, $appr_time);
 $summSql->fetch();
 $summSql->close();
 
