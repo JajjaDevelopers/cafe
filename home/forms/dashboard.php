@@ -1,3 +1,5 @@
+<!---CSS for tables-->
+<link href="../assets/css/dasnboard.css" rel="stylesheet">
 <div class="row">
 
 <div class="col-lg-6">
@@ -85,7 +87,7 @@
 <div class="col-lg-6">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Quarterly Movement</h5>
+      <h5 class="card-title">Monthly Processing</h5>
       <div class="row">
     <div class="col">
       <table class="table table-bordered table-hover" id="currentMonth">
@@ -179,7 +181,7 @@
 <div class="col-lg-6">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Monthly Processing</h5>
+      <h5 class="card-title">Quarterly Movement</h5>
       <div class="row">
       <div class="col">
       <table class="table table-bordered table-hover" id="tableQReceived">

@@ -37,12 +37,12 @@
           <div>
               <!-- <h3 class="text-center text-primary" >Sign Up</h3> -->
                 <!---Displaying errors--->
-              <div class="container text-center" style="color:red" id="signupclear">
+              <div class="container text-center text-danger" id="signupclear">
                 <?php
                 include "../alerts/errorsignup.php";
                 ?>
               </div>
-              <script src="../assets/js/signupclear.js"></script>
+              <!-- <script src="../assets/js/signupclear.js"></script> -->
           </div>
           </div>
           <div class="row mt-3">

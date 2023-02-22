@@ -25,7 +25,6 @@ function validUsername($username)
   }
   return $result;
 }
-
 //function that checks for validity of email address
 function validEmail($email)
 {
