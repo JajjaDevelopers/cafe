@@ -631,8 +631,8 @@ function previousFx(){
 //dates
 $currentDate = new DateTime();
 $today = date_format($currentDate, 'Y-m-d');
-// $fromDateObj=$currentDate->sub(new DateInterval('P30D')); //returning 30 days back date
-// $fromDate = date_format($fromDateObj, 'Y-m-d');
+$fromDateObj=$currentDate->sub(new DateInterval('P30D')); //returning 30 days back date
+$fromDate = date_format($fromDateObj, 'Y-m-d');
 
 //forex
 $fxRate = getFx();
@@ -707,6 +707,9 @@ function getFullName($nameCol, $table, $idCol, $id){
 
 }
 
-
+//2dp number
+function num($num){
+  return number_format($num,2);
+}
 
 ?>

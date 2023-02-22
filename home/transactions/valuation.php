@@ -11,6 +11,7 @@ if(isset($_GET['valNo'])){
 <form class="regularForm" method="post" action="../connection/valuationVerification.php" style="height:fit-content; width:900px">
     <?php include "../templates/valuation.php" ?>
 </form>
+<?php include "../assets/js/valuationVer.php" ?>
 
 <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
 <a href="../transactions/valuationList" class="btn btn-link" style="color:green">Back</a>
@@ -24,3 +25,4 @@ if(isset($_GET['valNo'])){
 </script>
 <?php include "../forms/footer.php" ?>
 <?php include "../assets/js/valuationVer.php" ?>
+

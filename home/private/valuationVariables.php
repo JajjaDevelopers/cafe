@@ -22,5 +22,6 @@ $valDetSql = $conn->prepare("SELECT grade_name, qty, price_ugx FROM valuations J
 $valDetSql->bind_param("i", $valNo);
 $valDetSql->execute();
 $valDetSql->bind_result($grdName, $grdQty, $ugxPx);
+$valDetSql->close();
 
 ?>

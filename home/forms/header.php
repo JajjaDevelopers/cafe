@@ -494,6 +494,11 @@ date_default_timezone_set("Africa/Kampala");
               <i class="bi bi-circle"></i><span>Hulling</span>
             </a>
           </li>
+          <li>
+            <a href="../transactions/dryingList.php">
+              <i class="bi bi-circle"></i><span>Drying</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Transaction Nav -->
       <li class="nav-item">

@@ -653,6 +653,15 @@ td{
     background-color: white;
     padding: 1px 5px;
   } 
+  .shortNum{
+    width: 100px;
+    margin-top: 10px;
+    border: 1px solid brown;
+    border-radius: 5px;
+    background-color: white;
+    padding: 1px 5px;
+    text-align: right;
+  } 
   .dottedInput{
     width: 300px;
     margin-top: 0px;
