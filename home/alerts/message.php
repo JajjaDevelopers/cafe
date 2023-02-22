@@ -5,10 +5,11 @@ if(isset($_GET["formmsg"]))
   {
     
     ?>
-    <div class="text-primary text-center" style="font-size:16px;" id="messageContainer">
-      <p>Data has been submitted successfully into the Database</p>
+    <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
+        <p class="text-center text-white" style="font-size:medium">Data recorded successfully! You can make another Entry.</p>
+      <button type="button" class="btn-close bg-danger" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <script>
+    <!-- <script>
       var divElement=document.getElementById("messageContainer");
       //function to erase message after sometime
       function messageErase()
@@ -16,7 +17,7 @@ if(isset($_GET["formmsg"]))
         divElement.style.display="none";
       }
       setTimeout(messageErase,8000);//erases message after 8 seconds
-    </script>
+    </script> -->
     <?php
   }
 

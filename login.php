@@ -65,7 +65,7 @@ require_once "header.php";
           include "alerts/errorlogin.php";
           ?>
         </div>
-        <input type="submit" name="submit" class="btn btn-primary my-3 btn-lg " id="loginbtn" value="Sign In">
+        <input type="submit" name="submit" class="btn btn-primary my-3 " id="loginbtn" value="Sign In">
       </div>
     </div>
   </div>
