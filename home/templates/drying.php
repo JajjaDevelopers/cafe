@@ -1,4 +1,4 @@
-  <h3 class="formHeading">DRYING FORM</h3>
+  <h3 class="formHeading">DRYING REPORT</h3>
   <?php
     include "../alerts/message.php";
   ?>
@@ -20,7 +20,7 @@
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 20px;">
       <div class="col-sm-6">
         <label for="inputQty">Input Qty</label><br>
         <input type="text" id="inputQty" name="inputQty" value="<?= num($inQty) ?>" class="shortNum" style="width: 200px;" step="0.01">
@@ -32,11 +32,10 @@
     </div>
   </fieldset>
   <fieldset class="form-group border p-3" style="border: 1px green solid; border-radius:5px; padding: 5px">
-    <div class="row" style="margin-top: 20px;">
-        
+    <div class="row" style="margin-top: 20px;">  
       <div class="col-sm-6">
         <label for="outputQty">Output Qty</label><br>
-        <input type="text" id="outputQty" name="outputQty" value="<?=num($outQty)  ?>" class="shortNum" step="0.01" style="width: 200px;">
+        <input type="text" id="outputQty" name="outputQty" value="<?=num($outQty)  ?>" class="shortNum" style="width: 200px;">
       </div>
       <div class="col-sm-6">
         <label for="inputMc">Output Moisture (%)</label><br>
@@ -45,25 +44,27 @@
     </div>
     <div class="row" style="margin-top: 20px;">
       <div class="col-sm-6">
-        <label for="kgLoss">Moisture Loss (Kg)</label><br>
+        <label for="kgLoss">Weight Loss (Kg)</label><br>
         <input type="text" id="dryLoss" name="dryLoss" value="<?= num($dryLoss) ?>" class="shortNum" step="0.01" style="width: 200px;">
       </div>
     
       <div class="col-sm-6">
-        <label for="percLoss">Moisture Loss(%)</label><br>
-        <input type="text" id="percLoss" name="percLoss" value="<?= num($inMc-$outMc) ?>" class="shortNum" step="0.01">
+        <label for="percLoss">Weight Loss(%)</label><br>
+        <input type="text" id="percLoss" name="percLoss" value="<?= num($dryLoss*100/$inQty) ?>" class="shortNum" step="0.01">
       </div>
     </div>
   </fieldset>
-  <?php documentNotes("700px") ?>
-  <?php include "../forms/users.php" ?>
+  <?php
+  documentNotes("700px");
+  include "../forms/users.php";
+  ?>
 <script>
-  document.getElementById("inputQty").addEventListener("blur", getDryingLoss);
-  document.getElementById("outputQty").addEventListener("blur", getDryingLoss);
-  function getDryingLoss(){
-    var inputQtyVar = Number(document.getElementById("inputQty").value);
-    var outputQtyVar = Number(document.getElementById("outputQty").value);
-    document.getElementById("dryLoss").setAttribute("value", inputQtyVar-outputQtyVar);
-    document.getElementById("percLoss").setAttribute("value", (inputQtyVar-outputQtyVar)*100/inputQtyVar);
-  }
+  // document.getElementById("inputQty").addEventListener("blur", getDryingLoss);
+  // document.getElementById("outputQty").addEventListener("blur", getDryingLoss);
+  // function getDryingLoss(){
+  //   var inputQtyVar = Number(document.getElementById("inputQty").value);
+  //   var outputQtyVar = Number(document.getElementById("outputQty").value);
+  //   document.getElementById("dryLoss").setAttribute("value", inputQtyVar-outputQtyVar);
+  //   document.getElementById("percLoss").setAttribute("value", (inputQtyVar-outputQtyVar)*100/inputQtyVar);
+  // }
 </script>

@@ -10,8 +10,8 @@ include_once ('../forms/header.php');
         <table class="table table-striped table-hover table-condensed table-bordered">
             <thead>
                 <tr style="background-color: green; color: white">
-                    <th style="width: 500px;">Verification Item</th>
-                    <th style="width: 100px;">Number</th>
+                    <th style="width: 500px;">Verification Activity</th>
+                    <th style="width: 100px;">Pending</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +34,10 @@ include_once ('../forms/header.php');
                 <tr>
                     <td><a href="../verification/hullingList">Hulling</a></td>
                     <td style="text-align: center;"><?= $hullingVerNum ?></a></td>
+                </tr>
+                <tr>
+                    <td><a href="../verification/dryingList">Drying</a></td>
+                    <td style="text-align: center;"><?= $dryingVerNum ?></a></td>
                 </tr>
             </tbody>
         </table>

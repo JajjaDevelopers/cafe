@@ -15,8 +15,8 @@ $comment = $_POST["notes"];
 
 //Capturing summary
 $summarySql = $conn->prepare("INSERT INTO drying (drying_no, drying_date, customer_id, grade_id, input_qty, 
-                            input_mc, output_qty, output_mc, drying_loss, prepared_by, comment) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            input_mc, output_qty, output_mc, drying_loss, prepared_by, prep_time, comment) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Now(), ?)");
 $summarySql->bind_param("isssdddddss", $dryingNo, $drying_date, $customer, $gradeId, $inputQty, $inputMc, $outputQty, 
                                     $outputMc, $dryLoss, $prepared_by, $comment);
 $summarySql->execute();

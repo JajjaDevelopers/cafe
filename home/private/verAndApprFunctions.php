@@ -12,8 +12,10 @@ $releasVerNum = countPendVerifications("release_request", "verified_by");
 $valuationVerNum = countPendVerifications("valuation_report_summary", "verified_by");
 $salesReportVerNum = countPendVerifications("sales_reports_summary", "verified_by");
 $hullingVerNum = countPendVerifications("hulling", "verified_by");
+$dryingVerNum = countPendVerifications("drying", "verified_by");
 
-$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum);
+
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum);
 
 
 //Counting pending approvals
@@ -33,7 +35,9 @@ $releaseApprNum = countPendApprovals("release_request", "appr_by");
 $valuationApprNum = countPendApprovals("valuation_report_summary", "approved_by");
 $salesReportApprNum = countPendApprovals("sales_reports_summary", "approved_by");
 $hullingApprNum = countPendApprovals("hulling", "approved_by");
-$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum);
+$dryingApprNum = countPendApprovals("drying", "approved_by");
+
+$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum);
 
 
 $totalPendVer = 0;
@@ -387,6 +391,54 @@ function hullingApprList(){
             <td style="text-align: left"><?= $outGrd ?></td>
             <td style="text-align: right"><?= $outQty ?></td>
         </tr>
+        <?php
+    }
+}
+
+//drying reports
+function dryingVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT drying_no, drying_date, customer_name, grade_name, input_qty, input_mc, output_qty, output_mc
+                            FROM drying JOIN customer USING (customer_id) JOIN grades USING (grade_id)
+                            WHERE verified_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $dryDate, $client, $grdName, $inQty, $inMc, $outQty, $outMc);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td><a href="../verification/drying?dryNo=<?=$no?>"> <?=$no?> </a></td>
+                <td><?=$dryDate?></td>
+                <td><?=$client?></td>
+                <td><?=$grdName?></td>
+                <td style="text-align: center;"><?=$inQty?></td>
+                <td style="text-align: right;"><?=$inMc?></td>
+                <td style="text-align: center;"><?=$outQty?></td>
+            <td style="text-align: right;"><?=$outMc?></td>
+        <?php
+    }
+}
+
+
+function dryingApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT drying_no, drying_date, customer_name, grade_name, input_qty, input_mc, output_qty, output_mc
+                            FROM drying JOIN customer USING (customer_id) JOIN grades USING (grade_id)
+                            WHERE verified_by<>'None' AND approved_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $dryDate, $client, $grdName, $inQty, $inMc, $outQty, $outMc);
+    
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td><a href="../approval/drying?dryNo=<?=$no?>"> <?=$no?> </a></td>
+                <td><?=$dryDate?></td>
+                <td><?=$client?></td>
+                <td><?=$grdName?></td>
+                <td style="text-align: center;"><?=$inQty?></td>
+                <td style="text-align: right;"><?=$inMc?></td>
+                <td style="text-align: center;"><?=$outQty?></td>
+            <td style="text-align: right;"><?=$outMc?></td>
         <?php
     }
 }
