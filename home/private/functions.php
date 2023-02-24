@@ -482,10 +482,10 @@ function itemsTable($itemsNo, $tableHeading){
   <table style="margin-top: 5px;" >
     <tr>
       <th style="width: 40px;">No.</th>
-      <th>Grade</th>
-      <th>Moisture</th>
-      <th>Bags</th>
-      <th>Quantity</th>
+      <th  style="width: 300px;">Grade</th>
+      <th  style="width: 50px;">Moisture</th>
+      <th  style="width: 50px;">Bags</th>
+      <th  style="width: 100px;">Quantity</th>
     </tr> 
   <?php 
   for ($i=1; $i<=$itemsNo; $i++){
@@ -494,15 +494,15 @@ function itemsTable($itemsNo, $tableHeading){
       <td><?= $i ?></td>
       <td>
         <input id="<?= 'item'.$i.'Id'?>" name="<?= 'item'.$i.'Id'?>" class="itmNameInput" readonly style="display: none;">
-        <input id="<?= 'item'.$i.'Name'?>" class="itmNameInput" style="width: 300px;" readonly>
-        <select id="<?= 'item'.$i.'Select'?>" name="<?= 'item'.$i.'Select'?>" class="dropdown" onchange="selectItem(this.id, <?= $itemsNo?>)" >
+        <input id="<?= 'item'.$i.'Name'?>" class="tableInput" style="width: 280px;" readonly>
+        <select id="<?= 'item'.$i.'Select'?>" name="<?= 'item'.$i.'Select'?>" style="width: 15px;" onchange="selectItem(this.id, <?= $itemsNo?>)" >
         <?php coffeeGrades(); ?></select>
       </td>
-      <td><input type="number" id="<?= 'item'.$i.'Mc'?>" name="<?= 'item'.$i.'Mc'?>" class="tableInput" style="width: 60px;" 
+      <td><input type="number" id="<?= 'item'.$i.'Mc'?>" name="<?= 'item'.$i.'Mc'?>" class="tblNum" style="width: 60px;" 
       step="0.01" onchange = "updateItemMc(<?= $itemsNo ?>)" ></td>
-      <td><input type="number" id="<?= 'item'.$i.'Bags'?>" name="<?= 'item'.$i.'Bags'?>" class="tableInput" style="width: 60px;" 
+      <td><input type="number" id="<?= 'item'.$i.'Bags'?>" name="<?= 'item'.$i.'Bags'?>" class="tblNum" style="width: 60px;" 
       step="0.1" onchange="updateItemBags(<?= $itemsNo ?>)" ></td>
-      <td><input type="number" id="<?= 'item'.$i.'Qty'?>" name="<?= 'item'.$i.'Qty'?>" class="tableInput" style="width: 100px;" 
+      <td><input type="number" id="<?= 'item'.$i.'Qty'?>" name="<?= 'item'.$i.'Qty'?>" class="tblNum" style="width: 100px;" 
       step="0.01" onchange="updateItemQty(<?= $itemsNo ?>)" ></td>
     </tr>
   <?php
@@ -510,9 +510,9 @@ function itemsTable($itemsNo, $tableHeading){
   ?>
   <tr>
     <th colspan="2">Total</th>
-    <th><input readonly type="number" id="avgMc" name="avgMc" class="tableInput" style="width: 60px;" step="0.01"></th>
-    <th><input readonly type="number" id="totalBags" name="totalBags" class="tableInput" style="width: 60px;" step="0.1"></th>
-    <th><input readonly type="number" id="totalQty" name="totalQty" class="tableInput" style="width: 100px;" step="0.01"></th>
+    <th><input readonly type="number" id="avgMc" name="avgMc" class="tblNum" style="width: 60px;" step="0.01"></th>
+    <th><input readonly type="number" id="totalBags" name="totalBags" class="tblNum" style="width: 60px;" step="0.1"></th>
+    <th><input readonly type="number" id="totalQty" name="totalQty" class="tblNum" style="width: 100px;" step="0.01"></th>
   </tr>
   </table> 
   <?php 

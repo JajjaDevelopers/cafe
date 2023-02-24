@@ -495,8 +495,13 @@ date_default_timezone_set("Africa/Kampala");
             </a>
           </li>
           <li>
-            <a href="../transactions/dryingList.php">
+            <a href="../transactions/dryingList">
               <i class="bi bi-circle"></i><span>Drying</span>
+            </a>
+          </li>
+          <li>
+            <a href="../transactions/transferList">
+              <i class="bi bi-circle"></i><span>Transfer Reports</span>
             </a>
           </li>
         </ul>

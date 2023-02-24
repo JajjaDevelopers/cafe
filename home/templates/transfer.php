@@ -1,9 +1,4 @@
-<?php $pageTitle="Transfer"; ?>
-<?php include_once('../forms/header.php'); 
-include ("../connection/databaseConn.php");
-$transferNo = nextDocNumber('transfers', 'transfer_no', 'GTN');
-?>
-<form action="../connection/transfer.php" class="regularForm" method="POST" style="height: fit-content; width:800px">
+
     <legend class="formHeading">Goods Transfer Note</legend>
     <?php
         // include "../alerts/message.php";
@@ -60,42 +55,3 @@ $transferNo = nextDocNumber('transfers', 'transfer_no', 'GTN');
 </div>
     <?php
     documentNotes("700px");
-    submitButton("Submit", "submit", "btnSubmit");
-    ?>
-</form>
-<?php include_once('../forms/footer.php');?>
-<script src="../assets/js/itemSelector.js" ></script>
-<script>
-    function setCustomer(selectId){
-        var selectIdList = ["fromClientSelect", "toClientSelect"];
-        var nameIdList = ["fromClientName", "toClientName"];
-        var clientIdList = ["fromClientId", "toClientId"];
-
-        var selected = document.getElementById(selectId).value;
-        var index = selectIdList.indexOf(selectId);
-        document.getElementById(nameIdList[index]).setAttribute("value", selected.substr(7))
-        document.getElementById(clientIdList[index]).setAttribute("value", selected.substr(0,6));
-    }
-
-    // //Setting item ids
-    // function setItemId()
-
-
-    function getWareHouseSection(blockId){
-        var blockNo = document.getElementById(blockId).value;
-        const xhttp = new XMLHttpRequest();
-      // Changing customer namne
-        xhttp.onload = function() {
-        let blockList = ["fromBlock", "toBlock"];
-        let sectionList = ["fromSection", "toSection"];
-        var index = blockList.indexOf(blockId);
-
-        document.getElementById(sectionList[index]).innerHTML = this.responseText;
-
-       
-      }
-      xhttp.open("GET", "../ajax/getWareHouseSection.php?q="+blockNo);
-      xhttp.send();
-    }
-    
-</script>
