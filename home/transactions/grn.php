@@ -36,5 +36,5 @@ $_SESSION["grn"] = $grn_no;
     for (var x=0; x<noDisplayList.length; x++){
         document.getElementById(noDisplayList[x]).style.display = "none";
     }
-    
+  document.getElementById("print").style.display="none";
 </script>

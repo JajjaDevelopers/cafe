@@ -1,26 +1,45 @@
-<?php
-$grnNo = $_SESSION["grn"];
-$grnSql = $conn->prepare("SELECT grn_no, grn_date, grn_time_in, customer_id, grade_id, grn_mc, no_of_bags, 
-                        grn_qty, grn_status, batch_order_no, purpose, grn.district_id, delivery_person, truck_no,
-                        driver, quality_remarks, prepared_by, verified_by, approved_by, grade_name, 
-                        customer_name, coffee_type, contact_person, telephone, district_name, region, type_category, 
-                        prep_time, ver_time, appr_time FROM grn 
-                        JOIN districts USING (district_id) JOIN grades USING (grade_id) 
-                        JOIN customer USING (customer_id) WHERE grn_no=?");
-$grnSql->bind_param("s", $grnNo);
-$grnSql->execute();
-$grnSql->bind_result($grn_no, $grn_date, $grn_time_in, $cltId, $grade_id, $grn_mc, $no_of_bags, $grn_qty, 
-                    $grn_status, $batch_order_no, $purpose, $origin, $delivery_person, $truck_no, $driver, 
-                    $quality_remarks, $prepared_by, $verified_by, $approved_by, $grade_name, $cltName, 
-                    $coffee_type, $cltContact , $cltTel , $distName, $regName, $type_category, $prep_time, 
-                    $ver_time, $appr_time);
-$grnSql->fetch();
-$grnSql->close();
 
-//getting users names
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>GRN Information</title>
+  <link href="../assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/dashboard/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/dashboard/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link href="../assets/dashboard/css/style.css" rel="stylesheet">
 
-$prepBy = userFullName($prepared_by);
-$verpBy = userFullName($verified_by);
-$apprpBy = userFullName($approved_by);
+</head>
+<body>
 
-?>
+<form class="regularForm" style="height: fit-content; width:790px">
+
+  <?php include "../templates/grnTemplate.php" ?>
+</form>
+<script>
+  
+    //disabling editing
+    var noEditList = ["grnNo", "grnDate", "timeIn", "type", "gradeId", "weight", "bags", "mc", "purposeName", 
+                    "origin", "deliveryPerson", "truckNumber", "driverName", "remarks", "gradeName", "typeName", 
+                    "districtName", "regionName"];
+    for (var x=0; x<noEditList.length; x++){
+        document.getElementById(noEditList[x]).setAttribute("readonly", "readonly");
+    }
+    var noDisplayList = ["gradeId", "salesReportBuyer", "type", "purpose", "region", "origin", "category"];
+    for (var x=0; x<noDisplayList.length; x++){
+        document.getElementById(noDisplayList[x]).style.display = "none";
+    }
+    document.getElementById("print").addEventListener("click",()=>{
+    // alert("Hi God");
+    document.getElementById("print").style.display="none";
+    window.print();
+    document.getElementById("print").style.display="block";
+    
+  })
+
+</script>
+</body>
+</html>

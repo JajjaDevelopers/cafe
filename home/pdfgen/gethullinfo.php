@@ -25,6 +25,8 @@
   // alert("Hi God");
   document.getElementById("print").style.display="none";
   window.print();
+  document.getElementById("print").style.display="block";
+  
 })
 </script>
 </body>
