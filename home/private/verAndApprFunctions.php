@@ -14,8 +14,10 @@ $salesReportVerNum = countPendVerifications("sales_reports_summary", "verified_b
 $hullingVerNum = countPendVerifications("hulling", "verified_by");
 $dryingVerNum = countPendVerifications("drying", "verified_by");
 $transferVerNum = countPendVerifications("transfers", "verified_by");
+$bulkingVerNum = countPendVerifications("bulking", "verified_by");
 
-$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, $transferVerNum);
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, 
+                    $transferVerNum, $bulkingVerNum);
 
 
 //Counting pending approvals
@@ -37,9 +39,10 @@ $salesReportApprNum = countPendApprovals("sales_reports_summary", "approved_by")
 $hullingApprNum = countPendApprovals("hulling", "approved_by");
 $dryingApprNum = countPendApprovals("drying", "approved_by");
 $transferApprNum = countPendApprovals("transfers", "approved_by");
+$bulkingApprNum = countPendApprovals("bulking", "approved_by");
 
 $allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
-                    $transferApprNum);
+                    $transferApprNum, $bulkingApprNum);
 
 
 $totalPendVer = 0;
@@ -496,6 +499,26 @@ function transferApprList(){
     
 }
 
-
+// bulking
+function bulkingVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT bulk_no, bulk_date, customer_name, grade_name, qty, comment
+                        FROM bulking JOIN grades USING(grade_id) JOIN customer USING(customer_id)
+                        WHERE verified_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $bulkDate, $client, $grade, $ttQy, $notes);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+            <td><a href="../verification/bulking?bulkNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$bulkDate?></td>
+            <td><?=$client?></td>
+            <td><?=$grade?></td>
+            <td style="text-align: right;"><?=$ttQy?></td>
+            <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
 
 ?>
