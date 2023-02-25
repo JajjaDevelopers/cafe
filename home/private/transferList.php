@@ -71,7 +71,7 @@ $transferListResult = json_encode($transferList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["goodsreceivedData"] = $transferListResult;
-// echo $_SESSION["goodsreceivedData"];
+$_SESSION["transferData"] = $transferListResult;
+// echo $_SESSION["transferData"];
 $sql->close();
 ?>

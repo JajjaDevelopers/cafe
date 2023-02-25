@@ -66,10 +66,8 @@ $sql->bind_result($no, $dryDate, $client, $grdName, $inQty, $inMc, $outQty, $out
 </table>
 <?php
 $dryListResult = json_encode($dryList);
-// echo $grnListResult;
-// echo $grnListResult;
-// var_dump($grnList);
-$_SESSION["goodsreceivedData"] = $dryListResult;
-// echo $_SESSION["goodsreceivedData"];
+
+$_SESSION["dryingData"] = $dryListResult;
+// echo $_SESSION["dryingData"];
 $sql->close();
 ?>

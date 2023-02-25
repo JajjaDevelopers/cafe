@@ -26,17 +26,17 @@
 </form>
 <div class="container text-center d-flex flex-column align-items-end">
         <div>
-            <form action="../phpspreadsheet/previousgrnExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="grnexcel">
+            <form action="../phpspreadsheet/dryExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="dryexcel">
                 <div class="form-group text-end">
                 <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
                 </div>
             </form>
         </div>
         <div class=" mt-3 me-5">
-            <a href="../pdfgen/previousgrn.php" target="_blank"  id="grnpdf" style="display:none;">
+            <!-- <a href="../pdfgen/previousgrn.php" target="_blank"  id="drypdf" style="display:none;">
                 <i class="bi bi-download" style="color:green; font-size:30px">
                 </i>
-            </a>
+            </a> -->
         </div>
       
 </div>
@@ -48,7 +48,7 @@
     
     document.getElementById("verifyBtn").addEventListener("click", getGrnList);
     function getGrnList(){
-        document.getElementById("grnpdf").style.dislay="none"
+        // document.getElementById("grnpdf").style.dislay="none"
         var frmDt = document.getElementById('frmDate').value;
         var toDt = document.getElementById('toDate').value;
         var clientId = document.getElementById('customerId').value;
@@ -61,7 +61,7 @@
       xhttp.open("GET", "../ajax/dryingList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
       
-      document.getElementById("grnpdf").style.display="block";
-      document.getElementById("grnexcel").style.display="block";
+    //   document.getElementById("drypdf").style.display="block";
+      document.getElementById("dryexcel").style.display="block";
     }
 </script>
