@@ -1,8 +1,8 @@
 <?php $pageTitle = "Transfer Report";?>
 <?php include "../forms/header.php" ?>
-<?php include "../connection/transfervariables.php";?>
+<?php include "../connection/transferVariables.php";?>
 <?php
-$transferNo = formatDocNo(intval($transNo), "GTN-");
+
 $_SESSION["transNo"] = $transNo;
 ?>
 

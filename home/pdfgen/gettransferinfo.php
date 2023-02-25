@@ -1,5 +1,5 @@
-
-<?php include "./transfervariables.php";
+<?php 
+include "./transfervariables.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@
   ?>
 </form>
 <?php
-include "../assets/js/drying.php";
+include "../assets/js/transfer.php";
 ?>
 <script>
   document.getElementById("print").style.display="block";

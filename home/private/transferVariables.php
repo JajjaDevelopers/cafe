@@ -2,7 +2,7 @@
 include "connlogin.php";
 include "functions.php";
 $transNo = intval($_GET['transNo']);
-
+$transferNo = formatDocNo($transNo, "GTN-");
 $summSql = $conn->prepare("SELECT transfer_date, 
             (SELECT customer_name FROM customer WHERE transfers.transfer_from=customer.customer_id) AS transfer_from, 
             (SELECT customer_name FROM customer WHERE transfers.transfer_to=customer.customer_id) AS transfer_to, from_witness, 
