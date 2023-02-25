@@ -2,7 +2,7 @@
 include "../private/connlogin.php";
 include "../private/functions.php";
 $transNo = intval($_SESSION['transNo']);
-
+$transferNo = "GTN-".$_SESSION['transNo'];
 $summSql = $conn->prepare("SELECT transfer_date, 
             (SELECT customer_name FROM customer WHERE transfers.transfer_from=customer.customer_id) AS transfer_from, 
             (SELECT customer_name FROM customer WHERE transfers.transfer_to=customer.customer_id) AS transfer_to, from_witness, 
