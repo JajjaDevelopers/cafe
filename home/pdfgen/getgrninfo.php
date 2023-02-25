@@ -9,10 +9,10 @@ $grnSql = $conn->prepare("SELECT grn_no, grn_date, grn_time_in, customer_id, gra
                         JOIN customer USING (customer_id) WHERE grn_no=?");
 $grnSql->bind_param("s", $grnNo);
 $grnSql->execute();
-$grnSql->bind_result($grn_no, $grn_date, $grn_time_in, $customer_id, $grade_id, $grn_mc, $no_of_bags, $grn_qty, 
+$grnSql->bind_result($grn_no, $grn_date, $grn_time_in, $cltId, $grade_id, $grn_mc, $no_of_bags, $grn_qty, 
                     $grn_status, $batch_order_no, $purpose, $origin, $delivery_person, $truck_no, $driver, 
-                    $quality_remarks, $prepared_by, $verified_by, $approved_by, $grade_name, $customer_name, 
-                    $coffee_type, $contact_person, $telephone, $distName, $regName, $type_category, $prep_time, 
+                    $quality_remarks, $prepared_by, $verified_by, $approved_by, $grade_name, $cltName, 
+                    $coffee_type, $cltContact , $cltTel , $distName, $regName, $type_category, $prep_time, 
                     $ver_time, $appr_time);
 $grnSql->fetch();
 $grnSql->close();

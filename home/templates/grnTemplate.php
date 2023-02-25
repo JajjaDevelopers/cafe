@@ -73,7 +73,7 @@ require("../forms/customerSelector.php"); ?>
         </div>
         <div class="col-sm-4">
             
-            <label for="purpose" ">Purpose:</label><br>
+            <label for="purpose">Purpose:</label><br>
             <input class="longInputField" id="purposeName" value="<?=$purpose?>" 
             style="margin-left: 0px; width:150px">
             <select class="longInputField" id="purpose" placeholder="purpose" name="purpose" 
@@ -150,4 +150,3 @@ require("../forms/customerSelector.php"); ?>
     <input class="form-control" id="remarks" name="remarks" value="<?=$quality_remarks?>" placeholder="quality remarks" rows="3">
 </div>
 <?php include "../forms/users.php" ?>
-<script src="../assets/js/itemsFilter.js"></script>
