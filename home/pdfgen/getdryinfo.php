@@ -1,14 +1,12 @@
-
 <?php 
-include "./valuationVariables.php";
-include ("../connection/databaseConn.php");
+include "./dryvariables.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Valuation Information</title>
+  <title>Drying Information</title>
   <link href="../assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -18,12 +16,13 @@ include ("../connection/databaseConn.php");
 
 </head>
 <body>
-<form class="regularForm" method="post" action="../connection/valuationVerification.php" 
-style="height:fit-content; width:fit-content; padding:5px">
-    <?php include "../templates/valuation.php" ?>
+
+<form class="regularForm" style="height: fit-content; width:790px">
+
+  <?php include "../templates/drying.php" ?>
 </form>
 <?php
-include "../assets/js/valuationVer.php"
+include "../assets/js/drying.php";
 ?>
 <script>
   document.getElementById("print").style.display="block";
@@ -31,7 +30,7 @@ include "../assets/js/valuationVer.php"
   // alert("Hi God");
   document.getElementById("print").style.display="none";
   window.print();
-  document.getElementById("print").style.display="none";
+  document.getElementById("print").style.display="block";
 })
 </script>
 </body>
