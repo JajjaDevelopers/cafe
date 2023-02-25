@@ -19,8 +19,6 @@ $_SESSION["transNo"] = $transNo;
         </i>
     </a>
 </div>
-</form>
-
 <?php
 include "../forms/footer.php";
 include "../assets/js/transfer.php"

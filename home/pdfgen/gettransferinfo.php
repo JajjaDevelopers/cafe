@@ -1,6 +1,5 @@
 
-<?php include "./transfervariables.php";
-?>
+<?php include "./transfervariables.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +23,7 @@
   ?>
 </form>
 <?php
-include "../assets/js/drying.php";
+include "../assets/js/transfer.php"
 ?>
 <script>
   document.getElementById("print").style.display="block";
@@ -32,7 +31,7 @@ include "../assets/js/drying.php";
   // alert("Hi God");
   document.getElementById("print").style.display="none";
   window.print();
-  document.getElementById("print").style.display="none";
+  document.getElementById("print").style.display="block";
 })
 </script>
 </body>
