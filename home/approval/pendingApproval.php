@@ -39,6 +39,10 @@ include_once ('../forms/header.php');
                     <td><a href="../approval/dryingList">Drying Report</a></td>
                     <td style="text-align: center"><?= $dryingApprNum ?></td>
                 </tr>
+                <tr>
+                    <td><a href="../approval/transferList.php">Transfer Report</a></td>
+                    <td style="text-align: center"><?= $transferApprNum ?></td>
+                </tr>
             </tbody>
         </table>
 

@@ -32,12 +32,16 @@ include_once ('../forms/header.php');
                     <td style="text-align: center;"><?= $salesReportVerNum ?></a></td>
                 </tr>
                 <tr>
-                    <td><a href="../verification/hullingList">Hulling</a></td>
+                    <td><a href="../verification/hullingList">Hulling Reports</a></td>
                     <td style="text-align: center;"><?= $hullingVerNum ?></a></td>
                 </tr>
                 <tr>
-                    <td><a href="../verification/dryingList">Drying</a></td>
+                    <td><a href="../verification/dryingList">Drying Reports</a></td>
                     <td style="text-align: center;"><?= $dryingVerNum ?></a></td>
+                </tr>
+                <tr>
+                    <td><a href="../verification/transferList">Transfer Reports</a></td>
+                    <td style="text-align: center;"><?= $transferVerNum ?></a></td>
                 </tr>
             </tbody>
         </table>

@@ -13,9 +13,9 @@ $valuationVerNum = countPendVerifications("valuation_report_summary", "verified_
 $salesReportVerNum = countPendVerifications("sales_reports_summary", "verified_by");
 $hullingVerNum = countPendVerifications("hulling", "verified_by");
 $dryingVerNum = countPendVerifications("drying", "verified_by");
+$transferVerNum = countPendVerifications("transfers", "verified_by");
 
-
-$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum);
+$allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, $transferVerNum);
 
 
 //Counting pending approvals
@@ -36,8 +36,10 @@ $valuationApprNum = countPendApprovals("valuation_report_summary", "approved_by"
 $salesReportApprNum = countPendApprovals("sales_reports_summary", "approved_by");
 $hullingApprNum = countPendApprovals("hulling", "approved_by");
 $dryingApprNum = countPendApprovals("drying", "approved_by");
+$transferApprNum = countPendApprovals("transfers", "approved_by");
 
-$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum);
+$allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
+                    $transferApprNum);
 
 
 $totalPendVer = 0;
@@ -442,4 +444,58 @@ function dryingApprList(){
         <?php
     }
 }
+
+//transfers
+function transferVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT transfer_no, transfer_date, 
+                    (SELECT customer_name FROM customer WHERE transfers.transfer_from=customer.customer_id) AS trans_from, 
+                    (SELECT customer_name FROM customer WHERE transfers.transfer_to=customer.customer_id) AS trans_to, notes,
+                    (SELECT sum(qty_out) AS qty_out FROM inventory WHERE inventory_reference='Transfer' 
+                    AND transfers.transfer_no=inventory.document_number) AS qty
+                    FROM transfers WHERE (verified_by='None')");
+    $sql->execute();
+    $sql->bind_result($no, $transDate, $frmClient, $toClient, $notes, $ttQy);
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td><a href="../verification/transfer?transNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$transDate?></td>
+            <td><?=$frmClient?></td>
+            <td><?=$toClient?></td>
+            <td style="text-align: right;"><?=$ttQy?></td>
+            <td style="text-align: left;"><?=$notes?></td>
+        </tr>
+    <?php
+    }
+    
+}
+
+function transferApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT transfer_no, transfer_date, 
+                    (SELECT customer_name FROM customer WHERE transfers.transfer_from=customer.customer_id) AS trans_from, 
+                    (SELECT customer_name FROM customer WHERE transfers.transfer_to=customer.customer_id) AS trans_to, notes,
+                    (SELECT sum(qty_out) AS qty_out FROM inventory WHERE inventory_reference='Transfer' 
+                    AND transfers.transfer_no=inventory.document_number) AS qty
+                    FROM transfers WHERE verified_by<>'None' AND approved_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $transDate, $frmClient, $toClient, $notes, $ttQy);
+    while ($sql->fetch()){
+        ?>
+        <tr>
+            <td><a href="../approval/transfer?transNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$transDate?></td>
+            <td><?=$frmClient?></td>
+            <td><?=$toClient?></td>
+            <td style="text-align: right;"><?=$ttQy?></td>
+            <td style="text-align: left;"><?=$notes?></td>
+        </tr>
+    <?php
+    }
+    
+}
+
+
+
 ?>

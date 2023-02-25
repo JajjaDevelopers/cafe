@@ -22,7 +22,7 @@ for ($x=1; $x<=5; $x++){
 }
 
 $summSql = $conn->prepare("INSERT INTO bulking (bulk_no, bulk_date, customer_id, grade_id, qty, 
-                        prep_by, comment) VALUES (?,?,?,?,?,?,?)");
+                        prepared_by, prep_time, comment) VALUES (?,?,?,?,?,?,NOW(),?)");
 $summSql->bind_param("isssdss", $bulkingNo, $bulkingDate, $customerId, $bulkOutGrd, $totalQty, 
                         $prepared_by, $comment);
 $summSql->execute();
@@ -35,7 +35,7 @@ $inputSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document
 for ($x=0; $x<count($grdList); $x++){
     $grd = $_POST[$grdList[$x]];
     $qty = $_POST[$qtyList[$x]];
-    if ($qty != 0){
+    if ($qty > 0){
         $inputSql->bind_param("sissisd", $ref, $bulkingNo, $bulkingDate, $customerId, $itmNo, $grd, $qty);
         $inputSql->execute();
         $itmNo += 1;
