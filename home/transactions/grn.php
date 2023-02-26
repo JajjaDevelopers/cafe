@@ -4,7 +4,10 @@
 <?php include "../connection/verifyGrn.php";?>
 <?php
 $grnNo = formatDocNo(intval($grn_no), "GRN-");
-$_SESSION["grn"] = $grn_no;
+if(isset($_GET["grnNo"])){
+    $grnNumber = $_GET["grnNo"];
+    $_SESSION["grn"] = $grnNumber;
+}
 ?>
 <form class="regularForm" style="height: fit-content; width:790px">
 
@@ -19,6 +22,7 @@ $_SESSION["grn"] = $grn_no;
 </div>
 <?php include "../forms/footer.php" ?>
 <script>
+    document.getElementById("print").style.display="none";
     document.getElementById("salesReportBuyer").style.display = "none";
     document.getElementById("customerName").value = "<?=$customer_name?>";
     document.getElementById("customerId").value = "<?=$customer_id?>";

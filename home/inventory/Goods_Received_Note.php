@@ -13,6 +13,9 @@ $grnNo = nextDocNumber('grn', 'grn_no', 'GRN');
   </form>
 
   <?php include_once('../forms/footer.php'); ?>
+  <script>
+     document.getElementById("print").style.display="none";
+  </script>
   <script src="../assets/js/locationsFilter.js"></script>
   <script>
     $("#usersDiv").hide();
