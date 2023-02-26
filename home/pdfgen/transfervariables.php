@@ -12,6 +12,8 @@ $summSql->bind_param("i", $transNo);
 $summSql->execute();
 $summSql->bind_result($tranDate, $frmCltName, $toCltName, $fromWitness, $toWitness, $comment, $prepared_by, $prep_time, $verified_by, 
             $ver_time, $approved_by, $appr_time);
+$frmCltId="";
+$toCltId="";
 $summSql->fetch();
 $summSql->close();
 

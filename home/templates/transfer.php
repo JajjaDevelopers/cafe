@@ -2,7 +2,12 @@
     <legend class="formHeading">Goods Transfer Note</legend>
     <?php
         // include "../alerts/message.php";
+        
     ?>
+    <div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
+</div>
     <div style="display: grid; width:fit-content; margin-left: 70%;">
         <label for="transfer" style="grid-column: 1; grid-row: 1; width:90px; margin-top: 5px" >Transfer No:</label>
         <input type="text" class="shortInput" id="transfer" name="transfer" value="<?= $transferNo ?>" readonly style="grid-column: 2; grid-row: 1; margin-top: 0px;">

@@ -2,8 +2,11 @@
 <?php include "../forms/header.php" ?>
 <?php include "../connection/transferVariables.php";?>
 <?php
+if(isset($_GET["transNo"])){
+  $transNumber=$_GET["transNo"];
+  $_SESSION["transNo"] = $transNumber;
+}
 
-$_SESSION["transNo"] = $transNo;
 ?>
 
 <form class="regularForm" style="height: fit-content; width:790px">
