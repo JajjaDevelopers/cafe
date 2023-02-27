@@ -1,10 +1,10 @@
-<?php include "./bulkvariables.php";?>
+<?php include "./adjustvariables.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Bulk Information</title>
+  <title>Stock Adjustment Information</title>
   <link href="../assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
 <form class="regularForm" style="height: fit-content; width:790px">
   <?php
-  include "../templates/bulking.php";
+  include "../templates/adjustment.php";
   include "../forms/users.php";
   ?>
 </form>
@@ -28,8 +28,9 @@
   })
 </script>
 <?php
-include "../assets/js/bulking.php";
+include "../assets/js/adjustment.php";
 ?>
 </body>
 </html>
+
 

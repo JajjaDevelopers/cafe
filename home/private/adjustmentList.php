@@ -67,7 +67,7 @@ $adjustListResult = json_encode($adjkList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["bulkData"] = $adjustListResult;
+$_SESSION["adjustData"] = $adjustListResult;
 // echo $_SESSION["goodsreceivedData"];
 $sql->close();
 ?>
