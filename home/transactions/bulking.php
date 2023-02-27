@@ -2,7 +2,7 @@
 <?php include "../forms/header.php" ?>
 <?php include "../connection/bulkingVariables.php";?>
 <?php
-$bulkingNo = formatDocNo(intval($bulkNo), "GTN-");
+$bulkingNo = formatDocNo(intval($bulkNo), "BLK-");
 $_SESSION["bulkNo"] = $transNo;
 ?>
 <form class="regularForm" style="height: fit-content; width:790px">

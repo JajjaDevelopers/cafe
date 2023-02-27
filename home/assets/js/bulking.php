@@ -22,7 +22,8 @@
     for (var x=0;x<noDispalay.length;x++){
         document.getElementById(noDispalay[x]).style.display='none';
     }
-
+   
+    
     var noEditList =["bulkingDate", "notes"];
     for (var x=0;x<noEditList.length;x++){
         document.getElementById(noEditList[x]).setAttribute('readonly', 'readonly')

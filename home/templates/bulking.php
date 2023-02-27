@@ -19,7 +19,7 @@
                 <label>Grade</label>
                 <input id="bulkOutGrdName" name="bulkOutGrdName" value="<?= $bulkOutGrd?>" class="shortInput" readonly style="width: 250px;">
                 <select id="bulkOutGrd" name="bulkOutGrd" class="shortInput" style="width: 250px;"
-                onchange="updateOutputQty()" required>
+                onchange="updateOutputQty()">
                     <?php selectCoffeeGrades(); ?>
                 </select>
                 
