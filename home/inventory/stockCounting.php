@@ -14,7 +14,7 @@ $stkCountNo = nextDocNumber("stock_counting", "count_no", "STC");
         >
     </div>
     <?php include("../forms/customerSelector.php") ?>
-    <?php include "../ajax/stockCounting.php" ?>
+    <?php include "../ajax/stockCountItems.php" ?>
 
 
     <?php comment("700px") ?>
