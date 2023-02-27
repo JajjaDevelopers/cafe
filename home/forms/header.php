@@ -509,6 +509,11 @@ date_default_timezone_set("Africa/Kampala");
               <i class="bi bi-circle"></i><span>Bulking Reports</span>
             </a>
           </li>
+          <li>
+            <a href="../transactions/adjsutmentList">
+              <i class="bi bi-circle"></i><span>Stock Adjustment</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Transaction Nav -->
       <li class="nav-item">

@@ -15,9 +15,10 @@ $hullingVerNum = countPendVerifications("hulling", "verified_by");
 $dryingVerNum = countPendVerifications("drying", "verified_by");
 $transferVerNum = countPendVerifications("transfers", "verified_by");
 $bulkingVerNum = countPendVerifications("bulking", "verified_by");
+$adjustmentVerNum = countPendVerifications("adjustment", "verified_by");
 
 $allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, 
-                    $transferVerNum, $bulkingVerNum);
+                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum);
 
 
 //Counting pending approvals
@@ -40,9 +41,10 @@ $hullingApprNum = countPendApprovals("hulling", "approved_by");
 $dryingApprNum = countPendApprovals("drying", "approved_by");
 $transferApprNum = countPendApprovals("transfers", "approved_by");
 $bulkingApprNum = countPendApprovals("bulking", "approved_by");
+$adjsutmentApprNum = countPendApprovals("adjustment", "approved_by");
 
 $allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
-                    $transferApprNum, $bulkingApprNum);
+                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum);
 
 
 $totalPendVer = 0;
@@ -542,4 +544,48 @@ function bulkingApprList(){
     }
 }
 
+// adjustment
+function adjustmentVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT adj_no, adj_date, customer_name, items_no, qty_add, qty_less, comment
+                        FROM adjustment JOIN customer USING(customer_id) 
+                        WHERE verified_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $adjDate, $client, $itmsNo, $qtyAdd, $qtyLess, $notes);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+       <td><a href="../verification/adjustment?adjustNo=<?=$no?>"> <?=$no?> </a></td>
+                <td><?=$adjDate?></td>
+                <td><?=$client?></td>
+                <td><?=$itmsNo?></td>
+                <td style="text-align: right;"><?=$qtyAdd?></td>
+                <td style="text-align: right;"><?=$qtyLess?></td>
+                <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
+
+function adjustmentApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT adj_no, adj_date, customer_name, items_no, qty_add, qty_less, comment
+                        FROM adjustment JOIN customer USING(customer_id) 
+                        WHERE approved_by='None' AND verified_by<>'None'");
+    $sql->execute();
+    $sql->bind_result($no, $adjDate, $client, $itmsNo, $qtyAdd, $qtyLess, $notes);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+       <td><a href="../approval/adjustment?adjustNo=<?=$no?>"> <?=$no?> </a></td>
+                <td><?=$adjDate?></td>
+                <td><?=$client?></td>
+                <td><?=$itmsNo?></td>
+                <td style="text-align: right;"><?=$qtyAdd?></td>
+                <td style="text-align: right;"><?=$qtyLess?></td>
+                <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
 ?>
