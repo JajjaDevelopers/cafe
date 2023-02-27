@@ -65,7 +65,7 @@ $bulkingListResult = json_encode($bulkList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["goodsreceivedData"] = $bulkingListResult;
+$_SESSION["bulkData"] = $bulkingListResult;
 // echo $_SESSION["goodsreceivedData"];
 $sql->close();
 ?>
