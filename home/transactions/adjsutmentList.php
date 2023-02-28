@@ -53,6 +53,7 @@
         var clientId = document.getElementById('customerId').value;
         
         const xhttp = new XMLHttpRequest();
+        
         // Updating grades based on coffee type
         xhttp.onload = function() {
           document.getElementById("results").innerHTML = this.responseText;

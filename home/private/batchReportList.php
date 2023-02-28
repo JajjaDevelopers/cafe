@@ -11,49 +11,54 @@ $client = $_GET["custId"];
 
 //criteria
 if ($client == "all"){
-    $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, comment
-                            FROM batch_reports_summary JOIN grn USING (batch_order_no)
-                            JOIN grades USING(grade_id) JOIN customer USING(customer_id) 
-                            WHERE (bulk_date BETWEEN ? AND ?)");
+    $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
+    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH')
+    AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
+    JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
+    AND batch_report_date BETWEEN ? AND ?)");
     
     $sql->bind_param("ss", $frmDate, $toDate);
 }else{
-    $sql = $conn->prepare("SELECT bulk_no, bulk_date, customer_name, grade_name, qty, comment
-                        FROM bulking JOIN grades USING(grade_id) JOIN customer USING(customer_id) 
-                        WHERE (bulk_date BETWEEN ? AND ? AND customer_id=?)");
+    $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
+    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH')
+    AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
+    JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
+    AND batch_report_date BETWEEN ? AND ? AND customer_id=?)");
                             
     $sql->bind_param("sss", $frmDate, $toDate, $client);
 }
 
 $sql->execute();
-$sql->bind_result($no, $bulkDate, $client, $grade, $ttQy, $notes);
+$sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
 
 ?>
 <table class="table table-striped table-hover table-condensed table-bordered">
     <thead>
         <tr style="background-color: green; color:white;">
-            <th style="width: 100px;">Bulk. No</th>
+            <th style="width: 100px;">Batch. No</th>
             <th style="width: 100px;">Date</th>
             <th >Client Name</th>
-            <th >Grade</th>
-            <th style="width: 100px;">Total Qty (Kg)</th>
-            <th >Comment</th>
+            <th >Input Grade</th>
+            <th style="width: 100px;">Net Input (Kg)</th>
+            <th style="width: 100px;">Out Turn (Kg)</th>
+            <th style="width: 100px;">Out Turn (%)</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        $bulkList = array(["Bulk. No", "Date", "Client Name", "Grade", "Total Qty (Kg)", "Comment"]);
+        $batchList = array(["Batch. No", "Date", "Client Name", "Input Grade", "Net Input (Kg)", "Out Turn (Kg)", "Out Turn (%)"]);
         while ($sql->fetch()){
-            $myRow = [$no, $bulkDate, $client, $grade, $ttQy, $notes];
-            array_push($bulkList, $myRow);
+            $myRow = [$no, $batchkDate, $client, $grade, $netInput, $outTurn, ($outTurn*100/$netInput)];
+            array_push($batchList, $myRow);
            ?>
            <tr>
-                <td><a href="../transactions/bulking?bulkNo=<?=$no?>"> <?=$no?> </a></td>
-                <td><?=$bulkDate?></td>
+                <td><a href="../transactions/batchReport?batchNo=<?=$no?>"> <?=$no?> </a></td>
+                <td><?=$batchkDate?></td>
                 <td><?=$client?></td>
                 <td><?=$grade?></td>
-                <td style="text-align: right;"><?=$ttQy?></td>
-                <td style="text-align: left;"><?=$notes?></td>
+                <td style="text-align: right;"><?=$netInput?></td>
+                <td style="text-align: left;"><?=$outTurn?></td>
+                <td style="text-align: left;"><?=($outTurn*100/$netInput)?></td>
            </tr>
            <?php
         }
@@ -62,11 +67,11 @@ $sql->bind_result($no, $bulkDate, $client, $grade, $ttQy, $notes);
     </tbody>
 </table>
 <?php
-$bulkingListResult = json_encode($bulkList);
+$batchListResult = json_encode($batchList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["bulkData"] = $bulkingListResult;
+$_SESSION["bulkData"] = $batchListResult;
 // echo $_SESSION["goodsreceivedData"];
 $sql->close();
 ?>
