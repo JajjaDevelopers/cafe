@@ -1,0 +1,1 @@
+<?php include "../private/stockCountingVariables.php" ?>

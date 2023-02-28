@@ -514,6 +514,11 @@ date_default_timezone_set("Africa/Kampala");
               <i class="bi bi-circle"></i><span>Stock Adjustment</span>
             </a>
           </li>
+          <li>
+            <a href="../transactions/stockCountList">
+              <i class="bi bi-circle"></i><span>Stock Counting</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Transaction Nav -->
       <li class="nav-item">

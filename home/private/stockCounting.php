@@ -39,7 +39,7 @@ $itmNo = 1;
 
 //stock summary
 $summSql = $conn->prepare("INSERT INTO stock_counting (count_no, count_date, customer_id, deficit, 
-                            excess, comment, prep_by) VALUES (?,?,?,?,?,?,?)");
+                            excess, comment, prepared_by, prep_time) VALUES (?,?,?,?,?,?,?,Now())");
 $summSql->bind_param("issddss", $countNo, $countDate, $cltId, $deficit, $excess, $comment, $prepared_by);
 $summSql->execute();
 $summSql->close();

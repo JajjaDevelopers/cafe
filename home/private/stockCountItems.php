@@ -44,10 +44,10 @@ $sql->bind_result($id, $avail, $name);
         <tr>
         <td><input id="<?= 'itm'.$no.'Id'?>" name="<?= 'itm'.$no.'Id'?>" value="<?=$id?>" class="itmNameInput" readonly></td>
         <td><?=$name?></td>
-        <td><input type="number" id="<?= 'itm'.$no.'Available'?>" name="<?= 'itm'.$no.'Available'?>" value="<?=$avail?>" class="tableInput" readonly></td>
-        <td><input type="number" id="<?= 'itm'.$no.'Count'?>" name="<?= 'itm'.$no.'Count'?>" value="" class="tableInput"
-        onblur="getVariance()"></td>
-        <td><input type="number" id="<?= 'itm'.$no.'Var'?>" name="<?= 'itm'.$no.'Var'?>" value="0" class="tableInput" readonly></td>
+        <td><input type="number" id="<?= 'itm'.$no.'Available'?>" name="<?= 'itm'.$no.'Available'?>" value="<?=$avail?>" class="itmQtyInput" readonly></td>
+        <td><input type="number" id="<?= 'itm'.$no.'Count'?>" name="<?= 'itm'.$no.'Count'?>" value="" class="itmQtyInput"
+        onblur="getVariance()" ></td>
+        <td><input type="number" id="<?= 'itm'.$no.'Var'?>" name="<?= 'itm'.$no.'Var'?>" value="0" class="itmQtyInput" readonly></td>
         </tr>
         <?php
         $no +=1;
@@ -55,9 +55,9 @@ $sql->bind_result($id, $avail, $name);
     ?>
     <tr>
         <th colspan="2">Total</th>
-        <th><input type="number" id="<?= 'totalAvailable'?>" name="totalAvailable'?>" value="" class="tableInput" readonly></th>
-        <th><input type="number" id="<?= 'totalCount'?>" name="totalCount'?>" value="" class="tableInput" readonly></th>
-        <th><input type="number" id="<?= 'totalVar'?>" name="<?= 'totalVar'?>" value="" class="tableInput" readonly></th>
+        <th><input type="number" id="<?= 'totalAvailable'?>" name="totalAvailable'?>" value="" class="itmQtyInput" readonly></th>
+        <th><input type="number" id="<?= 'totalCount'?>" name="totalCount'?>" value="" class="itmQtyInput" readonly></th>
+        <th><input type="number" id="<?= 'totalVar'?>" name="<?= 'totalVar'?>" value="" class="itmQtyInput" readonly></th>
     </tr>
     </tbody>
 </table>
