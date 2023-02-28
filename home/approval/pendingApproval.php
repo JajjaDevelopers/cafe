@@ -48,8 +48,12 @@ include_once ('../forms/header.php');
                     <td style="text-align: center"><?= $bulkingApprNum ?></td>
                 </tr>
                 <tr>
-                    <td><a href="../approval/adjustmentList.php">Stock Adjustment</a></td>
+                    <td><a href="../approval/adjustmentList">Stock Adjustment</a></td>
                     <td style="text-align: center"><?= $adjsutmentApprNum ?></td>
+                </tr>
+                <tr>
+                    <td><a href="../approval/stockCountList">Stock Counting</a></td>
+                    <td style="text-align: center"><?= $stockCountApprNum ?></td>
                 </tr>
             </tbody>
         </table>

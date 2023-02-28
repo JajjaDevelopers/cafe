@@ -21,6 +21,7 @@ for ($x=1;$x<=$rows;$x++){
     $itmVar = $itmCount - $itmAvail;
     if ($itmVar != 0){
         array_push($itmIdList, $itmId);
+        array_push($availList, $itmAvail);
         array_push($varList, $itmVar);
         if ($itmVar<0){
             $deficit -= $itmVar;
@@ -44,13 +45,17 @@ $summSql->bind_param("issddss", $countNo, $countDate, $cltId, $deficit, $excess,
 $summSql->execute();
 $summSql->close();
 
-//stock changes
+//stock changes Stock Counting
+$balanceSql = $conn->prepare("INSERT INTO temp_inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
+                            grade_id, qty) VALUES(?, ?, ?, ?, ?, ?, ?)");
 $countAddSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, 
                             item_no, grade_id, qty_in, trans_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 $countLessSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, 
                             item_no, grade_id, qty_out, trans_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 for ($x=0;$x<count($varList);$x++){
     $var = $varList[$x];
+    $balanceSql->bind_param("sissisd", $ref, $countNo, $countDate, $cltId, $itmNo, $itmIdList[$x], $availList[$x]);
+    $balanceSql->execute();
     if ($var<0){
         $var = $var * -1;
         $countLessSql->bind_param("sisisds", $ref, $countNo, $cltId, $itmNo, $itmIdList[$x], $var, $countDate);

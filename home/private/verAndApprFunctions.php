@@ -16,9 +16,10 @@ $dryingVerNum = countPendVerifications("drying", "verified_by");
 $transferVerNum = countPendVerifications("transfers", "verified_by");
 $bulkingVerNum = countPendVerifications("bulking", "verified_by");
 $adjustmentVerNum = countPendVerifications("adjustment", "verified_by");
+$stockCountVerNum = countPendVerifications("stock_counting", "verified_by");
 
 $allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, 
-                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum);
+                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum, $stockCountVerNum);
 
 
 //Counting pending approvals
@@ -42,9 +43,10 @@ $dryingApprNum = countPendApprovals("drying", "approved_by");
 $transferApprNum = countPendApprovals("transfers", "approved_by");
 $bulkingApprNum = countPendApprovals("bulking", "approved_by");
 $adjsutmentApprNum = countPendApprovals("adjustment", "approved_by");
+$stockCountApprNum = countPendApprovals("stock_counting", "approved_by");
 
 $allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
-                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum);
+                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum);
 
 
 $totalPendVer = 0;
@@ -584,6 +586,52 @@ function adjustmentApprList(){
                 <td style="text-align: right;"><?=$qtyAdd?></td>
                 <td style="text-align: right;"><?=$qtyLess?></td>
                 <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
+
+//stock counting
+function stockCountVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT count_no, count_date, customer_name, deficit, excess, (excess-deficit) AS net_qty, comment
+                        FROM stock_counting JOIN customer USING(customer_id) 
+                        WHERE verified_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $countDate, $client, $ttDeicit, $ttExcess, $ttNet, $notes);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+        <td><a href="../verification/stockCount?countNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$countDate?></td>
+            <td><?=$client?></td>
+            <td><?=$ttDeicit?></td>
+            <td style="text-align: right;"><?=$ttExcess?></td>
+            <td style="text-align: right;"><?=$ttNet?></td>
+            <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
+
+
+function stockCountApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT count_no, count_date, customer_name, deficit, excess, (excess-deficit) AS net_qty, comment
+                        FROM stock_counting JOIN customer USING(customer_id) 
+                        WHERE verified_by<>'None' AND approved_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $countDate, $client, $ttDeicit, $ttExcess, $ttNet, $notes);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+        <td><a href="../approval/stockCount?countNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$countDate?></td>
+            <td><?=$client?></td>
+            <td><?=$ttDeicit?></td>
+            <td style="text-align: right;"><?=$ttExcess?></td>
+            <td style="text-align: right;"><?=$ttNet?></td>
+            <td style="text-align: left;"><?=$notes?></td>
        </tr>
        <?php
     }

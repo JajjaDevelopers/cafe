@@ -51,6 +51,10 @@ include_once ('../forms/header.php');
                     <td><a href="../verification/adjustmentList">Stock Adjustment</a></td>
                     <td style="text-align: center;"><?= $adjustmentVerNum ?></a></td>
                 </tr>
+                <tr>
+                    <td><a href="../verification/stockCountList">Stock Counting</a></td>
+                    <td style="text-align: center;"><?= $stockCountVerNum ?></a></td>
+                </tr>
             </tbody>
         </table>
     </div>
