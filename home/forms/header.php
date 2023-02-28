@@ -475,6 +475,10 @@ date_default_timezone_set("Africa/Kampala");
             </a>
           </li>
           <li>
+            <a href="../transactions/batchReportList">
+              <i class="bi bi-circle"></i><span>Batch Report</span>
+            </a>
+          <li>
             <a href="../transactions/releaseList">
               <i class="bi bi-circle"></i><span>Dispatch</span>
             </a>

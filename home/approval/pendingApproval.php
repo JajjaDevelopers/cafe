@@ -33,7 +33,7 @@ include_once ('../forms/header.php');
                 </tr>
                 <tr>
                     <td><a href="../approval/hullingList">Hulling Reports</a></td>
-                    <td style="text-align: center"><?= $hullingApprNum ?></td>dryingApprList
+                    <td style="text-align: center"><?= $hullingApprNum ?></td>
                 </tr>
                 <tr>
                     <td><a href="../approval/dryingList">Drying Report</a></td>
