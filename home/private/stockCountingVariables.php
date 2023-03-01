@@ -1,8 +1,14 @@
 <?php
 include "connlogin.php";
 include "functions.php";
-$countNo = intval($_GET['countNo']);
-$stkCountNo = formatDocNo($countNo, "STC");
+if(isset($_GET['countNo'])){
+    $countNo = intval($_GET['countNo']);
+    $stkCountNo = formatDocNo($countNo, "STC-");
+}elseif(isset($_SESSION['stockCountNo'])){
+    $countNo = intval($_SESSION['stockCountNo']);
+    $stkCountNo =  "STC-".$_SESSION['stockCountNo'];
+}
+
 
 $summSql = $conn->prepare("SELECT count_date, customer_name, deficit, excess, comment, prepared_by, prep_time, verified_by, 
                         ver_time, approved_by, appr_time, customer_id, contact_person, telephone

@@ -91,7 +91,7 @@ if(isset($_POST["reset-password-submit"]))
             $stmt->bindParam(2,$tokenEmail,PDO::PARAM_STR);
             $stmt->execute();
 
-    ;
+
              $query="DELETE FROM pwdreset WHERE pwdResetEmail=?";
              $stmt=$pdo->prepare($query);
   

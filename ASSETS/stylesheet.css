@@ -7,14 +7,8 @@ html{
 body{
   margin:0;
   padding:0;
-  /* position:relative;
-  height:100vh;
-  padding-bottom:345px; */
-  /* background-color: #24292F; */
-  /* background-color: #4DC7A0; */
-  /* background-color:white; */
   background-color: #6F4E37;
-  font-family: Verdana,Tahoma, Geneva,sans-serif;
+  font-family:Tahoma, Geneva,sans-serif;
 }
 
 

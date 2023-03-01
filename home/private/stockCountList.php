@@ -67,7 +67,7 @@ $countListResult = json_encode($countList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["bulkData"] = $countListResult;
+$_SESSION["stockCountData"] = $countListResult;
 // echo $_SESSION["goodsreceivedData"];
 $sql->close();
 ?>

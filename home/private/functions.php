@@ -4,9 +4,9 @@
 
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Days;
 
-function emptyFieldSignUp($fullname,$username,$email,$tel,$password,$passwordRepeat,$access)
+function emptyFieldSignUp($fullname,$email,$access)
 {
-  if(empty($fullname)||empty($username)||empty($email)||empty($tel)||empty($password)||empty($passwordRepeat)||empty($access))
+  if(empty($fullname)||empty($email)||empty($access))
   {
     $result=true;
   } else
@@ -65,43 +65,43 @@ function pwdMatch($password,$passwordRepeat){
 
 
  //function that checks whether username or email already exists
- function validUsernameEmail($username,$email)
- {
-  include "connlogin.php";//including in database connection details
-  $query="SELECT * FROM members WHERE UserName=? OR EmailAddress=?";
-  $stmt=$pdo->prepare($query);
-  if(!$stmt)//checking for database connection failure;
-  {
-    header("location:..forms/signup.php?error=stmtfailed");
-    exit();
-  }
-  $stmt->bindParam(1,$username,PDO::PARAM_STR);//binding parameters
-  $stmt->bindParam(2,$email,PDO::PARAM_STR);
-  $stmt->execute();
+//  function validUsernameEmail($username,$email)
+//  {
+//   include "connlogin.php";//including in database connection details
+//   $query="SELECT * FROM members WHERE UserName=? OR EmailAddress=?";
+//   $stmt=$pdo->prepare($query);
+//   if(!$stmt)//checking for database connection failure;
+//   {
+//     header("location:..forms/signup.php?error=stmtfailed");
+//     exit();
+//   }
+//   $stmt->bindParam(1,$username,PDO::PARAM_STR);//binding parameters
+//   $stmt->bindParam(2,$email,PDO::PARAM_STR);
+//   $stmt->execute();
 
-  $row=$stmt->fetch(PDO::FETCH_ASSOC);
+//   $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
-  if($row)
-  {
-    return $row;
-  }else{
-    $result=false;
-    return $result;
-  }
+//   if($row)
+//   {
+//     return $row;
+//   }else{
+//     $result=false;
+//     return $result;
+//   }
 
-  $pdo=null;//closing database connection
+//   $pdo=null;//closing database connection
 
- }
+//  }
  
  //function that signs up user;
- function signUpUser($fullname,$username,$email,$tel,$password,$access)
+ function signUpUser($fullname,$email,$access,$uniId)
  {
   
 
  include "connlogin.php";
 
-  $query="INSERT INTO members(FullName,UserName,EmailAddress,Telephone,UserPassword,Access)
-  VALUES(?,?,?,?,?,?)";
+  $query="INSERT INTO members(FullName,EmailAddress,Access,uniId)
+  VALUES(?,?,?,?)";
   $stmt=$pdo->prepare($query);
   
   if(!$stmt)
@@ -110,13 +110,14 @@ function pwdMatch($password,$passwordRepeat){
     exit();
   }
 
-  $passwordHashed=password_hash($password,PASSWORD_DEFAULT);
+  // $uniId=md5(str_shuffle("abcdefghijklmnopqrstuvwxyz"));
+
+  // $passwordHashed=password_hash($password,PASSWORD_DEFAULT);
   $stmt->bindParam(1,$fullname,PDO::PARAM_STR);
-  $stmt->bindParam(2,$username,PDO::PARAM_STR);
-  $stmt->bindParam(3,$email,PDO::PARAM_STR);
-  $stmt->bindParam(4,$tel,PDO::PARAM_INT);
-  $stmt->bindParam(5,$passwordHashed,PDO::PARAM_STR);
-  $stmt->bindParam(6,$access,PDO::PARAM_INT);
+  $stmt->bindParam(2,$email,PDO::PARAM_STR);
+  $stmt->bindParam(3,$access,PDO::PARAM_INT);
+  $stmt->bindParam(4,$uniId,PDO::PARAM_STR);
+  // $stmt->bindParam(6,$access,PDO::PARAM_INT);
   $stmt->execute();
   $pdo=null;
   header("location:../forms/signup?error=successfully");

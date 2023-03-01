@@ -1,4 +1,5 @@
 <?php
+require_once("../Library/Hash.php");
 // require_once "connlogin.php";
 //function that tests for empty fields
 function emptyFieldSignUp($fullname,$username,$email,$tel,$password,$passwordRepeat,$access)
@@ -89,14 +90,14 @@ function pwdMatch($password,$passwordRepeat){
  }
  
  //function that signs up user;
- function signUpUser($fullname,$username,$email,$tel,$password,$access)
+ function signUpUser($fullname,$username,$email,$tel,$password,$access,$uniId,$status)
  {
   
 
  include "connlogin.php";
 
-  $query="INSERT INTO members(FullName,UserName,EmailAddress,Telephone,UserPassword,Access)
-  VALUES(?,?,?,?,?,?)";
+  $query="INSERT INTO members(FullName,UserName,EmailAddress,Telephone,UserPassword,Access,uniId,status)
+  VALUES(?,?,?,?,?,?,?,?)";
   $stmt=$pdo->prepare($query);
   
   if(!$stmt)
@@ -105,14 +106,18 @@ function pwdMatch($password,$passwordRepeat){
     exit();
   }
 
-  $passwordHashed=password_hash($password,PASSWORD_DEFAULT);
+  // $passwordHashed=password_hash($password,PASSWORD_DEFAULT);
+  $passwordHashed=Hash::hash($password);
   $stmt->bindParam(1,$fullname,PDO::PARAM_STR);
   $stmt->bindParam(2,$username,PDO::PARAM_STR);
   $stmt->bindParam(3,$email,PDO::PARAM_STR);
   $stmt->bindParam(4,$tel,PDO::PARAM_INT);
   $stmt->bindParam(5,$passwordHashed,PDO::PARAM_STR);
   $stmt->bindParam(6,$access,PDO::PARAM_INT);
+  $stmt->bindParam(7,$uniId,PDO::PARAM_STR);
+  $stmt->bindParam(8,$status,PDO::PARAM_STR);
   $stmt->execute();
+  
   $pdo=null;
   header("location:../index.php?error=successfully");
   exit();
@@ -143,8 +148,8 @@ function  loginUser($username,$password)
 
   $hashedPwd=$userExists["UserPassword"];
 
-  $checkPwd=password_verify($password,$hashedPwd);
-
+  // $checkPwd=password_verify($password,$hashedPwd);
+  $checkPwd=Hash::verify($password,$hashedPwd);
   if($checkPwd===false)
   {
     header("location:../index.php?message=incorrectpassword");
@@ -153,6 +158,8 @@ function  loginUser($username,$password)
 
   else if($checkPwd===true)
   {
+
+
     // session_start();
     error_reporting(1);
 
@@ -164,18 +171,40 @@ function  loginUser($username,$password)
     $stmt->bindParam(2,$username,PDO::PARAM_STR);
     $stmt->execute();
     $row=$stmt->fetch(PDO::FETCH_ASSOC);
-    var_dump($row);
+    // var_dump($row);
     $privilege=$row["Access"];//getting access privilege
     $full_name=$row["FullName"];
-
+    $status=$row["status"];
+  
+    //checking whether user acccount was activated
+    if($status!=="active"){
+      header("location:../index.php?message=notactive");
+      exit();
+    }
     //session_variables
     $_SESSION["Access"]=$privilege;
     $_SESSION["fullName"]=$full_name;
     $_SESSION["userName"]=$userExists["UserName"];
     $_SESSION["userEmail"]=$userExists["EmailAddress"];
-    // echo  $_SESSION["userEmail"];
-    header("location:../home/forms/index.php");
-    exit();
+
+
+    //updating login time
+    $logIntime=date("Y-m-d H:i:s");
+    // $logOuttime=date("Y-m-d H:i:s");
+    // echo  $logIntime."<br>";
+  
+    $query="UPDATE members SET loggedIn=? WHERE FullName=?;";
+    $stmt=$pdo->prepare($query);
+    if(!$stmt){
+      echo "there was an error";
+    }else{
+      $stmt->bindParam(1,$logIntime,PDO::PARAM_STR);
+      $stmt->bindParam(2, $_SESSION["fullName"],PDO::PARAM_STR);
+      $stmt->execute();
+      header("location:../home/forms/index.php");
+      exit();
+    }
+   
   
     } 
 

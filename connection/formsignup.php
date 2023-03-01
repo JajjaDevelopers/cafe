@@ -13,6 +13,8 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   $passwordRepeat=$_POST["confpwd"];
   $dateupload=date("Y-m-d H:i:s");
   $access=$_POST["access"];
+  $uniId=md5(str_shuffle("abcdefghijklmnopqrstuvwxyz"));
+  $status="active";
   
   //sessionvariables
   $_SESSION["name"] = $fullname;
@@ -70,6 +72,6 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   header("location:../signup.php?error=invalidemail");
   exit();
  }
-  signUpUser($fullname,$username,$email,$tel,$password,$access);
+  signUpUser($fullname,$username,$email,$tel,$password,$access,$uniId,$status);
 }
 ?>

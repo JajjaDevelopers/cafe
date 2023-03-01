@@ -29,5 +29,13 @@
       {
         echo "Your email is invalid";
       }
+      if($_SESSION["error"]==="successfully")
+      {?>
+      <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
+        <p class="text-center text-white" style="font-size:medium">Signed Up user successfully!</p>
+      <button type="button" class="btn-close bg-danger" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+      <?php
+      }
     }
   ?>

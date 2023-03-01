@@ -17,7 +17,7 @@
               background-color:green;
           }
           #signupbtn:focus{
-              background-color:#765341;
+              background-color:blue;
           }
           #signupform{
             border:none;
@@ -51,11 +51,15 @@
                 <label for="fullname" class="text-center">Full Name</label>
             </div>
             <div class="form-floating col-md-6">
+                <input type="email" name="email" class="form-control" value="<?=$_SESSION["email"]?>">
+                <label for="email"  class="text-center">Email Address</label>
+            </div>
+            <!-- <div class="form-floating col-md-6">
               <input type="text" name="username" class="form-control" value="<?=$_SESSION["fusername"]?>">
               <label for="username"  class="text-center">User Name</label>
-            </div>
+            </div> -->
           </div>
-          <div class="row mt-3">
+          <!-- <div class="row mt-3">
             <div class="form-floating col-md-6">
                 <input type="email" name="email" class="form-control" value="<?=$_SESSION["email"]?>">
                 <label for="email"  class="text-center">Email Address</label>
@@ -64,8 +68,8 @@
               <input type="telephone" name="tel" class="form-control" value="<?=$_SESSION["tel"]?>">
               <label for="tel"  class="text-center">Tel</label>
             </div>
-          </div>
-          <div class="row mt-3">
+          </div> -->
+          <!-- <div class="row mt-3">
             <div class="form-floating col-md-6">
                 <input type="password" name="pwd" class="form-control" >
                 <label for="password"  class="text-center">Password</label>
@@ -74,18 +78,30 @@
                 <input type="password" name="confpwd" class="form-control" >
                 <label for="password" class="text-center">Confirm Password</label>
               </div>
-          </div>
-            <div class="form-check">
+          </div> -->
+          <div class="form-check">
                 <p class="text-primary">Access Privilege</p>
                 <input class="form-check-input" type="radio" name="access" id="flexRadioDefault1" value="1">
                 <label class="form-check-label" for="flexRadioDefault1">
-                  Admin
+                  Chief
                 </label>
             </div> 
             <div class="form-check">
               <input class="form-check-input" type="radio" name="access" id="flexRadioDefault2" value="2">
               <label class="form-check-label" for="flexRadioDefault2">
+                Manager
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="access" id="flexRadioDefault3" value="3">
+              <label class="form-check-label" for="flexRadioDefault3">
                 Staff
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="access" id="flexRadioDefault4" value="4">
+              <label class="form-check-label" for="flexRadioDefault4">
+                Other
               </label>
             </div>
 

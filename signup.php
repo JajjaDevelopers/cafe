@@ -72,13 +72,25 @@
                 <p class="text-primary">Access Privilege</p>
                 <input class="form-check-input" type="radio" name="access" id="flexRadioDefault1" value="1">
                 <label class="form-check-label" for="flexRadioDefault1">
-                  Admin
+                  Chief
                 </label>
             </div> 
             <div class="form-check">
               <input class="form-check-input" type="radio" name="access" id="flexRadioDefault2" value="2">
               <label class="form-check-label" for="flexRadioDefault2">
+                Manager
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="access" id="flexRadioDefault3" value="3">
+              <label class="form-check-label" for="flexRadioDefault3">
                 Staff
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="access" id="flexRadioDefault4" value="4">
+              <label class="form-check-label" for="flexRadioDefault4">
+                Other
               </label>
             </div>
 

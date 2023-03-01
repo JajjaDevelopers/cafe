@@ -26,14 +26,14 @@
 </form>
 <div class="container text-center d-flex flex-column align-items-end">
         <div>
-            <form action="../phpspreadsheet/bulkExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="bulkexcel">
+            <form action="../phpspreadsheet/stockCountExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="stockCountexcel">
                 <div class="form-group text-end">
                 <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
                 </div>
             </form>
         </div>
         <!-- <div class=" mt-3 me-5">
-            <a href="../pdfgen/bulk.php" target="_blank"  id="grnpdf" style="display:none;">
+            <a href="../pdfgen/stockCount.php" target="_blank"  id="grnpdf" style="display:none;">
                 <i class="bi bi-download" style="color:green; font-size:30px">
                 </i>
             </a>
@@ -61,6 +61,6 @@
       xhttp.send();
       
     //   document.getElementById("grnpdf").style.display="block";
-      document.getElementById("bulkexcel").style.display="block";
+      document.getElementById("stockCountexcel").style.display="block";
     }
 </script>

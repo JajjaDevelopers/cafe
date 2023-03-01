@@ -1,31 +1,8 @@
 <?php
 require_once "header.php";
 ?>
-<div class="text-center text-warning mt-4">
-  <?php
-  //message for successful sign Up by a person
-  $error="";
-  if(isset($_GET["error"]))
-  {
-  
-    echo("<p>You have signed up successful. You can now login!</p>");
-  }
-
-  //message upon password reset
-  if(isset($_GET["newpwd"]))
-  {
-    if($_GET["newpwd"]=="newpasswordupdated")
-    {
-      echo "Your have successfully updated your password";
-    }else if($_GET["newpwd"]=="empty")
-    {
-        echo "You submitted empty field! Please try again to reset password";
-    }else if($_GET["newpwd"]=="pwddonotmatch")
-    {
-        echo "Passwords did not match! Please try again to reset";
-    }
- }
-?>
+<div class="text-cente mt-4">
+  <?php include("./alerts/logmessage.php");?>
 </div>
 
 <style>
@@ -33,7 +10,7 @@ require_once "header.php";
         background-color:green;
     }
     #loginbtn:focus{
-        background-color:#765341;
+        background-color:blue;
     }
 </style>
 
@@ -60,12 +37,13 @@ require_once "header.php";
         <label for="username">Password</label>
       </div>
       <div class="form-group text-center">
-        <div class="text-success text-center">
+        <div class="text-danger text-center">
           <?php
           include "alerts/errorlogin.php";
           ?>
         </div>
-        <input type="submit" name="submit" class="btn btn-primary my-3 " id="loginbtn" value="Sign In">
+        <!-- <input type="submit" name="submit" class="btn btn-primary my-3 " id="loginbtn" value="Sign In"> -->
+        <button type="submit" name="submit" class="btn btn-primary my-3 btn-block " id="loginbtn">Sign into Nucafe ERP</button>
       </div>
     </div>
   </div>
