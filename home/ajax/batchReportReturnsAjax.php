@@ -3,8 +3,7 @@
 if($conn->connect_error) {
   exit('Could not connect');
 }
-?>
-<?php
+
 
 function getGrades($typeCategory, $gradeType, $gradeNamePrefix, $gradeIdPrefix, $tableHeader){
     include "../private/connlogin.php";
@@ -39,11 +38,7 @@ function getGrades($typeCategory, $gradeType, $gradeNamePrefix, $gradeIdPrefix, 
     <?php
     for ($gradeNo=1; $gradeNo <= $rows; $gradeNo++){
         $gradeRow = $allGrades -> fetch_assoc();
-        if ($gradeIdPrefix == "blacks"){
-            $grade_id = "BLACKS";
-        }else{
-            $grade_id = $gradeRow ['grade_id'];
-        }
+        $grade_id = $gradeRow ['grade_id'];
         $grade_name = $gradeNamePrefix.' '.$gradeRow ['grade_name'];
         $prefix = $gradeIdPrefix.'Grade'.$gradeNo;
   

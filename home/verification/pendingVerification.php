@@ -24,6 +24,10 @@ include_once ('../forms/header.php');
                     <td style="text-align: center;"><?= $releasVerNum ?></a></td>
                 </tr>
                 <tr>
+                    <td><a href="../verification/batchReportList">Batch Reports</a></td>
+                    <td style="text-align: center;"><?= $batchReportVerNum ?></a></td>
+                </tr>
+                <tr>
                     <td><a href="../verification/valuationList">Valuation</a></td>
                     <td style="text-align: center;"><?= $valuationVerNum ?></a></td>
                 </tr>

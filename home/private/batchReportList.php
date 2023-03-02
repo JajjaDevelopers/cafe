@@ -12,18 +12,20 @@ $client = $_GET["custId"];
 //criteria
 if ($client == "all"){
     $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
-    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH')
+    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH'
+    AND batch_reports_summary.batch_report_no=inventory.document_number)
     AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
     JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
-    AND batch_report_date BETWEEN ? AND ?)");
+    AND batch_report_date BETWEEN ? AND ?) GROUP BY batch_report_no");
     
     $sql->bind_param("ss", $frmDate, $toDate);
 }else{
     $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
-    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH')
+    (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH'
+    AND batch_reports_summary.batch_report_no=inventory.document_number)
     AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
     JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
-    AND batch_report_date BETWEEN ? AND ? AND customer_id=?)");
+    AND batch_report_date BETWEEN ? AND ? AND customer_id=?) GROUP BY batch_report_no");
                             
     $sql->bind_param("sss", $frmDate, $toDate, $client);
 }
@@ -41,7 +43,7 @@ $sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
             <th >Input Grade</th>
             <th style="width: 100px;">Net Input (Kg)</th>
             <th style="width: 100px;">Out Turn (Kg)</th>
-            <th style="width: 100px;">Out Turn (%)</th>
+            <th style="width: 100px;">Net Out Turn (%)</th>
         </tr>
     </thead>
     <tbody>
@@ -56,9 +58,9 @@ $sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
                 <td><?=$batchkDate?></td>
                 <td><?=$client?></td>
                 <td><?=$grade?></td>
-                <td style="text-align: right;"><?=$netInput?></td>
-                <td style="text-align: left;"><?=$outTurn?></td>
-                <td style="text-align: left;"><?=($outTurn*100/$netInput)?></td>
+                <td style="text-align: right;"><?=round($netInput,2)?></td>
+                <td style="text-align: right;"><?=round($outTurn,2)?></td>
+                <td style="text-align: center;"><?=round($outTurn*100/$netInput,2)?></td>
            </tr>
            <?php
         }

@@ -2,7 +2,7 @@
 <?php require "../forms/header.php" ?>
 <?php require "../connection/databaseConn.php" ?>
 <form class="regularForm" style="width: 1000px; height:fit-content">
-    <h3 class="formHeading">Bulking Reports</h3>
+    <h3 class="formHeading">Batch Reports</h3>
     <div class="container" style="border: 1px solid green; border-radius:10px">
         <div class="row">
             <div class="col-sm-3">
