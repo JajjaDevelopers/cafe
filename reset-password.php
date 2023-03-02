@@ -1,50 +1,38 @@
-<?php
-require_once "header.php";
-?>
-
-<div class="container mt-5" id="divlogin">
-  <div class="container text-primary text-center">
-    <?php
-    if (isset($_GET["reset"]))
-    {
-      if($_GET["reset"]=="success")
-      {?>
-        <script>
-          document.getElementById("resetpwd").style.display="none";
-        </script>
-        <?php
-        echo "<p>Check your email inbox or spam to reset password!</p>"; 
-      }
-    }
-    ?>
-  </div>
+<?php session_start();?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Password Reset</title>
+  <link href="./ASSETS/bootsrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5" id="divlogin" style="width:500px;">
   <div class="card my-4" id="resetpwd">
     <div class="card-header">
-      <h3 class="text-center text-primary" >Password Reset</h3>
+      <h3 class="text-center" >Password Reset</h3>
+      <?php include("./alerts/resetpassword.php");?>
     </div>
     <div class="card-body">
-      <p class="text-success">An email will be sent to you with the necessary link to reset your 
-        password
-      </p>
     <form action="connection/reset-request.php" method="post">
-  <div class="row">
-    <div class="col-md-12 justify-content-center">
+      <div class="row">
+        <div class="col-md-12 justify-content-center">
 
-      <div class="form-group">
-        <label for="username"><strong> Email Address</strong></label>
-        <input type="email" name="email" class="form-control" placeholder="Please Enter Your Email">
+          <div class="form-group">
+            <label for="username"><strong> Email Address</strong></label>
+            <input type="email" name="email" class="form-control" placeholder="Please Enter Your account Email Address">
+          </div>
+        
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary my-3" name="reset-request-submit">Send Request</button>
+          </div>
+        </div>
       </div>
-    
-      <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary my-3 btn-lg" name="reset-request-submit">Send Request</button>
-      </div>
-    </div>
-  </div>
   </form>
 </div>
   </div>
 </div>
-  
-<?php
-require_once "footer.php";
-?>
+<script src="./ASSETS/bootsrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ if(isset($_GET["formmsg"]))
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Data recorded successfully! You can make another Entry.</p>
-      <button type="button" class="btn-close bg-danger" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <!-- <script>
       var divElement=document.getElementById("messageContainer");

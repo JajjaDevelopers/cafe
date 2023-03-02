@@ -107,14 +107,16 @@ try {
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    // echo 'Message has been sent';
+    header("location:../index.php?reset=success");
+    exit();
+
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    header("location:../reset-password.php?reset=fail");
+    exit();
+    // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 
-   
-
-   header("location:../reset-password.php?reset=success");
 
 }
 

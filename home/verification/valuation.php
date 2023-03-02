@@ -7,5 +7,6 @@
     <?php include "../templates/valuation.php" ?>
     <?php submitButton("Verify", "submit", "btnSubmit") ?>
 </form>
+<script>document.getElementById("print").style.display="none";</script>
 <?php include "../forms/footer.php" ?>
 <?php include "../assets/js/valuationVer.php" ?>

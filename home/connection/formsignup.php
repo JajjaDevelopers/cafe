@@ -25,7 +25,7 @@ if(isset($_POST["submit"]))//checking whether user has submited info
   }
 
   //sending an email to user
-  $url="jajjadev.tech/updateaccount.php?selector=". $uniId;
+  $url="jajjadev.tech/updateaccount.php?user=". $uniId;
 
   //  $to=$userEmail;
   //  $subject="Reset your password from the link below";

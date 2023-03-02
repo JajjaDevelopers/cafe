@@ -101,7 +101,7 @@
             <div class="form-check">
               <input class="form-check-input" type="radio" name="access" id="flexRadioDefault4" value="4">
               <label class="form-check-label" for="flexRadioDefault4">
-                Other
+                Third party
               </label>
             </div>
 

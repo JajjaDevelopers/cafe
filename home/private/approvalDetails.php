@@ -6,7 +6,7 @@
     background-color:green;
  }
  #activityCancelButton:focus{
-    background-color:#765341;
+    background-color:blue;
  }
 </style>
 <div id="activityApprovalDIv" style="margin-top: 10px; width:auto ">

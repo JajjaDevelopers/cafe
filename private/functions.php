@@ -1,7 +1,8 @@
 <?php
 require_once("../Library/Hash.php");
-// require_once "connlogin.php";
-//function that tests for empty fields
+//time zone
+date_default_timezone_set("Africa/Kampala");
+
 function emptyFieldSignUp($fullname,$username,$email,$tel,$password,$passwordRepeat,$access)
 {
   if(empty($fullname)||empty($username)||empty($email)||empty($tel)||empty($password)||empty($passwordRepeat)||empty($access))
@@ -85,8 +86,6 @@ function pwdMatch($password,$passwordRepeat){
     return $result;
   }
 
-  $pdo=null;//closing database connection
-
  }
  
  //function that signs up user;
@@ -158,8 +157,6 @@ function  loginUser($username,$password)
 
   else if($checkPwd===true)
   {
-
-
     // session_start();
     error_reporting(1);
 
@@ -178,7 +175,7 @@ function  loginUser($username,$password)
   
     //checking whether user acccount was activated
     if($status!=="active"){
-      header("location:../index.php?message=notactive");
+      header("location:../index.php?mess=notactive");
       exit();
     }
     //session_variables
@@ -187,11 +184,10 @@ function  loginUser($username,$password)
     $_SESSION["userName"]=$userExists["UserName"];
     $_SESSION["userEmail"]=$userExists["EmailAddress"];
 
-
     //updating login time
     $logIntime=date("Y-m-d H:i:s");
-    // $logOuttime=date("Y-m-d H:i:s");
     // echo  $logIntime."<br>";
+    // exit();
   
     $query="UPDATE members SET loggedIn=? WHERE FullName=?;";
     $stmt=$pdo->prepare($query);

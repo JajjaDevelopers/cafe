@@ -1,4 +1,13 @@
-<?php include_once "header.php";?>
+<?php session_start();?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Sign Admin</title>
+  <link href="./ASSETS/bootsrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
       <style>
           #divsignup{
           /* border:2px solid gray;*/
@@ -39,33 +48,33 @@
           </div>
           </div>
           <div class="row mt-3">
-            <div class="form-floating col-md-6">
-                <input type="text" name="fullname" class="form-control" value="<?=sessionData($field="name")?>">
+            <div class="form-group col-md-6">
                 <label for="fullname" class="text-center">Full Name</label>
+                <input type="text" name="fullname" class="form-control" value="<?=sessionData($field="name")?>">
             </div>
-            <div class="form-floating col-md-6">
-              <input type="text" name="username" class="form-control" value="<?=sessionData($field="username")?>">
+            <div class="form-group col-md-6">
               <label for="username"  class="text-center">User Name</label>
+              <input type="text" name="username" class="form-control" value="<?=sessionData($field="username")?>">
             </div>
           </div>
           <div class="row mt-3">
-            <div class="form-floating col-md-6">
-                <input type="email" name="email" class="form-control" value="<?=sessionData($field="email2")?>">
+            <div class="form-group col-md-6">
                 <label for="email"  class="text-center">Email Address</label>
+                <input type="email" name="email" class="form-control" value="<?=sessionData($field="email2")?>">
             </div>
-            <div class="form-floating col-md-6">
-              <input type="telephone" name="tel" class="form-control" value="<?=sessionData($field="tel2")?>">
+            <div class="form-group col-md-6">
               <label for="tel"  class="text-center">Tel</label>
+              <input type="telephone" name="tel" class="form-control" value="<?=sessionData($field="tel2")?>">
             </div>
           </div>
           <div class="row mt-3">
-            <div class="form-floating col-md-6">
-                <input type="password" name="pwd" class="form-control" >
+            <div class="form-group col-md-6">
                 <label for="password"  class="text-center">Password</label>
+                <input type="password" name="pwd" class="form-control" >
               </div>
-              <div class="form-floating col-md-6">
-                <input type="password" name="confpwd" class="form-control" >
+              <div class="form-group col-md-6">
                 <label for="password" class="text-center">Confirm Password</label>
+                <input type="password" name="confpwd" class="form-control" >
               </div>
           </div>
             <div class="form-check">
@@ -103,4 +112,6 @@
         </div>
 
       </div>
-<?php include_once "footer.php";?>
+      <script src="./ASSETS/bootsrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

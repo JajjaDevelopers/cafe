@@ -20,7 +20,7 @@
                 </select>
             </div>
         </div>
-        <?php submitButton("Submit", "button", "confirm") ?>
+        <?php submitButton("Submit", "button", "confirm");?>
     </div>
     
 </form>
@@ -31,14 +31,7 @@
                 <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
                 </div>
             </form>
-        </div>
-        <div class=" mt-3 me-5">
-            <a href="../pdfgen/previousgrn.php" target="_blank"  id="grnpdf" style="display:none;">
-                <i class="bi bi-download" style="color:green; font-size:30px">
-                </i>
-            </a>
-        </div>
-      
+        </div> 
 </div>
 <div id="results" style="margin-top: 40px;">
 
@@ -48,7 +41,6 @@
     
     document.getElementById("verifyBtn").addEventListener("click", getGrnList);
     function getGrnList(){
-        document.getElementById("grnpdf").style.dislay="none"
         var frmDt = document.getElementById('frmDate').value;
         var toDt = document.getElementById('toDate').value;
         var clientId = document.getElementById('customerId').value;
@@ -61,7 +53,7 @@
       xhttp.open("GET", "../ajax/grnList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
       
-      document.getElementById("grnpdf").style.display="block";
+    //   document.getElementById("grnpdf").style.display="block";
       document.getElementById("grnexcel").style.display="block";
     }
 </script>
