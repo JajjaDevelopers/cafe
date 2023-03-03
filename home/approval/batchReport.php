@@ -11,10 +11,11 @@ if(isset($_GET['batchNo'])){
   $_SESSION["batchNo"] = $batchNo;
 }
 ?>
-<form class="regularForm" style="height: fit-content; width:790px">
+<form class="regularForm" method="post" action="../connection/batchReportApproval.php" style="height: fit-content; width:790px">
   <?php
   include "../templates/batchReport.php";
   include "../forms/users.php";
+  submitButton("Approve", "submit", "btnSubmit");
   ?>
   <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
     <a href="../transactions/batchReportList" class="btn btn-link" style="color:green">Back</a>

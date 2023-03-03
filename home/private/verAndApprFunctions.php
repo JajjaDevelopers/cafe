@@ -17,9 +17,10 @@ $transferVerNum = countPendVerifications("transfers", "verified_by");
 $bulkingVerNum = countPendVerifications("bulking", "verified_by");
 $adjustmentVerNum = countPendVerifications("adjustment", "verified_by");
 $stockCountVerNum = countPendVerifications("stock_counting", "verified_by");
+$batchReportVerNum = countPendVerifications("batch_reports_summary", "verified_by");
 
 $allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, 
-                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum, $stockCountVerNum);
+                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum, $stockCountVerNum, $batchReportVerNum);
 
 
 //Counting pending approvals
@@ -44,9 +45,10 @@ $transferApprNum = countPendApprovals("transfers", "approved_by");
 $bulkingApprNum = countPendApprovals("bulking", "approved_by");
 $adjsutmentApprNum = countPendApprovals("adjustment", "approved_by");
 $stockCountApprNum = countPendApprovals("stock_counting", "approved_by");
+$batchReportApprNum = countPendApprovals("batch_reports_summary", "approved_by");
 
 $allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
-                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum);
+                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $batchReportApprNum);
 
 
 $totalPendVer = 0;
@@ -632,6 +634,58 @@ function stockCountApprList(){
             <td style="text-align: right;"><?=$ttExcess?></td>
             <td style="text-align: right;"><?=$ttNet?></td>
             <td style="text-align: left;"><?=$notes?></td>
+       </tr>
+       <?php
+    }
+}
+
+
+//stock counting
+function batchReportVerList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
+            (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH'
+            AND batch_reports_summary.batch_report_no=inventory.document_number)
+            AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
+            JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
+            AND batch_reports_summary.verified_by='None') GROUP BY batch_report_no ");
+    $sql->execute();
+    $sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+        <td><a href="../verification/batchReport?batchNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$batchkDate?></td>
+            <td><?=$client?></td>
+            <td><?=$grade?></td>
+            <td style="text-align: right;"><?=round($netInput,2)?></td>
+            <td style="text-align: right;"><?=round($outTurn,2)?></td>
+            <td style="text-align: center;"><?=round($outTurn*100/$netInput,2)?></td>
+       </tr>
+       <?php
+    }
+}
+
+function batchReportApprList(){
+    include "connlogin.php";
+    $sql = $conn->prepare("SELECT batch_report_no, batch_report_date, customer_name, grade_name, net_input, 
+            (SELECT sum(qty_in) FROM inventory JOIN grades USING(grade_id) WHERE inventory_reference='Batch Report' AND grade_type='HIGH'
+            AND batch_reports_summary.batch_report_no=inventory.document_number)
+            AS net_outturn FROM batch_reports_summary JOIN grn USING (batch_order_no)
+            JOIN grades USING(grade_id) JOIN customer WHERE (batch_reports_summary.customer_id=customer.customer_id
+            AND batch_reports_summary.approved_by='None' AND batch_reports_summary.verified_by<>'None') GROUP BY batch_report_no ");
+    $sql->execute();
+    $sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+        <td><a href="../approval/batchReport?batchNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$batchkDate?></td>
+            <td><?=$client?></td>
+            <td><?=$grade?></td>
+            <td style="text-align: right;"><?=round($netInput,2)?></td>
+            <td style="text-align: right;"><?=round($outTurn,2)?></td>
+            <td style="text-align: center;"><?=round($outTurn*100/$netInput,2)?></td>
        </tr>
        <?php
     }

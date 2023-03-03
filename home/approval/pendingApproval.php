@@ -20,6 +20,10 @@ include_once ('../forms/header.php');
                     <td style="text-align: center"><?= $grnApprNum ?></td>
                 </tr>
                 <tr>
+                    <td><a href="../approval/batchReportList">Batch Reports</a></td>
+                    <td style="text-align: center"><?= $batchReportApprNum ?></td>
+                </tr>
+                <tr>
                     <td><a href="../approval/releaseList">Release Requests</a></td>
                     <td style="text-align: center"><?= $releaseApprNum ?></td>
                 </tr>
