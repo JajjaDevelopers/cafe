@@ -19,6 +19,7 @@ $_SESSION["bulkNo"] = $bulkNo;
     </a> -->
     </div>
 </form>
+<script>document.getElementById("print").style.display="none"</script>
 <?php
 include "../forms/footer.php";
 include "../assets/js/bulking.php";

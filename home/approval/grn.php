@@ -13,6 +13,7 @@ $grnNo = formatDocNo($grn_no, "GRN-");
 </form>
 <?php include "../forms/footer.php" ?>
 <script>
+    document.getElementById("print").style.display="none";
     document.getElementById("salesReportBuyer").style.display = "none";
     document.getElementById("customerName").value = "<?=$customer_name?>";
     document.getElementById("customerId").value = "<?=$customer_id?>";

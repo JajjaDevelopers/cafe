@@ -6,4 +6,5 @@
     <?php include "../forms/users.php" ?>
 </form>
 <?php include "../forms/footer.php" ?>
+<script>document.getElementById("print").style.display="none"</script>
 <?php include "../assets/js/salesReport.php" ?>
