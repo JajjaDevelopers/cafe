@@ -1,4 +1,8 @@
 <h3 id="batchReportHeading" class="formHeading">Production Report</h3>
+<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
+    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+    </i>
+</div>
 <?php
     include "../alerts/message.php";
     ?>
