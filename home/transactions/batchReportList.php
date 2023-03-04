@@ -1,4 +1,4 @@
-<?php $pageTitle = "Bulking History";?>
+<?php $pageTitle = "Batch Report History";?>
 <?php require "../forms/header.php" ?>
 <?php require "../connection/databaseConn.php" ?>
 <form class="regularForm" style="width: 1000px; height:fit-content">
