@@ -50,7 +50,12 @@ $sql->bind_result($no, $batchkDate, $client, $grade, $netInput, $outTurn);
         <?php
         $batchList = array(["Batch. No", "Date", "Client Name", "Input Grade", "Net Input (Kg)", "Out Turn (Kg)", "Out Turn (%)"]);
         while ($sql->fetch()){
-            $myRow = [$no, $batchkDate, $client, $grade, $netInput, $outTurn, ($outTurn*100/$netInput)];
+            if ($outTurn=="" or $outTurn=="null"){
+                $outTurn=0;
+                $outPercent = 0;
+            }
+            $outPercent = ($outTurn*100/$netInput);
+            $myRow = [$no, $batchkDate, $client, $grade, $netInput, $outTurn, $outPercent];
             array_push($batchList, $myRow);
            ?>
            <tr>

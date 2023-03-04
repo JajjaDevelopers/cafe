@@ -12,7 +12,7 @@ $hullingNo = nextDocNumber("hulling", "hulling_no", "HLP");
         <label for="hullingNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Hulling No:</label>
         <input type="text" class="shortInput" id="hullingNo" name="hullingNo" value="<?= $hullingNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
         <label for="hullingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
-        <input type="date" class="shortInput" id="hullingDate" name="hullingDate" value="" style="grid-column: 2; grid-row: 2">
+        <input type="date" class="shortInput" id="hullingDate" name="hullingDate" value="<?= $today?>" style="grid-column: 2; grid-row: 2">
     </div>
     <?php include("../forms/customerSelector.php") ?>
     <div style="margin-top: 10px">
@@ -54,7 +54,7 @@ $hullingNo = nextDocNumber("hulling", "hulling_no", "HLP");
     <?php documentNotes("700px") ?>
 
 
-    <?php include_once("../private/approvalDetails.php"); ?>
+    <?php submitButton("Submit", "submit", "btnsubmit"); ?>
 </form>
 <?php require ("../forms/footer.php") ?>
 <script src="../assets/js/gradePicker.js"></script>

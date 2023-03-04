@@ -6,7 +6,7 @@ $sql = $conn->prepare("SELECT customer_id, customer_name, contact_person, teleph
                         WHERE grn_no=?");
 $sql->bind_param("i", $grnNo);
 $sql->execute();
-$sql->bind_result($clientId, $clientName, $contact, $tel, $grade, $qty, $bags, $purpose, $mc, $grdType);
+$sql->bind_result($cltId, $cltName, $cltContact, $cltTel, $grade, $qty, $bags, $purpose, $mc, $grdType);
 $sql->fetch();
 $sql->close();
 

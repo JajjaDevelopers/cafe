@@ -34,44 +34,53 @@ $exchangeRate = sanitize_table($_POST["exchangeRate"]);
 $salesReportCurrency = sanitize_table($_POST["salesReportCurrency"]);
 $preparedBy = $username;
 $salesReportNotes = sanitize_table($_POST["salesReportNotes"]);
+$ttQty = $_POST["totalQty"];
 $docType = "Sales Report";
 $newNo = documentNumber("sales_reports_summary", "sales_report_no");
 $itmNo = 1;
 $selfId = "SELF01";
 
-$summarySql->bind_param("isssisiss",$newNo, $BuyerId, $salesReportDate, $salesReportCategory, $ugxGrandTotal, $salesReportCurrency, 
-                        $exchangeRate, $preparedBy, $salesReportNotes);
-$summarySql->execute();
-$conn->rollback();
+if ($ugxGrandTotal>0 && $BuyerId!="" && $ttQty>0){
+    $summarySql->bind_param("isssisiss",$newNo, $BuyerId, $salesReportDate, $salesReportCategory, $ugxGrandTotal, $salesReportCurrency, 
+    $exchangeRate, $preparedBy, $salesReportNotes);
+    $summarySql->execute();
+    $conn->rollback();
 
 
-//capturing details
+    //capturing details
 
-$qtyOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-                        grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
-$qtyInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-                            grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");   
-                            
-$docType = "Sales Report";
-for ($p=0; $p < count($qtyList); $p++){
+    $qtyOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
+        grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+    $qtyInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
+            grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");   
+            
+    $docType = "Sales Report";
+    for ($p=0; $p < count($qtyList); $p++){
     $qty = ($_POST[$qtyList[$p]]) ;
     $gradeID = ($_POST[$salesReportGradeList[$p]]);
     $itemPx = ($_POST[$priceList[$p]]);
     if ($qty > 0){
-        $qtyOutSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $selfId, $itmNo, $gradeID, $qty);
-        $qtyOutSql->execute();
-        $itmNo += 1;
-        $qtyInSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $BuyerId, $itmNo, $gradeID, $qty);
-        $qtyInSql->execute();
-        $itmNo += 1;
+    $qtyOutSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $selfId, $itmNo, $gradeID, $qty);
+    $qtyOutSql->execute();
+    $itmNo += 1;
+    $qtyInSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $BuyerId, $itmNo, $gradeID, $qty);
+    $qtyInSql->execute();
+    $itmNo += 1;
     }
-}  
+    }  
 
-//message 
-if(isset($_POST["btnsubmit"]))
-{
+    //message 
+    if(isset($_POST["btnsubmit"]))
+    {
     header("location:../marketing/SalesReport?formmsg=success");
+    }
+}else{
+    if(isset($_POST["btnsubmit"]))
+    {
+    header("location:../marketing/SalesReport?formmsg=fail");
+    }
 }
+
 
 
 ?>

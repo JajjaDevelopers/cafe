@@ -35,13 +35,13 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             </tr>
             <tr>
                 <td>Kibooko Delivered (Kg)</td>
-                <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" class="tableInput"></td>
+                <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" required class="tableInput"></td>
                 <td colspan="3">FAQ Delivered (Kg)</td>
-                <td colspan="2"><input type="number" value="12000" id="FAQQty" name="FAQQty" class="tableInput"></td>
+                <td colspan="2"><input type="number" value="" id="FAQQty" name="FAQQty" required class="tableInput"></td>
             </tr>
             <tr>
                 <td>Exchange Rate</td>
-                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tableInput"></td>
+                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tableInput" required></td>
                 <td colspan="5">Market facilitator and owner settlement rate</td>
                 
             </tr>
@@ -68,7 +68,7 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             <tr>
                 <th>Actual Total Value Before Costs</th>
                 <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tableInput"></td>
-                <td><input type="number" value="" id="totalQty" readonly name="totalYield" class="tableInput"></td>
+                <td><input type="number" value="" id="totalQty" readonly name="totalQty" class="tableInput"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -107,7 +107,7 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             
         </table>
     </div>
-    <?php submitButton("Submit", "submit", "confirm"); ?>
+    <?php submitButton("Submit", "submit", "btnsubmit"); ?>
 </form>
 <?php include_once('../forms/footer.php');?>
 <!-- summarizing valuation info -->
