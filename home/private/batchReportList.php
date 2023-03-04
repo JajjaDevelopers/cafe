@@ -73,7 +73,7 @@ $batchListResult = json_encode($batchList);
 // echo $grnListResult;
 // echo $grnListResult;
 // var_dump($grnList);
-$_SESSION["bulkData"] = $batchListResult;
-// echo $_SESSION["goodsreceivedData"];
+$_SESSION["batchData"] = $batchListResult;
+// echo $_SESSION["batchData"];
 $sql->close();
 ?>

@@ -23,8 +23,8 @@ date_default_timezone_set("Africa/Kampala");
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <!-- Vendor CSS Files -->
   <link href="../assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/dashboard/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -39,6 +39,7 @@ date_default_timezone_set("Africa/Kampala");
   <!--plotly-->
   <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
 
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -47,6 +48,10 @@ date_default_timezone_set("Africa/Kampala");
   ======================================================== -->
 </head>
 <style>
+body {
+        font-family: 'Roboto',sans-serif,serif;
+        font-size: medium;
+      }
  aside ul.sidebar-nav li.nav-item a.nav-link{
   background-color:green;
  }
