@@ -12,22 +12,22 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
     <div style="margin-left: 70%;">
         <label for="salesReportNumber" id="salesReportNumberLabel" class="salesReportLabel" >Sales No.:</label>
         <input type="text" id="salesReportNumber" readonly class="shortInput" style="width: 100px; text-align: center;"
-        value="<?php echo $nextSalesNo; ?>"><br>
+        value="<?php echo $nextSalesNo; ?>" required><br>
 
         <label for="salesReportDate" id="salesReportNumberLabel" class="salesReportLabel" >Date:</label>
-        <input type="date" id="salesReportDate" name="salesReportDate" class="shortInput" value="<?=$today?>" style="width: 100px; text-align: center;"><br>
+        <input type="date" id="salesReportDate" name="salesReportDate" class="shortInput" value="<?=$today?>" style="width: 100px; text-align: center;" required><br>
 
         <label for="exchangeRate" class="salesReportLabel" >Exchange Rate:</label>
-        <input type="number" id="exchangeRate" name="exchangeRate" class="longInputField" placeholder="Ex.Rate" style="width: 90px; margin-right: 0px;">
+        <input type="number" id="exchangeRate" name="exchangeRate" class="longInputField" placeholder="Ex.Rate" style="width: 90px; margin-right: 0px;" required>
       
     </div>
     <div id="ajaxDiv" style="display: none;"> </div>
     <div>
         <label for="salesReportBuyer" id="salesReportBuyerLabel" class="salesReportLabel" >Buyer:</label>
         <input type="text" id="BuyerId" name="BuyerId" readonly class="longInputField" placeholder="ID" style="width: 70px; margin-right: 0px;">
-        <input type="text" id="BuyerName" name="BuyerName" readonly class="longInputField" placeholder="Buyer Name" style="margin-left: 0px; margin-right: 0px;">
+        <input type="text" id="BuyerName" name="BuyerName" readonly class="longInputField" placeholder="Buyer Name" style="margin-left: 0px; margin-right: 0px;" required>
         <select id="salesReportBuyer" class="longInputField" name="salesReportBuyer" style="margin-left: 0px; width: 20px"
-        onchange="SelectCustomer(this.value)">
+        onchange="SelectCustomer(this.value)" required>
             <?php GetCustomerList(); ?>
         </select><br>
 
@@ -37,16 +37,16 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
         <input type="text" id="salesReportTel" readonly class="longInputField" placeholder="Telephone" style="margin-right: 0px; width:120px">
         <br>
         <label for="salesReportCategory" id="salesReportBuyerLabel" class="salesReportLabel">Category:</label>
-        <select id="salesReportCategory" class="longInputField" name="salesReportCategory" style="width: 100px;">
+        <select id="salesReportCategory" class="longInputField" name="salesReportCategory" style="width: 100px;" required>
             <option value="Local">Local Sale</option>
             <option value="Export">Export</option>
         </select>
 
         <label for="salesReportCurrency" class="salesReportLabel">Currency:</label>
         <select id="salesReportCurrency" class="longInputField" name="salesReportCurrency" style="width: 100px;">
-            <option value="UGX">UGX</option>7
+            <option value="UGX">UGX</option>
             <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
+            <!-- <option value="EUR">EUR</option> -->
         </select>
     </div>
     <div>
@@ -107,9 +107,7 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
 </form>
 <?php   include_once('../forms/footer.php'); ?>
 <script>
-    document.getElementById("exchangeRate").setAttribute("value", 3500);
-   
-    
+       
 </script>
 <script src="../assets/js/salesreport.js"></script>
 <!-- <script src="../assets/js/salesreport.js"></script> -->

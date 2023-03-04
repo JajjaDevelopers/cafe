@@ -361,7 +361,7 @@ body {
             </a>
           </li>
           <li>
-            <a href="../quality/qualityAssessment">
+            <a href="../quality/assessmentGrns">
               <i class="bi bi-circle"></i><span>General Sample</span>
             </a>
           </li>

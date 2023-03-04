@@ -19,11 +19,7 @@ include "../connection/qualityAssessVariables.php";
 
 <?php include_once ("../forms/footer.php")?>
 <script>
-    $('#salesReportBuyer').hide();
-    $('#customerId').val("<?=$clientId?>");
-    $('#customerName').val("<?=$clientName?>");
-    $('#salesReportContact').val("<?=$contact?>");
-    $('#salesReportTel').val("<?=$tel?>");
-    $('#grnNo').val("<?= formatDocNo($grnNo, "") ?>");
+    document.getElementById("salesReportBuyer").style.display="none";
+    // 
 
 </script>

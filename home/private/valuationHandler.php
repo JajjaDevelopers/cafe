@@ -38,54 +38,63 @@ $preparedBy = $username;
 $time = new DateTime();
 $prepDate = $time->format('Y-m-d H:i:s');
 $inputQty = $_POST['FAQQty'];
-$summarySql->bind_param("ssssdddss", $valuationNo, $valuationDate, $batchReportNo, $customerId, $inputQty, $exchangeRate, $costs, 
-                        $preparedBy, $prepDate);
-$summarySql->execute();
-$conn->rollback();
+$valQty = $_POST["totalQty"];
+$valAmt = $_POST["grandTotaltUgx"];
 
-//valuation table update
-$valDetSql = $conn->prepare("INSERT INTO valuations (valuation_no, item_no, grade_id, qty, price_ugx) VALUES (?,?,?,?,?)");
+if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
+    $summarySql->bind_param("ssssdddss", $valuationNo, $valuationDate, $batchReportNo, $customerId, $inputQty, $exchangeRate, $costs, 
+    $preparedBy, $prepDate);
+    $summarySql->execute();
+    $summarySql->close();
 
-// Posting valuations items into invetory
-$quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                                trans_date, customer_id, item_no, grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");
-$quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                                trans_date, customer_id, item_no, grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+    //valuation table update
+    $valDetSql = $conn->prepare("INSERT INTO valuations (valuation_no, item_no, grade_id, qty, price_ugx) VALUES (?,?,?,?,?)");
 
-$docType = "Valuation Report";
-$itmNo = 1;
-$valItmNo = 1;
-$self = "SELF01";
-for ($x=0; $x < count($allGradeQty); $x++ ) {
+    // Posting valuations items into invetory
+    $quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
+                trans_date, customer_id, item_no, grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");
+    $quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
+                trans_date, customer_id, item_no, grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+
+    $docType = "Valuation Report";
+    $itmNo = 1;
+    $valItmNo = 1;
+    $self = "SELF01";
+    for ($x=0; $x < count($allGradeQty); $x++ ) {
     $gradeQty = sanitize_table($_POST[$allGradeQty[$x]]);
     if ($gradeQty > 0){
-        $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
-        $gradeName = $_POST[$allGradeName[$x]];
-        //valuation details
-        $valDetSql->bind_param("iisdd", $valuationNo, $valItmNo, $gradeName, $gradeQty, $gradePrice);
-        $valDetSql->execute();
-        $valItmNo += 1;
-        //qty in
-        $quantityInSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
-                                                $gradeName, $gradeQty);
-        $quantityInSql->execute();
-        //qty out
-        $itmNo += 1;
-        $quantityOutSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
-                                                $gradeName, $gradeQty);
-        $quantityOutSql->execute();
-        $itmNo += 1;
+    $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
+    $gradeName = $_POST[$allGradeName[$x]];
+    //valuation details
+    $valDetSql->bind_param("iisdd", $valuationNo, $valItmNo, $gradeName, $gradeQty, $gradePrice);
+    $valDetSql->execute();
+    $valItmNo += 1;
+    //qty in
+    $quantityInSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
+                                $gradeName, $gradeQty);
+    $quantityInSql->execute();
+    //qty out
+    $itmNo += 1;
+    $quantityOutSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
+                                $gradeName, $gradeQty);
+    $quantityOutSql->execute();
+    $itmNo += 1;
+    }
+    }
+    $quantityInSql->close();
+    $quantityOutSql->close();
+
+    if(isset($_POST["btnsubmit"]))
+    {
+    header("location:../marketing/valuation?formmsg=success");
+    }
+}else{
+    if(isset($_POST["btnsubmit"]))
+    {
+    header("location:../marketing/valuation?formmsg=fail");
     }
 }
-$quantityInSql->close();
-$quantityOutSql->close();
 
 
-
-
-if(isset($_POST["confirm"]))
-{
-    header("location:../marketing/valuation?formmsg=success");
-}
 
 ?>
