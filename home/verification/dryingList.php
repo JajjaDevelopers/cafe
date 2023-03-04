@@ -5,6 +5,7 @@ include_once ('../forms/header.php');
 ?>
 <form class="regularForm" style="width: 1000px;">
     <h2 class="formHeading">Drying Activity Pending Verification</h2>
+    <?php include("../alerts/verifyAlert.php");?>
     <div>
         <table class="table table-striped table-hover table-condensed table-bordered">
             <thead>

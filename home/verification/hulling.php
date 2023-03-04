@@ -7,5 +7,6 @@
     <?php include "../templates/hulling.php" ?>
 <?php submitButton("Verify", "submit", "btnSubmit") ?>
 </form>
+<script>document.getElementById("print").style.display="none"</script>
 <?php include "../forms/footer.php" ?>
 <?php include("../assets/js/hullingVer.php") ?>

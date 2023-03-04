@@ -18,9 +18,9 @@ if($access==2){
   $verifySql = $conn->prepare("UPDATE grn SET verified_by=?, ver_time=NOW() WHERE (grn_no=?)");
   $verifySql->bind_param("ss", $verifiedBy, $no);
   $verifySql->execute();
-  header("location: ../verification/grnVerifyList?verify=success&grn=$no");
+  header("location: ../verification/grnVerifyList?grnote=success&grn=$no");
 }else{
-  header("location: ../verification/grnVerifyList?verify=fail");
+  header("location: ../verification/grnVerifyList?grnote=fail");
 }
 
 ?>

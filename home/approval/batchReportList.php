@@ -4,6 +4,7 @@ include_once ('../forms/header.php');
 ?>
 <form class="regularForm" style="width: 1000px;">
     <h2 class="formHeading">Batch Reports Pending Approval</h2>
+    <?php include("../alerts/approvalAlert.php");?>
     <div>
         <table class="table table-striped table-hover table-condensed table-bordered">
             <thead>

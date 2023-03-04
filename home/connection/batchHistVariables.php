@@ -1,7 +1,14 @@
 <?php
 include "../private/connlogin.php";
+include "../private/verAndApprFunctions.php";
+if(isset($_SESSION['batchNo'])){
+$batchNo=intval($_SESSION['batchNo']);
+$batchRepNo = formatDocNo(Intval($batchNo), "BRN-") ;
+}else{
 $batchNo=intval($_GET['batchNo']);
 $batchRepNo = formatDocNo(Intval($batchNo), "BRN-") ;
+}
+
 
 
 $categorySql = $conn->prepare("SELECT type_category FROM grades WHERE grade_id='NRSC18'");

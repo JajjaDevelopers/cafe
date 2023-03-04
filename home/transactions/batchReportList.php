@@ -26,7 +26,7 @@
 </form>
 <div class="container text-center d-flex flex-column align-items-end">
         <div>
-            <form action="../phpspreadsheet/bulkExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="bulkexcel">
+            <form action="../phpspreadsheet/batchExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="batchexcel">
                 <div class="form-group text-end">
                 <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
                 </div>
@@ -61,6 +61,6 @@
       xhttp.send();
       
     //   document.getElementById("grnpdf").style.display="block";
-      document.getElementById("bulkexcel").style.display="block";
+      document.getElementById("batchexcel").style.display="block";
     }
 </script>
