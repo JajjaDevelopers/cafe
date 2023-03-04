@@ -5,6 +5,8 @@ $batchNo = $_SESSION["batchNo"];
 include ("connlogin.php");
 include ("verAndApprFunctions.php");
 
+$batchNova=formatDocNo($batchNo,"BRN-");
+
 //getting access right
 $stmt=$pdo->prepare("SELECT Access FROM members WHERE FullName=?");
 $stmt->bindParam(1,$username,PDO::PARAM_STR);
@@ -17,7 +19,7 @@ if($access==2){
   $sql->bind_param("si", $username, $batchNo);
   $sql->execute();
   $sql->close();
-  header("location:../verification/batchReportList?batch=success&batchNo=$batchNo");
+  header("location:../verification/batchReportList?batch=success&batchNo=$batchNova");
   exit();
 }else{
   header("location:../verification/batchReportList?batch=fail");

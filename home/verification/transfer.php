@@ -11,7 +11,7 @@ $_SESSION["transNo"] = $transNo;
   include "../forms/users.php";
   submitButton("Verify", "submit", "btnSubmit")
   ?>
-</div>
+ <a href="../verification/transferList.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <script>document.getElementById("print").style.display="none"</script>
 <?php

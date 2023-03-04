@@ -31,4 +31,19 @@ if(isset($_GET["formmsg"]))
   }
 
 }
+
+
+if(isset($_GET["rel"])){
+  if($_GET["rel"]=="success"){
+    ?>
+    <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
+      <p class="text-center text-white" style="font-size:medium">
+        Release Request Initiated successfully!
+      </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
+
+  }
+}
 ?>

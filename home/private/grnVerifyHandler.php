@@ -14,11 +14,12 @@ $access=$row["Access"];
 //limiting verification process to specified persons
 if($access==2){
   $no = $_POST["grnKeyId"];
+  $nova=formatDocNo($no,"GRN-");
   verifyActivity("grn", "grn_no", $no, $verifiedBy);
   $verifySql = $conn->prepare("UPDATE grn SET verified_by=?, ver_time=NOW() WHERE (grn_no=?)");
   $verifySql->bind_param("ss", $verifiedBy, $no);
   $verifySql->execute();
-  header("location: ../verification/grnVerifyList?grnote=success&grn=$no");
+  header("location: ../verification/grnVerifyList?grnote=success&grn=$nova");
 }else{
   header("location: ../verification/grnVerifyList?grnote=fail");
 }

@@ -5,6 +5,7 @@ $bulkNo = $_SESSION["countNo"];
 include ("connlogin.php");
 include ("verAndApprFunctions.php");
 
+$bulkNova=formatDocNo($bulkNo,"BLK-");
 //getting access right
 $stmt=$pdo->prepare("SELECT Access FROM members WHERE FullName=?");
 $stmt->bindParam(1,$username,PDO::PARAM_STR);
@@ -17,7 +18,7 @@ $sql = $conn->prepare("UPDATE stock_counting SET verified_by=?, ver_time=Now() W
 $sql->bind_param("si", $username, $bulkNo);
 $sql->execute();
 $sql->close();
-header("location:../verification/stockCountList?count=success&countNo=$bulkNo");
+header("location:../verification/stockCountList?count=success&countNo=$bulkNova");
 exit();
 }else{
   header("location:../verification/stockCountList?count=fail");

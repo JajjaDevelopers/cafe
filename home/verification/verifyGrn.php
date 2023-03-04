@@ -9,6 +9,7 @@ $grnNo = formatDocNo(intval($grn_no), "GRN-");
 
   <?php include "../templates/grnTemplate.php" ?>
   <?php submitButton("Verify", "Submit", "confirm");?>
+  <a href="../verification/grnVerifyList" class="btn btn-primary" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 
 <?php include "../forms/footer.php" ?>

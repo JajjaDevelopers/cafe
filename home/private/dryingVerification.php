@@ -4,6 +4,7 @@ $username = $_SESSION["fullName"];
 $dryNo = $_SESSION["dryNo"];
 include ("connlogin.php");
 include ("verAndApprFunctions.php");
+$dryNova=formatDocNo($dryNo,"DRY-");
 
 //getting access right
 $stmt=$pdo->prepare("SELECT Access FROM members WHERE FullName=?");
@@ -17,7 +18,7 @@ $sql = $conn->prepare("UPDATE drying SET verified_by=?, ver_time=Now() WHERE dry
 $sql->bind_param("si", $username, $dryNo);
 $sql->execute();
 $sql->close();
-header("location:../verification/dryingList?dry=success&dryNo=$dryNo");
+header("location:../verification/dryingList?dry=success&dryNo=$dryNova");
 $_SESSION["dryNo"]="";
 exit();
 }else{

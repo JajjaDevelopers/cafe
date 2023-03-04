@@ -6,6 +6,7 @@ $relNo = nextDocNumber("release_request", "release_no", "RLS");
     
 <form class="regularForm" method="POST" style="height:fit-content; width:800px" action="../connection/release.php">
     <h3 id="deliveryNoteHeading" class="formHeading">Release Request</h3>
+    <?php include"../alerts/message.php";?>
     <div style="display: grid; width:fit-content; margin-left: 70%;">
         <label for="relNo" style="grid-column: 1; grid-row: 1; width:80px; margin-top: 5px">Release No:</label>
         <input type="text" class="shortInput" id="relNo" name="relNo" value="<?= $relNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">

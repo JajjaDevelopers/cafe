@@ -13,7 +13,7 @@ $access=$row["Access"];
 
 if($access==2){
   $valNum = intval($_POST["valNum"]);
-  $num=$_POST["valNum"];
+  $num=formatDocNo($valNum,"VAL-");
   $sql = $conn->prepare("UPDATE valuation_report_summary SET verified_by=?, ver_date=Now() WHERE valuation_no=?");
   $sql->bind_param("si", $username, $valNum);
   $sql->execute();

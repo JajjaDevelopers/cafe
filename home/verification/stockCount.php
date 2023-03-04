@@ -14,13 +14,7 @@ if(isset($_GET['countNo'])){
   include "../forms/users.php";
   submitButton("Verify", "submit", "btnSubmit");
   ?>
-  <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
-    <a href="../verification/stockCountList.php" class="btn btn-link" style="color:green">Back</a>
-    <!-- <a href="../pdfgen/adjustinfo.php" target="_blank" class="" id="pdf" style="display:block;">
-        <i class="bi bi-download" style="color:green; font-size:30px">
-        </i>
-    </a> -->
-</div>
+  <a href="../verification/stockCountList.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <script>
   document.getElementById("print").style.display="none";

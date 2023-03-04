@@ -12,13 +12,12 @@ $access=$row["Access"];
 
 if($access==2){
 $hullNum = intval($_POST["hullNo"]);
-// echo $hullNum;
-// exit();
+$num=formatDocNo($hullNum,"HULL-");
 $sql = $conn->prepare("UPDATE hulling SET verified_by=?, ver_date=Now() WHERE hulling_no=?");
 $sql->bind_param("si", $username, $hullNum);
 $sql->execute();
 $sql->close();
-header("location:../verification/hullingList?hull=success&hullNo=$hullNum");
+header("location:../verification/hullingList?hull=success&hullNo=$num");
 }else{
 header("location:../verification/hullingList?hull=fail");
 exit();

@@ -18,11 +18,7 @@ if(isset($_GET['batchNo'])){
   submitButton("Verify", "submit", "btnSubmit");
   ?>
   <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
-    <a href="../transactions/batchReportList" class="btn btn-link" style="color:green">Back</a>
-    <a href="../pdfgen/adjustinfo.php" target="_blank" class="" id="pdf" style="display:block;">
-        <i class="bi bi-download" style="color:green; font-size:30px">
-        </i>
-    </a>
+  <a href="../verification/batchReportList.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </div>
 </form>
 <script>

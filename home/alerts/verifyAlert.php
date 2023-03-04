@@ -2,7 +2,7 @@
 //grn messages
 if(isset($_GET["grnote"])){
   if($_GET["grnote"]=="success"){
-    $grn="GRN-".$_GET["grn"];
+    $grn=$_GET["grn"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Goods Received Note Report&nbsp;<?=$grn?> &nbsp;Verified Successfully!</p>
@@ -21,7 +21,7 @@ if(isset($_GET["grnote"])){
 //release messages
 if(isset($_GET["release"])){
   if($_GET["release"]=="success"){
-    $rel="RLS-".$_GET["relno"];
+    $rel=$_GET["relno"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Release &nbsp;<?=$rel?> &nbsp;Verified Successfully!</p>
@@ -40,7 +40,7 @@ if(isset($_GET["release"])){
 //valuation messages
 if(isset($_GET["valuation"])){
   if($_GET["valuation"]=="success"){
-    $numb="VAL-".$_GET["valNo"];
+    $numb=$_GET["valNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">valuation &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -59,7 +59,7 @@ if(isset($_GET["valuation"])){
 //sales Report messages
 if(isset($_GET["sales"])){
   if($_GET["sales"]=="success"){
-    $numb="SAL-".$_GET["salNo"];
+    $numb=$_GET["salNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Sales Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -76,10 +76,10 @@ if(isset($_GET["sales"])){
   }
 }
 
-//bath Report messages
+//batch Report messages
 if(isset($_GET["batch"])){
   if($_GET["batch"]=="success"){
-    $numb="BRN-".$_GET["batcNo"];
+    $numb=$_GET["batchNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Batch Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -99,7 +99,7 @@ if(isset($_GET["batch"])){
 //hull Report messages
 if(isset($_GET["hull"])){
   if($_GET["hull"]=="success"){
-    $numb="HUL-".$_GET["hullNo"];
+    $numb=$_GET["hullNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Hulling Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -119,7 +119,7 @@ if(isset($_GET["hull"])){
 //dry Report messages
 if(isset($_GET["dry"])){
   if($_GET["dry"]=="success"){
-    $numb="DRY-".$_GET["dryNo"];
+    $numb=$_GET["dryNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Drying Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -139,7 +139,7 @@ if(isset($_GET["dry"])){
 //transfer Report messages
 if(isset($_GET["transfer"])){
   if($_GET["transfer"]=="success"){
-    $numb="GTN-".$_GET["transNo"];
+    $numb=$_GET["transNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Transfer Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -159,7 +159,7 @@ if(isset($_GET["transfer"])){
 //bulk Report messages
 if(isset($_GET["bulk"])){
   if($_GET["bulk"]=="success"){
-    $numb="BLK-".$_GET["bulkNo"];
+    $numb=$_GET["bulkNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Bulk Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -179,7 +179,7 @@ if(isset($_GET["bulk"])){
 //adjustment Report messages
 if(isset($_GET["adjust"])){
   if($_GET["adjust"]=="success"){
-    $numb="ADJ-".$_GET["adjustNo"];
+    $numb=$_GET["adjustNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Stock Adjustment Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>
@@ -199,7 +199,7 @@ if(isset($_GET["adjust"])){
 //stock counting Report messages
 if(isset($_GET["count"])){
   if($_GET["count"]=="success"){
-    $numb="STC-".$_GET["countNo"];
+    $numb=$_GET["countNo"];
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
         <p class="text-center text-white" style="font-size:medium">Stock count Report &nbsp;<?=$numb?> &nbsp;Verified Successfully!</p>

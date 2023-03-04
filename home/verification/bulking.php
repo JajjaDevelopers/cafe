@@ -2,7 +2,7 @@
 <?php include "../forms/header.php" ?>
 <?php include "../connection/bulkingVariables.php";?>
 <?php
-$bulkingNo = formatDocNo(intval($bulkNo), "GTN-");
+$bulkingNo = formatDocNo(intval($bulkNo), "BLK-");
 $_SESSION["bulkNo"] = $bulkNo;
 ?>
 <form class="regularForm" method="post" action="../connection/bulkingVerification.php" style="height: fit-content; width:790px">
@@ -11,13 +11,7 @@ $_SESSION["bulkNo"] = $bulkNo;
   include "../forms/users.php";
   submitButton("Verify", "submit", "btnSubmit1");
   ?>
-  <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
-    <a href="../verification/bulkingList.php" class="btn btn-link" style="color:green">Back</a>
-    <!-- <a href="../pdfgen/retrievedgrninfo.php" target="_blank" class="" id="pdf" style="display:block;">
-        <i class="bi bi-download" style="color:green; font-size:30px">
-        </i>
-    </a> -->
-    </div>
+   <a href="../verification/bulkingList.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <script>document.getElementById("print").style.display="none"</script>
 <?php

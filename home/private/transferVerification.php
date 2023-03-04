@@ -4,7 +4,7 @@ $username = $_SESSION["fullName"];
 $transNum = $_SESSION["transNo"];
 include ("connlogin.php");
 include ("verAndApprFunctions.php");
-
+$transNumva=formatDocNo($transNum,"GTN-");
 //getting access rights
 $stmt=$pdo->prepare("SELECT Access FROM members WHERE FullName=?");
 $stmt->bindParam(1,$username,PDO::PARAM_STR);
@@ -17,7 +17,7 @@ if($access==2){
   $sql->bind_param("si", $username, $transNum);
   $sql->execute();
   $sql->close();
-  header("location:../verification/transferList?transfer=success&transNo=$transNum");
+  header("location:../verification/transferList?transfer=success&transNo=$transNumva");
   exit();
 }else{
   header("location:../verification/transferList?transfer=fail");

@@ -1,12 +1,12 @@
 <?php
 include "../private/connlogin.php";
-include "../private/verAndApprFunctions.php";
+include "../utility/HelperFunctions.php";
 if(isset($_SESSION['batchNo'])){
 $batchNo=intval($_SESSION['batchNo']);
-$batchRepNo = formatDocNo(Intval($batchNo), "BRN-") ;
+$batchRepNo = Helper::formatDocNo(Intval($batchNo), "BRN-") ;
 }else{
 $batchNo=intval($_GET['batchNo']);
-$batchRepNo = formatDocNo(Intval($batchNo), "BRN-") ;
+$batchRepNo =Helper::formatDocNo(Intval($batchNo), "BRN-") ;
 }
 
 
@@ -30,7 +30,7 @@ $summSql->bind_result($ordNo, $batchDate, $cltId, $offTaker, $netInputQty, $outp
 $summSql->fetch();
 $summSql->close();
 $fmDate=$batchDate;
-$batchOrderNumber=formatDocNo(intval($ordNo),"");
+$batchOrderNumber=Helper::formatDocNo(intval($ordNo),"");
 
 //returns
 $overallTotal = 0.00;

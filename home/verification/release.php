@@ -11,6 +11,7 @@
 <?php require "../templates/releaseTemplate.php" ?>
 
     <?php submitButton("Verify", "submit", "confirm"); ?>
+    <a href="../verification/releaseList.php" class="btn btn-primary" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <?php 
 include "../forms/footer.php";

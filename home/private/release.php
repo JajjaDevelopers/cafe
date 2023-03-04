@@ -40,15 +40,5 @@ for ($x=0; $x<count($itmIds); $x++){
         $itmNo += 1;
     } 
 }
-
-
-
-
-
-
-
-
-
-
-header("location:../inventory/release");
+header("location:../inventory/release?rel=success");
 ?>

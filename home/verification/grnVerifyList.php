@@ -24,5 +24,6 @@ include_once ('../forms/header.php');
             </tbody>
         </table>
     </div>
+    <a href="../verification/pendingVerification.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <?php include("../forms/footer.php") ?>

@@ -11,6 +11,7 @@ $_SESSION["dryNo"] = $dryNo;
   include "../templates/drying.php";
   submitButton("Verify", "submit", "btnSubmi");
   ?>
+   <a href="../verification/dryingList.php" class="btn btn-primary btn-sm" role="button"><i class="bi bi-arrow-left-square-fill"></i>&nbsp;Back</a>
 </form>
 <script>document.getElementById("print").style.display="none"</script>
 <?php

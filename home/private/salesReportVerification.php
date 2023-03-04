@@ -13,8 +13,8 @@ $access=$row["Access"];
 
 if($access==2){
   $salNum = intval($_POST["salNo"]);
-  $numb=$_POST["salNo"];
-  $sql = $conn->prepare("UPDATE sales_reports_summary SET varified_by=?, ver_time=Now() WHERE sales_report_no=?");
+  $numb=formatDocNo($salNum,"SAL-");
+  $sql = $conn->prepare("UPDATE sales_reports_summary SET verified_by=?, ver_time=Now() WHERE sales_report_no=?");
   $sql->bind_param("si", $username, $salNum);
   $sql->execute();
   $sql->close();
