@@ -19,14 +19,16 @@ $categorySql->fetch();
 $categorySql->close();
 
 //batch summary
-$summSql = $conn->prepare("SELECT batch_order_no, batch_report_date, customer_id, offtaker, net_input, mc_out, 
-            color_sorted, comment, batch_reports_summary.prepared_by, prep_time, batch_reports_summary.verified_by, ver_time, approved_by, appr_time, customer_name,
-            contact_person, telephone, batch_order_mc FROM batch_reports_summary JOIN customer USING (customer_id) 
-            JOIN batch_processing_order USING (batch_order_no) WHERE batch_report_no=? ");
+$summSql = $conn->prepare("SELECT batch_order_no, batch_report_date, batch_reports_summary.customer_id, offtaker, net_input, mc_out, 
+            color_sorted, comment, batch_reports_summary.prepared_by, batch_reports_summary.prep_time, batch_reports_summary.verified_by,
+            batch_reports_summary.ver_time, batch_reports_summary.approved_by, batch_reports_summary.appr_time, customer_name,
+            contact_person, telephone, batch_order_mc, grade_name FROM batch_reports_summary JOIN customer USING (customer_id) 
+            JOIN batch_processing_order USING (batch_order_no) JOIN grn USING (batch_order_no) JOIN grades USING (grade_id) WHERE 
+            batch_report_no=? ");
 $summSql->bind_param("i", $batchNo);
 $summSql->execute();
 $summSql->bind_result($ordNo, $batchDate, $cltId, $offTaker, $netInputQty, $outputMc, $colSorted, $notes, $prepared_by, $prep_time, 
-            $verified_by, $ver_time, $approved_by, $appr_time, $cltName, $cltContact, $cltTel, $inputMc);
+            $verified_by, $ver_time, $approved_by, $appr_time, $cltName, $cltContact, $cltTel, $inputMc, $inputGradeName);
 $summSql->fetch();
 $summSql->close();
 $fmDate=$batchDate;
