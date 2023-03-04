@@ -13,6 +13,9 @@ $outputMc = $_POST["outputMc"];
 $dryLoss = $_POST["dryLoss"];
 $comment = $_POST["notes"];
 
+if ($inputQty>0 && $outputQty>0 && $customer != ""){
+
+}
 //Capturing summary
 $summarySql = $conn->prepare("INSERT INTO drying (drying_no, drying_date, customer_id, grade_id, input_qty, 
                             input_mc, output_qty, output_mc, drying_loss, prepared_by, prep_time, comment) 
@@ -30,7 +33,7 @@ $detialsSql = $conn->prepare("INSERT INTO inventory (inventory_reference, docume
                             grade_id, qty_out) VALUES (?, ?, ?, ?, ?, ?)");
 $detialsSql->bind_param("sisisd", $reference, $dryingNo, $customer, $itmNo, $gradeId, $inputQty);
 $detialsSql->execute();
-$conn->rollback();
+$detialsSql->close();
 
 $itmNo += 1;
 $detialsSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, item_no, 

@@ -1,5 +1,5 @@
 function itemFilterOptions(selectId, selectValue, filterFunc){
-    document.getElementById("gradeId").innerHTML = '<option value="all">All</option>';
+    //document.getElementById("gradeId").innerHTML = '<option>All</option>';
     const xhttp = new XMLHttpRequest();
     // Updating grades based on filters
     xhttp.onreadystatechange  = function() {

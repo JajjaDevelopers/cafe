@@ -6,7 +6,7 @@ if(isset($_GET["formmsg"]))
     
     ?>
     <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:green">
-        <p class="text-center text-white" style="font-size:medium">Data recorded successfully! You can make another Entry.</p>
+        <p class="text-center text-white" style="font-size:medium">Data submited successfully! You can make another Entry.</p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <!-- <script>
@@ -19,6 +19,15 @@ if(isset($_GET["formmsg"]))
       setTimeout(messageErase,8000);//erases message after 8 seconds
     </script> -->
     <?php
+  }else if($_GET["formmsg"]=="fail"){
+    ?>
+    <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:red">
+      <p class="text-center text-white" style="font-size:medium">
+        There was an error! Check whether the required fields are entered correctly.
+      </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <?php
   }
 
 }

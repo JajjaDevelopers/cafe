@@ -13,9 +13,9 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
   
   <div style="display: grid; width:fit-content; margin-left: 70%; margin-bottom:20px">
     <label for="dryingNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Drying No:</label>
-    <input type="text" class="shortInput" id="dryingNo" name="dryingNo" value="<?= $dryingNo ?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
+    <input type="text" class="shortInput" id="dryingNo" name="dryingNo" readonly required value="<?= $dryingNo ?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
     <label for="dryingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
-    <input type="date" class="shortInput" id="dryingDate" name="dryingDate" value="<?= $today ?>" style="grid-column: 2; grid-row: 2">
+    <input type="date" class="shortInput" id="dryingDate" name="dryingDate" required value="<?= $today ?>" style="grid-column: 2; grid-row: 2">
   </div>
   <?php require("../forms/customerSelector.php");?>
   <fieldset class="form-group border p-3" style="border: 1px green solid; border-radius:5px; padding: 5px; margin-bottom:20px">
@@ -30,11 +30,11 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
     <div class="row">
       <div class="col-sm-6">
         <label for="inputQty">Input Qty</label><br>
-        <input type="number" id="inputQty" name="inputQty" class="shortInput" style="width: 200px;" step="0.01">
+        <input type="number" id="inputQty" name="inputQty" required class="shortInput" style="width: 200px;" min="1" step="0.01">
       </div>
       <div class="col-sm-6">
         <label for="inputMc">Input Moisture (%)</label><br>
-        <input type="number" id="inputMc" name="inputMc" class="shortInput" step="0.01">
+        <input type="number" id="inputMc" name="inputMc" required class="shortInput" step="0.01">
       </div>
     </div>
   </fieldset>
@@ -43,22 +43,22 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
         
       <div class="col-sm-6">
         <label for="outputQty">Output Qty</label><br>
-        <input type="number" id="outputQty" name="outputQty" class="shortInput" step="0.01" style="width: 200px;">
+        <input type="number" id="outputQty" name="outputQty" required class="shortInput" step="0.01" style="width: 200px;">
       </div>
       <div class="col-sm-6">
         <label for="inputMc">Output Moisture (%)</label><br>
-        <input type="number" id="outputMc" name="outputMc" class="shortInput" step="0.01">
+        <input type="number" id="outputMc" name="outputMc" required class="shortInput" step="0.01">
       </div>
     </div>
     <div class="row" style="margin-top: 20px;">
       <div class="col-sm-6">
         <label for="kgLoss">Moisture Loss (Kg)</label><br>
-        <input type="number" id="dryLoss" name="dryLoss" class="shortInput" step="0.01" style="width: 200px;">
+        <input type="number" id="dryLoss" name="dryLoss" required readonly class="shortInput" step="0.01" style="width: 200px;">
       </div>
     
       <div class="col-sm-6">
         <label for="percLoss">Moisture Loss(%)</label><br>
-        <input type="number" id="percLoss" name="percLoss" class="shortInput" step="0.01">
+        <input type="number" id="percLoss" name="percLoss" readonly class="shortInput" step="0.01">
       </div>
     </div>
   </fieldset>
