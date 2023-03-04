@@ -438,7 +438,6 @@ function dryingApprList(){
                             WHERE verified_by<>'None' AND approved_by='None'");
     $sql->execute();
     $sql->bind_result($no, $dryDate, $client, $grdName, $inQty, $inMc, $outQty, $outMc);
-    
     while ($sql->fetch()){
         ?>
         <tr>

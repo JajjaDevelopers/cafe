@@ -22,9 +22,9 @@ $grnNo = nextDocNumber('grn', 'grn_no', 'GRN');
     <label for="grnNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">GRN No:</label>
     <input type="text" class="shortInput" id="grnNo" name="grnNo" readonly value="<?= $grnNo ?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
     <label for="date" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
-    <input type="date" class="shortInput" id="grnDate" name="grnDate" value="<?= $grn_date ?>" style="grid-column: 2; grid-row: 2">
+    <input type="date" class="shortInput" id="grnDate" name="grnDate" required value="<?= $grn_date ?>" style="grid-column: 2; grid-row: 2">
     <label for="timeIn" class="" style="grid-column: 1; grid-row: 3; margin-top: 10px">Time In:</label>
-    <input type="time" class="shortInput" id="timeIn" name="timein"  value="<?= $grn_time_in ?>" style="grid-column: 2; grid-row: 3">
+    <input type="time" class="shortInput" id="timeIn" name="timein" required value="<?= $grn_time_in ?>" style="grid-column: 2; grid-row: 3">
 </div>
 
 <?php 
@@ -41,8 +41,8 @@ require("../forms/customerSelector.php"); ?>
         <div class="col-sm-2">
             <label for="type">Type:</label><br>
             <select id="type" name="coffeetype" class="shortInput"
-                onchange="itemFilterOptions('category',this.value, 'typeCat')">
-                <option value="all">All</option>
+                onchange="itemFilterOptions('category',this.value, 'typeCat')" required>
+                <option value="all">Select</option>
                 <option value="Arabica">Arabica</option>
                 <option value="Robusta">Robusta</option>
             </select>
@@ -50,40 +50,39 @@ require("../forms/customerSelector.php"); ?>
         <div class="col-sm-3">
             <label for="category">Type Category:</label><br>
             <select id="category" name="category" class="shortInput" style="width: 150px;"
-                onchange="itemFilterOptions('gradeId',this.value, 'grades')">
-                <option value="all">All</option>
+                onchange="itemFilterOptions('gradeId',this.value, 'grades')" required>
                 
             </select>
         </div>
         <div class="col-sm-4">
             <label for="gradeId">Grade:</label><br>
-            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 150px;">
-                <option value="all">All</option>
+            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 150px;" required>
+               
             </select>
         </div>
         <div class="col-sm-3">
             <label for="weight" >Weight:</label><br>
             <input type="number" id="weight"  class="shortInput" placeholder="kgs" 
-            name="gradeweight"  value="<?=$grn_qty?>">
+            name="gradeweight"  value="<?=$grn_qty?>" required>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2">
             <label for="bags" class="form-label">Bags:</label><br>
             <input type="number" class="shortInput" id="bags" placeholder="bags" name="bags"  
-            value="<?=$no_of_bags?>" style="margin-top: 0px; ">
+            value="<?=$no_of_bags?>" style="margin-top: 0px; " required>
         </div>
         <div class="col-sm-3">
             
             <label for="mc" >Av. Moisture:</label><br>
             <input type="number" class="shortInput" id="mc" placeholder="%" name="mc"  value="<?=$grn_mc?>" 
-            style="margin-top: 10px; width: 70px" step="0.01">
+            style="margin-top: 10px; width: 70px" step="0.01" required>
         </div>
         <div class="col-sm-4">
             
             <label for="purpose">Purpose:</label><br>
             <select class="longInputField" id="purpose" placeholder="purpose" name="purpose" 
-            style="margin-top: 10px; width:150px; margin-left:0px" onchange="getPreOffSampleNo()">
+            style="margin-top: 10px; width:150px; margin-left:0px" onchange="getPreOffSampleNo()" required>
                 <option></option>
                 <option value="Processing">Processing</option>
                 <option value="Roasting">Roastery Services</option>
@@ -134,7 +133,7 @@ require("../forms/customerSelector.php"); ?>
         <div class="col-sm-5">
             <label for="deliveryPerson">Delivery Person:</label>
             <input type="text" class="longInputField" id="deliveryPerson" placeholder="delivery person" 
-            name="deliveryPerson" value="<?=$delivery_person?>"><br>
+            name="deliveryPerson" value="<?=$delivery_person?>" required><br>
         </div>
     </div>
 </div>
@@ -195,6 +194,7 @@ require("../forms/customerSelector.php"); ?>
         xhttp.open("GET", "../ajax/preOffloadSamp.php?q="+custId);
         xhttp.send();
       }
-      
     }
+
   </script>
+  <script src="../assets/js/itemsFilter.js"></script>
