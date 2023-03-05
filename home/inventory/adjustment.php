@@ -6,6 +6,9 @@ $adjNo = nextDocNumber("adjustment", "adj_no", "ADJ");
 ?>
 <form class="regularForm" method="post", action="../connection/adjustment.php">
     <h3 class="formHeading">Stock Adjustment</h3>
+    <?php
+    include "../alerts/message.php";
+    ?>
     <div style="display: grid; width:fit-content; margin-left: 70%; margin-bottom:20px">
         <label for="adjNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Adjust No:</label>
         <input type="text" class="shortInput" id="adjNo" name="adjNo" readonly value="<?= $adjNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
@@ -16,7 +19,7 @@ $adjNo = nextDocNumber("adjustment", "adj_no", "ADJ");
     <?php itemsTable(5, "Stock Adjustment Items"); ?>
     <?php comment("700px") ?>
 
-    <?php submitButton("Submit", "submit", "confirm") ?>
+    <?php submitButton("Submit", "submit", "btnsubmit") ?>
 </form>
 
 <?php include "../forms/footer.php" ?>

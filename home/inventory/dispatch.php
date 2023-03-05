@@ -52,6 +52,9 @@
         }
     ?>
     document.getElementById("totalQty").setAttribute("value", "<?=$qtySum?>");
+    document.getElementById("destination").setAttribute("readonly", "readonly");
+    document.getElementById("initiator").setAttribute("readonly", "readonly");
+    document.getElementById("remarks").setAttribute("readonly", "readonly");
 
 
 
