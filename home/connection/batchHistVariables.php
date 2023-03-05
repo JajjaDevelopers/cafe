@@ -24,7 +24,7 @@ $summSql = $conn->prepare("SELECT batch_order_no, batch_report_date, batch_repor
             batch_reports_summary.ver_time, batch_reports_summary.approved_by, batch_reports_summary.appr_time, customer_name,
             contact_person, telephone, batch_order_mc, grade_name FROM batch_reports_summary JOIN customer USING (customer_id) 
             JOIN batch_processing_order USING (batch_order_no) JOIN grn USING (batch_order_no) JOIN grades USING (grade_id) WHERE 
-            batch_report_no=? ");
+            batch_report_no=? ");  
 $summSql->bind_param("i", $batchNo);
 $summSql->execute();
 $summSql->bind_result($ordNo, $batchDate, $cltId, $offTaker, $netInputQty, $outputMc, $colSorted, $notes, $prepared_by, $prep_time, 

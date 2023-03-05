@@ -655,7 +655,7 @@ function pendingDispatch(){
   include "connlogin.php";
   $sql = $conn->prepare("SELECT release_no, request_date, customer_name, FullName FROM release_request
                         JOIN customer USING (customer_id) JOIN members ON release_request.prep_by=members.UserName
-                        WHERE verified_by <> '0' AND appr_by <> '0' AND status=1");
+                        WHERE verified_by <> '0' AND appr_by <> '0' AND release_request.status=1");
   $sql->execute();
   $sql->bind_result($rel_no, $req_date, $cus_name, $user_name);
   while ($sql->fetch()){
@@ -675,8 +675,8 @@ function pendingDispatch(){
 function generalSampleList(){
   include "connlogin.php";
   $sql = $conn->prepare("SELECT grn_no, grn_date, customer_name, grade_name, grn_qty, grn_mc, pre_quality.remarks FROM grn 
-                        JOIN grades USING (grade_id) JOIN pre_quality USING(grn_no) JOIN customer 
-                        WHERE grn.customer_id=customer.customer_id AND pre_quality.grn_no <> 0");
+                JOIN grades USING (grade_id)  JOIN customer USING (customer_id) JOIN pre_quality USING (grn_no) 
+                WHERE grn.assess_no=0");
   $sql->execute();
   $sql->bind_result($grnNo, $date, $client, $grade, $qty, $mc, $remarks);
  

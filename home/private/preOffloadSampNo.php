@@ -2,8 +2,9 @@
 include "connlogin.php";
 include "functions.php";
 $custId = $_GET['q'];
-$sql = $conn->prepare("SELECT assess_no FROM pre_quality WHERE customer_id=? AND decision='Accepted' AND grn_no=0");
-$sql->bind_param("s", $custId);
+$grdId = $_GET['selGrd'];
+$sql = $conn->prepare("SELECT assess_no FROM pre_quality WHERE customer_id=? AND decision='Accepted' AND grn_no=0 AND grade_id=?");
+$sql->bind_param("ss", $custId, $grdId);
 $sql->execute();
 $sql->bind_result($sampNo);
 ?>
