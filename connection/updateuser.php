@@ -10,9 +10,11 @@ if(isset($_POST["register"])){
   $tel=$_POST["telcontact"];
   $status="active";
   $identifier= $_SESSION["userId"];
+  // echo $identifier;
+  // exit();
 
   if(!(Validate::emptyField($confpassword,$password,$tel,$username))){
-    echo "Some fields are missing";
+    
     header("location:../updateaccount.php?user=$identifier&message=empty");
     exit();
   }
@@ -41,7 +43,14 @@ if(isset($_POST["register"])){
   $stmt->execute();
   $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
-
+  // var_dump($row["status"]);
+  // exit();
+  //ensuring the user doesnot exist
+  if($row["status"]=="active"){
+    header("location:../updateaccount.php?user=$identifier&message=exist");
+    exit();
+  }
+  
   $passwordHash=Hash::hash($password);
   $stmt=$pdo->prepare("UPDATE members SET UserName=?,Telephone=?,UserPassword=?,status=? WHERE uniId=?");
   $stmt->bindParam(1,$username,PDO::PARAM_STR);
