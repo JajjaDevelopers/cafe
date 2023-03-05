@@ -26,17 +26,23 @@ include "../connection/batchHistVariables.php";
   ?>
 </form>
 <script>
+    document.getElementById("print").addEventListener("click",()=>{
+    // alert("Hi God");
     document.getElementById("print").style.display="none";
-    var noDispalay = ["salesReportBuyer"];
-    for (var x=0;x<noDispalay.length;x++){
-        document.getElementById(noDispalay[x]).style.display='none';
-    }
+    window.print();
+    document.getElementById("print").style.display="block";
+  })
+   
+    // var noDispalay = ["salesReportBuyer"];
+    // for (var x=0;x<noDispalay.length;x++){
+    //     document.getElementById(noDispalay[x]).style.display='none';
+    // }
    
     
-    var noEditList =["stkCountDate", "notes"];
-    for (var x=0;x<noEditList.length;x++){
-        document.getElementById(noEditList[x]).setAttribute('readonly', 'readonly')
-    }
+    // var noEditList =["stkCountDate", "notes"];
+    // for (var x=0;x<noEditList.length;x++){
+    //     document.getElementById(noEditList[x]).setAttribute('readonly', 'readonly')
+    // }
 
 </script>
 
