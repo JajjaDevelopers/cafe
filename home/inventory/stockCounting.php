@@ -6,6 +6,7 @@ $stkCountNo = nextDocNumber("stock_counting", "count_no", "STC");
 ?>
 <form class="regularForm" method="post" action="../connection/stockCounting.php" style="height: fit-content;">
     <h3 class="formHeading">Stock Counting</h3>
+    
     <div style="display: grid; width:fit-content; margin-left: 70%; margin-bottom:20px">
         <label for="stkCountNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Count No:</label>
         <input type="text" class="shortInput" id="stkCountNo" name="stkCountNo" readonly value="<?= $stkCountNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
@@ -24,7 +25,7 @@ $stkCountNo = nextDocNumber("stock_counting", "count_no", "STC");
                 <?php //submitButton("Back", "", "back") ?>
             </div> -->
             <div class="col-md-12">
-                <?php submitButton("Submit", "submit", "confirm") ?>
+                <?php submitButton("Submit", "submit", "btnsubmit") ?>
             </div>
         </div>
     </div>

@@ -5,6 +5,9 @@ include ("../connection/databaseConn.php");
 ?>
 <form class="regularForm" method="post" action="stockCounting.php" style="height: fit-content;">
     <h3 class="formHeading">Select Customer</h3>
+    <?php
+    include "../alerts/message.php";
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -19,6 +22,6 @@ include ("../connection/databaseConn.php");
             </div>
         </div>
     </div>
-    <?php submitButton("Next", 'submit', 'confirm') ?>
+    <?php submitButton("Next", 'submit', 'btnsubmit') ?>
 </form>
 <?php include "../forms/footer.php" ?>

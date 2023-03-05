@@ -34,34 +34,42 @@ $comment = $_POST["comment"];
 $ref = "Stock Adjsutment";
 $itmNo = 1;
 
-$summSql = $conn->prepare("INSERT INTO adjustment (adj_no, adj_date, customer_id, items_no, qty_add, qty_less, 
+if ($custId!="" && ($totalAdd>0 or $totalLess>0)){
+    $summSql = $conn->prepare("INSERT INTO adjustment (adj_no, adj_date, customer_id, items_no, qty_add, qty_less, 
                             prepared_by, prep_time, comment) VALUES (?,?,?,?,?,?,?,Now(),?)");
-$summSql->bind_param("issiddss", $adjNo, $adjDate, $custId, $affNo, $totalAdd, $totalLess, $prepBy, $comment);
-$summSql->execute();
-$summSql->close();
+    $summSql->bind_param("issiddss", $adjNo, $adjDate, $custId, $affNo, $totalAdd, $totalLess, $prepBy, $comment);
+    $summSql->execute();
+    $summSql->close();
 
-//Addition
-$addSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, 
-                            customer_id, item_no, grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");
-//Reduction                           
-$lessSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, 
-                        customer_id, item_no, grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+    //Addition
+    $addSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, 
+                                customer_id, item_no, grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");
+    //Reduction                           
+    $lessSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, 
+                            customer_id, item_no, grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
 
-for ($x=0;$x<count($qtyList);$x++){
-    $grd = $grdList[$x];
-    $qty = $qtyList[$x];
-    if ($qty<0){
-        $qty *= -1;
-        $lessSql->bind_param("sissisd", $ref, $adjNo, $adjDate, $custId, $itmNo, $grd, $qty);
-        $lessSql->execute();
-        $itmNo += 1;
-    }elseif($qty>0){
-        $addSql->bind_param("sissisd", $ref, $adjNo, $adjDate, $custId, $itmNo, $grd, $qty);
-        $addSql->execute();
-        $itmNo += 1;
+    for ($x=0;$x<count($qtyList);$x++){
+        $grd = $grdList[$x];
+        $qty = $qtyList[$x];
+        if ($qty<0){
+            $qty *= -1;
+            $lessSql->bind_param("sissisd", $ref, $adjNo, $adjDate, $custId, $itmNo, $grd, $qty);
+            $lessSql->execute();
+            $itmNo += 1;
+        }elseif($qty>0){
+            $addSql->bind_param("sissisd", $ref, $adjNo, $adjDate, $custId, $itmNo, $grd, $qty);
+            $addSql->execute();
+            $itmNo += 1;
+        }
+    }
+    if(isset($_POST["btnsubmit"]))
+    {
+    header("location:../inventory/adjustment?formmsg=success");
+    }
+}else{
+    if(isset($_POST["btnsubmit"]))
+    {
+    header("location:../inventory/adjustment?formmsg=fail");
     }
 }
-
-
-header("location:../inventory/adjustment");
 ?>
