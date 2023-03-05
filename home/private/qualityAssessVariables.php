@@ -11,7 +11,7 @@ $sql->fetch();
 $sql->close();
 
 
-//table data (check lists in js to match php arrays)
+//table data (check lists in js and handler to match php arrays)
 $cat1List = array("Full Blacks", "Full Sour", "Pods", "Fungus", "Extraneous Matter", "Severe Insect Damage");
 $cat1InputIds = array("fullBlaks", "fullSour", "pods", "fungus", "extraMat", "insDamage");
 

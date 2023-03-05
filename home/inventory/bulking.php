@@ -6,11 +6,12 @@ $bulkingNo = nextDocNumber("bulking", "bulk_no", "BLK");
 ?>
 <form class="regularForm" method="post", action="../connection/bulking.php" style="height: fit-content;">
     <h3 class="formHeading">Coffee Bulking</h3>
+    <?php include "../alerts/message.php" ?>
     <div style="display: grid; width:fit-content; margin-left: 70%; margin-bottom:20px">
         <label for="bulkingNo" style="grid-column: 1; grid-row: 1; width:70px; margin-top: 5px">Bulking No:</label>
-        <input type="text" class="shortInput" id="bulkingNo" name="bulkingNo" value="<?= $bulkingNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
+        <input type="text" class="shortInput" id="bulkingNo" name="bulkingNo" value="<?= $bulkingNo?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;" readonly>
         <label for="bulkingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
-        <input type="date" class="shortInput" id="bulkingDate" name="bulkingDate" value="" style="grid-column: 2; grid-row: 2">
+        <input type="date" class="shortInput" id="bulkingDate" name="bulkingDate" value="<?= $today?>" style="grid-column: 2; grid-row: 2" required>
     </div>
     <?php include("../forms/customerSelector.php") ?>
     <?php itemsTable(5, "Bulking Input"); ?>
@@ -33,19 +34,7 @@ $bulkingNo = nextDocNumber("bulking", "bulk_no", "BLK");
     </div>
     <?php comment("700px") ?>
     
-
-
-
-
-
-
-
-
-
-
-
-
-    <?php include_once("../private/approvalDetails.php"); ?>
+    <?php submitButton("Submit", "submit", "btnsubmit"); ?>
 </form>
 
 <?php include "../forms/footer.php" ?>

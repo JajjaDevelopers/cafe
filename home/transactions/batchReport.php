@@ -3,13 +3,14 @@ include "../forms/header.php";
 include "../connection/databaseConn.php";
 // include ("../ajax/batchReportReturnsAjax.php");
 // include "../connection/batchReportVariables.php";
-include "../connection/batchHistVariables.php";
+
 
 if(isset($_GET['batchNo'])){
   $batchNo=$_GET['batchNo'];
   // $_SESSION["dryNo"] = $dry;
   $_SESSION["batchNo"] = $batchNo;
 }
+include "../connection/batchHistVariables.php";
 ?>
 <form class="regularForm" style="height: fit-content; width:790px">
   <?php

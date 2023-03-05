@@ -56,7 +56,7 @@ require("../forms/customerSelector.php"); ?>
         </div>
         <div class="col-sm-4">
             <label for="gradeId">Grade:</label><br>
-            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 150px;" required>
+            <select id="gradeId" name="coffeegrades" class="shortInput" style="width: 150px;" onchange="getPreOffSampleNo()" required>
                
             </select>
         </div>
@@ -183,6 +183,7 @@ require("../forms/customerSelector.php"); ?>
       document.getElementById("preOffSample").innerHTML = "";
       var custId = document.getElementById("customerId").value;
       var purpSelect = document.getElementById("purpose").value;
+      var grd = document.getElementById("gradeId").value;
       if (custId == " ") {
           return;
       } 
@@ -191,7 +192,7 @@ require("../forms/customerSelector.php"); ?>
           document.getElementById("preOffSample").innerHTML = this.responseText;
       }
       if (purpSelect == 'Processing' || purpSelect == 'Sale'){
-        xhttp.open("GET", "../ajax/preOffloadSamp.php?q="+custId);
+        xhttp.open("GET", "../ajax/preOffloadSamp.php?q="+custId+"&selGrd="+grd);
         xhttp.send();
       }
     }
