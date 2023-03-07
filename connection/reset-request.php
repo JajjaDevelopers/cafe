@@ -12,12 +12,12 @@ if(isset($_POST["reset-request-submit"]))
   $selector=bin2hex(random_bytes(8)); //pin points user to database
   $token=random_bytes(32);//authenticates user
 
-  $url="jajjadev.tech/create-new-password.php?selector=". $selector."&validator=".bin2hex($token);
+  $url="nucafegrading.com/create-new-password.php?selector=". $selector."&validator=".bin2hex($token);
 
   //expire time
   $expires=date("U") + 3600;
 
-  
+  // f;qLoSJcoQ@b
   //connect to the database
    require "../private/connlogin.php";
 
