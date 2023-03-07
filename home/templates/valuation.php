@@ -20,7 +20,7 @@
                 style="width: 100px; text-align: center; display:block">
                 <input type="date" id="valuationDate" name="valuationDate" value="<?=$valDate?>" class="shortInput" style="width: 100px; text-align: center;  display:block">
                 <input type="number" id="batchNo" name="batchNo" class="shortInput" value="<?=$batcNo?>" style="width: 100px; text-align: center;  display:block"
-                    onchange="updateOrder(this.value)">
+                >
             </div>
         </div>
     </div>

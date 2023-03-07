@@ -18,7 +18,8 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             <div class="col-md-6">
                 <input type="text" id="valuationNumber" name="valuationNumber" class="shortInput" readonly value="<?=$valuationNumber?>"
                 style="width: 100px; text-align: center;">
-                <input type="date" id="valuationDate" name="valuationDate" value="<?=$today?>" class="shortInput" style="width: 100px; text-align: center;"><br>
+                <input type="date" id="valuationDate" name="valuationDate" value="<?=$today?>" class="shortInput" style="width: 100px; text-align: center;"
+                onchange="getFx(this.value)"><br>
                 <input type="number" id="batchNo" name="batchNo" class="shortInput" value="" style="width: 100px; text-align: center;"
                 onchange="updateOrder(this.value)">
             </div>
@@ -35,13 +36,13 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             </tr>
             <tr>
                 <td>Kibooko Delivered (Kg)</td>
-                <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" required class="tableInput"></td>
+                <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" required class="tblNum"></td>
                 <td colspan="3">FAQ Delivered (Kg)</td>
-                <td colspan="2"><input type="number" value="" id="FAQQty" name="FAQQty" required class="tableInput"></td>
+                <td colspan="2"><input type="number" value="" id="FAQQty" name="FAQQty" required class="tblNum" onchange="captureQty()"></td>
             </tr>
             <tr>
                 <td>Exchange Rate</td>
-                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tableInput" required></td>
+                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tblNum" required onchange="captureUgxPrice()"></td>
                 <td colspan="5">Market facilitator and owner settlement rate</td>
                 
             </tr>
@@ -67,13 +68,13 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             
             <tr>
                 <th>Actual Total Value Before Costs</th>
-                <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tableInput"></td>
-                <td><input type="number" value="" id="totalQty" readonly name="totalQty" class="tableInput"></td>
+                <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tblNum"></td>
+                <td><input type="number" value="" id="totalQty" readonly name="totalQty" class="tblNum"></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tableInput"></td>
-                <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tableInput"></td>
+                <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tblNum"></td>
+                <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th>Less Costs</th>
@@ -89,20 +90,20 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
                 <td colspan="6"><input type="text" value="Costs:" id="costsDetails" name="costsDetails" class="tableInput" 
                 style="text-align: left;" placeholder="Enter description of costs..."></td>
                 
-                <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tableInput"></td>
-                <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tableInput"></td>
+                <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tblNum"></td>
+                <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th colspan="6">Sub-total Costs</th>
                 
-                <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tableInput"></td>
-                <td><input type="number" value="" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tableInput"></td>
+                <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tblNum"></td>
+                <td><input type="number" value="" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th colspan="6">Total Value after Costs</th>
                 
-                <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tableInput"></td>
-                <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tableInput"></td>
+                <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tblNum"></td>
+                <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tblNum"></td>
             </tr>
             
         </table>
@@ -113,15 +114,11 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
 <!-- summarizing valuation info -->
 <script>
     function updateOrder(str){
-        
-        
         var selectedClient = document.getElementById('valuationClient').value;
         var batchNo = selectedClient.slice(0,5);
         var batchOrderNumber =  document.getElementById('batchNo')
         var x = Number(batchNo);
         batchOrderNumber.setAttribute('value', (batchNo));
-        
-        
         if (str == "") {
             document.getElementById("customerId").setAttribute('value', '');
             document.getElementById("valuationSupplier").setAttribute('value', '');
@@ -157,13 +154,19 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
         }
         xhttp.open("GET", "../ajax/valuationAjax.php?q="+str);
         xhttp.send();
+    }
+
+    //fx
+    function getFx(str){
+        const xhttp = new XMLHttpRequest();
+        // 
         
-        // xhttp.onload = function() {
-        //     document.getElementById("customerName").value = this.responseText;
-        // }
-        // xhttp.open("GET", "ajax/batchReportAjax.php?q="+str);
-        // xhttp.send();
-        
+        xhttp.onload = function() {
+            document.getElementById("exchangeRate").setAttribute("value", this.responseText);
+
+        }
+        xhttp.open("GET", "../ajax/forex.php?selDate="+str);
+        xhttp.send();
     }
     
 </script>

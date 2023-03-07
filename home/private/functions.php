@@ -580,10 +580,8 @@ function getName($table, $column, $keyColumn, $key){
 }
 
 //exchange rate retrieval
-function getFx(){
+function getFx($date){
   include "connlogin.php";
-  $curDate = new DateTime();
-  $date = date_format($curDate, 'Y-m-d');
   $sql = $conn->prepare("SELECT rate FROM exchange_rate WHERE rate_date=?");
   $sql->bind_param("s", $date);
   $sql->execute();
@@ -635,8 +633,15 @@ $today = date_format($currentDate, 'Y-m-d');
 $fromDateObj=$currentDate->sub(new DateInterval('P30D')); //returning 30 days back date
 $fromDate = date_format($fromDateObj, 'Y-m-d');
 
+function today(){
+  $currentDate = new DateTime();
+  $today = date_format($currentDate, 'Y-m-d');
+  return $today;
+}
+
+
 //forex
-$fxRate = getFx();
+$fxRate = getFx(today());
 
 //getting users names
 function userFullName($userName){

@@ -10,7 +10,7 @@ $charset="utf8mb4";
 // $user="jajjcrmv_isaac";
 // $pwd="GO-sS?6~4A*k";
 // $charset="utf8mb4";
-date_default_timezone_set("Africa/Kampala");
+// date_default_timezone_set("Africa/Kampala");
 
 $options=[
   \PDO::ATTR_ERRMODE=>\PDO::ERRMODE_EXCEPTION,
