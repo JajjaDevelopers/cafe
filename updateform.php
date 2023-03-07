@@ -29,7 +29,7 @@
           </div>
           <div class="form-group">
             <label for= "password">Password</label>
-            <input type="password" class="form-control" value=">" name="password"/>
+            <input type="password" class="form-control" value="" name="password"/>
             <p class="text-muted text-center" style="font-weight:bold;">Password must be at least eight characters</p>
           </div>
           <div class="form-group">

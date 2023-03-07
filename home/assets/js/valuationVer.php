@@ -21,6 +21,7 @@ var faqKg = Number(document.getElementById("FAQQty").value);
         ugxAmtList.push(grdVar+'AmountUgx');
         itmSelectList.push(grdVar+'Select');       
     }
+
     document.getElementById("salesReportBuyer").style.display="none";
     var inactiveList = ["valuationDate", "batchNo", "totalCostsUgx", "costsDetails"];
     var allLists = [nameList, yieldList, qtyList, usPxList, ctsPxList, ugxPxList, usAmtList, ugxAmtList, inactiveList];
@@ -60,7 +61,6 @@ var faqKg = Number(document.getElementById("FAQQty").value);
     }
 
     ?>
-    document.getElementById("grandTotaltUgx").setAttribute("value", ttUgxAmt);
+    var element=document.getElementById("grandTotaltUgx").setAttribute("value", ttUgxAmt);
     document.getElementById("totalValueUgx").setAttribute("value", ttUgxAmt-<?=$valCosts?>);
-    document.getElementById("print").style.display="none";
 </script>

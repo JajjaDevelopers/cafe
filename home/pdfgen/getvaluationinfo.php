@@ -1,6 +1,6 @@
 
 <?php 
-include "./valuationVariables.php";
+include ("../connection/valuationVariables.php");
 include ("../connection/databaseConn.php");
 ?>
 <!DOCTYPE html>

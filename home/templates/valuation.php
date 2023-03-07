@@ -110,9 +110,9 @@
     <?php include "../forms/users.php" ?>
 </div>
 <script>
-    document.getElementById("customerId").value = "<?=$clientId?>";
-    document.getElementById("customerName").value = "<?=$clientName?>";
-    document.getElementById("salesReportContact").value = "<?=$contact?>";
-    document.getElementById("salesReportTel").value = "<?=$tel?>";
+    // document.getElementById("customerId").value = "<?=$clientId?>";
+    // document.getElementById("customerName").value = "<?=$clientName?>";
+    // document.getElementById("salesReportContact").value = "<?=$contact?>";
+    // document.getElementById("salesReportTel").value = "<?=$tel?>";
 </script>
 
