@@ -1,5 +1,11 @@
 <?php $pageTitle="Verify Release"; ?>
-<?php include("../forms/header.php");?>
+<?php include("../forms/header.php");
+if(isset($_GET['valNo'])){
+    $val=$_GET['valNo'];
+    $_SESSION["valNo"] = $val;
+}
+?>
+
 <?php include "../connection/valuationVariables.php";?>
 <?php include ("../connection/databaseConn.php");?>
 

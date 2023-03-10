@@ -260,7 +260,7 @@ body {
             </a>
           </li>
           <li>
-            <a href="../processing/batchProcessingOrder">
+            <a href="../processing/batchCombination">
               <i class="bi bi-circle"></i><span>Batch Processing Order</span>
             </a>
           </li>
@@ -475,57 +475,18 @@ body {
         </a>
         <ul id="tran-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../transactions/grnList">
-              <i class="bi bi-circle"></i><span>Goods Received</span>
+            <a href="../transactions/marketing">
+              <i class="bi bi-circle"></i><span>Marketing</span>
             </a>
           </li>
           <li>
-            <a href="../transactions/batchReportList">
-              <i class="bi bi-circle"></i><span>Batch Report</span>
-            </a>
-          <li>
-            <a href="../transactions/releaseList">
-              <i class="bi bi-circle"></i><span>Dispatch</span>
+            <a href="../transactions/production">
+              <i class="bi bi-circle"></i><span>Producution</span>
             </a>
           </li>
           <li>
-            <a href="../transactions/valuationList">
-              <i class="bi bi-circle"></i><span>Valuation</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/salesReportList">
-              <i class="bi bi-circle"></i><span>Sales Report</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/hullingList">
-              <i class="bi bi-circle"></i><span>Hulling</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/dryingList">
-              <i class="bi bi-circle"></i><span>Drying</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/transferList">
-              <i class="bi bi-circle"></i><span>Transfer Reports</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/bulkingList">
-              <i class="bi bi-circle"></i><span>Bulking Reports</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/adjsutmentList">
-              <i class="bi bi-circle"></i><span>Stock Adjustment</span>
-            </a>
-          </li>
-          <li>
-            <a href="../transactions/stockCountList">
-              <i class="bi bi-circle"></i><span>Stock Counting</span>
+            <a href="../transactions/inventory">
+              <i class="bi bi-circle"></i><span>Inventory</span>
             </a>
           </li>
         </ul>

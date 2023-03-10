@@ -1,13 +1,24 @@
 <?php
+include "connlogin.php";
+include "functions.php";
 //return coffee grades
-function getTypeGrades($typeCategory){
+function getTypeGrades($typeCategory, $coffeeType){
   include "connlogin.php";
-  $sql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE type_category=?");
-  $sql->bind_param("s", $typeCategory);
-  $sql->execute();
-  $sql->bind_result($id, $name);
+  // $byCatSql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE coffee_type=? AND type_category=? ");
+  // $allSql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE coffee_type=?");
+  if ($typeCategory=="All"){
+    $sql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE coffee_type=?");
+    $sql->bind_param("s", $coffeeType);
+    $sql->execute();
+    $sql->bind_result($id, $name);
+  }else{
+    $sql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE (coffee_type=? AND type_category=?)");
+    $sql->bind_param("ss", $coffeeType, $typeCategory);
+    $sql->execute();
+    $sql->bind_result($id, $name);
+  }
   ?>
-  <option value="all">All</option>
+  <option></option>
   <?php
   while ($sql->fetch()){
     ?>
@@ -25,7 +36,7 @@ function getTypeCategories($type){
     $sql->execute();
     $sql->bind_result($typeCategory);
     ?>
-    <option value="all">All</option>
+    <option>--Select--</option>
     <?php
     while ($sql->fetch()){
       ?>
@@ -38,11 +49,12 @@ function getTypeCategories($type){
 //filter selection
 $function = $_GET['filter'];
 $key = $_GET['key'];
+$selectedType = $_GET['selType'];
 
 if ($function == "typeCat"){
     getTypeCategories($key);
 }elseif ($function == "grades") {
-    getTypeGrades($key);
+  getTypeGrades($key, $selectedType);
 }
 
 

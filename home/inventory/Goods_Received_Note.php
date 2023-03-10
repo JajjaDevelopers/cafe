@@ -42,7 +42,7 @@ require("../forms/customerSelector.php"); ?>
             <label for="type">Type:</label><br>
             <select id="type" name="coffeetype" class="shortInput"
                 onchange="itemFilterOptions('category',this.value, 'typeCat')" required>
-                <option value="all">Select</option>
+                <option >--Select--</option>
                 <option value="Arabica">Arabica</option>
                 <option value="Robusta">Robusta</option>
             </select>
@@ -93,7 +93,7 @@ require("../forms/customerSelector.php"); ?>
         <div class="col-sm-3">
             
             <label for="weight" >Pre-Off Sample:</label><br>
-            <select id="preOffSample" name="preOffSample" class="shortInput" ></select>
+            <select id="preOffSample" name="preOffSample" class="shortInput" required></select>
         </div>
     </div>
     
@@ -165,37 +165,6 @@ require("../forms/customerSelector.php"); ?>
   <script src="../assets/js/locationsFilter.js"></script>
   <script>
     document.getElementById("grnDate").setAttribute("value", "<?= $today?>");
-    function getGrades(str){
-      if (str == " ") {
-          return;
-      } 
-      const xhttp = new XMLHttpRequest();
-      // Updating grades based on coffee type
-      xhttp.onload = function() {
-          document.getElementById("gradeId").innerHTML = this.responseText;
-      }
-      xhttp.open("GET", "../ajax/grnAjax.php?q="+str);
-      xhttp.send();
-    }   
-
-    //get pre-offloading sample
-    function getPreOffSampleNo(){
-      document.getElementById("preOffSample").innerHTML = "";
-      var custId = document.getElementById("customerId").value;
-      var purpSelect = document.getElementById("purpose").value;
-      var grd = document.getElementById("gradeId").value;
-      if (custId == " ") {
-          return;
-      } 
-      const xhttp = new XMLHttpRequest();
-      xhttp.onload = function() {
-          document.getElementById("preOffSample").innerHTML = this.responseText;
-      }
-      if (purpSelect == 'Processing' || purpSelect == 'Sale'){
-        xhttp.open("GET", "../ajax/preOffloadSamp.php?q="+custId+"&selGrd="+grd);
-        xhttp.send();
-      }
-    }
-
+    
   </script>
   <script src="../assets/js/itemsFilter.js"></script>

@@ -220,7 +220,7 @@ function coffeeGrades(){
 
 function selectCoffeeGrades(){
   include "connlogin.php"; 
-  $query = "SELECT grade_id, grade_name FROM grades";
+  $query = "SELECT grade_id, grade_name FROM grades WHERE coffee_type='Arabica' OR coffee_type='Robusta'";
   if ($stmt = $conn->prepare($query)) {
       $stmt->execute();
       $stmt->bind_result($grade_id, $grade_name);

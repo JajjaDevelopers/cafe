@@ -4,7 +4,7 @@
   <!-- <div class="container"> -->
 <div id="ajaxDiv1" style="display:none"></div>
 <form class="regularForm" method="POST" style="height:fit-content" action="../connection/batchProcessingOrder.php">
-    <legend class="formHeading">Batch Processing Order</legend>
+    <legend class="formHeading">Batch Order GRNs</legend>
     <?php
         include "../alerts/message.php";
     ?>
@@ -58,6 +58,7 @@
 
 
     <?php submitButton("Submit", "submit", "btnsubmit") ?>
+    <input value="multiGrn" name="combination" style="display: none;">
 </form>
 
 <?php include_once('../forms/footer.php'); ?>

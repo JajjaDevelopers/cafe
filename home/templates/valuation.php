@@ -36,13 +36,13 @@
         </tr>
         <tr>
             <td>Kibooko Delivered (Kg)</td>
-            <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" class="tableInput"></td>
+            <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" class="tblNum" readonly></td>
             <td colspan="3">FAQ Delivered (Kg)</td>
-            <td colspan="2"><input type="number" value="<?=$inputQty?>" id="FAQQty" name="FAQQty" class="tableInput"></td>
+            <td colspan="2"><input type="number" value="<?=$inputQty?>" id="FAQQty" name="FAQQty" class="tblNum" readonly></td>
         </tr>
         <tr>
             <td>Exchange Rate</td>
-            <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tableInput"></td>
+            <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tblNum" readonly></td>
             <td colspan="5">Market facilitator and owner settlement rate</td>
             
         </tr>
@@ -68,13 +68,13 @@
         
         <tr>
             <th>Actual Total Value Before Costs</th>
-            <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tableInput"></td>
-            <td><input type="number" value="" id="totalQty" readonly name="totalYield" class="tableInput"></td>
+            <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tblNum"></td>
+            <td><input type="number" value="" id="totalQty" readonly name="totalYield" class="tblNum"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tableInput" style="text-align: right;"></td>
-            <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tblNum" style="text-align: right;"></td>
+            <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tblNum" style="text-align: right;"></td>
         </tr>
         <tr>
             <th>Less Costs</th>
@@ -90,29 +90,24 @@
             <td colspan="6"><input type="text" value="Costs:" id="costsDetails" name="costsDetails" class="tableInput" 
             style="text-align: left;" placeholder="Enter description of costs..."></td>
             
-            <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tableInput" style="text-align: right;"></td>
-            <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tblNum" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tblNum" style="text-align: right;"></td>
         </tr>
         <tr>
             <th colspan="6">Sub-total Costs</th>
             
-            <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tableInput" style="text-align: right;"></td>
-            <td><input type="number" value="<?= $valCosts ?>" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tblNum" style="text-align: right;"></td>
+            <td><input type="number" value="<?= $valCosts ?>" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tblNum" style="text-align: right;"></td>
         </tr>
         <tr>
             <th colspan="6">Total Value after Costs</th>
             
-            <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tableInput" style="text-align: right;"></td>
-            <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tableInput" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tblNum" style="text-align: right;"></td>
+            <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tblNum" style="text-align: right;"></td>
         </tr>
     </table>
 
     <?php include "../forms/users.php" ?>
 </div>
-<script>
-    // document.getElementById("customerId").value = "<?=$clientId?>";
-    // document.getElementById("customerName").value = "<?=$clientName?>";
-    // document.getElementById("salesReportContact").value = "<?=$contact?>";
-    // document.getElementById("salesReportTel").value = "<?=$tel?>";
-</script>
+
 
