@@ -42,7 +42,7 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             </tr>
             <tr>
                 <td>Exchange Rate</td>
-                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tblNum" required onchange="captureUgxPrice()"></td>
+                <td colspan="2"><input type="number" value="<?= $fxRate?>" id="exchangeRate" name="exchangeRate" class="tblNum" required onchange="captureQty()"></td>
                 <td colspan="5">Market facilitator and owner settlement rate</td>
                 
             </tr>
@@ -62,10 +62,7 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
                 for ($row = 1; $row <= 10; $row ++){
                     valuationItemRow($row); 
                 }
-            
             ?>
-            
-            
             <tr>
                 <th>Actual Total Value Before Costs</th>
                 <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tblNum"></td>

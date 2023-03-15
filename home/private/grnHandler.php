@@ -23,14 +23,21 @@ $truckNumber = sanitize_table($_POST["truckNumber"]);
 $driverName = sanitize_table($_POST["driverName"]) ;
 $remarks = sanitize_table($_POST["remarks"]);
 $preOffSample = intval($_POST["preOffSample"]) ;
+if ($purpose=="Processing"){
+    $status="Pending Processing";
+}
+else{
+    $status=$purpose;
+}
 
 if ($customerId!="" && $coffeeGrade!="all" && $coffeeGrade!=""){
     $grnStmt = "INSERT INTO grn (grn_no, grn_date, grn_time_in, customer_id, grade_id, grn_mc, no_of_bags, grn_qty, 
     purpose, district_id, delivery_person, truck_no, driver, quality_remarks, prepared_by, grn_status) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending Processing')";
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
     $grnSql = $conn -> prepare($grnStmt);
-    $grnSql -> bind_param("issssdiisisssss", $grnNo, $grnDate, $timein, $customerId, $coffeeGrade, $mc, $bags, $gradeweight, 
-                $purpose, $origin, $deliveryPerson, $truckNumber, $driverName, $remarks, $username);
+    $grnSql -> bind_param("issssdiisissssss", $grnNo, $grnDate, $timein, $customerId, $coffeeGrade, $mc, $bags, $gradeweight, 
+                $purpose, $origin, $deliveryPerson, $truckNumber, $driverName, $remarks, $username, $status);
     $grnSql -> execute();
     $conn->rollback();
 

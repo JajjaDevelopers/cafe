@@ -35,7 +35,7 @@ $orderNoSql->fetch();
 $orderNoSql->close();
 
 //Update processing status in batch orders
-$updateOrderSql = $conn->prepare("UPDATE batch_processing_order SET processed = '1'
+$updateOrderSql = $conn->prepare("UPDATE batch_processing_order SET status = 'Processed'
                                  WHERE (batch_order_no = ?)");
 $updateOrderSql->bind_param("i", $batch_order_no);
 $updateOrderSql->execute();

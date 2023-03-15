@@ -402,18 +402,20 @@ table, th, td{
     border: 1px solid #626566cc;
     border-collapse: collapse;
     font-size: 12px;
+    padding: 2px;
 }
 th, td{
     padding: 2px
 } 
 th{
-    padding: 0px;
+    padding: 2px;
     text-align: center;
+    background-color: inherit;
 }
 td{
     margin: 0px;
-    padding: 0px;
-    background-color: inherit;
+    padding: 2px;
+    background-color: white;
 } 
 
  .itmNoInput{
@@ -595,6 +597,17 @@ td{
     height: 100%;
     background-color: white;
     padding: 2px;
+}
+
+.tblTotal{
+    margin: 0px;
+    text-align: right;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 2px;
+    font-weight: bold;
 }
 
 .emptyCell{

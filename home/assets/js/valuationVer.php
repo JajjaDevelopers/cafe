@@ -32,35 +32,16 @@ var faqKg = Number(document.getElementById("FAQQty").value);
             document.getElementById(itmSelectList[i]).style.display="none";
         }
     }
-    var i=0;
-    var ttYield = 0;
-    var ttQty = 0;
-    var ttUsAmt = 0;
-    var ttUgxAmt = 0;
+    
     <?php
-    while($valDetSql->fetch()){
-        ?>
-        
-        var qty = Number("<?=$grdQty?>");
-        if (qty>0){
-            document.getElementById(nameList[i]).setAttribute("value", "<?=$grdName?>");
-            document.getElementById(qtyList[i]).setAttribute("value", "<?=$grdQty?>");
-            document.getElementById(yieldList[i]).setAttribute("value", <?=round($grdQty*100/$inputQty, 2)?>);
-            document.getElementById(usPxList[i]).setAttribute("value", "<?= round($ugxPx/$fxRate,2) ?>");
-            document.getElementById(ugxPxList[i]).setAttribute("value", "<?=$ugxPx?>");
-            document.getElementById(ctsPxList[i]).setAttribute("value", "<?=round($ugxPx/$fxRate/0.022046,3)?>");
-            document.getElementById(usAmtList[i]).setAttribute("value", "<?= round(($ugxPx/$fxRate)*$grdQty,2)?>");
-            document.getElementById(ugxAmtList[i]).setAttribute("value", "<?=$ugxPx*$grdQty?>");
-            ttYield += <?=round($grdQty*100/$inputQty, 2)?>;
-            ttQty += <?=$grdQty?>;
-            ttUsAmt += <?= round(($ugxPx/$fxRate)*$grdQty,2)?>; 
-            ttUgxAmt += <?=$ugxPx*$grdQty?>;
-            i+=1;
-        }
-        <?php
-    }
+    
 
     ?>
-    var element=document.getElementById("grandTotaltUgx").setAttribute("value", ttUgxAmt);
+    document.getElementById("totalQty").setAttribute("value", ttQty);
+    document.getElementById("totalYield").setAttribute("value", ttYield);
+    document.getElementById("totalCostsUsd").setAttribute("value", <?=num($valCosts/$fxRate)?>);
+    document.getElementById("grandTotaltUgx").setAttribute("value", ttUgxAmt);
     document.getElementById("totalValueUgx").setAttribute("value", ttUgxAmt-<?=$valCosts?>);
+    document.getElementById("grandTotaltUs").setAttribute("value", (ttUsAmt,2));
+    document.getElementById("totalValueUsd").setAttribute("value", (ttUsAmt-Number("<?=$valCosts/$fxRate?>")));
 </script>

@@ -3,7 +3,7 @@
 <?php include ("../connection/databaseConn.php"); ?>
   <!-- <div class="container"> -->
 <div id="ajaxDiv1" style="display:none"></div>
-<form class="regularForm" method="POST" style="height:fit-content" action="../connection/batchProcessingOrder.php">
+<form class="regularForm" method="POST" style="height:fit-content; width:900px" action="../connection/batchProcessingOrder.php">
     <legend class="formHeading">Batch Order GRNs</legend>
     <?php
         include "../alerts/message.php";
@@ -15,10 +15,23 @@
         <input type="date" class="shortInput" id="orderDate" name="orderDate" value="<?= $today ?>" style="grid-column: 2; grid-row: 2">
     </div>
     <?php require "../connection/batchOrderCustomerPicker.php" ?>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Activity:</label>
+                <select id="activity" name="activity" class="shortInput" style="width: 200px;">
+                    <option value="Grading">Grading and Color Sorting</option>
+                    <option value="Hulling">Hulling</option>
+                    <option value="Drying">Drying</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="gradeLimit" style="grid-row: 1; margin-top: 5px">Input Grade</label>
+              <select type="text" id="gradeLimit" name="gradeLimit" class="shortInput" style="width: 200px" required onchange="getGrns(this.value)"></select>
+            </div>
+        </div>
+    </div>
     <div>
-      <label for="gradeLimit" style="grid-row: 1; width:70px; margin-top: 5px">Input Grade</label>
-      <select type="text" id="gradeLimit" name="gradeLimit" class="shortInput" style="width: 200px" required onchange="getGrns(this.value)"></select>
       <table style="margin-top: 20px;">
         <tr>
           <th style="width: 100px;">GRN No.</th>
@@ -51,14 +64,24 @@
         </tr>
       </table>
     </div>
-
-
-
-
-
-
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" class="shortInput" value="<?=$today?>" required>
+                <label for="startTime">Time</label>
+                <input type="time" id="startTime" name="startTime" class="shortInput" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="endDate" class="shortInput" value="<?=$today?>" required>
+                <label for="endTime">Time</label>
+                <input type="time" id="endTime" name="endTime" class="shortInput" required>
+            </div>
+        </div>
+    </div>
     <?php submitButton("Submit", "submit", "btnsubmit") ?>
-    <input value="multiGrn" name="combination" style="display: none;">
+    <input value="multiGrn" name="combination" style="display: none;" readonly>
 </form>
 
 <?php include_once('../forms/footer.php'); ?>

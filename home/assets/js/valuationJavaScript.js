@@ -23,10 +23,6 @@ for (var x=1; x<=10; x++){
     
 }
 
-
-
-var excRate = Number(document.getElementById('exchangeRate').value);
-
 // Getting grade list
 function valuationItemCodeAndName(selectId){
     var selectedItem = document.getElementById(selectId).value;
@@ -35,7 +31,6 @@ function valuationItemCodeAndName(selectId){
     document.getElementById(codeIds[selectIndex]).setAttribute("value", selectedItem.slice(0,6));
     document.getElementById(nameIds[selectIndex]).setAttribute("value", selectedItem.substr(8));
 }
-
 
 
 function getListTotal(listName, totalId){ 
@@ -52,18 +47,19 @@ function getListTotal(listName, totalId){
     
 }
 
-
-
 function captureQty(){
+    var excRate = Number(document.getElementById('exchangeRate').value);
     var faqQty = Number(document.getElementById('FAQQty').value);
     for (var x=0; x < qtyIds.length; x++){
         var qty = Number(document.getElementById(qtyIds[x]).value);
-        var usRate = Number(document.getElementById(priceUsIds[x]).value);
         var ugxRate = Number(document.getElementById(priceUgxIds[x]).value);
-        if (qty != 0){
+        var usRate = Number(document.getElementById(priceUsIds[x]).value);
+        if (qty > 0){
             // Set yield, US amount and Ugx amount
             document.getElementById(yieldIds[x]).setAttribute('value', (qty/faqQty)*100);
-            document.getElementById(amountUsIds[x]).setAttribute('value', (qty*usRate)); 
+            document.getElementById(priceUsIds[x]).setAttribute('value', (ugxRate / excRate));
+            document.getElementById(priceCtsIds[x]).setAttribute('value', (ugxRate / excRate)*2.20462262185);
+            document.getElementById(amountUsIds[x]).setAttribute('value', (qty*(ugxRate / excRate))); 
             document.getElementById(amountUgxIds[x]).setAttribute('value', (qty*ugxRate)); 
 
         }
@@ -77,48 +73,51 @@ function captureQty(){
 
 
 // Update values when ugx px is updated
-function captureUgxPrice(){
-    //var excRate = Number(document.getElementById('exchangeRate').value);
-    for (var x=0; x < priceUgxIds.length; x++){
-        var ugPx = Number(document.getElementById(priceUgxIds[x]).value);
-        if (ugPx !=0){
-            document.getElementById(priceUsIds[x]).setAttribute('value', (ugPx / excRate));
-            var usdPx = Number(document.getElementById(priceUsIds[x]).value);
-            document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
-        }
-        captureQty();
-    }
+// function captureUgxPrice(){
+//     //var excRate = Number(document.getElementById('exchangeRate').value);
+//     for (var x=0; x < priceUgxIds.length; x++){
+//         var ugPx = Number(document.getElementById(priceUgxIds[x]).value);
+//         if (ugPx !=0){
+//             document.getElementById(priceUsIds[x]).setAttribute('value', (ugPx / excRate));
+//             var usdPx = Number(document.getElementById(priceUsIds[x]).value);
+//             document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
+//         }
+//         captureQty();
+//     }
     
-}
+// }
 
 
 //Update values when Usd px is updated
-function captureUsdPrice(){
-    //var excRate = Number(document.getElementById('exchangeRate').value);
-    for (var x=0; x < priceUsIds.length; x++){
-        var usdPx = Number(document.getElementById(priceUsIds[x]).value);
-        if (usdPx !=0){
-            document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
-            document.getElementById(priceUgxIds[x]).setAttribute('value', (usdPx * excRate));
-        }
-        captureQty();
-    }
+// function captureUsdPrice(){
+//     //var excRate = Number(document.getElementById('exchangeRate').value);
+//     for (var x=0; x < priceUsIds.length; x++){
+//         var usdPx = Number(document.getElementById(priceUsIds[x]).value);
+//         if (usdPx !=0){
+//             document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
+//             document.getElementById(priceUgxIds[x]).setAttribute('value', (usdPx * excRate));
+//         }
+//         captureQty();
+//     }
     
-}
+// }
 
 
 for (var x=0; x < qtyIds.length; x++){
     document.getElementById(qtyIds[x]).addEventListener("blur", captureQty);
-    document.getElementById(priceUgxIds[x]).addEventListener("blur", captureUgxPrice);
-    document.getElementById(priceUsIds[x]).addEventListener("blur", captureUsdPrice);
+    document.getElementById(priceUgxIds[x]).addEventListener("blur", captureQty);
 }
 
 
 function captureCosts(){
+    var excRate = Number(document.getElementById('exchangeRate').value);
     var ugxCosts = Number(document.getElementById('totalCostsUgx').value);
-    document.getElementById('totalCostsUsd').setAttribute('value', ugxCosts/excRate);
-    document.getElementById('subTotalCostsUsd').setAttribute('value', ugxCosts/excRate);
-    document.getElementById('subTotalCostsUgx').setAttribute('value', ugxCosts);
+    if (ugxCosts>0){
+        document.getElementById('totalCostsUsd').setAttribute('value', ugxCosts/excRate);
+        document.getElementById('subTotalCostsUsd').setAttribute('value', ugxCosts/excRate);
+        document.getElementById('subTotalCostsUgx').setAttribute('value', ugxCosts);
+    }
+    
 
     var grandTotaltValue = document.getElementById('grandTotaltUgx').value;
     var subTotalCosts = document.getElementById('subTotalCostsUgx').value;

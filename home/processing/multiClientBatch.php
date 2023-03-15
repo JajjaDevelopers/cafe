@@ -12,11 +12,24 @@ $batchOrderNo = nextDocNumber("batch_processing_order", "batch_order_no", "BOD")
         <label for="dryingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
         <input type="date" class="shortInput" id="orderDate" name="orderDate" required value="<?= $today ?>" style="grid-column: 2; grid-row: 2">
     </div>
-    <label>Input Grade:</label>
-    <select id="inputGrade" name="inputGrade" class="shortInput" style="width: 300px;" onchange="setGrade()">
-        <?php selectCoffeeGrades() ?>
-    </select>
-    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Activity:</label>
+                <select id="activity" name="activity" class="shortInput" style="width: 200px;" onchange="setGrade()">
+                    <option value="Grading">Grading and Color Sorting</option>
+                    <option value="Hulling">Hulling</option>
+                    <option value="Drying">Drying</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Input Grade:</label>
+                <select id="inputGrade" name="inputGrade" class="shortInput" style="width: 200px;" onchange="getClients()">
+                    <?php selectCoffeeGrades() ?>
+                </select>
+            </div>
+        </div>
+    </div>
     <table>
         <thead>
             <tr>
@@ -34,7 +47,7 @@ $batchOrderNo = nextDocNumber("batch_processing_order", "batch_order_no", "BOD")
                 <tr>
                     <td style="text-align: center;"><?=$x."."?></td>
                     <td><select id="<?='client'.$x.'Id'?>" name="<?='client'.$x.'Id'?>?>" class="tableInput" 
-                    onchange="getGrnDetails('<?=$x?>', 'getGrns', '<?='client'.$x.'Grn'?>')"><?php clientPicker() ?></select></td>
+                    onchange="getGrnDetails('<?=$x?>', 'getGrns', '<?='client'.$x.'Grn'?>')"></select></td>
                     <td><select id="<?='client'.$x.'Grn'?>" name="<?='client'.$x.'Grn'?>" class="tableInput" 
                     onchange="getGrnDetails('<?=$x?>', 'getQty', '<?='client'.$x.'Qty'?>')"></select></td>
                     <td>
@@ -54,13 +67,44 @@ $batchOrderNo = nextDocNumber("batch_processing_order", "batch_order_no", "BOD")
             </tr>
         </tbody>
     </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" class="shortInput" value="<?=$today?>" required>
+                <label for="startTime">Time</label>
+                <input type="time" id="startTime" name="startTime" class="shortInput" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="endDate" class="shortInput" value="<?=$today?>" required>
+                <label for="endTime">Time</label>
+                <input type="time" id="endTime" name="endTime" class="shortInput" required>
+            </div>
+        </div>
+    </div>
     <?php submitButton("Submit", "submit", "btnsubmit") ?>
-    <input value="multiClient" name="combination" style="display: none;">
+    <input value="multiClient" name="combination" style="display: none;" readonly>
 </form>
 <?php
 include "../forms/footer.php";
 ?>
 <script>
+    function getClients(){
+        var inputGrd = document.getElementById("inputGrade").value;
+        const xhttp = new XMLHttpRequest();
+        // Updating clients based on grades
+        xhttp.onreadystatechange  = function() {
+            for (var x=1;x<=5;x++){
+                document.getElementById('client'+x+'Id').innerHTML=this.responseText;
+            }
+        }
+        xhttp.open("GET", "../ajax/clientGrnPicker.php?selFun=getClient&selGrade="+inputGrd);
+        xhttp.send();
+        setGrade();
+    }
+
+
     function setGrade(){
         for (var x=1;x<=5;x++){
             document.getElementById('client'+x+'Qty').setAttribute("value", "");
@@ -120,9 +164,7 @@ include "../forms/footer.php";
                     document.getElementById('client'+index+'Qty').setAttribute("value", "");
                     getTotal();
                 }
-                
             }
-            
         }
         xhttp.open("GET", "../ajax/clientGrnPicker.php?selGrade="+inputGrd+"&selClient="+selectCustomer+"&selFun="+fun+"&selGrn="+selectedGrn);
         xhttp.send();

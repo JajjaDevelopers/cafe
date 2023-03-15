@@ -48,38 +48,38 @@ if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
     $summarySql->close();
 
     //valuation table update
-    $valDetSql = $conn->prepare("INSERT INTO valuations (valuation_no, item_no, grade_id, qty, price_ugx) VALUES (?,?,?,?,?)");
+    // $valDetSql = $conn->prepare("INSERT INTO valuations (valuation_no, item_no, grade_id, qty, price_ugx) VALUES (?,?,?,?,?)");
 
     // Posting valuations items into invetory
     $quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");
+                trans_date, customer_id, item_no, grade_id, qty_in, price_ugx) VALUES (?,?,?,?,?,?,?,?)");
     $quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+                trans_date, customer_id, item_no, grade_id, qty_out, price_ugx) VALUES (?,?,?,?,?,?,?,?)");
 
     $docType = "Valuation Report";
     $itmNo = 1;
     $valItmNo = 1;
     $self = "SELF01";
     for ($x=0; $x < count($allGradeQty); $x++ ) {
-    $gradeQty = sanitize_table($_POST[$allGradeQty[$x]]);
-    if ($gradeQty > 0){
-    $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
-    $gradeName = $_POST[$allGradeName[$x]];
-    //valuation details
-    $valDetSql->bind_param("iisdd", $valuationNo, $valItmNo, $gradeName, $gradeQty, $gradePrice);
-    $valDetSql->execute();
-    $valItmNo += 1;
-    //qty in
-    $quantityInSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
-                                $gradeName, $gradeQty);
-    $quantityInSql->execute();
-    //qty out
-    $itmNo += 1;
-    $quantityOutSql->bind_param("sissisd", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
-                                $gradeName, $gradeQty);
-    $quantityOutSql->execute();
-    $itmNo += 1;
-    }
+        $gradeQty = sanitize_table($_POST[$allGradeQty[$x]]);
+        if ($gradeQty > 0){
+            $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
+            $gradeName = $_POST[$allGradeName[$x]];
+            //valuation details
+            // $valDetSql->bind_param("iisddd", $valuationNo, $valItmNo, $gradeName, $gradeQty, $gradePrice);
+            // $valDetSql->execute();
+            // $valItmNo += 1;
+            //qty in
+            $quantityInSql->bind_param("sissisdd", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
+                                        $gradeName, $gradeQty, $gradePrice);
+            $quantityInSql->execute();
+            //qty out
+            $itmNo += 1;
+            $quantityOutSql->bind_param("sissisdd", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
+                                        $gradeName, $gradeQty, $gradePrice);
+            $quantityOutSql->execute();
+            $itmNo += 1;
+        }
     }
     $quantityInSql->close();
     $quantityOutSql->close();

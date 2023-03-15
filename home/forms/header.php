@@ -260,8 +260,8 @@ body {
             </a>
           </li>
           <li>
-            <a href="../processing/batchCombination">
-              <i class="bi bi-circle"></i><span>Batch Processing Order</span>
+            <a href="../processing/batchOrder">
+              <i class="bi bi-circle"></i><span>Batch Order &#38; Schedule</span>
             </a>
           </li>
           <li>
@@ -421,12 +421,14 @@ body {
         </a>
         <ul id="admin-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="../forms/pettyCash">
+            <!-- <a href="../forms/pettyCash"> -->
+            <a href="#">
               <i class="bi bi-circle"></i><span>Petty Cash Request</span>
             </a>
           </li>
           <li>
-            <a href="../forms/fundsRequisition">
+            <a href="#">
+            <!-- <a href="../forms/fundsRequisition"> -->
               <i class="bi bi-circle"></i><span>Funds Requisition</span>
             </a>
           </li>
@@ -451,6 +453,11 @@ body {
           <i class="bi bi-bar-chart"></i><span>Reports &#38; Analytics</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="../processing/processingSchedule">
+              <i class="bi bi-circle"></i><span>Processing Schedule</span>
+            </a>
+          </li>
           <!-- <li>
             <a href="charts-chartjs.html">
               <i class="bi bi-circle"></i><span>Chart.js</span>
@@ -481,7 +488,7 @@ body {
           </li>
           <li>
             <a href="../transactions/production">
-              <i class="bi bi-circle"></i><span>Producution</span>
+              <i class="bi bi-circle"></i><span>Production</span>
             </a>
           </li>
           <li>

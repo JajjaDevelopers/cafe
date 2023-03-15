@@ -18,7 +18,7 @@ if ($client == "all"){
 }else{
     $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
     FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-    WHERE (valuation_date BETWEEN ? AND ? AND customer_id=?) GROUP BY valuation_no");
+    WHERE (valuation_date BETWEEN ? AND ? AND valuation_report_summary.customer_id=?) GROUP BY valuation_no");
     $sql->bind_param("sss", $frmDate, $toDate, $client);
 }
 $sql->execute();
@@ -53,9 +53,9 @@ if ($client=='all'){
                 <td><a href="../transactions/valuation?valNo=<?= $row["valuation_no"] ?>"><?= $row["valuation_no"] ?></a></td>
                 <td><?= $row["valuation_date"] ?></td>
                 <td><?= $row["customer_name"] ?></td>
-                <td style="text-align:right"><?= $row["gross_value"] ?></td>
-                <td><?= $row["costs"] ?></td>
-                <td><?= $netValue ?></td>
+                <td style="text-align:right"><?= num($row["gross_value"]) ?></td>
+                <td style="text-align: right;"><?= num($row["costs"]) ?></td>
+                <td style="text-align: right;"><?= num($netValue) ?></td>
 
             </tr>
             <?php

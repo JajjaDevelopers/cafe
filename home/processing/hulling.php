@@ -33,6 +33,7 @@ $hullingNo = nextDocNumber("hulling", "hulling_no", "HLP");
             <?php
             $detailsId = array("input", "output", "husks", "otherLoss");
             $details = array("Input", "Output", "Husks", "Other Loss");
+            $detailsValues = array("", "", "GHUSKS", "");
             for ($i=0; $i<count($detailsId); $i++){
             ?>
             <tr>

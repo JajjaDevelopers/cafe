@@ -3,8 +3,8 @@ $pageTitle = "Marketing Transactions";
 include "../forms/header.php";
 //list of transaction: Name, link, description
 $transactions = array( 
-    array("Valuation Reports", "batchReportList", "Valuation reports made for suppliers indicating quantity and value of deliveries"),
-    array("Sales Reports", "hullingList", "Sales made to customers indicating quantity and value of sales"),
+    array("Valuation Reports", "valuationList", "Valuation reports made for suppliers indicating quantity and value of deliveries"),
+    array("Sales Reports", "salesReportList", "Sales made to customers indicating quantity and value of sales"),
     
 
 );

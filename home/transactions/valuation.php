@@ -20,12 +20,13 @@ include ("../connection/databaseConn.php");
     </a>
 </div>
 </form>
-<?php
-include "../assets/js/valuationVer.php"
-?>
+
 <script>
   document.getElementById("print").style.display="none";
 </script>
 <?php include "../forms/footer.php" ?>
+<?php
+include "../assets/js/valuationVer.php"
+?>
 
 
