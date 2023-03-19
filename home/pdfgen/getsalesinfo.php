@@ -21,6 +21,7 @@
 </form>
 <?php include "../assets/js/salesReport.php" ?>
 <script>
+  document.getElementById("print").style.display="block";
   document.getElementById("print").addEventListener("click",()=>{
   // alert("Hi God");
   document.getElementById("print").style.display="none";
