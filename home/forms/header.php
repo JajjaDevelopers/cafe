@@ -265,7 +265,7 @@ body {
             </a>
           </li>
           <li>
-            <a href="../processing/BatchOrderSelection">
+            <a href="../processing/selectBatchOrder?act=Grading">
               <i class="bi bi-circle"></i><span>Batch Report</span>
             </a>
           </li>
@@ -275,12 +275,12 @@ body {
             </a>
           </li>
           <li>
-            <a href="../processing/drying">
+            <a href="../processing/selectBatchOrder?act=Drying">
               <i class="bi bi-circle"></i><span>Drying</span>
             </a>
           </li>
           <li>
-            <a href="../processing/hulling">
+            <a href="../processing/selectBatchOrder?act=Hulling">
               <i class="bi bi-circle"></i><span>Hulling</span>
             </a>
           </li>

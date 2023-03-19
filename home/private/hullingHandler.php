@@ -1,8 +1,10 @@
 <?php session_start(); ?>
-<?php $prepared_by = $_SESSION["fullName"]; ?>
-<?php include ("database.php"); ?>
-<?php
+<?php $prepared_by = $_SESSION["fullName"];
+include ("connlogin.php");
+include "functions.php";
+
 $hulling_no = documentNumber("hulling", "hulling_no");
+$orderNo = intval($_POST['orderNo']);
 $hulling_date = $_POST["hullingDate"];
 $customer_id = $_POST["customerId"];
 $input_grade_id = $_POST["inputCode"];
@@ -15,13 +17,12 @@ $notes = $_POST["notes"];
 
 if ($hulling_date != "" && $customer_id != "" && $input_grade_id !="" && $output_qty>0 && $input_grade_id>0){
     //Capturing summary
-    $hullingSummary = $conn->prepare("INSERT INTO hulling (hulling_no, hulling_date, customer_id, input_grade_id, 
+    $hullingSummary = $conn->prepare("INSERT INTO hulling (hulling_no, batch_order_no, hulling_date, customer_id, input_grade_id, 
     input_qty, mc_in, output_grade_id, output_qty, mc_out, notes, prepared_by, prep_date)
-    VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-    $hullingSummary->bind_param("isssddsddss", $hulling_no, $hulling_date, $customer_id, $input_grade_id, $input_qty,
+    VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $hullingSummary->bind_param("iisssddsddss", $hulling_no, $orderNo, $hulling_date, $customer_id, $input_grade_id, $input_qty,
     $mc_in, $output_grade_id, $output_qty, $mc_out, $notes, $prepared_by);
     $hullingSummary->execute();
-    $conn->rollback();
 
     //Capturing hulling details
     $inventory_reference = "Hulling";
@@ -34,7 +35,7 @@ if ($hulling_date != "" && $customer_id != "" && $input_grade_id !="" && $output
     $conn->rollback();
 
     $outputSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, item_no, 
-    grade_id, qty_in) VALUES (?, ?, ?, ?, ?, ?)");
+    grade_id, qty_in, trans_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     $outpuIdtList = array("outputCode", "husksCode", "otherLossCode");
     $outputQtyList = array("outputQty", "husksQty", "otherLossQty");
@@ -42,19 +43,24 @@ if ($hulling_date != "" && $customer_id != "" && $input_grade_id !="" && $output
         $item_no += 1;
         $grade_id = $_POST[$outpuIdtList[$x]];
         $qty_in = $_POST[$outputQtyList[$x]];
-        $outputSql->bind_param("sisisd", $inventory_reference, $hulling_no, $customer_id, $item_no, $grade_id, $qty_in);
+        $outputSql->bind_param("sisisds", $inventory_reference, $hulling_no, $customer_id, $item_no, $grade_id, $qty_in, $hulling_date);
         $outputSql->execute();
-        $conn->rollback();
 
     }
+
+    //update order
+    $orderSql=$conn->prepare("UPDATE batch_processing_order SET status='Completed Hulling' WHERE batch_order_no=?");
+    $orderSql->bind_param("i", $orderNo);
+    $orderSql->execute();
+
     if(isset($_POST["btnsubmit"]))
     {
-        header("location:../processing/hulling?formmsg=success");
+        header("location:../processing/selectBatchOrder?act=Hulling&formmsg=success");
     }
 } else{
     if(isset($_POST["btnsubmit"]))
         {
-            header("location:../processing/hulling?formmsg=fail");
+            header("location:../processing/selectBatchOrder?act=Hulling&formmsg=success");
         }
 
 }

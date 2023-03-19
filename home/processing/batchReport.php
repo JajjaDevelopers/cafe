@@ -1,11 +1,12 @@
 <?php $pageTitle="Batch Report"; ?>
 <?php include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
+include "../connection/batchOrderSummary.php";
 include ("../ajax/batchReportReturnsAjax.php");
 ?>
 <?php 
 
-require_once ("../connection/batchReportVariables.php");
+//require_once ("../connection/batchReportVariables.php");
 ?>
 <form id="batchReportForm" class="regularForm"action="../connection/batchReport.php" method="POST" style="width: 900px;">
     <h3 id="batchReportHeading" class="formHeading">Production Report</h3>
@@ -23,13 +24,13 @@ require_once ("../connection/batchReportVariables.php");
                 echo '<label id="batchReportNumber" class="shortInput" name="batchReportNumber">'.$newBatchNo .'</label>'.'<br>';
             ?>
             <label for="batchOrderNumber">Order No.:</label>
-            <input type="number" id="batchOrderNumber" class="shortInput" name="batchOrderNumber" value="<?= '00'.$batchOrderNumber ?>"><br>
+            <input type="number" id="batchOrderNumber" class="shortInput" name="batchOrderNumber" value="<?= $batchOrderNumber ?>"><br>
             <label for="batchReportDate">Date:</label>
             <input type="date" id="batchReportDate" class="shortInput" name="batchReportDate" value="<?= $today ?>">
             <br>
         </div>
         <div style="padding-top: 50px; margin-bottom: 5px; ">
-            <?php customerFill(); ?>
+            <?php include "../forms/customerSelector.php"; ?>
             <label for="batchReportOfftaker">Offtaker</label>
             <select id="batchReportOfftaker" class="shortInput" name="batchReportOfftaker">
                 <option>Self</option>
@@ -41,46 +42,47 @@ require_once ("../connection/batchReportVariables.php");
     <div>
         
         <div style="display: grid;">
+            <input value="<?=$grdId?>" name="inputCode" readonly style="display: none;">
             <table id="batchInputTable" style="width: 300px; grid-row: 1; grid-column: 1;">
                 <tr>
                     <th>INPUT:</th>
                     <th style="width: 100px;">KGs</th>
                 </tr>
                 <tr>
-                    <td>INPUT <?= $inputGradeName?></td>
-                    <td><input type="number" id="inputQty" name="inputQty" class="tableInput" value="<?= $netInputQty ?>"></td>
+                    <td>INPUT <?= $grdName?></td>
+                    <td><input type="number" id="inputQty" name="inputQty" class="tblNum" value="<?= $inQty ?>"></td>
                 </tr>
                 <tr>
                     <td>Add Spill.Priv.Batch</td>
-                    <td><input type="number" id="addSpillQty" name="addSpillQty" class="tableInput"></td>
+                    <td><input type="number" id="addSpillQty" name="addSpillQty" class="tblNum"></td>
                 </tr>
                 <tr>
                     <td>Less Spill C/F</td>
-                    <td><input type="number" id="lessSpillQty" name="lessSpillQty" class="tableInput"></td>
+                    <td><input type="number" id="lessSpillQty" name="lessSpillQty" class="tblNum"></td>
                 </tr>
                 <tr>
                     <td>NET INPUT</td>
-                    <td><input type="number" id="netInputQty" readonly name="netInputQty" class="tableInput" value="<?= $netInputQty ?>"></td>
+                    <td><input type="number" id="netInputQty" readonly name="netInputQty" class="tblNum" value="<?= $inQty ?>"></td>
                 </tr>
             </table>
             <div style="display: inline-block; grid-row: 1; grid-column: 2;">
                 Avg. MC In: <input type="number" id="batchReportMcIn" class="shortInput" name="batchReportMcIn" style="width: 60px;"
-                readonly value="<?= $inputMc ?>">
+                readonly value="<?= $inMc ?>">
                 Avg. MC Out: <input type="doubleval" id="batchReportMcIn" class="shortInput" name="batchReportMcOut" style="width: 60px;"
                 value="<?= $inputMc ?>"><br>
                 Remarks:<br><textarea name="remarks" style="width: 300px; padding: 3px " placeholder="Any comment or remarks"></textarea>
             </div>
         </div>
         
-        <h4 style="margin-top: 20px;">RETURNS</h4>
+        <h5 style="margin-top: 20px;">RETURNS</h5>
         <div style="display: grid;">
             <div style="grid-column:1; grid-row:1">
                 <?php 
-                    getGrades($typeCategory, "HIGH", "", "high", "High Grades"); echo '<br>'; //HIgh grades
-                    getGrades($typeCategory, "LOW", "", "low", "Low Grades"); echo '<br>';//Low grades
-                    getGrades($typeCategory, "BLACKS", "", "blacks", "Color Sorter Rejects"); echo '<br>';//Blacks beans
-                    getGrades("NONE", "WASTES", "", "wastes", "Wastes"); echo '<br>';//Wastes
-                    getGrades("NONE", "OTHER LOSSES", "", "losses", "Other Losses"); echo '<br>';//Other Losses 
+                    getGrades($typeCategory, "HIGH", $coffeeType, "high", "High Grades"); echo '<br>'; //HIgh grades
+                    getGrades("All", "LOW", $coffeeType, "low", "Low Grades"); echo '<br>';//Low grades
+                    getGrades("ALL", "BLACKS", $coffeeType, "blacks", "Color Sorter Rejects"); echo '<br>';//Blacks beans
+                    getGrades("NONE", "WASTES", "NONE", "wastes", "Wastes"); echo '<br>';//Wastes
+                    getGrades("NONE", "OTHER LOSSES", "NONE", "losses", "Other Losses"); echo '<br>';//Other Losses 
                 ?>
             </div>
             <div style="grid-column:2; grid-row:1">
@@ -98,22 +100,16 @@ require_once ("../connection/batchReportVariables.php");
         </table>
     </div>
     <div>
-        <h4 style="margin-top: 20px;">BATCH RECEIPTS SUMMARY (INPUT)</h4>
+        <h6 style="margin-top: 5px;">BATCH RECEIPTS SUMMARY (INPUT)</h6>
         <table>
             <tr>
                 <th style="width: 80px;">DATE</th>
                 <th style="width: 50px;">GRN</th>
                 <th style="width: 50px;">MC</th>
                 <th class="batchItemKgs">KGS</th>
-                <th class="batchItemLabel">ORIGIN / CLIENT</th>
+                <th class="batchItemLabel" style="width: 300px;">ORIGIN / CLIENT</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <?php inputSummary(intval($orderNo)) ?>
         </table>
     </div>
     <?php submitButton("Submit", "submit", "confirm"); ?>

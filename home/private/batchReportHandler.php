@@ -13,6 +13,7 @@ $sql = $conn->prepare("INSERT INTO batch_reports_summary (batch_report_no, batch
 $batch_order_no = ($_POST['batchOrderNumber']);
 $batch_report_date = $_POST['batchReportDate'];
 $customer_id = ($_POST['customerId']);
+$gradeId = ($_POST['inputCode']);
 $offtaker = ($_POST['batchReportOfftaker']);
 $net_input = ($_POST['netInputQty']);
 $mc_out = ($_POST['batchReportMcOut']);
@@ -25,14 +26,6 @@ $sql->bind_param("iisssdddiss", $batch_report_no, $batch_order_no, $batch_report
                 $net_input, $mc_out, $colorSorted, $valuation_status, $comment, $username);
 $sql->execute();
 $sql->close();
-
-//Getting order number
-$orderNoSql = $conn->prepare("SELECT grade_id FROM grn WHERE batch_order_no=?");
-$orderNoSql->bind_param("i", $batch_order_no);
-$orderNoSql->execute();
-$orderNoSql->bind_result($gradeId);
-$orderNoSql->fetch();
-$orderNoSql->close();
 
 //Update processing status in batch orders
 $updateOrderSql = $conn->prepare("UPDATE batch_processing_order SET status = 'Processed'
@@ -91,7 +84,7 @@ for ($x=0; $x<count($allLists); $x++){
 // Capturing grade input
 
 
-header("location:../processing/BatchOrderSelection");
+header("location:../processing/selectBatchOrder?act=Grading&formmsg=success");
 exit();
 
 

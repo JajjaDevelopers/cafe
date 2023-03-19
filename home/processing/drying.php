@@ -1,7 +1,8 @@
 <?php $pageTitle="Coffee Drying"; ?>
 <?php
-include("../private/database.php");
+include ("../connection/databaseConn.php");
 include("../forms/header.php");
+include "../connection/batchOrderSummary.php";
 $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
 ?>
 
@@ -16,6 +17,9 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
     <input type="text" class="shortInput" id="dryingNo" name="dryingNo" readonly required value="<?= $dryingNo ?>" style="grid-column: 2; grid-row: 1; margin-top: 0px;">
     <label for="dryingDate" class="" style="grid-column: 1; grid-row: 2; margin-top: 10px">Date:</label>
     <input type="date" class="shortInput" id="dryingDate" name="dryingDate" required value="<?= $today ?>" style="grid-column: 2; grid-row: 2">
+    <label for="orderNo" class="" style="grid-column: 1; grid-row: 3; margin-top: 10px">Order No.:</label>
+    <input type="number" class="shortInput" id="orderNo" name="orderNo" required readonly value="<?= $_GET['transNo'] ?>" style="grid-column: 2; grid-row: 3">
+
   </div>
   <?php require("../forms/customerSelector.php");?>
   <fieldset class="form-group border p-3" style="border: 1px green solid; border-radius:5px; padding: 5px; margin-bottom:20px">
@@ -23,18 +27,18 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
       <div class="col-xs-12">
         <label>Grade Item</label><br>
         <select id="itemCode" name="itemCode" class="shortInput" style="width: 300px;">
-          <?php selectCoffeeGrades(); ?>
+          <option value="<?=$grdId?>"><?=$grdName?></option>
         </select>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <label for="inputQty">Input Qty</label><br>
-        <input type="number" id="inputQty" name="inputQty" required class="shortInput" style="width: 200px;" min="1" step="0.01">
+        <input type="number" value="<?=($inQty)?>" id="inputQty" name="inputQty" required class="shortInput" style="width: 200px;" min="1" step="0.01">
       </div>
       <div class="col-sm-6">
         <label for="inputMc">Input Moisture (%)</label><br>
-        <input type="number" id="inputMc" name="inputMc" required class="shortInput" step="0.01">
+        <input type="number" value="<?=$inMc?>" id="inputMc" name="inputMc" required class="shortInput" step="0.01">
       </div>
     </div>
   </fieldset>
@@ -71,6 +75,7 @@ $dryingNo = nextDocNumber("drying", "drying_no", "DRY");
 </form>
 <?php include("../forms/footer.php") ?>
 <script>
+  document.getElementById("salesReportBuyer").style.display="none";
   document.getElementById("inputQty").addEventListener("blur", getDryingLoss);
   document.getElementById("outputQty").addEventListener("blur", getDryingLoss);
   function getDryingLoss(){
