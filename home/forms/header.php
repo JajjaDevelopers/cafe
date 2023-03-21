@@ -312,6 +312,11 @@ body {
               <i class="bi bi-circle"></i><span>Release Request</span>
             </a>
           </li>
+          <li>
+            <a href="../marketing/contractOffer">
+              <i class="bi bi-circle"></i><span>Contract Offer</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Marketing Nav -->
 

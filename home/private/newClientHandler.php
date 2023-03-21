@@ -12,10 +12,12 @@ $district = $_POST['district'];
 $category = $_POST['category'];
 $membership = $_POST['membership'];
 $city = $_POST['city'];
+$country = $_POST['country'];
+$business = $_POST['business'];
 
 $clientSql = $conn->prepare("INSERT INTO customer (customer_id, customer_name, city, contact_person, telephone, 
-                            email, district_id, category, membership) VALUES (?,?,?,?,?,?,?,?,?)");
-$clientSql->bind_param("sssssssss", $id, $name, $city, $contPerson, $tel, $email, $district, $category, $membership);
+                            email, district_id, category, membership, country_id, business) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+$clientSql->bind_param("sssssssssss", $id, $name, $city, $contPerson, $tel, $email, $district, $category, $membership, $country, $business);
 $clientSql->execute();
 $clientSql->close();
 

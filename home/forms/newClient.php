@@ -27,7 +27,7 @@ include_once ('header.php');
                     <option value="COMPANY">COMPANY</option>
                 </select>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" >
                 <label for="membership">Membership</label><br>
                 <select type="text" id="membership" name="membership" class="longInputField">
                     <option value="1">Nucafe Member</option>
@@ -35,7 +35,13 @@ include_once ('header.php');
                 </select>
             </div>
             <div class="col-sm-4">
-                
+                <label for="business">Business</label><br>
+                <select type="text" id="business" name="business" class="longInputField" required>
+                    <option></option>
+                    <option value="Supplier">Supplier</option>
+                    <option value="Buyer">Buyer</option>
+                    <option value="Both">Both</option>
+                </select>
             </div>
         </div><br>
         <div class="row">
@@ -50,6 +56,28 @@ include_once ('header.php');
             <div class="col-sm-4">
                 <label for="email">Email</label><br>
                 <input type="email" id="email" name="email" class="longInputField"><br>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="region">Continent</label><br>
+                <select type="text" id="continent" name="continent" class="longInputField" onchange="getCountry()">
+                    <option value="Africa">Africa</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="South America">South America</option>
+                    <option value="South America">Australia</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="country">Country</label><br>
+                <select type="text" id="country" name="country" class="longInputField">
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="city">City</label><br>
+                <input type="text" id="city" name="city" class="longInputField">
             </div>
         </div><br>
         <div class="row">
@@ -69,30 +97,11 @@ include_once ('header.php');
                 </select>
             </div>
             <div class="col-sm-4">
-                <label for="city">City</label><br>
-                <input type="text" id="city" name="city" class="longInputField">
             </div>
         </div>
     </div>
 
     
-    <div style="display: grid; width: 400px">
-        <div style="grid-column: 1; grid-row: 1">
-            
-            <br>
-            
-            
-            
-
-            <br>
-        </div>
-        <div style="grid-column: 2; grid-row: 1; margin-left: 250px">
-            
-            
-            
-        </div>
-        
-    </div>
     
     
     <?php include "submitButton.php" ?>
@@ -135,5 +144,17 @@ include_once ('header.php');
         districtRequest.open("GET", "../ajax/districtsAjax.php?q="+region);
         districtRequest.send();
     }
+
+    //Getting countries
+    function getCountry(){
+        var continent = document.getElementById("continent").value;
+        const districtRequest = new XMLHttpRequest();
+        districtRequest.onload = function(){
+            document.getElementById("country").innerHTML = this.responseText;
+        }
+        districtRequest.open("GET", "../ajax/districtsAjax.php?q="+continent+"&req=country");
+        districtRequest.send();
+    }
+    getCountry();
 </script>
 

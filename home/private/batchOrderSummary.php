@@ -10,7 +10,6 @@ $sql->bind_result($cltId, $cltName, $cltContact, $cltTel, $activity, $grdId, $in
 $sql->fetch();
 $sql->close();
 
-
 $batchOrderNumber = $orderNo;
 $batchRepNo = formatDocNo(Intval($batchNo), "BRN-") ;
 $categorySql = $conn->prepare("SELECT type_category FROM grades WHERE grade_id=?");
