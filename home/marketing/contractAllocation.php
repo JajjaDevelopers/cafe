@@ -1,10 +1,10 @@
-<?php $pageTitle="Contract Offer";
+<?php $pageTitle="Contract Allocation";
 include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
-$newBatchNo = nextDocNumber("contracts_summary", "contract_no", "CRT");
+$newBatchNo = nextDocNumber("contract_stock_allocation", "allocation_no", "CAL");
 ?>
 <form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 800px; height:fit-content">
-    <h3 class="formHeading">Contract Offer</h3>
+    <h3 class="formHeading">Contract Allocation</h3>
     <div style="margin-left: 70%">
         <label for="batchReportNumber">Contract No.:</label>
         <label id="batchReportNumber" class="shortInput" name="batchReportNumber"><?=$newBatchNo ?></label><br>
@@ -38,20 +38,42 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "CRT");
             </div>
         </div>
     </div>
-    <table>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="country">Country</label><br>
+                <select type="text" id="country" name="country" class="shortInput" style="width: 200px;">
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="shipdDate">Shipment Date</label><br>
+                <input type="date" value="" id="shipdDate" name="shipdDate"  name="total" class="shortInput" style="width: 150px;">
+            </div>
+            <div class="col-sm-4">
+                <label for="country">Fulfillment</label><br>
+                <select type="text" id="country" name="country" class="shortInput" style="width: 150px;">
+                </select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+            <table>
         <thead>
             <tr>
                 <th style="width: 20px;">#</th>
                 <th >Item Code</th>
                 <th style="width: 300px;">Item Description</th>
-                <th style="width: 80px;">Qty (Kg)</th>
-                <th style="width: 80px;"><label id="pxCurrency"><?="Price "?></label></th>
-                <th style="width: 100px;">Amount</th>
+                <th style="width: 80px;">Contract Qty (Kg)</th>
+                <th style="width: 80px;">Allocated Qty (Kg)</th>
+                <th style="width: 80px;">Balance</th>
+                <th style="width: 80px;">Source</th><!-- either valuation or open source -->
+                <th style="width: 80px;">Available Qty (Kg)</th>
+                <th style="width: 80px;">Allocation Qty (Kg)</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            for ($x=1;$x<=6;$x++){ //check the length of pick item function
+            for ($x=1;$x<=10;$x++){ //check the length of pick item function
                 ?>
                 <tr>
                     <td><?=$x?></td>
@@ -79,35 +101,6 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "CRT");
             </tr>
         </tbody>
     </table>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <label for="region">Continent</label><br>
-                <select type="text" id="continent" name="continent" class="longInputField" onchange="getCountry()" style="width: 150px;">
-                    <option value="Africa">Africa</option>
-                    <option value="Europe">Europe</option>
-                    <option value="North America">North America</option>
-                    <option value="Asia">Asia</option>
-                    <option value="South America">South America</option>
-                    <option value="Australia">Australia</option>
-                </select>
-            </div>
-            <div class="col-sm-5">
-                <label for="country">Country</label><br>
-                <select type="text" id="country" name="country" class="longInputField">
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <label for="shipdDate">Shipment Date</label><br>
-                <input type="date" value="" id="shipdDate" name="shipdDate"  name="total" class="shortInput" style="width: 150px;">
-            </div>
-        </div><br>
-        <div class="row">
-            <div class="col-sm-12">
-                <label for="sourcing" >Sourcing Actions</label>
-                <input type="text" id="sourcing" name="sourcing" class="shortInput" style="width: 500px;"><br>
-                <label for="financing" >Financing Source</label>
-                <input type="text" id="financing" name="financing" class="shortInput" style="width: 500px;">
             </div>
         </div>
     </div>

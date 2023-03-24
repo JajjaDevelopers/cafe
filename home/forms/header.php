@@ -317,6 +317,11 @@ body {
               <i class="bi bi-circle"></i><span>Contract Offer</span>
             </a>
           </li>
+          <li>
+            <a href="../marketing/contractAllocation">
+              <i class="bi bi-circle"></i><span>Contract Allocation</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Marketing Nav -->
 
