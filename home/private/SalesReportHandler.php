@@ -50,23 +50,23 @@ if ($ugxGrandTotal>0 && $BuyerId!="" && $ttQty>0){
     //capturing details
 
     $qtyOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-        grade_id, qty_out) VALUES (?,?,?,?,?,?,?)");
+        grade_id, qty_out, price_ugx) VALUES (?,?,?,?,?,?,?,?,?)");
     $qtyInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-            grade_id, qty_in) VALUES (?,?,?,?,?,?,?)");   
+            grade_id, qty_in, , price_ugx) VALUES (?,?,?,?,?,?,?,?)");   
             
     $docType = "Sales Report";
     for ($p=0; $p < count($qtyList); $p++){
-    $qty = ($_POST[$qtyList[$p]]) ;
-    $gradeID = ($_POST[$salesReportGradeList[$p]]);
-    $itemPx = ($_POST[$priceList[$p]]);
-    if ($qty > 0){
-    $qtyOutSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $selfId, $itmNo, $gradeID, $qty);
-    $qtyOutSql->execute();
-    $itmNo += 1;
-    $qtyInSql->bind_param("sissisd", $docType, $newNo, $salesReportDate, $BuyerId, $itmNo, $gradeID, $qty);
-    $qtyInSql->execute();
-    $itmNo += 1;
-    }
+        $qty = ($_POST[$qtyList[$p]]) ;
+        $gradeID = ($_POST[$salesReportGradeList[$p]]);
+        $itemPx = ($_POST[$priceList[$p]]);
+            if ($qty > 0){
+            $qtyOutSql->bind_param("sissisdd", $docType, $newNo, $salesReportDate, $selfId, $itmNo, $gradeID, $qty, $itemPx);
+            $qtyOutSql->execute();
+            $itmNo += 1;
+            $qtyInSql->bind_param("sissisdd", $docType, $newNo, $salesReportDate, $BuyerId, $itmNo, $gradeID, $qty, $itemPx);
+            $qtyInSql->execute();
+            $itmNo += 1;
+        }
     }  
 
     //message 

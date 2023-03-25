@@ -266,9 +266,9 @@ function releaseApprList(){
 //valuation verification list
 function valuationVerList(){
     include "connlogin.php";
-    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
-                            FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-                            WHERE verified_by='None' GROUP BY valuation_no");
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty_in*price_ugx) AS gross_value, costs
+                        FROM valuation_report_summary JOIN customer USING (customer_id) JOIN inventory
+                        WHERE inventory_reference='Valuation Report' AND valuation_no=document_number AND verified_by='None' GROUP BY valuation_no");
     $sql->execute();
     $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
     
@@ -290,9 +290,9 @@ function valuationVerList(){
 //valuation verification list
 function valuationApprList(){
     include "connlogin.php";
-    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
-                            FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-                            WHERE verified_by<>'None' AND approved_by='None' GROUP BY valuation_no");
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty_in*price_ugx) AS gross_value, costs
+                        FROM valuation_report_summary JOIN customer USING (customer_id) JOIN inventory
+                        WHERE inventory_reference='Valuation Report' AND valuation_no=document_number AND verified_by<>'None' AND approved_by='None' GROUP BY valuation_no");
     $sql->execute();
     $sql->bind_result($valNo, $valDate, $valClient, $valGross, $valCosts);
     

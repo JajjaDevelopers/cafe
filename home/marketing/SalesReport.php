@@ -18,7 +18,7 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
         <input type="date" id="salesReportDate" name="salesReportDate" class="shortInput" value="<?=$today?>" style="width: 100px; text-align: center;" required><br>
 
         <label for="exchangeRate" class="salesReportLabel" >Exchange Rate:</label>
-        <input type="number" id="exchangeRate" name="exchangeRate" class="longInputField" placeholder="Ex.Rate" style="width: 90px; margin-right: 0px;" required>
+        <input type="number" id="exchangeRate" name="exchangeRate" class="longInputField" placeholder="Ex.Rate" step="0.0001" style="width: 90px; margin-right: 0px;" required>
       
     </div>
     <div id="ajaxDiv" style="display: none;"> </div>
@@ -73,10 +73,10 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
                         </select>
                     </div>
                 </td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'Qty'?>" name="<?= 'item'.$i.'Qty'?>" class="tableInput"></td>
+                <td><input type="number" value="" id="<?= 'item'.$i.'Qty'?>" name="<?= 'item'.$i.'Qty'?>" step="0.001" class="tableInput"></td>
                 <td><input type="text" value="" id="<?= 'item'.$i.'Batch'?>" name="<?= 'item'.$i.'Batch'?>" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UsdPx'?>" name="<?= 'item'.$i.'UsdPx'?>" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UgxPx'?>" name="<?= 'item'.$i.'UgxPx'?>" class="tableInput"></td>
+                <td><input type="number" value="" id="<?= 'item'.$i.'UsdPx'?>" name="<?= 'item'.$i.'UsdPx'?>" step="0.0001" class="tableInput"></td>
+                <td><input type="number" value="" id="<?= 'item'.$i.'UgxPx'?>" name="<?= 'item'.$i.'UgxPx'?>" step="0.0001" class="tableInput"></td>
                 <td><input type="number" value="" id="<?= 'item'.$i.'UsdAmount'?>" readonly name="<?= 'item'.$i.'UsdAmount'?>" class="tableInput"></td>
                 <td><input type="number" value="" id="<?= 'item'.$i.'UgxAmount'?>" readonly name="<?= 'item'.$i.'UgxAmount'?>" class="tableInput"></td>
             </tr>

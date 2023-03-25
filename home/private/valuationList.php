@@ -11,14 +11,16 @@ $client = $_GET["custId"];
 
 //criteria
 if ($client == "all"){
-    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
-    FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-    WHERE (valuation_date BETWEEN ? AND ?) GROUP BY valuation_no");
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty_in*price_ugx) AS gross_value, costs
+    FROM valuation_report_summary JOIN customer USING (customer_id) JOIN inventory
+    WHERE (inventory_reference='Valuation Report' AND valuation_no=document_number AND valuation_date BETWEEN ? AND ?)
+    GROUP BY valuation_no");
     $sql->bind_param("ss", $frmDate, $toDate);
 }else{
-    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty*price_ugx) AS gross_value, costs
-    FROM valuation_report_summary JOIN valuations USING (valuation_no) JOIN customer USING (customer_id)
-    WHERE (valuation_date BETWEEN ? AND ? AND valuation_report_summary.customer_id=?) GROUP BY valuation_no");
+    $sql = $conn->prepare("SELECT valuation_no, valuation_date, customer_name, sum(qty_in*price_ugx) AS gross_value, costs
+    FROM valuation_report_summary JOIN customer USING (customer_id) JOIN inventory
+    WHERE (inventory_reference='Valuation Report' AND valuation_no=document_number AND valuation_date BETWEEN ? AND ? AND valuation_report_summary.customer_id=?) 
+    GROUP BY valuation_no");
     $sql->bind_param("sss", $frmDate, $toDate, $client);
 }
 $sql->execute();

@@ -3,7 +3,7 @@ $pageTitle = "GRN Pending Verifications";
 include_once ('../forms/header.php');
 // include "../private/verAndApprFunctions.php";
 ?>
-<form class="regularForm" style="width: 1000px;">
+<form class="regularForm" style="width: 1000px; height:fit-content">
     <h2 class="formHeading">GRNs Pending Verification</h2>
     <?php include("../alerts/verifyAlert.php");?>
     <div>

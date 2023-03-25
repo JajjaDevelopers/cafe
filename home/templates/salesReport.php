@@ -25,7 +25,7 @@
     <div>
 <div class="container" style="margin-left: 0px;">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-sm-6">
             <label for="salesReportCategory">Category:</label><br>
             <input id="catName" style="width: 100px;" value="<?=$salCat?>" readonly class="shortInput">
             <select id="salesReportCategory" name="salesReportCategory" style="width: 100px;">
@@ -33,7 +33,7 @@
                 <option value="Export">Export</option>
             </select>
         </div>
-        <div class="col-xs-6">
+        <div class="col-sm-6">
             <label for="salesReportCurrency">Currency:</label><br>
             <input id="currName" value="<?=$currency?>" readonly class="shortInput">
             <select id="salesReportCurrency" name="salesReportCurrency" style="width: 100px;">
