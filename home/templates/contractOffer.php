@@ -63,11 +63,21 @@
         </div>
     </div><br>
     <div class="row">
+        <div class="col-sm-6">
+            <label for="sourcing" >Sourcing Actions</label><br>
+            <input type="text" id="sourcing" name="sourcing" readonly value="<?= $sourcing ?>" class="shortInput" style="width: 350px;">
+        </div>
+        <div class="col-sm-6">
+            <label for="financing" >Financing Source</label><br>
+            <input type="text" id="financing" name="financing" readonly value="<?= $financing ?>" class="shortInput" style="width: 350px;">
+        </div>
+    </div><br>
+    <div class="row">
         <div class="col-sm-12">
-            <label for="sourcing" >Sourcing Actions</label>
-            <input type="text" id="sourcing" name="sourcing" readonly value="<?= $sourcing ?>" class="shortInput" style="width: 500px;"><br>
-            <label for="financing" >Financing Source</label>
-            <input type="text" id="financing" name="financing" readonly value="<?= $financing ?>" class="shortInput" style="width: 500px;">
+            <label for="contractSatus">Contract Status</label><br>
+            <input type="text" id="contractSatus" name="contractSatus" value="<?= $status ?>" readonly class="shortInput" style="width: 200px; background-color:brown; color:white">
         </div>
     </div>
 </div>
+
+

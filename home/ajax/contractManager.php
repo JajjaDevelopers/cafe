@@ -19,9 +19,12 @@ function getReference(){
     $refSql->bind_result($contNum, $ref, $contQty, $allocated);
     echo '<option value="">--Select Reference--</option>';
     while ($refSql->fetch()){
-        ?>
-        <option value="<?=$contNum?>"><?=$ref?></option>
-        <?php
+        if ($contQty>$allocated){
+            ?>
+            <option value="<?=$contNum?>"><?=$ref?></option>
+            <?php
+        }
+        
     }
 }
 

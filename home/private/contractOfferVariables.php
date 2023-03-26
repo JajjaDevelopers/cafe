@@ -1,18 +1,26 @@
 <?php
+session_start();
 include ("../private/connlogin.php");
 include "../private/functions.php";
 $contNo = $_GET["contNo"];
+$stt = $_GET["stt"];
+if ($stt=='1'){
+    $status="Pending Stock Allocation";
+}elseif($stt=='2'){
+    $status="Pending Shipment";
+}
+
 $newBatchNo = "CRT-".$contNo;
 $no = intval($contNo);
 
 $summSql = $conn->prepare("SELECT customer_id, customer_name, country_name, continent, reference_no, contract_date, 
-                offer_status, shipment_date, incoterms, sourcing_actions, financing_source, remarks, prepared_by, contact_person, 
+                shipment_date, incoterms, sourcing_actions, financing_source, remarks, prepared_by, contact_person, 
                 telephone, (SELECT currency FROM contract_offers WHERE contract_no=? LIMIT 1) AS currecnty
                 FROM contracts_summary
                 JOIN countries USING (country_id) JOIN customer USING (customer_id)  WHERE contract_no=?");
 $summSql->bind_param("ii", $no, $no);
 $summSql->execute();
-$summSql->bind_result($cltId, $cltName, $countryName, $continent, $contRef, $contDate, $status, $shipDate, $terms, $sourcing, 
+$summSql->bind_result($cltId, $cltName, $countryName, $continent, $contRef, $contDate, $shipDate, $terms, $sourcing, 
                     $financing, $remarks, $prepared_by, $cltTel, $cltContact, $currency);
 $summSql->fetch();
 $summSql->close();

@@ -58,14 +58,17 @@ if ($client=='all'){
         while ($sql->fetch()){
             if ($contQty>$allocQty){
                 $status="Pending Stock Allocation";
+                $state = 1;
             }elseif ($contQty<=$allocQty) {
                 $status="Ready for Shipment";
+                $state = 2;
             }
+            
             $salesRow = [$contNo, $ref, $client, $terms, $shipDate, $days, $status, $currency, $value];
             array_push($salesList, $salesRow);
             ?>
             <tr>
-                <td><a href="../reports/contractOffer?contNo=<?= $contNo ?>"><?= $contNo ?></a></td>
+                <td><a href="../reports/contractOffer?contNo=<?= $contNo ?>&stt=<?= $state ?>"><?= $contNo ?></a></td>
                 <td><?= $ref ?></td>
                 <td><?= $client ?></td>
                 <td style="text-align:left"><?= $terms ?></td>
