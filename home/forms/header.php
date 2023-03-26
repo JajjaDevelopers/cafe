@@ -468,6 +468,11 @@ body {
               <i class="bi bi-circle"></i><span>Processing Schedule</span>
             </a>
           </li>
+          <li>
+            <a href="../reports/salesContracts">
+              <i class="bi bi-circle"></i><span>Sales Contracts</span>
+            </a>
+          </li>
           <!-- <li>
             <a href="charts-chartjs.html">
               <i class="bi bi-circle"></i><span>Chart.js</span>

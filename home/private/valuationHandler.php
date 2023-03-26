@@ -40,6 +40,7 @@ $prepDate = $time->format('Y-m-d H:i:s');
 $inputQty = $_POST['FAQQty'];
 $valQty = $_POST["totalQty"];
 $valAmt = $_POST["grandTotaltUgx"];
+$allocation = $_POST["contractAllocation"];
 
 if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
     $summarySql->bind_param("ssssdddss", $valuationNo, $valuationDate, $batchReportNo, $customerId, $inputQty, $exchangeRate, $costs, 
@@ -52,9 +53,9 @@ if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
 
     // Posting valuations items into invetory
     $quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_in, price_ugx) VALUES (?,?,?,?,?,?,?,?)");
+                trans_date, customer_id, item_no, grade_id, qty_in, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
     $quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_out, price_ugx) VALUES (?,?,?,?,?,?,?,?)");
+                trans_date, customer_id, item_no, grade_id, qty_out, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
 
     $docType = "Valuation Report";
     $itmNo = 1;
@@ -70,13 +71,13 @@ if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
             // $valDetSql->execute();
             // $valItmNo += 1;
             //qty in
-            $quantityInSql->bind_param("sissisdd", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
-                                        $gradeName, $gradeQty, $gradePrice);
+            $quantityInSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
+                                        $gradeName, $gradeQty, $gradePrice, $allocation);
             $quantityInSql->execute();
             //qty out
             $itmNo += 1;
-            $quantityOutSql->bind_param("sissisdd", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
-                                        $gradeName, $gradeQty, $gradePrice);
+            $quantityOutSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
+                                        $gradeName, $gradeQty, $gradePrice, $allocation);
             $quantityOutSql->execute();
             $itmNo += 1;
         }

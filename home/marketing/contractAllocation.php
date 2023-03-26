@@ -3,7 +3,7 @@ include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
 $newBatchNo = nextDocNumber("contract_stock_allocation", "allocation_no", "ALC");
 ?>
-<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 900px; height:fit-content">
+<form class="regularForm" method="post" action="../connection/contractAllocation.php" style="width: 900px; height:fit-content">
     <h3 class="formHeading">Contract Allocation</h3>
     <div style="margin-left: 70%">
         <label for="alloctNo">Alloc No.:</label>
@@ -88,13 +88,13 @@ $newBatchNo = nextDocNumber("contract_stock_allocation", "allocation_no", "ALC")
                     <td><input type="number" value="" id="<?='item'.$x.'AllocQty'?>" readonly name="<?='item'.$x.'AllocQty'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'BalQty'?>" readonly name="<?='item'.$x.'BalQty'?>" step="0.001" class="tblNum"></td>
                     <td>
-                        <select type="number" value="" id="<?='item'.$x.'Src'?>" name="<?='item'.$x.'Src'?>" step="0.001" class="tableInput">
+                        <select type="number" value="" id="<?='item'.$x.'Src'?>" name="<?='item'.$x.'Src'?>" step="0.001" class="tableInput" onchange="valuationQty(<?=$x?>)">
                             <option value=""></option>
                             <option value="Open">Open</option>
                         </select>
                     </td>
-                    <td><input type="number" value="" id="<?='item'.$x.'SrcQty'?>" name="<?='item'.$x.'SrcQty'?>" step="0.001" class="tblNum"></td>
-                    <td><input type="number" value="" id="<?='item'.$x.'DistQty'?>" readonly name="<?='item'.$x.'DistQty'?>" step="0.001" class="tblNum"></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'SrcQty'?>" readonly name="<?='item'.$x.'SrcQty'?>" step="0.001" class="tblNum"></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'DistQty'?>"  name="<?='item'.$x.'DistQty'?>" step="0.001" class="tblNum" onblur="calTotals()"></td>
 
                 </tr>
                 <?php
@@ -102,12 +102,12 @@ $newBatchNo = nextDocNumber("contract_stock_allocation", "allocation_no", "ALC")
             ?>
             <tr>
                 <th colspan="2">Total</th>
-                <td><input type="number" value="" id="ReqQty" readonly name="totalQty" class="tblNum"></td>
-                <td><input type="number" value="" id="AllocQty" readonly name="totalQty" class="tblNum"></td>
-                <td><input type="number" value="" id="BalQty" readonly name="totalQty" class="tblNum"></td>
+                <td><input type="number" value="" id="ReqQty" readonly name="ReqQty" class="tblNum"></td>
+                <td><input type="number" value="" id="AllocQty" readonly name="AllocQty" class="tblNum"></td>
+                <td><input type="number" value="" id="BalQty" readonly name="BalQty" class="tblNum"></td>
                 <th></th>
-                <td><input type="number" value="" id="SrcQty" readonly name="total" class="tblNum"></td>
-                <td><input type="number" value="" id="DistQty" readonly name="totalQty" class="tblNum"></td>
+                <td><input type="number" value="" id="SrcQty" readonly name="SrcQty" class="tblNum"></td>
+                <td><input type="number" value="" id="DistQty" readonly name="DistQty" class="tblNum"></td>
             </tr>
         </tbody>
     </table>
@@ -119,95 +119,4 @@ $newBatchNo = nextDocNumber("contract_stock_allocation", "allocation_no", "ALC")
     <?php submitButton("Submit", "submit", "btnsubmit") ?>
 </form>
 <?php include "../forms/footer.php" ?>
-<script>
-    document.getElementById("salesReportBuyer").addEventListener("change", getReferences);
-    //update summary
-    function contractSummary(){
-        var contNum = document.getElementById("reference").value;
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function(){
-            var contSummary =  JSON.parse(this.responseText);
-            document.getElementById("country").setAttribute('value', contSummary[0]);
-            document.getElementById("contNo").setAttribute('value', contNum);
-            document.getElementById("shipdDate").setAttribute('value', contSummary[1]);
-            document.getElementById("incoterms").setAttribute('value', contSummary[2]);
-            document.getElementById("currency").setAttribute('value', contSummary[5]);
-            var reqQty = Number(contSummary[3]);
-            var allocQty = Number(contSummary[4]);
-            var fulfillRate = (allocQty*100/reqQty).toLocaleString() ;
-            document.getElementById("fulfilled").setAttribute('value', contSummary[4]+'Kg ('+fulfillRate+'%)');
-            getItems();
-            
-        }
-        xhttp.open("GET", "../ajax/contractManager.php?no="+contNum+"&q=getSummary");
-        xhttp.send();
-
-    }
-
-    function getReferences(){
-        //var contReference = document.getElementById('reference').value;
-        var contClient = document.getElementById("customerId").value;
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function(){
-            document.getElementById("reference").innerHTML=this.responseText;
-        }
-        xhttp.open("GET", "../ajax/contractManager.php?clt="+contClient+"&q=getReference");
-        xhttp.send();
-
-    }
-
-    //get contract items
-    function getItems(){
-        var contNum = document.getElementById("reference").value;
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function(){
-            for (var x=1;x<=10;x++){
-                document.getElementById("item"+x+"Select").innerHTML=this.responseText;
-            }
-            
-        }
-        xhttp.open("GET", "../ajax/contractManager.php?no="+contNum+"&q=getItems");
-        xhttp.send();
-
-    }
-
-    function pickItem(x){
-        var contNum = document.getElementById("reference").value;
-        var selectedItem = document.getElementById('item'+x+'Select').value;
-        var id=selectedItem.slice(0,6);
-        document.getElementById('item'+x+'Code').setAttribute("value", id);
-        document.getElementById('item'+x+'Name').setAttribute("value", selectedItem.slice(6));
-        
-        const xhttp = new XMLHttpRequest();
-        
-        xhttp.onload = function(){
-            var qtyValues = JSON.parse(this.responseText);
-            document.getElementById("item"+x+"ReqQty").setAttribute("value", qtyValues[0]);
-            document.getElementById("item"+x+"AllocQty").setAttribute("value", qtyValues[1]);
-            document.getElementById("item"+x+"BalQty").setAttribute("value", qtyValues[2]);
-            getValuations(x);
-    
-        }
-        xhttp.open("GET", "../ajax/contractManager.php?no="+contNum+"&q=getQtys&grd="+id);
-        xhttp.send();
-    }
-
-    //get valuations available
-    function getValuations(x){
-        // var allocQty = Number(document.getElementById('item'+x+'AllocQty').value);
-        var contNum = document.getElementById("reference").value;
-        var selectedItem = document.getElementById('item'+x+'Select').value;
-        var id=selectedItem.slice(0,6);
-        document.getElementById('item'+x+'Code').setAttribute("value", id);
-        document.getElementById('item'+x+'Name').setAttribute("value", selectedItem.slice(6));
-        
-        const xhttp = new XMLHttpRequest();
-        
-        xhttp.onload = function(){
-            document.getElementById("item"+x+"Src").innerHTML=this.responseText;
-        }
-        xhttp.open("GET", "../ajax/contractManager.php?no="+contNum+"&q=getVal&grd="+id);
-        xhttp.send();
-    }
-
-</script>
+<script src="../assets/js/contractAllocation.js"></script>

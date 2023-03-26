@@ -98,7 +98,7 @@ function getValuations(){
     $sql->bind_result($valNo, $valQty, $allocQty);
     // $sql->close();
     
-    echo '<option value="Open">Open</option>';
+    echo '<option value="Open">Open Stock</option>';
     while ($sql->fetch()){
         
         if ($allocQty<$valQty){
@@ -106,15 +106,30 @@ function getValuations(){
             <option value="<?=$valNo?>"><?='VAL-'.$valNo ?></option>
             <?php
         }
-        ?>
-        
-        <?php
     }
 }
 
+function getValQty(){
+    include "../private/connlogin.php";
+    $valNo = $_GET['no'];
+    $grdId = $_GET['grd'];
+    $sql=$conn->prepare("SELECT sum(qty_in), (SELECT sum(allocated_qty) FROM contract_stock_allocation
+    WHERE inventory_reference='Valuation Report' AND contract_stock_allocation.document_number=inventory.document_number 
+    AND grade_id=?) AS qty2 FROM inventory WHERE inventory_reference='Valuation Report' AND grade_id=?
+    AND contract_allocation=1 AND document_number=?");
+    $sql->bind_param("ssi", $grdId, $grdId, $valNo);
+    $sql->execute();
+    $sql->bind_result($valQty, $allocQty);
+    $sql->fetch();
+    if ($allocQty<$valQty){
+        echo $valQty-$allocQty;
+    }
+    
+}
+
+
 if ($fun=="getReference"){
     getReference();
-
 }elseif($fun=="getSummary"){
     getSummary();
 }elseif($fun=="getItems"){
@@ -123,5 +138,7 @@ if ($fun=="getReference"){
     getQtys();
 }elseif($fun=="getVal"){
     getValuations();
+}elseif($fun=="getValQty"){
+    getValQty();
 }
 ?>

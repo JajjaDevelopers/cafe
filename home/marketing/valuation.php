@@ -28,6 +28,17 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
         <br>
         <?php include("../forms/customerSelector.php") ?>
         <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="contractAllocation">Contract Allocation :</label>
+                    <select id="contractAllocation" name="contractAllocation" class="shortInput" style="width: 200px;">
+                        <option value="1">Specified Contract</option>
+                        <option value="0">Open Market</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     <div id="ajaxDiv" style="display: none;"></div>
     
         <table id="valuationsTable">
