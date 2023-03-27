@@ -299,13 +299,14 @@ function activitySheetItems($itemNo){
   <tr>
     <td>
       <input type="text" value="" id="itm<?=$itemNo?>Code" readonly name="itm<?=$itemNo?>Code" class="itmNameInput" style="grid-column: 1; display:none">
-      <input type="text" value="" id="itm<?=$itemNo?>Name" readonly name="itm<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 360px">
+      <input type="text" value="" id="itm<?=$itemNo?>Name" readonly name="itm<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 370px">
       <select id="itm<?=$itemNo?>Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect"
       onchange="selectItemx(this.id, )">
         <?php getRoastedItems(); ?>
       </select>
     </td>
-    <td ><input type="number" value="0" id="itm<?=$itemNo?>Qty" name="itm<?=$itemNo?>Qty" class="tableInput" style="height: 100%;" ></td>
+    <td ><input type="text" value="" id="itm<?=$itemNo?>Unit" name="itm<?=$itemNo?>Unit" class="itmNameInput"></td>
+    <td ><input type="number" value="0" id="itm<?=$itemNo?>Qty" name="itm<?=$itemNo?>Qty" class="tblNum" style="height: 100%;" ></td>
 
   <?php
 }
@@ -322,11 +323,11 @@ function activityServices($itemNo){
         <?php getServices(); ?>
       </select>
     </td>
-    <td ><input type="number" value="" id="svc<?=$itemNo?>Qty" name="svc<?=$itemNo?>Qty" class="tableInput" 
+    <td ><input type="number" value="" id="svc<?=$itemNo?>Qty" name="svc<?=$itemNo?>Qty" class="tblNum" 
     style="height: 100%;" onblur="updateQty()"></td>
-    <td ><input type="number" value="" id="svc<?=$itemNo?>Rate" name="svc<?=$itemNo?>Rate" class="tableInput"
+    <td ><input type="number" value="" id="svc<?=$itemNo?>Rate" name="svc<?=$itemNo?>Rate" class="tblNum"
     onblur="updateQty()"></td>
-    <td><input type="number" value="" id="svc<?=$itemNo?>Amount" name="svc<?=$itemNo?>Amount" class="tableInput" readonly></td>
+    <td><input type="text" value="" id="svc<?=$itemNo?>Amount" name="svc<?=$itemNo?>Amount" class="tblNum" readonly></td>
   <?php
 }
 

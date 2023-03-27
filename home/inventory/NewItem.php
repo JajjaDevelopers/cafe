@@ -54,7 +54,7 @@ function newInput($inputType, $inputId, $gridColumnNo, $gridRowNo, $placeHolder,
                 </select>
             </div>
             <div class="col-md-5">
-                <label for="typeCategory">Coffee Type</label><br>
+                <label for="typeCategory">Type Category</label><br>
                 <select id="typeCategory" name="typeCategory" class="shortInput" style="width: 200px;">
                     <option></option>
                     <option value="Natural">Natural Robusta</option>
