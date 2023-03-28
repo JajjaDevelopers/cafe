@@ -13,7 +13,8 @@
     include_once("header.php");
     include ("dashboard.php");
     include_once("footer.php");
- }else{
+ }
+ else{
   include "redirect.php";
  }
 ?>

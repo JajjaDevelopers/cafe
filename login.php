@@ -11,7 +11,7 @@ require_once "header.php";
     }
 </style>
 
-<div class="container mt-5 mb-5 border  rounded-3 " id="divlogin" style="background-color: green;">
+<div class="container mt-5 mb-5 border  rounded-3 text-info" id="divlogin" style="background-color: green;">
   <div class="card my-4 shadow-lg p-3 mb-5 bg-body rounded">
     <?php include("./alerts/logmessage.php");
       include("./alerts/resetpassword.php");
