@@ -24,15 +24,16 @@ if ($offerDate != "" && $customer_id != ""){
     $offerSummary->execute();
 
     //update contract offers
-    $offerSql = $conn->prepare("INSERT INTO contract_offers (contract_no, grade_id, grade_description, qty, avg_price, currency) 
-                                VALUES (?,?,?,?,?,?)");
+    $offerSql = $conn->prepare("INSERT INTO contract_offers (contract_no, grade_id, grade_description, bags, qty, quality_premium, 
+                                social_premium, gi_premium, currency, avg_price, shipment_date) 
+                                VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     for ($x=1;$x<=6;$x++){
         $qty = $_POST['item'.$x.'Qty'];
         if ($qty > 0){
             $grd = $_POST['item'.$x.'Code'];
             $grdDesc = $_POST['item'.$x.'Name'];
             $grdPx = $_POST['item'.$x.'Price'];
-            $offerSql->bind_param("issdds", $contractNo, $grd, $grdDesc, $qty, $grdPx, $currency);
+            $offerSql->bind_param("issiddddsd", $contractNo, $grd, $grdDesc, $qty, $grdPx, $currency);
             $offerSql->execute();
         }
     }

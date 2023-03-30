@@ -3,7 +3,7 @@ include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
 $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
 ?>
-<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 900px; height:fit-content">
+<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 1000px; height:fit-content">
     <h3 class="formHeading">Contract Offer</h3>
     <div style="margin-left: 70%">
         <label for="batchReportNumber">Offer No.:</label>
@@ -30,7 +30,7 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
     <?php include "../forms/customerSelector.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <label for="currency">Currency</label><br>
                 <select type="text" id="currency" name="currency" class="shortInput" style="width: 100px;" onchange="checkCurrency()">
                     <option value="USD">USD</option>
@@ -38,6 +38,17 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                     <option value="UGX">UGX</option>
                 </select>
             </div>
+            <div class="col-sm-3">
+                <label for="currency">Contract Type:</label><br>
+                <select type="text" id="currency" name="currency" class="shortInput" style="width: 100px;" onchange="checkCurrency()">
+                    <option value="Spot">Spot</option>
+                    <option value="Forward">Forward</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div><br>
+        <div class="row">
             <div class="col-sm-3">
                 <label for="incoterms">Incoterms</label><br>
                 <select type="text" id="incoterms" name="incoterms" class="shortInput" style="width: 150px;">
@@ -68,8 +79,10 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
         <thead>
             <tr>
                 <th style="width: 20px;">#</th>
-                <!-- <th >Item Code</th> -->
-                <th style="width: 300px;">Item Description</th>
+                <th style="width: 80px;">Item Code</th>
+                <th style="width: 200px;">Item Description</th>
+                <th style="width: 250px;">Quality Specifications</th>
+                <th style="width: 80px;">Bags</th>
                 <th style="width: 80px;">Qty (Kg)</th>
                 <th style="width: 80px;"><label id="pxCurrency"><?="Bases Price "?></label></th>
                 <th style="width: 80px;">GI Premium</th>
@@ -85,22 +98,24 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                 ?>
                 <tr>
                     <td><?=$x?></td>
-                    <input type="text" value="" id="<?='item'.$x.'Code'?>" readonly name="<?='item'.$x.'Code'?>" class="tableInput" style="width: 70px; display:none">
+                    <td><input type="text" value="" id="<?='item'.$x.'Code'?>" readonly name="<?='item'.$x.'Code'?>" class="tableInput" style="width: 70px"></td>
                     <td>
                         <div id="<?='item'.$x.'Field'?>" style="display: grid;">
-                            <input type="text" value="" id="<?='item'.$x.'Name'?>" readonly name="<?='item'.$x.'Name'?>" class="itmNameInput" style="grid-column: 1; width: 270px">
+                            <input type="text" value="" id="<?='item'.$x.'Name'?>" readonly name="<?='item'.$x.'Name'?>" class="itmNameInput" style="grid-column: 1; width: 200px">
                             <select id="<?='item'.$x.'Select'?>" style="margin: 0px; width: 20px; grid-column: 2;" class="itemSelect" onchange="pickItem()">
                                 <?php CoffeeGrades();?>
                             </select>
                         </div>
                     </td>
+                    <td><input type="text" value="" id="<?='item'.$x.'QualitySpecs'?>" name="<?='item'.$x.'QualitySpecs'?>" class="itmNameInput" ></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'Bags'?>"  name="<?='item'.$x.'Bags'?>" class="tblNum" step="0.01" ></td>
                     <td><input type="number" value="" id="<?='item'.$x.'Qty'?>"  name="<?='item'.$x.'Qty'?>" class="tblNum" step="0.01" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'Price'?>"  name="<?='item'.$x.'Price'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
-                    <td><input type="number" value="" id="<?='item'.$x.'Price'?>"  name="<?='item'.$x.'Price'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
-                    <td><input type="number" value="" id="<?='item'.$x.'Price'?>"  name="<?='item'.$x.'Price'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
-                    <td><input type="number" value="" id="<?='item'.$x.'Price'?>"  name="<?='item'.$x.'Price'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'GiPrem'?>"  name="<?='item'.$x.'GiPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'SocialPrem'?>"  name="<?='item'.$x.'SocialPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'QualityPrem'?>"  name="<?='item'.$x.'QualityPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'AMount'?>" readonly name="<?='item'.$x.'AMount'?>" step="0.001" class="tblNum"></td>
-                    <td><input type="date" value="" id="<?='item'.$x.'AMount'?>" name="<?='item'.$x.'AMount'?>" step="0.001" class="tableInput" style="width: 100px;"></td>
+                    <td><input type="date" value="" id="<?='item'.$x.'ShipDate'?>" name="<?='item'.$x.'ShipDate'?>" step="0.001" class="tableInput" style="width: 90px;"></td>
 
                 </tr>
                 <?php
@@ -123,6 +138,25 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                 <input type="text" id="financing" name="financing" class="shortInput" style="width: 500px;">
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="offerTerms">Terms</label>
+                <table style="border:0px solid">
+                    <tbody>
+                        <?php
+                        for ($x=1;$x<=15;$x++){
+                        ?>
+                        <tr style="border:0px solid">
+                            <td style="border:0px solid"><?=$x.'.'?></td>
+                            <td style="width: 600px; border:0px solid"><input id="<?='term'.$x?>" class="tableInput"></td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 
@@ -142,6 +176,7 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
             var selectedItem = document.getElementById('item'+x+'Select').value;
             document.getElementById('item'+x+'Code').setAttribute("value", selectedItem.slice(0,6));
             document.getElementById('item'+x+'Name').setAttribute("value", selectedItem.slice(8));
+            document.getElementById('item'+x+'QualitySpecs').setAttribute("value", selectedItem.slice(8));
         }
     }
 
@@ -152,7 +187,12 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
             var qty = Number(document.getElementById('item'+x+'Qty').value);
             ttQty+=qty;
             var price = Number(document.getElementById('item'+x+'Price').value);
-            var amount = qty*price;
+            var giPrem = Number(document.getElementById('item'+x+'GiPrem').value);
+            var socialPrem = Number(document.getElementById('item'+x+'SocialPrem').value);
+            var qualityPrem = Number(document.getElementById('item'+x+'QualityPrem').value);
+
+            var amount = price+giPrem+socialPrem+qualityPrem;
+
             ttAmount+=amount;
             document.getElementById('item'+x+'AMount').setAttribute("value", amount);
         }
