@@ -3,15 +3,15 @@ include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
 $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
 ?>
-<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 1000px; height:fit-content">
+<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 1200px; height:fit-content">
     <h3 class="formHeading">Contract Offer</h3>
     <div style="margin-left: 70%">
         <label for="batchReportNumber">Offer No.:</label>
         <label id="batchReportNumber" class="shortInput" name="batchReportNumber"><?=$newBatchNo ?></label><br>
         <label for="date">Date</label>
         <input type="date" id="date" class="shortInput" name="date" value="<?= $today ?>"><br>
-        <label for="date">Category</label>
-        <select type="date" id="date" class="shortInput" name="date" value="<?= $today ?>" style="width: 120px;">
+        <label for="contCategory">Category</label>
+        <select id="contCategory" class="shortInput" name="contCategory" value="<?= $today ?>" style="width: 120px;">
             <option value="Conventional">Conventional</option>
             <option value="Specialty">Specialty</option>
             <option value="Fair Trade">Fair Trade</option>
@@ -30,25 +30,13 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
     <?php include "../forms/customerSelector.php"; ?>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
-                <label for="currency">Currency</label><br>
-                <select type="text" id="currency" name="currency" class="shortInput" style="width: 100px;" onchange="checkCurrency()">
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="UGX">UGX</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
-                <label for="currency">Contract Type:</label><br>
-                <select type="text" id="currency" name="currency" class="shortInput" style="width: 100px;" onchange="checkCurrency()">
+            <div class="col-sm-2">
+                <label for="contType">Contract Type:</label><br>
+                <select type="text" id="contType" name="contType" class="shortInput" style="width: 100px;" onchange="checkCurrency()">
                     <option value="Spot">Spot</option>
                     <option value="Forward">Forward</option>
                 </select>
             </div>
-            <div class="col-sm-6">
-            </div>
-        </div><br>
-        <div class="row">
             <div class="col-sm-3">
                 <label for="incoterms">Incoterms</label><br>
                 <select type="text" id="incoterms" name="incoterms" class="shortInput" style="width: 150px;">
@@ -79,16 +67,29 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
         <thead>
             <tr>
                 <th style="width: 20px;">#</th>
-                <th style="width: 80px;">Item Code</th>
-                <th style="width: 200px;">Item Description</th>
-                <th style="width: 250px;">Quality Specifications</th>
-                <th style="width: 80px;">Bags</th>
-                <th style="width: 80px;">Qty (Kg)</th>
-                <th style="width: 80px;"><label id="pxCurrency"><?="Bases Price "?></label></th>
-                <th style="width: 80px;">GI Premium</th>
-                <th style="width: 80px;">Social Premium</th>
-                <th style="width: 80px;">Quality Premium</th>
-                <th style="width: 100px;">Amount</th>
+                <th style="width: 80px; display:none">Item Code</th>
+                <th style="width: 150px;">Item Description</th>
+                <th style="width: 200px;">Quality Specifications</th>
+                <th style="width: 50px;"><label id="tableContainer"></label>
+                    <select type="text" id="containerSize" name="containerSize" class="shortInput" style="width: 15px;" onchange="pickContSize()">
+                        <option value="20ft">20ft Container</option>
+                        <option value="40ft">40ft Container</option>
+                    </select>
+                </th>
+                <th style="width: 50px;">Bags</th>
+                <th style="width: 60px;">Qty (Kg)</th>
+                <th style="width: 200px;"><label>Price USD per MT FOT Kampala</label></th>
+                <th style="width: 60px;"><label id="pxCurrency"></label>
+                    <select type="text" id="currency" name="currency" class="shortInput" style="width: 15px;" onchange="checkCurrency()">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="UGX">UGX</option>
+                    </select>
+                </th>
+                <th style="width: 60px;"><label id="giCurrency"></label></th>
+                <th style="width: 60px;"><label id="socCurrency"></label></th>
+                <th style="width: 60px;"><label id="qltCurrency"></label></th>
+                <th style="width: 80px;"><label id="amtCurrency"></label></th>
                 <th style="width: 90px;">Shipment Date</th>
             </tr>
         </thead>
@@ -98,24 +99,26 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                 ?>
                 <tr>
                     <td><?=$x?></td>
-                    <td><input type="text" value="" id="<?='item'.$x.'Code'?>" readonly name="<?='item'.$x.'Code'?>" class="tableInput" style="width: 70px"></td>
+                    <td style="display: none;"><input type="text" value="" id="<?='item'.$x.'Code'?>" readonly name="<?='item'.$x.'Code'?>" class="tableInput" style="width: 70px"></td>
                     <td>
                         <div id="<?='item'.$x.'Field'?>" style="display: grid;">
-                            <input type="text" value="" id="<?='item'.$x.'Name'?>" readonly name="<?='item'.$x.'Name'?>" class="itmNameInput" style="grid-column: 1; width: 200px">
+                            <input type="text" value="" id="<?='item'.$x.'Name'?>" readonly name="<?='item'.$x.'Name'?>" class="itmNameInput" style="grid-column: 1; width: 150px">
                             <select id="<?='item'.$x.'Select'?>" style="margin: 0px; width: 20px; grid-column: 2;" class="itemSelect" onchange="pickItem()">
                                 <?php CoffeeGrades();?>
                             </select>
                         </div>
                     </td>
                     <td><input type="text" value="" id="<?='item'.$x.'QualitySpecs'?>" name="<?='item'.$x.'QualitySpecs'?>" class="itmNameInput" ></td>
+                    <td><input type="number" value="" id="<?='item'.$x.'Containers'?>"  name="<?='item'.$x.'Containers'?>" class="tblNum" step="0.01" ></td>
                     <td><input type="number" value="" id="<?='item'.$x.'Bags'?>"  name="<?='item'.$x.'Bags'?>" class="tblNum" step="0.01" ></td>
                     <td><input type="number" value="" id="<?='item'.$x.'Qty'?>"  name="<?='item'.$x.'Qty'?>" class="tblNum" step="0.01" onblur="updateInput()"></td>
+                    <td><input type="text" value="" id="<?='item'.$x.'pxRef'?>"  name="<?='item'.$x.'pxRef'?>" class="itmNameInput"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'Price'?>"  name="<?='item'.$x.'Price'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'GiPrem'?>"  name="<?='item'.$x.'GiPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'SocialPrem'?>"  name="<?='item'.$x.'SocialPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'QualityPrem'?>"  name="<?='item'.$x.'QualityPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'AMount'?>" readonly name="<?='item'.$x.'AMount'?>" step="0.001" class="tblNum"></td>
-                    <td><input type="date" value="" id="<?='item'.$x.'ShipDate'?>" name="<?='item'.$x.'ShipDate'?>" step="0.001" class="tableInput" style="width: 90px;"></td>
+                    <td><input type="date" value="" id="<?='item'.$x.'ShipDate'?>" required name="<?='item'.$x.'ShipDate'?>" step="0.001" class="tableInput" style="width: 90px;"></td>
 
                 </tr>
                 <?php
@@ -148,7 +151,7 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                         ?>
                         <tr style="border:0px solid">
                             <td style="border:0px solid"><?=$x.'.'?></td>
-                            <td style="width: 600px; border:0px solid"><input id="<?='term'.$x?>" class="tableInput"></td>
+                            <td style="width: 800px; border:0px solid"><input id="<?='term'.$x?>" name="<?='term'.$x?>" class="tableInput"></td>
                         </tr>
                         <?php
                         }
@@ -165,10 +168,20 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
 <?php include "../forms/footer.php" ?>
 <script>
     checkCurrency();
+    pickContSize();
     function checkCurrency(){
         var selCurrency = document.getElementById("currency").value;
         document.getElementById("totalCurrency").innerText=selCurrency;
-        document.getElementById("pxCurrency").innerText="Base Price ("+selCurrency+"/Kg)";
+        var currencyLabel = selCurrency+"/Kg)";
+        document.getElementById("pxCurrency").innerText="Base Price ("+currencyLabel;
+        document.getElementById("giCurrency").innerText="GI Premium ("+currencyLabel;
+        document.getElementById("socCurrency").innerText="Social Premium ("+currencyLabel;
+        document.getElementById("qltCurrency").innerText="Quality Premium ("+currencyLabel;
+        document.getElementById("amtCurrency").innerText="Amount ("+currencyLabel;
+    }
+    function pickContSize(){
+        var contSize = document.getElementById("containerSize").value;
+        document.getElementById("tableContainer").innerText="No. of "+contSize+" Containers";
     }
 
     function pickItem(){
