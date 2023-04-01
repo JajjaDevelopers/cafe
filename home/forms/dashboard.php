@@ -3,6 +3,7 @@
 <div class="row">
 
 <div class="col-lg-6">
+  <div class="row">
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Monthly Movement</h5>
@@ -71,114 +72,9 @@
 
     </div>
   </div>
-</div>
+  </div><!--End of row for monthly movement-->
 
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Weigh Bridge Coffee In and Out</h5>
-      <div  id="coffeeInAndOut" >
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Monthly Processing</h5>
-      <div class="row">
-    <div class="col">
-      <table class="table table-bordered table-hover" id="currentMonth">
-        <thead>
-          <tr>
-            <th scope="col">Monthly&nbsp;Processing</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-
-    <div class="col">
-      <table class="table table-bordered table-hover" id="hulled">
-        <thead>
-          <tr>
-            <th scope="col">Hulled</th>
-          </tr>
-        </thead>
-          <tbody>
-            <tr>
-              <td>Hulled</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-
-    <div class="col">
-      <table class="table table-bordered table-hover" id="graded">
-        <thead>
-          <tr>
-            <th scope="col">Graded</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Graded</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-
-    <div class="col">
-      <table class="table table-bordered table-hover" id="colorSorted">
-        <thead>
-          <tr>
-            <th scope="col">Color&nbsp;Sorted</th>
-          </tr>
-        </thead>
-          <tbody>
-            <tr>
-              <td >ColorSorter</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-    <div class="col">
-      <table class="table table-bordered table-hover" id="dried">
-        <thead>
-          <tr>
-            <th scope="col">Dried</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Dried</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-  </div><!--End row-->
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Daily Processing</h5>
-      <div id="dailyCoffeeProcessing">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-lg-6">
+  <div class="row">
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Quarterly Movement</h5>
@@ -244,17 +140,130 @@
     </div>
     </div>
   </div>
-</div>
+  </div><!--End of row for monthly-->
 
-<div class="col-lg-6">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Quarterly Graded</h5>
-      <div id="quarterlyReceived">
+  <div class="row">
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Monthly Processing</h5>
+        <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-hover" id="currentMonth">
+          <thead>
+            <tr>
+              <th scope="col">Monthly&nbsp;Processing</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
 
+      <div class="col">
+        <table class="table table-bordered table-hover" id="hulled">
+          <thead>
+            <tr>
+              <th scope="col">Hulled</th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr>
+                <td>Hulled</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <table class="table table-bordered table-hover" id="graded">
+          <thead>
+            <tr>
+              <th scope="col">Graded</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Graded</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <table class="table table-bordered table-hover" id="colorSorted">
+          <thead>
+            <tr>
+              <th scope="col">Color&nbsp;Sorted</th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr>
+                <td >ColorSorter</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <table class="table table-bordered table-hover" id="dried">
+          <thead>
+            <tr>
+              <th scope="col">Dried</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dried</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div><!--End row-->
       </div>
     </div>
+    </div><!---End of row for processing-->
+
   </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Weigh Bridge Coffee In and Out</h5>
+        <div  id="coffeeInAndOut" >
+
+        </div>
+      </div>
+    </div>
+    </div><!--End of row for weigh bridge-->
+    <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Daily Processing</h5>
+        <div id="dailyCoffeeProcessing">
+
+        </div>
+      </div>
+    </div>
+    </div><!--End of row for daily processing-->
+
+    <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Quarterly Processed</h5>
+        <div id="quarterlyReceived">
+
+        </div>
+      </div>
+    </div>
+  </div><!--End of row for Quarterly Processed-->
+
+</div>
+
+
 </div>
 <!--Script files-->
 <script src="../assets/js/tabledata.js"></script>
