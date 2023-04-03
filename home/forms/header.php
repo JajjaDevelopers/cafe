@@ -473,6 +473,16 @@ body {
               <i class="bi bi-circle"></i><span>Sales Contracts</span>
             </a>
           </li>
+          <li>
+            <a href="../reports/salesReports">
+              <i class="bi bi-circle"></i><span>Sales Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="../reports/purchasesReports">
+              <i class="bi bi-circle"></i><span>Purchases Reports</span>
+            </a>
+          </li>
           <!-- <li>
             <a href="charts-chartjs.html">
               <i class="bi bi-circle"></i><span>Chart.js</span>

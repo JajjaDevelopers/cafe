@@ -1,16 +1,16 @@
 <?php $pageTitle="Contract Offer";
 include_once ("../forms/header.php");
 include ("../connection/databaseConn.php");
-$newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
+$newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
 ?>
 <form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 1200px; height:fit-content">
     <h3 class="formHeading">Contract Offer</h3>
     <div style="margin-left: 70%">
-        <label for="batchReportNumber">Offer No.:</label>
-        <label id="batchReportNumber" class="shortInput" name="batchReportNumber"><?=$newBatchNo ?></label><br>
-        <label for="date">Date</label>
+        <label for="offerNum">Offer No. :</label>
+        <label id="offerNum" class="shortInput" name="offerNum"><?=$newBatchNo ?></label><br>
+        <label for="date">Offer Date :</label>
         <input type="date" id="date" class="shortInput" name="date" value="<?= $today ?>"><br>
-        <label for="contCategory">Category</label>
+        <label for="contCategory">Category :</label>
         <select id="contCategory" class="shortInput" name="contCategory" value="<?= $today ?>" style="width: 120px;">
             <option value="Conventional">Conventional</option>
             <option value="Specialty">Specialty</option>
@@ -118,7 +118,7 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
                     <td><input type="number" value="" id="<?='item'.$x.'SocialPrem'?>"  name="<?='item'.$x.'SocialPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'QualityPrem'?>"  name="<?='item'.$x.'QualityPrem'?>" class="tblNum" step="0.0001" onblur="updateInput()"></td>
                     <td><input type="number" value="" id="<?='item'.$x.'AMount'?>" readonly name="<?='item'.$x.'AMount'?>" step="0.001" class="tblNum"></td>
-                    <td><input type="date" value="" id="<?='item'.$x.'ShipDate'?>" required name="<?='item'.$x.'ShipDate'?>" step="0.001" class="tableInput" style="width: 90px;"></td>
+                    <td><input type="date" id="<?='item'.$x.'ShipDate'?>" name="<?='item'.$x.'ShipDate'?>" class="tableInput" style="width: 90px; display:none"></td>
 
                 </tr>
                 <?php
@@ -190,6 +190,11 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "COF");
             document.getElementById('item'+x+'Code').setAttribute("value", selectedItem.slice(0,6));
             document.getElementById('item'+x+'Name').setAttribute("value", selectedItem.slice(8));
             document.getElementById('item'+x+'QualitySpecs').setAttribute("value", selectedItem.slice(8));
+            if (selectedItem!=""){
+                var shipmentDate =  document.getElementById('item'+x+'ShipDate');
+                shipmentDate.setAttribute("required", "required");
+                shipmentDate.style.display="";
+            }
         }
     }
 
