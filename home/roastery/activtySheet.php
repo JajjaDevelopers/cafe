@@ -53,7 +53,7 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
                     <td class="emptyCell"></td>
                     <td class="emptyCell"></td>
                     <th>Total</th>
-                    <th><input type="text" id="totalAmount" name="totalAmount" class="tableInput" readonly></th>
+                    <th><input type="text" id="totalAmount" name="totalAmount" class="tblNum" readonly></th>
                 </tr>
             </tbody>
         </table>
@@ -64,9 +64,9 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
         <table>
             <thead>
                 <tr>
-                    <th style="width: 390px;">Item Name</th>
-                    <th style="width: 100px;">Output Qty</th>
-                    
+                    <th style="width: 400px;">Item Name</th>
+                    <th style="width: 100px;">Unit</th>
+                    <th style="width: 150px;">Output Qty</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,114 +102,7 @@ $activityNo = nextDocNumber("roastery_activity_summary", "activity_sheet_no", "R
             <?php submitButton("Submit", "submit", "btnsubmit") ?>
         </div>
     </div>
-    
-   
 </form>
 <?php include_once('../forms/footer.php'); ?>
-<script>
-    //create item ids
-    var itmCodeList = [];
-    var itmNameList = [];
-    var itmSelectList = [];
-    var itmQtyList = [];
-    var itmRateList = [];
-    var itmAmountList = [];
-    // let responders = qtyList.concat(rateList);
-
-    for (var x=1; x<=10; x++){ 
-        itmCodeList.push("itm"+x+"Code");
-        itmNameList.push("itm"+x+"Name");
-        itmSelectList.push("itm"+x+"Select");
-        itmQtyList.push("itm"+x+"Qty");
-        itmRateList.push("itm"+x+"Rate");
-        itmAmountList.push("itm"+x+"Amount");
-    }
-
-    //create service ids
-    var svcCodeList = [];
-    var svcNameList = [];
-    var svcSelectList = [];
-    var svcQtyList = [];
-    var svcRateList = [];
-    var svcAmountList = [];
-    var svcQtyAndRateList = svcQtyList.concat(svcRateList);
-
-    for (var x=1; x<=10; x++){ 
-        svcCodeList.push("svc"+x+"Code");
-        svcNameList.push("svc"+x+"Name");
-        svcSelectList.push("svc"+x+"Select");
-        svcQtyList.push("svc"+x+"Qty");
-        svcRateList.push("svc"+x+"Rate");
-        svcAmountList.push("svc"+x+"Amount");
-    }
-
-    //item selection
-    function selectItemx(itmSelectId){
-        
-        var selectedItem = document.getElementById(itmSelectId).value;
-        var selectedIndex = itmSelectList.indexOf(itmSelectId);
-
-        document.getElementById(itmCodeList[selectedIndex]).setAttribute("value", selectedItem.slice(0,6));
-        document.getElementById(itmNameList[selectedIndex]).setAttribute("value", selectedItem.substr(8));
-    }
-
-    // service selection
-    function selectService(svcSelectId){
-        
-        var selectedItem = document.getElementById(svcSelectId).value;
-        var selectedIndex = svcSelectList.indexOf(svcSelectId);
-
-        document.getElementById(svcCodeList[selectedIndex]).setAttribute("value", selectedItem.slice(0,6));
-        document.getElementById(svcNameList[selectedIndex]).setAttribute("value", selectedItem.substr(8));
-    }
-    
-    //updating qty and price
-    function updateQty(){
-        var totalAmt = 0;
-        for (var x=0; x<svcCodeList.length; x++){
-            var qty = Number(document.getElementById(svcQtyList[x]).value);
-            var rate = Number(document.getElementById(svcRateList[x]).value);
-            var total = qty*rate;
-            if (svcNameList[x] != "" ){
-                document.getElementById(svcAmountList[x]).value = total;
-                totalAmt += total;
-            }else{
-                document.getElementById(svcQtyList[x]).value = "";
-                document.getElementById(svcRateList[x]).value = "";
-                document.getElementById(svcAmountList[x]).value = "";
-            }
-        }
-        document.getElementById("totalAmount").value = totalAmt;
-    }
-
-
-    //Toggling between tables
-    var nextBtn = document.getElementById("nextButton");
-    var nextTbl = document.getElementById("inventoryTable");
-    var prevTbl = document.getElementById("servicesTable");
-    var sbmtBtn = document.getElementById("submitButton");
-    var prevBtn = document.getElementById("previousButton");
-
-    function switchToInventory(){
-        nextBtn.style.display = "none";
-        prevTbl.style.display = "none";
-        nextTbl.style.display = "block";
-        sbmtBtn.style.display = "block";
-        prevBtn.style.display = "block";
-    }
-
-    //previous table display
-    
-    function switchToServices(){
-        nextBtn.style.display = "block";
-        prevTbl.style.display = "block";
-        nextTbl.style.display = "none";
-        sbmtBtn.style.display = "none";
-        prevBtn.style.display = "none";
-    }
-
-
-    document.getElementById("nextButton").addEventListener("click", switchToInventory);
-    document.getElementById("previousButton").addEventListener("click", switchToServices);
-</script>
+<script src="../assets/js/activitySheet.js"></script>
 

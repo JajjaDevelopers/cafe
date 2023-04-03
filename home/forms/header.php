@@ -319,7 +319,7 @@ body {
           </li>
           <li>
             <a href="../marketing/contractAllocation">
-              <i class="bi bi-circle"></i><span>Contract Allocation</span>
+              <i class="bi bi-circle"></i><span>Stock Allocation</span>
             </a>
           </li>
         </ul>
@@ -337,8 +337,8 @@ body {
             </a>
           </li>
           <li>
-            <a href="#">
-            <!-- <a href="../roastery/activtySheet"> -->
+            <!-- <a href="#"> -->
+            <a href="../roastery/activtySheet">
               <i class="bi bi-circle"></i><span>Roastery Services</span>
             </a>
           </li>
@@ -471,6 +471,16 @@ body {
           <li>
             <a href="../reports/salesContracts">
               <i class="bi bi-circle"></i><span>Sales Contracts</span>
+            </a>
+          </li>
+          <li>
+            <a href="../reports/salesReports">
+              <i class="bi bi-circle"></i><span>Sales Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="../reports/purchasesReports">
+              <i class="bi bi-circle"></i><span>Purchases Reports</span>
             </a>
           </li>
           <!-- <li>

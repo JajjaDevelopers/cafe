@@ -44,22 +44,22 @@ if ($ugxGrandTotal>0 && $BuyerId!="" && $ttQty>0){
     $summarySql->bind_param("isssisiss",$newNo, $BuyerId, $salesReportDate, $salesReportCategory, $ugxGrandTotal, $salesReportCurrency, 
     $exchangeRate, $preparedBy, $salesReportNotes);
     $summarySql->execute();
-    $conn->rollback();
+    // $conn->rollback();
 
 
     //capturing details
 
     $qtyOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-        grade_id, qty_out, price_ugx) VALUES (?,?,?,?,?,?,?,?,?)");
+            grade_id, qty_out, price_ugx) VALUES (?,?,?,?,?,?,?,?)");
     $qtyInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, trans_date, customer_id, item_no, 
-            grade_id, qty_in, , price_ugx) VALUES (?,?,?,?,?,?,?,?)");   
+            grade_id, qty_in, price_ugx) VALUES (?,?,?,?,?,?,?,?)");   
             
     $docType = "Sales Report";
     for ($p=0; $p < count($qtyList); $p++){
         $qty = ($_POST[$qtyList[$p]]) ;
         $gradeID = ($_POST[$salesReportGradeList[$p]]);
         $itemPx = ($_POST[$priceList[$p]]);
-            if ($qty > 0){
+        if ($qty > 0){
             $qtyOutSql->bind_param("sissisdd", $docType, $newNo, $salesReportDate, $selfId, $itmNo, $gradeID, $qty, $itemPx);
             $qtyOutSql->execute();
             $itmNo += 1;

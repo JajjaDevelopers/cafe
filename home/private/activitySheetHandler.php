@@ -59,7 +59,7 @@ for ($i=0; $i<count($svcCodeList); $i++){
     $grade_id = $_POST[$svcCodeList[$i]];
     $qty = $_POST[$svcQtyList[$i]];
     $rate = $_POST[$svcRateList[$i]];
-    if ($qty != 0){
+    if ($qty > 0){
         $actvitiesSql->bind_param("iisdd", $svcNo, $actNo, $grade_id, $qty, $rate);
         $actvitiesSql->execute();
         $conn->rollback();
@@ -69,7 +69,7 @@ for ($i=0; $i<count($svcCodeList); $i++){
 
 //Capturing stock balances
 $itmSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, item_no, 
-                        grade_id, qty_in, block_id, section) VALUES (?,?,?,?,?,?,?,?)");
+                        grade_id, qty_in, block_id, section, trans_date) VALUES (?,?,?,?,?,?,?,?,?)");
 $ref = "Roasting";
 $itmNo = 1;
 for ($i=0; $i<count($itmCodeList); $i++){
@@ -78,7 +78,7 @@ for ($i=0; $i<count($itmCodeList); $i++){
     $block_id = "";
     $section = "";
     if ($qty_in != 0){
-        $itmSql->bind_param("sisisdss", $ref, $actNo, $customer, $itmNo, $grade_id, $qty_in, $block_id, $section);
+        $itmSql->bind_param("sisisdsss", $ref, $actNo, $customer, $itmNo, $grade_id, $qty_in, $block_id, $section, $actDate);
         $itmSql->execute();
         $conn->rollback();
         $itmNo += 1;
@@ -87,12 +87,12 @@ for ($i=0; $i<count($itmCodeList); $i++){
 
 //adjusting stock out
 $itmOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, customer_id, item_no, 
-                        grade_id, qty_out, block_id, section) VALUES (?,?,?,?,?,?,?,?)");
+                        grade_id, qty_out, block_id, section, trans_date) VALUES (?,?,?,?,?,?,?,?,?)");
 // $itmOutNo = 1;
 $block_id = "";
 $section = "";
-$itmOutSql->bind_param("sisisdss", $ref, $actNo, $customer, $itmNo, $inputGrade, $inputQty, $block_id, 
-                        $section);
+$itmOutSql->bind_param("sisisdsss", $ref, $actNo, $customer, $itmNo, $inputGrade, $inputQty, $block_id, 
+                        $section, $actDate);
 $itmOutSql->execute();
 $conn->rollback();
 

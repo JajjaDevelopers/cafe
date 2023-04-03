@@ -5,7 +5,7 @@ if(isset($_GET['salNo'])){
     $_SESSION["salNo"] = $sal;
 }
 ?>
-<form class="regularForm" style="height: fit-content;">
+<form class="regularForm" style="height: fit-content; width: 794px">
     <?php include "../templates/salesReport.php" ?>
     <?php include "../forms/users.php" ?>
 </form>
