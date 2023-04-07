@@ -11,7 +11,7 @@ $offerItems=$_SESSION['offerItems'];
         <br>
         <img src="../assets/img/nucafeHeader.jpg" style="width: 780px; height: 120px">
         <br><br>
-        <p style="text-align: right;"><?=$month.' '.$day.', '.$year?></p>
+        <p style="text-align: right; margin-right: 40px;"><?=$month.' '.$day.', '.$year?></p>
         <div class="container">
             <div class="row">
                 <div class="col-2" style="width:fit-content">
@@ -55,13 +55,38 @@ $offerItems=$_SESSION['offerItems'];
     </div>
     <div style="height:100px;">
         <p style="text-align: center; margin:0px">Plot 35, Jinja Road, Coffee House, 2nd Floor, Suite 2.7 P. O Box 34967, Kampala</p>
-        <p style="text-align: center; margin:0px">Tel: +256 - 414- 236199, Fax: +256 - 414 – 236199</p>
+        <p style="text-align: center; margin:0px">Tel: &#43;256 &#45; 414 &#45; 236199, Fax: &#43;256 &#45; 414 &#45; 236199</p>
         <p style="text-align: center; margin:0px">Email: nucafe@nucafe.org, Website: www.nucafe.org</p>
         <p style="text-align: center; margin:0px"><b>Hope for Rural Wealth Creation</b></p>
+    </div>
+    <div class=" mt-3 me-5 d-flex flex-row justify-content-between">
+        <a href="../reports/salesContracts.php" class="btn btn-link" id="btnback" style="color:green">Back</a>
+        <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
+        </i>
     </div>
     
 </form>
 <?php include "../forms/footer.php" ?>
+<script>
+    //print
+    document.getElementById("print").addEventListener("click",()=>{
+
+    document.getElementById("footer").style.display="none";
+    document.getElementById("divheader").style.display="none";
+    document.getElementById("sidebar").style.display="none";
+    document.getElementById("btnback").style.display="none";
+    document.getElementById("print").style.display="none";
+    window.print();
+    document.getElementById("print").style.display="block";
+    
+    document.getElementById("footer").style.display="block";
+    document.getElementById("divheader").style.display="block";
+    document.getElementById("sidebar").style.display="block";
+    document.getElementById("btnback").style.display="block";
+    document.getElementById("print").style.display="block";
+  })
+
+</script>
 <script>
     var totalGi = 0;
     var totalSoc = 0;

@@ -39,13 +39,6 @@ date_default_timezone_set("Africa/Kampala");
   <!--plotly-->
   <script src="../assets/plotly/plotly-2.16.1.min.js"></script>
 
-
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.4.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 <style>
 body {
@@ -99,6 +92,7 @@ body {
 <body style="min-height:100vh; display:flex; flex-direction:column;">
 
   <!-- ======= Header ======= -->
+  <div id="divheader">
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="../forms/index.php" class="logo d-flex align-items-center">
@@ -107,15 +101,6 @@ body {
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <!-- <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form> -->
-    </div><!-- End Search Bar -->
-
-    
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -219,6 +204,7 @@ body {
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+</div>
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar" style="background-color:green;">

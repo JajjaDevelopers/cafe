@@ -1,4 +1,4 @@
-<div id="ajaxDiv" style="display: none;"> </div>
+<div id="ajaxDiv" style="display: none;"></div>
 <div class="container" style="margin: 0px;">
     <div class="row">
         <div class="col-xs-12" id="customerDetailsDiv" style="margin-top: 10px;">
