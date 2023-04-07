@@ -1,7 +1,12 @@
 <?php
 $pageTitle = "Pending Approval";
 include_once ('../forms/header.php');
-// include "../private/verAndApprFunctions.php";
+$docTitles = array("Goods Received Notes (GRN)", "Batch Reports", "Release Requests", "Valuation Reports", "Sales Report", "Drying Report",
+                "Transfer Report", "Bulking Report", "Stock Adjustment", "Stock Counting", "Roastery Activities");
+$paths = array("grnApprovalList", "batchReportList", "releaseList", "valuationList", "hullingList", "dryingList", "transferList",
+                "bulkingList", "adjustmentList", "stockCountList", "activitySheetList");
+$docCounts = array($grnApprNum, $batchReportApprNum, $releaseApprNum, $valuationApprNum, $hullingApprNum, $dryingApprNum, $transferApprNum,
+                $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $activitySheetApprNum);
 
 ?>
 <form class="regularForm">
@@ -15,50 +20,27 @@ include_once ('../forms/header.php');
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="../approval/grnApprovalList">Goods Received Notes (GRN)</a></td>
-                    <td style="text-align: center"><?= $grnApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/batchReportList">Batch Reports</a></td>
-                    <td style="text-align: center"><?= $batchReportApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/releaseList">Release Requests</a></td>
-                    <td style="text-align: center"><?= $releaseApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/valuationList">Valuation Reports</a></td>
-                    <td style="text-align: center"><?= $valuationApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/salesReportList">Sales Report</a></td>
-                    <td style="text-align: center"><?= $salesReportApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/hullingList">Hulling Reports</a></td>
-                    <td style="text-align: center"><?= $hullingApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/dryingList">Drying Report</a></td>
-                    <td style="text-align: center"><?= $dryingApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/transferList">Transfer Report</a></td>
-                    <td style="text-align: center"><?= $transferApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/bulkingList">Bulking Report</a></td>
-                    <td style="text-align: center"><?= $bulkingApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/adjustmentList">Stock Adjustment</a></td>
-                    <td style="text-align: center"><?= $adjsutmentApprNum ?></td>
-                </tr>
-                <tr>
-                    <td><a href="../approval/stockCountList">Stock Counting</a></td>
-                    <td style="text-align: center"><?= $stockCountApprNum ?></td>
-                </tr>
+                <?php
+                $allCounts=0;
+                for ($x=0;$x<count($docCounts);$x++){
+                    $allCounts+=$docCounts[$x];
+                    if ($docCounts[$x]!=0){
+                        ?>
+                        <tr>
+                            <td><a href="../approval/<?=$paths[$x]?>"><?=$docTitles[$x]?></a></td>
+                            <td style="text-align: center"><?= $docCounts[$x] ?></td>
+                        </tr>
+                        <?php
+                    } 
+                }
+                if($allCounts==0){
+                        ?>
+                        <tr>
+                            <td style="background-color: red; color:white">There are no pending approvals. Confirm whether all verifications are completed!</td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
             </tbody>
         </table>
 
