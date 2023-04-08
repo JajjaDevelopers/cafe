@@ -6,10 +6,10 @@ include "../private/contractOfferVariables.php";
 $offerItems=$_SESSION['offerItems'];
 
 ?>
-<form class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 794px; height:fit-content; background-color:white">
+<form id="mainForm" class="regularForm" method="post" action="../connection/contractOffer.php" style="width: 794px; height:fit-content; background-color:white">
     <div style="height:907px;">
         <br>
-        <img src="../assets/img/nucafeHeader.jpg" style="width: 780px; height: 120px">
+        <img id="printPageHeader" src="../assets/img/nucafeHeader.jpg" style="width: 780px; height: 120px">
         <br><br>
         <p style="text-align: right; margin-right: 40px;"><?=$month.' '.$day.', '.$year?></p>
         <div class="container">
@@ -53,7 +53,7 @@ $offerItems=$_SESSION['offerItems'];
             </div>
         </div>
     </div>
-    <div style="height:100px;">
+    <div id="printPageFooter" style="height:100px; ">
         <p style="text-align: center; margin:0px">Plot 35, Jinja Road, Coffee House, 2nd Floor, Suite 2.7 P. O Box 34967, Kampala</p>
         <p style="text-align: center; margin:0px">Tel: &#43;256 &#45; 414 &#45; 236199, Fax: &#43;256 &#45; 414 &#45; 236199</p>
         <p style="text-align: center; margin:0px">Email: nucafe@nucafe.org, Website: www.nucafe.org</p>
@@ -76,6 +76,15 @@ $offerItems=$_SESSION['offerItems'];
     document.getElementById("sidebar").style.display="none";
     document.getElementById("btnback").style.display="none";
     document.getElementById("print").style.display="none";
+    document.getElementById("mainForm").style.border="none";
+    document.getElementById("printPageHeader").style.position="fixed";
+    document.getElementById("printPageHeader").style.top="0";
+
+    document.getElementById("printPageFooter").style.position="fixed";
+    document.getElementById("printPageFooter").style.bottom="0";
+    document.getElementById("printPageFooter").style.width="100%";
+  
+    // position:fixed; bottom:0
     window.print();
     document.getElementById("print").style.display="block";
     
@@ -84,7 +93,13 @@ $offerItems=$_SESSION['offerItems'];
     document.getElementById("sidebar").style.display="block";
     document.getElementById("btnback").style.display="block";
     document.getElementById("print").style.display="block";
-  })
+    document.getElementById("mainForm").style.border="1px solid brown";
+    document.getElementById("printPageFooter").style.display="block";
+    document.getElementById("printPageFooter").style.position="";
+
+    document.getElementById("printPageHeader").style.display="block";
+    document.getElementById("printPageHeader").style.position="";
+})
 
 </script>
 <script>
