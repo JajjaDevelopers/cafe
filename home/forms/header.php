@@ -503,6 +503,11 @@ body {
             </a>
           </li>
           <li>
+            <a href="../transactions/roastery">
+              <i class="bi bi-circle"></i><span>Roast  &#38; Ground</span>
+            </a>
+          </li>
+          <li>
             <a href="../transactions/inventory">
               <i class="bi bi-circle"></i><span>Inventory</span>
             </a>

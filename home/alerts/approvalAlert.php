@@ -218,3 +218,23 @@ if(isset($_GET["countap"])){
     <?php
   }
 }
+
+//activity sheet
+if(isset($_GET["apprStatus"])){
+  if($_GET["apprStatus"]=="success"){
+    $msg=$_GET["msg"];
+    ?>
+    <div class="alert alert-success alert-dismissible rounded-0 fade show" role="alert" style="background-color:green">
+        <p class="text-center text-white" style="font-size:medium"><?=$msg?></p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+  }elseif($_GET["apprStatus"]=="fail"){
+    ?>
+    <div class="alert alert-success alert-dismissible   rounded-0 fade show" role="alert" style="background-color:brown">
+        <p class="text-center text-warning" style="font-size:medium">You are not authorised to perform approval task!</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+  }
+}

@@ -18,9 +18,11 @@ $bulkingVerNum = countPendVerifications("bulking", "verified_by");
 $adjustmentVerNum = countPendVerifications("adjustment", "verified_by");
 $stockCountVerNum = countPendVerifications("stock_counting", "verified_by");
 $batchReportVerNum = countPendVerifications("batch_reports_summary", "verified_by");
+$activitySheetVerNum = countPendVerifications("roastery_activity_summary", "verified_by");
+
 
 $allPendVerList = array($grnVerNum, $releasVerNum, $valuationVerNum, $salesReportVerNum, $hullingVerNum, $dryingVerNum, 
-                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum, $stockCountVerNum, $batchReportVerNum);
+                    $transferVerNum, $bulkingVerNum, $adjustmentVerNum, $stockCountVerNum, $batchReportVerNum, $activitySheetVerNum);
 
 
 //Counting pending approvals
@@ -46,9 +48,10 @@ $bulkingApprNum = countPendApprovals("bulking", "approved_by");
 $adjsutmentApprNum = countPendApprovals("adjustment", "approved_by");
 $stockCountApprNum = countPendApprovals("stock_counting", "approved_by");
 $batchReportApprNum = countPendApprovals("batch_reports_summary", "approved_by");
+$activitySheetApprNum = countPendApprovals("roastery_activity_summary", "approved_by");
 
 $allPendApprList = array($grnApprNum, $releaseApprNum, $valuationApprNum, $salesReportApprNum, $hullingApprNum, $dryingApprNum,
-                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $batchReportApprNum);
+                    $transferApprNum, $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $batchReportApprNum, $activitySheetApprNum);
 
 
 $totalPendVer = 0;
@@ -687,6 +690,64 @@ function batchReportApprList(){
             <td style="text-align: center;"><?=round($outTurn*100/$netInput,2)?></td>
        </tr>
        <?php
+    }
+}
+
+//activity sheet
+function activitySheetVerList(){
+    include "connlogin.php";
+    include "functions.php";
+    $sql = $conn->prepare("SELECT activity_sheet_no, activity_date, customer_name, grade_name, qty, 
+                    (SELECT sum(qty*rate) FROM roastery_activity_details 
+                    WHERE roastery_activity_summary.activity_sheet_no=roastery_activity_details.activity_sheet_no) AS value 
+                    FROM roastery_activity_summary JOIN customer USING (customer_id) JOIN grades USING (grade_id)
+                    WHERE (roastery_activity_summary.verified_by='None')");
+    $sql->execute();
+    $sql->bind_result($no, $date, $client, $grade, $qty, $value);
+    while ($sql->fetch()){
+       ?>
+       <tr>
+       <td><a href="../verification/activitySheet?actNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$date?></td>
+            <td><?=$client?></td>
+            <td><?=$grade?></td>
+            <td style="text-align: right;"><?=num($qty)?></td>
+            <td style="text-align: right;"><?=num($value)?></td>
+       </tr>
+       <?php
+    }
+}
+
+function activitySheetApprList(){
+    include "connlogin.php";
+    include "functions.php";
+    $sql = $conn->prepare("SELECT activity_sheet_no, activity_date, customer_name, grade_name, qty, 
+                    (SELECT sum(qty*rate) FROM roastery_activity_details 
+                    WHERE roastery_activity_summary.activity_sheet_no=roastery_activity_details.activity_sheet_no) AS value 
+                    FROM roastery_activity_summary JOIN customer USING (customer_id) JOIN grades USING (grade_id)
+                    WHERE (roastery_activity_summary.verified_by<>'None') AND approved_by='None'");
+    $sql->execute();
+    $sql->bind_result($no, $date, $client, $grade, $qty, $value);
+    $x=0;
+    while ($sql->fetch()){
+        $x+=1;
+       ?>
+       <tr>
+            <td><a href="../approval/activitySheet?actNo=<?=$no?>"> <?=$no?> </a></td>
+            <td><?=$date?></td>
+            <td><?=$client?></td>
+            <td><?=$grade?></td>
+            <td style="text-align: right;"><?=num($qty)?></td>
+            <td style="text-align: right;"><?=num($value)?></td>
+       </tr>
+       <?php
+    }
+    if ($x<=0){
+        ?>
+        <tr>
+             <td colspan="6">There are no Activity Sheets pending approval</td>
+        </tr>
+        <?php
     }
 }
 ?>

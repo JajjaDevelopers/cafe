@@ -301,7 +301,7 @@ function activitySheetItems($itemNo){
       <input type="text" value="" id="itm<?=$itemNo?>Code" readonly name="itm<?=$itemNo?>Code" class="itmNameInput" style="grid-column: 1; display:none">
       <input type="text" value="" id="itm<?=$itemNo?>Name" readonly name="itm<?=$itemNo?>Name" class="itmNameInput" style="grid-column: 2; width: 370px">
       <select id="itm<?=$itemNo?>Select" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect"
-      onchange="selectItemx(this.id, )">
+      onchange="selectItemx(this.id)">
         <?php getRoastedItems(); ?>
       </select>
     </td>
@@ -351,7 +351,7 @@ function getServices(){
 //roastery items
 function getRoastedItems(){
   include "connlogin.php"; 
-  $query = "SELECT grade_id, grade_name FROM grades WHERE (inventory_type='ITEM' AND grade_type='ROASTED')";
+  $query = "SELECT grade_id, grade_name FROM grades WHERE (inventory_type='ITEM' AND grade_type='ROASTED') ORDER BY grade_rank";
   if ($svcSql = $conn->prepare($query)) {
     $svcSql->execute();
     $svcSql->bind_result($grade_id, $grade_name);

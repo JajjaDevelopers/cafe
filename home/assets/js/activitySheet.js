@@ -47,9 +47,9 @@
      const xhttp = new XMLHttpRequest();
      xhttp.onload = function(){
         var grdId = this.responseText;
-        document.getElementById('itm'+selectedIndex+'Unit').setAttribute("value", "kkk");
+        document.getElementById('itm'+(selectedIndex+1)+'Unit').setAttribute("value", grdId);
      }
-     xhttp.open("GET","../ajax/activitySheet.php?id="+itmId);
+     xhttp.open("GET","../ajax/activitySheet.php?fun=unit&id="+itmId);
      xhttp.send();
  }
 

@@ -45,7 +45,7 @@ $profile = sanitize_table($_POST["roastProfile"]);
 $specRequest = sanitize_table($_POST["specialRequest"]);
 
 $summarySql = $conn->prepare("INSERT INTO roastery_activity_summary (activity_sheet_no, activity_date, customer_id, 
-                            grade_id, qty, roast_profile, special_request, prepared_by) VALUES (?,?,?,?,?,?,?,?)");
+                            grade_id, qty, roast_profile, special_request, prepared_by, prep_date) VALUES (?,?,?,?,?,?,?,?, NOW())");
 $summarySql->bind_param("isssdsss", $actNo, $actDate, $customer, $inputGrade, $inputQty, $profile, $specRequest,
                         $preparedBy);
 $summarySql->execute();
