@@ -1,7 +1,6 @@
 <?php $pageTitle="Valuation Report"; ?>
 <?php include_once('../forms/header.php'); 
-include ("../connection/databaseConn.php");
-$valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VAL");
+include "../connection/valuationVariables.php";
 ?>
 <form id="valuationForm" name="valuationForm" class="regularForm" style="height:fit-content; width: 900px" method="POST" action="../connection/valuation.php">
     <h3 class="formHeading">VALUATION REPORT</h3>
@@ -18,9 +17,9 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
             <div class="col-md-6">
                 <input type="text" id="valuationNumber" name="valuationNumber" class="shortInput" readonly value="<?=$valuationNumber?>"
                 style="width: 100px; text-align: center;">
-                <input type="date" id="valuationDate" name="valuationDate" value="<?=$today?>" class="shortInput" style="width: 100px; text-align: center;"
+                <input type="date" id="valuationDate" name="valuationDate" value="<?=$valDate?>" class="shortInput" style="width: 100px; text-align: center;"
                 onchange="getFx(this.value)"><br>
-                <input type="number" id="batchNo" name="batchNo" class="shortInput" value="" style="width: 100px; text-align: center;"
+                <input type="number" id="batchNo" name="batchNo" class="shortInput" value="<?=$batcNo?>" style="width: 100px; text-align: center;"
                 onchange="updateOrder(this.value)">
             </div>
         </div>
@@ -49,7 +48,7 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
                 <td>Kibooko Delivered (Kg)</td>
                 <td colspan="2"><input type="number" value="" id="kibookoQty" name="kibookoQty" required class="tblNum"></td>
                 <td colspan="3">FAQ Delivered (Kg)</td>
-                <td colspan="2"><input type="number" value="" id="FAQQty" name="FAQQty" required class="tblNum" onchange="captureQty()"></td>
+                <td colspan="2"><input type="number" value="<?=$inputQty?>" id="FAQQty" name="FAQQty" required class="tblNum" onchange="captureQty()"></td>
             </tr>
             <tr>
                 <td>Exchange Rate</td>
@@ -58,31 +57,25 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
                 
             </tr>
             <tr>
-                <th style="width: 200px;">Grade/Screen</th>
+                <th style="width: 250px;">Grade/Screen</th>
                 <th style="width: 60px;">Actual Yield (%)</th>
                 <th style="width: 80px;">QTY (Kg)</th>
                 <th style="width: 60px;">Price (US$)/Kg</th>
                 <th style="width: 60px;">Price (Cts/lb)</th>
-                <th style="width: 60px;">Price (Ugx/Kg)</th>
-                <th style="width: 80px;">Amount (US$)</th>
-                <th style="width: 100px;">Amount (UGX)</th>
+                <th style="width: 100px;">Price (Ugx/Kg)</th>
+                <th style="width: 100px;">Amount (US$)</th>
+                <th style="width: 120px;">Amount (UGX)</th>
             </tr>
-            
-            
-            <?php 
-                for ($row = 1; $row <= 10; $row ++){
-                    valuationItemRow($row); 
-                }
-            ?>
+            <?php valEditDetails() ?>
             <tr>
                 <th>Actual Total Value Before Costs</th>
-                <td><input type="number" value="" id="totalYield" readonly name="totalYield" class="tblNum"></td>
-                <td><input type="number" value="" id="totalQty" readonly name="totalQty" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttYield?>" id="totalYield" readonly name="totalYield" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttQty?>" id="totalQty" readonly name="totalQty" class="tblNum"></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><input type="number" value="" id="grandTotaltUs" readonly name="grandTotaltUs" class="tblNum"></td>
-                <td><input type="number" value="" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttUsdAmt?>" id="grandTotaltUs" readonly name="grandTotaltUs" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttUgxAmt?>" id="grandTotaltUgx" readonly name="grandTotaltUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th>Less Costs</th>
@@ -98,29 +91,33 @@ $valuationNumber = nextDocNumber("valuation_report_summary", "valuation_no", "VA
                 <td colspan="6"><input type="text" value="Costs:" id="costsDetails" name="costsDetails" class="tableInput" 
                 style="text-align: left;" placeholder="Enter description of costs..."></td>
                 
-                <td><input type="number" value="" id="totalCostsUsd" readonly name="totalCostsUsd" class="tblNum"></td>
-                <td><input type="number" value="" id="totalCostsUgx" name="totalCostsUgx" class="tblNum"></td>
+                <td><input type="number" value="<?=$valCostsUsd?>" id="totalCostsUsd" readonly name="totalCostsUsd" class="tblNum"></td>
+                <td><input type="number" value="<?=$valCosts?>" id="totalCostsUgx" name="totalCostsUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th colspan="6">Sub-total Costs</th>
                 
-                <td><input type="number" value="" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tblNum"></td>
-                <td><input type="number" value="" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tblNum"></td>
+                <td><input type="number" value="<?=$valCostsUsd?>" id="subTotalCostsUsd" readonly name="subTotalCostsUsd" class="tblNum"></td>
+                <td><input type="number" value="<?=$valCosts?>" id="subTotalCostsUgx" readonly name="subTotalCostsUgx" class="tblNum"></td>
             </tr>
             <tr>
                 <th colspan="6">Total Value after Costs</th>
                 
-                <td><input type="number" value="" id="totalValueUsd" readonly name="totalValueUsd" class="tblNum"></td>
-                <td><input type="number" value="" id="totalValueUgx" readonly name="totalValueUgx" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttUsdAmt-$valCostsUsd?>" id="totalValueUsd" readonly name="totalValueUsd" class="tblNum"></td>
+                <td><input type="number" value="<?=$ttUgxAmt-$valCosts?>" id="totalValueUgx" readonly name="totalValueUgx" class="tblNum"></td>
             </tr>
             
         </table>
         <p id="qtyCheck" style="color:red; display:none">Total items quantity must not exceed the base quantity and must not be 0!</p>
     </div>
-    <?php submitButton("Submit", "submit", "btnsubmit"); ?>
+    <?php submitButton("Modify", "submit", "btnsubmit"); ?>
 </form>
 <?php include_once('../forms/footer.php');?>
 <!-- summarizing valuation info -->
+<script>
+    
+    
+</script>
 <!-- <script src=".\ASSETS\SCRIPTS\valuationJavaScript.js"></script> -->
 <script src="../assets/js/valuationJavaScript.js"></script>
 

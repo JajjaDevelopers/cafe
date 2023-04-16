@@ -26,8 +26,6 @@ function sanitize_table($tabledata)
     return $tabledata;
 }
 
-$summarySql = $conn->prepare("INSERT INTO valuation_report_summary (valuation_no, valuation_date, batch_report_no, customer_id, 
-                            input_qty, exchange_rate, costs, prepared_by, prep_date) VALUES (?,?,?,?,?,?,?,?,?)");
 $valuationNo = intval($number) +1;
 $valuationDate = $_POST['valuationDate'];
 $batchReportNo = $_POST['batchNo'];
@@ -43,51 +41,58 @@ $valAmt = $_POST["grandTotaltUgx"];
 $allocation = $_POST["contractAllocation"];
 
 if ($customerId!="" && $inputQty>0 && $valQty>0 && $valAmt>0){
-    $summarySql->bind_param("ssssdddss", $valuationNo, $valuationDate, $batchReportNo, $customerId, $inputQty, $exchangeRate, $costs, 
-    $preparedBy, $prepDate);
-    $summarySql->execute();
-    $summarySql->close();
+    if(isset($_POST["btnsubmit"])){
+        $action = $_POST["btnsubmit"];
+        if ($action=="Modify"){
+            $editValNo = intval($_SESSION["valNo"]);
+            $valuationNo = $editValNo;
+            $editSummSql = $conn->prepare("DELETE FROM valuation_report_summary WHERE (valuation_no=?)");
+            $editSummSql->bind_param("i", $editValNo);
+            $editSummSql->execute();
+            $editSummSql->close();
 
-    //valuation table update
-    // $valDetSql = $conn->prepare("INSERT INTO valuations (valuation_no, item_no, grade_id, qty, price_ugx) VALUES (?,?,?,?,?)");
-
-    // Posting valuations items into invetory
-    $quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_in, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
-    $quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
-                trans_date, customer_id, item_no, grade_id, qty_out, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
-
-    $docType = "Valuation Report";
-    $itmNo = 1;
-    $valItmNo = 1;
-    $self = "SELF01";
-    for ($x=0; $x < count($allGradeQty); $x++ ) {
-        $gradeQty = sanitize_table($_POST[$allGradeQty[$x]]);
-        if ($gradeQty > 0){
-            $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
-            $gradeName = $_POST[$allGradeName[$x]];
-            //valuation details
-            // $valDetSql->bind_param("iisddd", $valuationNo, $valItmNo, $gradeName, $gradeQty, $gradePrice);
-            // $valDetSql->execute();
-            // $valItmNo += 1;
-            //qty in
-            $quantityInSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
-                                        $gradeName, $gradeQty, $gradePrice, $allocation);
-            $quantityInSql->execute();
-            //qty out
-            $itmNo += 1;
-            $quantityOutSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
-                                        $gradeName, $gradeQty, $gradePrice, $allocation);
-            $quantityOutSql->execute();
-            $itmNo += 1;
+            //Eliminate old details from inventory
+            $deleteSql = $conn->prepare("DELETE FROM inventory WHERE (inventory_reference='Valuation Report') AND (document_number=?)");
+            $deleteSql->bind_param("i", $editValNo);
+            $deleteSql->execute();
+            $deleteSql->close();
         }
-    }
-    $quantityInSql->close();
-    $quantityOutSql->close();
+        $summarySql = $conn->prepare("INSERT INTO valuation_report_summary (valuation_no, valuation_date, batch_report_no, customer_id, 
+                        input_qty, exchange_rate, costs, prepared_by, prep_date) VALUES (?,?,?,?,?,?,?,?,?)");
+        $summarySql->bind_param("ssssdddss", $valuationNo, $valuationDate, $batchReportNo, $customerId, $inputQty, $exchangeRate, $costs, 
+        $preparedBy, $prepDate);
+        $summarySql->execute();
+        $summarySql->close();
+        
 
-    if(isset($_POST["btnsubmit"]))
-    {
-    header("location:../marketing/valuation?formmsg=success");
+        $quantityInSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
+                    trans_date, customer_id, item_no, grade_id, qty_in, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
+        $quantityOutSql = $conn->prepare("INSERT INTO inventory (inventory_reference, document_number, 
+                    trans_date, customer_id, item_no, grade_id, qty_out, price_ugx, contract_allocation) VALUES (?,?,?,?,?,?,?,?,?)");
+
+        $docType = "Valuation Report";
+        $itmNo = 1;
+        $valItmNo = 1;
+        $self = "SELF01";
+        for ($x=0; $x < count($allGradeQty); $x++ ) {
+            $gradeQty = sanitize_table($_POST[$allGradeQty[$x]]);
+            if ($gradeQty > 0){
+                $gradePrice = sanitize_table($_POST[$allGradePriceUgx[$x]]);
+                $gradeName = $_POST[$allGradeName[$x]];
+                $quantityInSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $self, $itmNo, 
+                                            $gradeName, $gradeQty, $gradePrice, $allocation);
+                $quantityInSql->execute();
+                //qty out
+                $itmNo += 1;
+                $quantityOutSql->bind_param("sissisdds", $docType, $valuationNo, $valuationDate, $customerId, $itmNo, 
+                                            $gradeName, $gradeQty, $gradePrice, $allocation);
+                $quantityOutSql->execute();
+                $itmNo += 1;
+            }
+        }
+        $quantityInSql->close();
+        $quantityOutSql->close();
+        header("location:../marketing/valuation?formmsg=success");
     }
 }else{
     if(isset($_POST["btnsubmit"]))
