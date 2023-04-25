@@ -2,10 +2,6 @@
     <?php
         //include "../alerts/message.php";
     ?>
-<div class=" mt-3 ms-5 d-flex flex-column align-items-start">
-    <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
-    </i>
-</div>
 <div>
     <div style="display: grid;">
         <div style="padding-left:550px; grid-column:1; grid-row:1">
@@ -22,15 +18,7 @@
         </div>
     </div>
 </div>
-<div style="margin-left: 60%;">
-    
-    
-
-    
-    
-
-    
-    
+<div style="margin-left: 60%;"> 
     
 </div>
 <div id="ajaxDiv" style="display: none;">

@@ -3,18 +3,14 @@
     <?php
         include "../alerts/message.php";
     ?>
-    <div class=" mt-3 ms-5 d-flex flex-column align-items-start">
-        <i class="bi bi-printer-fill" style="color:green; font-size:30px" id="print">
-        </i>
-    </div>
     <div class="container" style="margin: 0px; padding:0px">
         <div class="row" style="margin: 5px;">
-            <div class="col-sm-10" style="margin-top:15px">
+            <div class="col-10" style="margin-top:15px">
                 <label for="valuationNumber" style="text-align: right; display:block">Valuation No.:</label>
                 <label for="valuationDate" style="text-align: right; margin-top:10px;  display:block">Date:</label>
                 <label for="batchNo" style="text-align: right; margin-top:10px;  display:block">Batch No:</label>
             </div>
-            <div class="col-sm-2" style="margin: 0px;">
+            <div class="col-2" style="margin: 0px;">
                 <input name="valNum" value="<?=$valNo?>" readonly style="display: none;">
                 <input type="text" id="valuationNumber" name="valuationNumber" class="shortInput" readonly value="<?=$valuationNumber?>"
                 style="width: 100px; text-align: center; display:block">
