@@ -53,7 +53,7 @@ if ($client=='all'){
     </thead>
     <tbody>
         <?php
-        $salesList = array(["Contract No", "Reference", "Client Name", "Incoterms", "Shipment Date",  "Days to Shipment", "Status", "Currency", "Contract Value"]);
+        $contractsList = array(["Contract No", "Reference", "Client Name","Coffee Grade", "Incoterms", "Shipment Date",  "Days to Shipment", "Status", "Currency", "Contract Value"]);
         while ($sql->fetch()){
             if ($contQty>$allocQty){
                 $status="Pending Stock Allocation";
@@ -63,8 +63,8 @@ if ($client=='all'){
                 $state = 2;
             }
             
-            $salesRow = [$contNo, $ref, $client, $terms, $shipDate, $days, $status, $currency, $value];
-            array_push($salesList, $salesRow);
+            $contractsRow = [$contNo, $ref, $client,$item,$terms, $shipDate, $days, $status, $currency, $value];
+            array_push($contractsList, $contractsRow);
             ?>
             <tr>
                 <td><a href="../reports/contractOffer?contNo=<?= $contNo ?>&stt=<?= $state ?>"><?= $contNo ?></a></td>
@@ -81,9 +81,9 @@ if ($client=='all'){
             </tr>
             <?php
         }
-        $salesListResult = json_encode($salesList);
-        // echo $salesListResult;
-        $_SESSION["salesData"] = $salesListResult;
+        $contractsListResult = json_encode($contractsList);
+        // echo $contractsListResult;
+        $_SESSION["contractsData"] = $contractsListResult;
         // echo $_SESSION["salesData"];
         ?>
     </tbody>

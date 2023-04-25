@@ -25,7 +25,7 @@
 </form>
 <div class="container text-center d-flex flex-column align-items-end">
     <div>
-        <form action="../phpspreadsheet/salesreportExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="salesexcel">
+        <form action="../phpspreadsheet/salescontractsExport.php" method="post" style="display:none; background-color:inherit;border:none;" id="contractexcel">
             <div class="form-group text-end">
             <input type="submit" name="export" value="Export to Excel" class="btn" style="background-color:green; color:white; margin-right: 0px;">
             </div>
@@ -53,6 +53,6 @@
       xhttp.open("GET", "../ajax/contractList.php?startDate="+frmDt+"&endDate="+toDt+"&custId="+clientId);
       xhttp.send();
     //   document.getElementById("salespdf").style.display="block";
-      document.getElementById("salesexcel").style.display="block";
+      document.getElementById("contractexcel").style.display="block";
     }
 </script>
