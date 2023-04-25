@@ -19,14 +19,14 @@ $summSql = $conn->prepare("SELECT customer_id, customer_name, country_name, cont
                 incoterms, sourcing_actions, financing_source, remarks, prepared_by, contact_person, 
                 telephone, (SELECT currency FROM contract_offers WHERE contract_no=? LIMIT 1) AS currecnty, cotract_type, 
                 container_size, contracts_summary.category, city,
-                (SELECT country_name FROM countries WHERE customer.country_id=countries.country_id) As cusCountry
+                (SELECT country_name FROM countries WHERE customer.country_id=countries.country_id) As cusCountry, port
                 FROM contracts_summary
                 JOIN countries USING (country_id) JOIN customer USING (customer_id)  WHERE contract_no=?");
 $summSql->bind_param("ii", $offerNum, $offerNum);
 $summSql->execute();
 $summSql->bind_result($cltId, $cltName, $countryName, $continent, $contRef, $contDate, $terms, $sourcing, 
                     $financing, $remarks, $prepared_by, $cltTel, $cltContact, $currency, $contType, $contSize, $category, 
-                    $cltCity, $cusCountry);
+                    $cltCity, $cusCountry, $port);
 $summSql->fetch();
 $summSql->close();
 
@@ -75,7 +75,7 @@ function contractsOfferTable(){
                 <th style="width: 50px;"><label id="containerSize"><?="Number of ".$contSize." Containers"?></label></th>
                 <th style="width: 50px;">Bags</th>
                 <th style="width: 100px;">Qty (Kg)</th>
-                <th style="width: 200px;"><label>Price USD per MT FOT Kampala</label></th>
+                <th style="width: 200px;"><label id="pxRefHeader"></label></th>
                 <th style="width: 70px;" id="currencyHeader"><?="Base Price ".$currency."/Kg"?></th>
                 <th style="width: 70px;" id="giHeader"><?="GI Premium ".$currency."/Kg"?></th>
                 <th style="width: 70px;" id="socialHeader"><?="Social Premium ".$currency."/Kg"?></th>
@@ -128,6 +128,8 @@ function contractsOfferTable(){
             </tr>
         </tbody>
     </table>
+
+    
     <?php
 }
 

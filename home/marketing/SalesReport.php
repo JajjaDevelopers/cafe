@@ -94,11 +94,7 @@ $nextSalesNo = nextDocNumber("sales_reports_summary", "sales_report_no", "SR");
                 <th><input type="number" value="" id="ugxGrandTotal" readonly name="ugxGrandTotal" class="tableInput"></th>
             </tr>
         </table>
-        <div style="max-height: 50px;">
-            <label for="salesReportNotes">Notes:</label><br>
-            <textarea id="salesReportNotes" name="salesReportNotes" class="remarks" rows="3" maxlength="100"
-            style="resize: vertical; max-height: 50px; min-height: 30px; padding: 5px 10px;"></textarea>
-        </div>
+        <?php documentNotes("700px") ?>
         
     </div>
 

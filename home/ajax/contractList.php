@@ -63,7 +63,7 @@ if ($client=='all'){
                 $state = 2;
             }
             
-            $salesRow = [$contNo, $ref, $client, $terms, $shipDate, $days, $status, $currency, $value];
+            $salesRow = [$contNo, $ref, $client, $item, $terms, $shipDate, $days, $status, $currency, $value];
             array_push($salesList, $salesRow);
             ?>
             <tr>

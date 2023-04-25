@@ -37,15 +37,17 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
                     <option value="Forward">Forward</option>
                 </select>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <label for="incoterms">Incoterms</label><br>
-                <select type="text" id="incoterms" name="incoterms" class="shortInput" style="width: 150px;">
-                    <option value="FOB">FOB</option>
-                    <option value="FOT">FOT</option>
+                <select type="text" id="incoterms" name="incoterms" class="shortInput" style="width: 150px;" onchange="changeIncoterm()">
+                    <option value="FOT">FOT</option>    
+                    <option value="FOB">FOB</option>                    
+                    <option value="CIF">CIF</option>
                     <option value="Ex-Warehouse">Ex-Warehouse</option>
+                    <option value="CFR">CFR</option>
                 </select>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <label for="region">Destination</label><br>
                 <select type="text" id="continent" name="continent" class="longInputField" onchange="getCountry()" style="width: 150px;">
                     <option value="Africa">Africa</option>
@@ -56,10 +58,14 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
                     <option value="Australia">Australia</option>
                 </select>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <label for="country">Country</label><br>
                 <select type="text" id="country" name="country" class="longInputField">
                 </select>
+            </div>
+            <div class="col-sm-3">
+                <label for="port">Destination Port</label><br>
+                <input type="text" id="port" name="port" class="longInputField" onblur="changeIncoterm()">
             </div>
         </div>
     </div>
@@ -78,7 +84,7 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
                 </th>
                 <th style="width: 50px;">Bags</th>
                 <th style="width: 60px;">Qty (Kg)</th>
-                <th style="width: 200px;"><label>Price USD per MT FOT Kampala</label></th>
+                <th style="width: 200px;"><label id="pxRefHeader"></label></th>
                 <th style="width: 60px;"><label id="pxCurrency"></label>
                     <select type="text" id="currency" name="currency" class="shortInput" style="width: 15px;" onchange="checkCurrency()">
                         <option value="USD">USD</option>
@@ -147,11 +153,33 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
                 <table style="border:0px solid">
                     <tbody>
                         <?php
+                        $termsList = array(
+                            "Validity: This I offer is valid until …………………",
+                            "Delivery Free on Truck Kampala (FOT)",
+                            "Prices to Be Fixed (PTBF) at sellers call latest one day prior to first notice day and not later than upon presentation of documents whatever comes first",
+                            "Payment: 100% invoice value against documents delivery to shipment Agent with payment made to NUCAFE financier as per deed of assignment/ payment instructions",
+                            "Complete set of shipment Documents to be sent by DHL courier or Telex release or otherwise",
+                            "Insurance to be covered by Buyer",
+                            "Subject to approval of pre-shipment sample",
+                            "Reference market price source: Arabica - https://www.barchart.com/futures/quotes/KC*0/futures-prices. - Robusta https://www.barchart.com/futures/quotes/RM*0/futures-prices",
+                            "Destination Russia",
+                            "Port of loading: Mombasa Kenya",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                        );
+
+
                         for ($x=1;$x<=15;$x++){
                         ?>
                         <tr style="border:0px solid">
                             <td style="border:0px solid"><?=$x.'.'?></td>
-                            <td style="width: 800px; border:0px solid"><input id="<?='term'.$x?>" name="<?='term'.$x?>" class="tableInput"></td>
+                            <td style="border:0px solid"><input type="checkbox" id="<?='term'.$x.'Check'?>" name="<?='term'.$x.'Check'?>" style="margin-top: 4px;"></td>
+                            <td style="width: 1000px; border:0px solid">
+                                <input id="<?='term'.$x?>" name="<?='term'.$x?>" class="tableInput" value="<?= $termsList[$x-1] ?>">
+                            </td>
                         </tr>
                         <?php
                         }
@@ -169,6 +197,26 @@ $newBatchNo = nextDocNumber("contracts_summary", "contract_no", "OFF");
 <script>
     checkCurrency();
     pickContSize();
+    changeIncoterm();
+
+    document.getElementById("port").setAttribute("readonly", "readonly");
+    function changeIncoterm(){
+        var selTerm = document.getElementById("incoterms").value;
+        var selPort = document.getElementById("port").value;
+        const selPxRef = document.getElementById("pxRefHeader");
+        if (selTerm=="FOT"){
+            selPxRef.innerText = "Price USD per MT FOT Kampala";
+        }else if (selTerm=="CIF" || selTerm=="CFR"){
+            selPxRef.innerText = "Price USD per MT "+selTerm+" "+selPort;
+            document.getElementById("port").removeAttribute("readonly")
+        }else if (selTerm=="FOB"){
+            selPxRef.innerText = "Price USD per MT FOB Mombasa";
+        }else if (selTerm=="Ex-Warehouse"){
+            selPxRef.innerText = "Price USD per MT Ex-Warehouse";
+            
+        }
+    }
+
     function checkCurrency(){
         var selCurrency = document.getElementById("currency").value;
         document.getElementById("totalCurrency").innerText=selCurrency;

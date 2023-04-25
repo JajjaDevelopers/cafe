@@ -1,12 +1,13 @@
 <?php
 $pageTitle = "Pending Approval";
 include_once ('../forms/header.php');
-$docTitles = array("Goods Received Notes (GRN)", "Batch Reports", "Release Requests", "Valuation Reports", "Sales Report", "Drying Report",
-                "Transfer Report", "Bulking Report", "Stock Adjustment", "Stock Counting", "Roastery Activities");
+$docTitles = array("Goods Received Notes (GRN)", "Batch Reports", "Release Requests", "Valuation Reports", "Hulling Report", "Drying Report",
+            "Transfer Report", "Bulking Report", "Stock Adjustment", "Stock Counting", "Roastery Activities",
+            "Sales Reports");
 $paths = array("grnApprovalList", "batchReportList", "releaseList", "valuationList", "hullingList", "dryingList", "transferList",
-                "bulkingList", "adjustmentList", "stockCountList", "activitySheetList");
+                "bulkingList", "adjustmentList", "stockCountList", "activitySheetList", "salesReportList");
 $docCounts = array($grnApprNum, $batchReportApprNum, $releaseApprNum, $valuationApprNum, $hullingApprNum, $dryingApprNum, $transferApprNum,
-                $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $activitySheetApprNum);
+                $bulkingApprNum, $adjsutmentApprNum, $stockCountApprNum, $activitySheetApprNum, $salesReportApprNum);
 
 ?>
 <form class="regularForm">

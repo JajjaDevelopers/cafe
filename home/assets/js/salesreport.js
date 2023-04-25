@@ -99,9 +99,9 @@ window.onload = function(){
             var qty = Number(document.getElementById(itemQtys[x]).value);
             if (qty != 0){
                 var usdPx = Number(document.getElementById(itemUsdPrices[x]).value);
-                document.getElementById(itemUsdAmounts[x]).setAttribute("value", (usdPx * qty));
+                document.getElementById(itemUsdAmounts[x]).setAttribute("value", (usdPx * qty).toLocaleString);
     
-                document.getElementById(itemUgxAmounts[x]).setAttribute("value", (usdPx * qty)*exchangeRate);
+                document.getElementById(itemUgxAmounts[x]).setAttribute("value", ((usdPx * qty)*exchangeRate).toLocaleString);
                 document.getElementById(itemUgxPrices[x]).setAttribute("value", (usdPx *exchangeRate));
             }
             
@@ -116,9 +116,9 @@ window.onload = function(){
             var qty = Number(document.getElementById(itemQtys[x]).value);
             if (qty != 0){
                 var ugxPx = Number(document.getElementById(itemUgxPrices[x]).value);
-                document.getElementById(itemUgxAmounts[x]).setAttribute("value", (ugxPx * qty));
+                document.getElementById(itemUgxAmounts[x]).setAttribute("value", (ugxPx * qty).toLocaleString);
     
-                document.getElementById(itemUsdAmounts[x]).setAttribute("value", (ugxPx * qty)/exchangeRate);
+                document.getElementById(itemUsdAmounts[x]).setAttribute("value", ((ugxPx * qty)/exchangeRate).toLocaleString);
                 document.getElementById(itemUsdPrices[x]).setAttribute("value", (ugxPx/exchangeRate));
             }
         }

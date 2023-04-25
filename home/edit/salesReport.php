@@ -42,51 +42,15 @@ include("../connection/salesReportVariables.php");
             <tr>
                 <th style="width: 355px;">Grade</th>
                 <th style="width: 80px;">QTY (Kgs)</th>
-                <th style="width: 100px;">Batch Number</th>
-                <th style="width: 70px;">Price (USD/Kg)</th>
-                <th style="width: 70px;">Price (UGX/Kg)</th>
+                <th style="width: 100px; display:none">Batch Number</th>
+                <th style="width: 80px;">Price (USD/Kg)</th>
+                <th style="width: 90px;">Price (UGX/Kg)</th>
                 <th style="width: 100px;">Amount (USD)</th>
                 <th style="width: 100px;">Amount (UGX)</th>
             </tr>
-            <?php
-            for ($i=1;$i<=10;$i++){
-                ?>
-            <tr>
-                <td>
-                    <div id="item1Field" style="display: grid;" class="itemName">
-                        <input type="text" value="" id="<?= 'item'.$i.'Code'?>" readonly name="<?= 'item'.$i.'Code'?>" class="itmNameInput" style="grid-column: 1; width: 60px; display:none">
-                        <input type="text" value="" id="<?= 'item'.$i.'Name'?>" readonly name="<?= 'item'.$i.'Name'?>" class="itmNameInput" style="grid-column: 2; width: 330px">
-                        <select id="<?= 'item'.$i.'Select'?>" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="setCodeAndName(this.id)">
-                            <?php CoffeeGrades(); ?>
-                        </select>
-                    </div>
-                </td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'Qty'?>" name="<?= 'item'.$i.'Qty'?>" step="0.001" class="tableInput"></td>
-                <td><input type="text" value="" id="<?= 'item'.$i.'Batch'?>" name="<?= 'item'.$i.'Batch'?>" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UsdPx'?>" name="<?= 'item'.$i.'UsdPx'?>" step="0.0001" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UgxPx'?>" name="<?= 'item'.$i.'UgxPx'?>" step="0.0001" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UsdAmount'?>" readonly name="<?= 'item'.$i.'UsdAmount'?>" class="tableInput"></td>
-                <td><input type="number" value="" id="<?= 'item'.$i.'UgxAmount'?>" readonly name="<?= 'item'.$i.'UgxAmount'?>" class="tableInput"></td>
-            </tr>
-            <?php
-            }
-            ?>
-           
-            <tr>
-                <th>Total</th>
-                <th><input type="number" value="" id="totalQty" readonly name="totalQty" class="tableInput"></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th><input type="number" value="" id="usdGrandTotal" readonly name="usdGrandTotal" class="tableInput"></th>
-                <th><input type="number" value="" id="ugxGrandTotal" readonly name="ugxGrandTotal" class="tableInput"></th>
-            </tr>
+            <?php editSalesItems(); ?>
         </table>
-        <div style="max-height: 50px;">
-            <label for="salesReportNotes">Notes:</label><br>
-            <textarea id="salesReportNotes" name="salesReportNotes" class="remarks" rows="3" maxlength="100"
-            style="resize: vertical; max-height: 50px; min-height: 30px; padding: 5px 10px;"></textarea>
-        </div>
+        <?php documentNotes("700px") ?>
         
     </div>
 

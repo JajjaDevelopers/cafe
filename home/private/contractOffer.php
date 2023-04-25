@@ -16,14 +16,16 @@ $status = "Pending Confirmation";
 $pricingTerm = "Price USD per MT FOT Kampala";
 $contSize = $_POST["containerSize"];
 $contType = $_POST["contType"];
+$financingSource = $_POST["financing"];
+$port = $_POST["port"];
 
 if ($offerDate != "" && $customer_id != ""){
     //Capturing summary
     $offerSummary = $conn->prepare("INSERT INTO contracts_summary (contract_no, customer_id, country_id, reference_no, contract_date, 
                         category, offer_status, pricing_term, container_size, incoterms, cotract_type, sourcing_actions, financing_source,
-                        prepared_by) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $offerSummary->bind_param("isisssssssssss", $contractNo, $customer_id, $country, $reference, $offerDate, $contCategory, $status, 
-                        $pricingTerm, $contSize, $terms, $contType, $sourcingNotes, $financingSource, $prepared_by);
+                        prepared_by, port) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $offerSummary->bind_param("isissssssssssss", $contractNo, $customer_id, $country, $reference, $offerDate, $contCategory, $status, 
+                        $pricingTerm, $contSize, $terms, $contType, $sourcingNotes, $financingSource, $prepared_by, $port);
     $offerSummary->execute();
 
     //update contract offers
@@ -54,13 +56,14 @@ if ($offerDate != "" && $customer_id != ""){
     $termSql = $conn->prepare("INSERT INTO offer_terms (contract_no, no, term) VALUES (?,?,?)");
     $t=1;
     for ($x=1;$x<=15;$x++){
-        $term = $_POST['term'.$x];
-        if ($term!=""){
-            $termSql->bind_param("iis", $contractNo, $t, $term);
-            $termSql->execute();
-            $t+=1;
+        if (isset($_POST['term'.$x.'Check'])){
+            $term = $_POST['term'.$x];
+            if ($term!=""){
+                $termSql->bind_param("iis", $contractNo, $t, $term);
+                $termSql->execute();
+                $t+=1;
+            }
         }
-
     }
     
 

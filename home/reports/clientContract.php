@@ -35,6 +35,8 @@ $offerItems=$_SESSION['offerItems'];
                 </div>
             </div>
         </div>
+        <input type="text" id="port" name="port" class="longInputField" value="<?=$port?>" style="display: none;" readonly>
+        <input type="text" id="incoterms" name="incoterms" readonly value="<?=$terms?>" class="shortInput" style="display: none;">
         <?php
         contractsOfferTable();
         terms();
@@ -147,3 +149,4 @@ $offerItems=$_SESSION['offerItems'];
     }
     document.getElementById("totalsRow").style.display="";
 </script>
+<script src="../assets/js/contractOfferTemp.js"></script>

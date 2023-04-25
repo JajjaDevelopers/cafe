@@ -425,13 +425,28 @@ function hullingCustomer(){
   }
 }
 
+//wastes and losses
+function wastesAndLosses(){
+  include "connlogin.php";
+  $sql = $conn->prepare("SELECT grade_id, grade_name FROM grades WHERE (grade_type='WASTES' OR grade_type='OTHER LOSSES')");
+  $sql->execute();
+  $sql->bind_result($grade_id, $grade_name);
+  ?>
+  <option value="">--select--</option>
+  <?php
+  while ($sql->fetch()){
+    ?>
+    <option value="<?=$grade_id?>"><?=$grade_name?></option>
+    <?php
+  }
+}
 
 //include gradePicker.js for this function for pages that call it
 function gradePicker($itemId, $gradeOption){
   include "connlogin.php"; 
   ?>
   <input type="text" value="" id="<?= $itemId.'Code' ?>" readonly name="<?= $itemId.'Code' ?>" class="itmNameInput" style="grid-column: 1; display:none">
-  <input type="text" value="" id="<?= $itemId.'Name' ?>" readonly name="<?= $itemId.'Name' ?>" class="itmNameInput" style="grid-column: 2; width: 250px">
+  <input type="text" value="" id="<?= $itemId.'Name' ?>" readonly name="<?= $itemId.'Name' ?>" class="itmNameInput" style="grid-column: 2; width: 270px" placeholder="Select Grade">
               
   <select id="<?= $itemId ?>" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="valuationItemCodeAndName(this.id)">
    <?php

@@ -23,17 +23,21 @@
                 <label for="contType">Contract Type:</label><br>
                 <input type="text" id="contType" name="contType" readonly value="<?=$contType?>" class="shortInput" style="width: 100px;">
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <label for="incoterms">Incoterms</label><br>
                 <input type="text" id="incoterms" name="incoterms" readonly value="<?=$terms?>" class="shortInput" style="width: 150px;">
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <label for="region">Destination</label><br>
                 <input type="text" id="continent" name="continent" readonly value="<?=$continent?>" class="longInputField"style="width: 150px;">
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <label for="country">Country</label><br>
                 <input type="text" id="country" name="country" readonly value="<?=$countryName?>" class="longInputField">
+            </div>
+            <div class="col-sm-3">
+                <label for="country">Destination Port</label><br>
+                <input type="text" id="port" name="port" readonly value="<?=$port?>" class="longInputField">
             </div>
         </div>
     </div>
@@ -53,4 +57,4 @@
         <?php terms();?>
     </div>
 
-
+<script src="../assets/js/contractOfferTemp.js"></script>
