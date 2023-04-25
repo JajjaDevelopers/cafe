@@ -22,6 +22,11 @@ for (var x=1; x<=10; x++){
     itemSelections.push("highGrade"+x+"Select");
     
 }
+var totalYieldQty = Number(document.getElementById("totalQty").value);
+if (totalYieldQty<=0){
+    document.getElementById("verifyBtn").disabled = true;
+}
+
 
 // Getting grade list
 function valuationItemCodeAndName(selectId){
@@ -68,40 +73,21 @@ function captureQty(){
     getListTotal(qtyIds, 'totalQty');
     getListTotal(amountUsIds, 'grandTotaltUs');
     getListTotal(amountUgxIds, 'grandTotaltUgx');
+    var totalYieldQty = Number(document.getElementById("totalQty").value);
+    var baseQty = Number(document.getElementById("FAQQty").value);
+    if (totalYieldQty>baseQty){
+        document.getElementById("qtyCheck").style.display="block";
+        document.getElementById("verifyBtn").disabled = true;
+    }else if (totalYieldQty<=0){
+        document.getElementById("verifyBtn").disabled = false;
+        document.getElementById("verifyBtn").disabled = true;
+    }
+    else {
+        document.getElementById("qtyCheck").style.display="none";
+        document.getElementById("verifyBtn").disabled = false;
+    }
     
 }
-
-
-// Update values when ugx px is updated
-// function captureUgxPrice(){
-//     //var excRate = Number(document.getElementById('exchangeRate').value);
-//     for (var x=0; x < priceUgxIds.length; x++){
-//         var ugPx = Number(document.getElementById(priceUgxIds[x]).value);
-//         if (ugPx !=0){
-//             document.getElementById(priceUsIds[x]).setAttribute('value', (ugPx / excRate));
-//             var usdPx = Number(document.getElementById(priceUsIds[x]).value);
-//             document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
-//         }
-//         captureQty();
-//     }
-    
-// }
-
-
-//Update values when Usd px is updated
-// function captureUsdPrice(){
-//     //var excRate = Number(document.getElementById('exchangeRate').value);
-//     for (var x=0; x < priceUsIds.length; x++){
-//         var usdPx = Number(document.getElementById(priceUsIds[x]).value);
-//         if (usdPx !=0){
-//             document.getElementById(priceCtsIds[x]).setAttribute('value', usdPx*2.20462262185);
-//             document.getElementById(priceUgxIds[x]).setAttribute('value', (usdPx * excRate));
-//         }
-//         captureQty();
-//     }
-    
-// }
-
 
 for (var x=0; x < qtyIds.length; x++){
     document.getElementById(qtyIds[x]).addEventListener("blur", captureQty);
@@ -125,4 +111,60 @@ function captureCosts(){
     document.getElementById('totalValueUsd').setAttribute('value', (grandTotaltValue - subTotalCosts)/excRate);
 }
 document.getElementById('totalCostsUgx').addEventListener("blur", captureCosts);
-// add radio button for pricing choice
+
+
+function updateOrder(str){
+    var selectedClient = document.getElementById('valuationClient').value;
+    var batchNo = selectedClient.slice(0,5);
+    var batchOrderNumber =  document.getElementById('batchNo')
+    var x = Number(batchNo);
+    batchOrderNumber.setAttribute('value', (batchNo));
+    if (str == "") {
+        document.getElementById("customerId").setAttribute('value', '');
+        document.getElementById("valuationSupplier").setAttribute('value', '');
+        return;
+    } 
+    const xhttp = new XMLHttpRequest();
+    // Changing customer namne
+    xhttp.onload = function() {
+        document.getElementById("ajaxDiv").innerHTML = this.responseText;
+
+        var ajaxCustomerId = document.getElementById("cid").value;
+        document.getElementById("customerId").setAttribute('value', ajaxCustomerId);
+
+        var ajaxCustomerName = document.getElementById("name").value;
+        document.getElementById("valuationSupplier").setAttribute('value', ajaxCustomerName);
+
+        var ajaxInputContactPerson = document.getElementById("contactPerson").value;
+        document.getElementById("valuationContactPerson").setAttribute('value', ajaxInputContactPerson);
+
+        var ajaxTel = document.getElementById("tel").value;
+        document.getElementById("valuationTelephone").setAttribute('value', ajaxTel);
+        
+
+        var ajaxGrnNo= document.getElementById("grnNo").value;
+        document.getElementById("valuationGrnNumber").setAttribute('value', ajaxGrnNo);
+
+        // var ajaxInputGrade = document.getElementById("gradeName").value;
+        // document.getElementById("FAQQty").setAttribute('value', ajaxInputGrade);
+
+        var ajaxInputQty = document.getElementById("inputQty").value;
+        document.getElementById("FAQQty").setAttribute('value', ajaxInputQty);
+
+    }
+    xhttp.open("GET", "../ajax/valuationAjax.php?q="+str);
+    xhttp.send();
+}
+
+//fx
+function getFx(str){
+    const xhttp = new XMLHttpRequest();
+    // 
+    
+    xhttp.onload = function() {
+        document.getElementById("exchangeRate").setAttribute("value", this.responseText);
+
+    }
+    xhttp.open("GET", "../ajax/forex.php?selDate="+str);
+    xhttp.send();
+}

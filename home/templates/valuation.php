@@ -14,7 +14,7 @@
                 <input name="valNum" value="<?=$valNo?>" readonly style="display: none;">
                 <input type="text" id="valuationNumber" name="valuationNumber" class="shortInput" readonly value="<?=$valuationNumber?>"
                 style="width: 100px; text-align: center; display:block">
-                <input type="date" id="valuationDate" name="valuationDate" value="<?=$valDate?>" class="shortInput" style="width: 100px; text-align: center;  display:block" readonly>
+                <input type="text" id="valuationDate" name="valuationDate" value="<?=$valDate?>" class="shortInput" style="width: 100px; text-align: center;  display:block" readonly>
                 <input type="number" id="batchNo" name="batchNo" class="shortInput" value="<?=$batcNo?>" style="width: 100px; text-align: center;  display:block" readonly>
             </div>
         </div>

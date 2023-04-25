@@ -53,4 +53,68 @@ function valuationDetails(){
     }
     
 }
+
+//valuation details for editing
+function valEditDetails(){
+    include "../private/connlogin.php";
+    global $valNo, $fxRate, $inputQty, $ttQty, $ttYield, $ttUsdAmt, $ttUgxAmt;
+    //details
+    $valDetSql = $conn->prepare("SELECT grade_id, grade_name, qty_in, price_ugx FROM inventory JOIN grades USING (grade_id) 
+    WHERE inventory_reference='Valuation Report' AND document_number=? AND qty_in>0 ORDER BY item_no");
+    $valDetSql->bind_param("i", $valNo);
+    $valDetSql->execute();
+    $valDetSql->bind_result($grdId, $grdName, $grdQty, $ugxPx);
+    $ttQty=$ttYield=$ttUsdAmt=$ttUgxAmt=0;
+    $itemNo=1;
+    while ($valDetSql->fetch()){
+        $ttQty+=$grdQty; $ttYield+=$grdQty*100/$inputQty; $ttUsdAmt+=$ugxPx*$grdQty/$fxRate; $ttUgxAmt+=$ugxPx*$grdQty;
+        ?>
+        <tr>
+            <td>
+                <div id="<?='item'.$itemNo.'Field'?>" style="display: grid;" class="itemName">
+                    <input type="text" value="<?=$grdId?>" id="<?='highGrade'.$itemNo.'Code'?>" readonly name="<?='highGrade'.$itemNo.'Code'?>" class="itmNameInput" style="grid-column: 1; display:none;">
+                    <input type="text" value="<?=$grdName?>" id="<?='highGrade'.$itemNo.'Name'?>" readonly name="highGrade'.$itemNo.'Name" class="itmNameInput" style="grid-column: 2; width: 250px">
+                    <select id="<?='highGrade'.$itemNo.'Select'?>" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="valuationItemCodeAndName(this.id)">
+                        <?php CoffeeGrades();?>
+                    </select>
+                </div>
+                
+            </td>
+            <td><input type="number" value="<?=$grdQty*100/$inputQty?>" id="<?='highGrade'.$itemNo.'Yield'?>" readonly name="<?='highGrade'.$itemNo.'Yield'?>" class="tblNum" min="0.00" step="0.01"></td>
+            <td><input type="number" value="<?=$grdQty?>" id="<?='highGrade'.$itemNo.'Qty'?>" name="<?='highGrade'.$itemNo.'Qty'?>" class="tblNum" min="0" step="0.01"></td>
+            <td><input type="number" value="<?=$ugxPx/$fxRate?>" id="<?='highGrade'.$itemNo.'PriceUs'?>" name="<?='highGrade'.$itemNo.'PriceUs'?>" class="tblNum" readonly min="0.00" step="0.0001"></td>
+            <td><input type="number" value="<?=($ugxPx/$fxRate)*2.20462262185?>" id="<?='highGrade'.$itemNo.'PriceCts'?>" name="<?='highGrade'.$itemNo.'PriceCts'?>" class="tblNum" readonly min="0.00" step="0.0001"></td>
+            <td><input type="number" value="<?=$ugxPx?>" id="<?='highGrade'.$itemNo.'PriceUgx'?>" name="<?='highGrade'.$itemNo.'PriceUgx'?>" class="tblNum" min="0.01" step="0.0001"></td>
+            <td><input type="number" value="<?=$ugxPx*$grdQty/$fxRate?>" id="<?='highGrade'.$itemNo.'AmountUs'?>" readonly name="<?='highGrade'.$itemNo.'AmountUs'?>" class="tblNum" min="0.00" step="0.0001"></td>
+            <td><input type="number" value="<?=$ugxPx*$grdQty?>" id="<?='highGrade'.$itemNo.'AmountUgx'?>" readonly name="<?='highGrade'.$itemNo.'AmountUgx'?>" class="tblNum" min="0.00" step="0.0001"></td>
+        </tr>
+        <?php
+        $itemNo+=1;
+    }
+    while ($itemNo<=10){
+        ?>
+        <tr>
+            <td>
+                <div id="<?='item'.$itemNo.'Field'?>" style="display: grid;" class="itemName">
+                    <input type="text" value="" id="<?='highGrade'.$itemNo.'Code'?>" readonly name="<?='highGrade'.$itemNo.'Code'?>" class="itmNameInput" style="grid-column: 1; display:none;">
+                    <input type="text" value="" id="<?='highGrade'.$itemNo.'Name'?>" readonly name="highGrade'.$itemNo.'Name" class="itmNameInput" style="grid-column: 2; width: 250px">
+                    <select id="<?='highGrade'.$itemNo.'Select'?>" style="margin-left: 0px; width: 20px; grid-column: 3;" class="itemSelect" onchange="valuationItemCodeAndName(this.id)">
+                        <?php CoffeeGrades();?>
+                    </select>
+                </div>
+                
+            </td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'Yield'?>" readonly name="<?='highGrade'.$itemNo.'Yield'?>" class="tblNum" min="0.00" step="0.01"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'Qty'?>" name="<?='highGrade'.$itemNo.'Qty'?>" class="tblNum" min="0" step="0.01"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'PriceUs'?>" name="<?='highGrade'.$itemNo.'PriceUs'?>" class="tblNum" readonly min="0.00" step="0.0001"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'PriceCts'?>" name="<?='highGrade'.$itemNo.'PriceCts'?>" class="tblNum" readonly min="0.00" step="0.0001"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'PriceUgx'?>" name="<?='highGrade'.$itemNo.'PriceUgx'?>" class="tblNum" min="0.01" step="0.0001"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'AmountUs'?>" readonly name="<?='highGrade'.$itemNo.'AmountUs'?>" class="tblNum" min="0.00" step="0.0001"></td>
+            <td><input type="number" value="" id="<?='highGrade'.$itemNo.'AmountUgx'?>" readonly name="<?='highGrade'.$itemNo.'AmountUgx'?>" class="tblNum" min="0.00" step="0.0001"></td>
+        </tr>
+        <?php
+        $itemNo+=1;
+    }
+    
+}
 ?>

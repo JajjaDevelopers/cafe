@@ -288,8 +288,8 @@ function valuationItemRow($itemNo){
      <td><input type="number" value="" id="<?='highGrade'.$itemNo.'PriceUgx'?>" name="<?='highGrade'.$itemNo.'PriceUgx'?>" class="tblNum" min="0.01" step="0.0001"></td>
      <td><input type="number" value="" id="<?='highGrade'.$itemNo.'AmountUs'?>" readonly name="<?='highGrade'.$itemNo.'AmountUs'?>" class="tblNum" min="0.00" step="0.0001"></td>
      <td><input type="number" value="" id="<?='highGrade'.$itemNo.'AmountUgx'?>" readonly name="<?='highGrade'.$itemNo.'AmountUgx'?>" class="tblNum" min="0.00" step="0.0001"></td>
-    </tr>
-    <?php
+  </tr>
+  <?php
 }
 
 

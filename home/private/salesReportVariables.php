@@ -1,9 +1,8 @@
 <?php
 include "connlogin.php";
 include "functions.php";
-$salNo = intval($_GET['salNo']);
-$salesNo = formatDocNo($salNo, "SAL-");
-
+$salNo = intval($_SESSION["salNo"]);
+$salesNo = formatDocNo($salNo, "SAL");
 $summSql = $conn->prepare("SELECT customer_id, customer_name, sales_report_date, sale_category, sales_report_value, foreign_currency,
                         exchange_rate, preparing_staff, verified_by, approved_by, sales_notes, contact_person, telephone, prep_time,
                         ver_time, appr_time

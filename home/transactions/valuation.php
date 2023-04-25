@@ -10,6 +10,7 @@ include "../connection/valuationVariables.php";
 include ("../connection/databaseConn.php");
 
 ?>
+
 <form class="regularForm" method="post" action="../connection/valuationVerification.php" style="height:fit-content; width:900px">
   <?php include "../components/print.php";?>
     <?php include "../templates/valuation.php"?>
