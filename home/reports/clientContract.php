@@ -72,12 +72,12 @@ $offerItems=$_SESSION['offerItems'];
 <script>
     //print
     document.getElementById("print").addEventListener("click",()=>{
+        //an array to collect ids of elements
+        const idsArray=['footer','divheader','sidebar','btnback','print'];
+        idsArray.forEach(id => {
+        document.getElementById(id).style.display="none";
+        });
 
-    document.getElementById("footer").style.display="none";
-    document.getElementById("divheader").style.display="none";
-    document.getElementById("sidebar").style.display="none";
-    document.getElementById("btnback").style.display="none";
-    document.getElementById("print").style.display="none";
     document.getElementById("mainForm").style.border="none";
     document.getElementById("printPageHeader").style.position="fixed";
     document.getElementById("printPageHeader").style.top="0";
@@ -88,17 +88,14 @@ $offerItems=$_SESSION['offerItems'];
   
     // position:fixed; bottom:0
     window.print();
-    document.getElementById("print").style.display="block";
-    
-    document.getElementById("footer").style.display="block";
-    document.getElementById("divheader").style.display="block";
-    document.getElementById("sidebar").style.display="block";
-    document.getElementById("btnback").style.display="block";
+    idsArray.forEach(id => {
+        document.getElementById(id).style.display="block";
+        });
+
     document.getElementById("print").style.display="block";
     document.getElementById("mainForm").style.border="1px solid brown";
     document.getElementById("printPageFooter").style.display="block";
     document.getElementById("printPageFooter").style.position="";
-
     document.getElementById("printPageHeader").style.display="block";
     document.getElementById("printPageHeader").style.position="";
 })
